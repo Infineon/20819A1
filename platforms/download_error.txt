@@ -1,0 +1,6 @@
+********* Download Failure *************
++------------------------------------------------------------------------------------------+
+| Power cycle the CYW208XX platform and retry.                                             |
+| If this problem persists, the serial flash on the tag may be corrupted.                  |
+| Please see the Kit Guide for recovery instructions.                                      |
++------------------------------------------------------------------------------------------+

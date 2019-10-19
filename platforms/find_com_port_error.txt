@@ -1,0 +1,8 @@
++------------------------------------------------------------------------------------------+
+| No CYW208XX detected                                                                     |
+| 1. Verify the CYW208XX evaluation board is connected _AND_ powered                       |
+| 2. Press the reset button on the board and retry                                         |
+|                                                                                          |
+| If this problem persists, the FLASH on the board may be corrupted                        |
+| Please see the Kit Guide for recovery instructions                                       |
++------------------------------------------------------------------------------------------+

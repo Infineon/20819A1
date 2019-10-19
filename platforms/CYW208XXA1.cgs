@@ -1,0 +1,45 @@
+################################################################################
+##
+## Start 208XXA1 Platform configuration
+##
+################################################################################
+################################################################################
+#  BT MPAF FRAMEWORK - Enable WICED  Application
+################################################################################
+ENTRY "BT MPAF FRAMEWORK"
+{
+    "MPAF appEnableBitMask" = 0x00001000
+    "feature map" = 0x80000002
+    "MPAF NV max devinfo" = 0x1
+    "MPAF TRANS MODE" = 0x0
+    "MPAF PKT TYPE" = 0x19
+    "mm_Sbrk_Limit" = 0x0
+}
+
+ENTRY "ACL Pool Configuration"
+{
+    "Host claim ACL Host to device size"   = 1021
+    "ACL Host to device size"              = 1092
+    "Unemployed entry"                     = 0
+    "ACL Device to host size"              = 1068
+    "Host Claim ACL Host to device count"  = 6  # default: 8
+    "ACL Host to device count"             = 6  # default: 8
+    "ACL Device to host count"             = 4  # default: 4
+}
+
+ENTRY "BLE ACL Pool Configuration"
+{
+    "BLE Host claim ACL Host to device size"    = 251
+    "BLE ACL Host to device size"               = 264
+    "BLE device claim ACL device to host size"  = 251
+    "BLE ACL Device to host size"               = 264
+    "BLE Host Claim ACL Host to device count"   = 6  # default: 8
+    "BLE ACL Host to device count"              = 6  # default: 8
+    "BLE ACL Device to host count"              = 8  # default: 15
+}
+
+################################################################################
+##
+## End 208XXA1 Platform configuration
+##
+################################################################################
