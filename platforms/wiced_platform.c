@@ -1,5 +1,5 @@
 /*
- * Copyright 2019, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -33,15 +33,17 @@
 
 #include "wiced_platform.h"
 #include "spar_utils.h"
+#include "GeneratedSource/cycfg_pins.h"
 
-extern wiced_platform_gpio_t platform_gpio_pins[];
-extern wiced_platform_led_config_t platform_led[];
-extern wiced_platform_button_config_t platform_button[];
-extern wiced_platform_gpio_config_t platform_gpio[];
-extern size_t platform_gpio_pin_count;
-extern size_t led_count;
-extern size_t button_count;
-extern size_t gpio_count;
+wiced_bt_gpio_numbers_t wiced_platform_get_function_gpio_pin(wiced_bt_gpio_function_t fn)
+{
+    for (int i=0;i<platform_gpio_pin_count;i++)
+    {
+        if (platform_gpio_pins[i].functionality == fn)
+            return platform_gpio_pins[i].gpio_pin;
+    }
+    return MAX_NUM_OF_GPIO; // indicate not found
+}
 
 extern void wiced_app_hal_init(void );
 /* utility functions */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -33,7 +33,10 @@
 
 void wiced_ofu_pet_watchdog(void);
 void wiced_ofu_reset_device(void);
-void wiced_ofu_sflash_init(void);
+
+#define WICED_OFU_DEFAULT_SPI_CLK 12000000
+void wiced_ofu_sflash_init(uint32_t spi_clk_hz);
+
 uint32_t wiced_ofu_get_ds1_offset(void);
 
 typedef UINT32 (*POST_CONFIG_CALLBACK)(int);
@@ -47,3 +50,5 @@ BOOL32 wiced_ofu_store_external_storage_key(void *handle);
 BOOL32 wiced_ofu_restore_external_storage_key(void *handle);
 BOOL32 wiced_ofu_crypt( wiced_bool_t encrypt, uint16_t length, const uint8_t *input,
                         uint8_t *output, void *handle);
+void wiced_ofu_store_image_length(uint16_t length, void *handle);
+uint16_t wiced_ofu_get_image_length(void *handle);

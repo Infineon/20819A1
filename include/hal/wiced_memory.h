@@ -6,7 +6,7 @@
 *
 ********************************************************************************
 * \copyright
-* Copyright 2019, Cypress Semiconductor Corporation or a subsidiary of
+* Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
 * Cypress Semiconductor Corporation. All Rights Reserved.
 *
 * This software, including source code, documentation and related
@@ -162,7 +162,7 @@ wiced_bool_t wiced_memory_set_application_thread_stack_size(uint16_t new_stack_s
 * Function Name: wiced_bt_create_pool
 ***************************************************************************//**
 *
-* Creates a private pool dedicated for the application usage.
+* Creates a private buffer pool dedicated for the application usage.
 *
 * \param buffer_size
 * The size of the buffers in the pool
@@ -174,6 +174,9 @@ wiced_bool_t wiced_memory_set_application_thread_stack_size(uint16_t new_stack_s
 * The pointer to the created pool on success
 * NULL on failure
 *
+* Note: The max number of buffer pools configured in
+*       wiced_bt_cfg_settings_t.max_number_of_buffer_pools
+*       must be increased for each buffer pool the application creates.
 ******************************************************************************/
 wiced_bt_buffer_pool_t* wiced_bt_create_pool( uint32_t buffer_size, uint32_t buffer_cnt );
 

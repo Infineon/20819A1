@@ -1,0 +1,232 @@
+# Place a '#' in the first column to indicate a comment
+#
+# This file defines OVERRIDE rules for ROM and LIBRARY symbols.
+# Each symbol defined below is used in conjunction with the elf file symbol tables.
+#
+#
+# Comma Seperated Value file
+#
+# Name,     Type,     Visibility,     Mangle Flag,     Mangle Name,     Trampoline Flag,
+#
+# Definitions
+#   Name
+#     <symbol name>    Name of exact symbol to find and modify (may exist in multiple elf files)
+#     <wildcard>       Wildcard is allowed.
+#                          *     match all SYMBOLS after this location in the name.    ie.  <Wiced_*>
+#                                Sections are NOT supported at the moment with wildcards
+#
+#                      Name is CASE-SENSITIVE and WHITE SPACE IN-sensitive at beginning or end of name.
+#
+#   Type
+#     SECTION          Indicates this entry applies to a Symbol (Function or Object) in the elf file
+#     SYMBOL           Indicates this entry applies to 1 or more sections of the same name
+#
+#   Visibility Status
+#     PUBLIC           Symbol will be exported and will be in the open (never mangled)
+#     PRIVATE          Allow libraries to use it as a mangled symbol (if mangling enabled, otherwise it is removed)
+#                      Allow exporting of mangled rom symbols(objects and functions)
+#     SECRET           Never allow this in an output elf file, trampoline function, symdefs, or just-symbols file
+#     no value         Defaults to SECRET (symbol only)
+#
+#   Mangle Flagh
+#     0        => No mangling will occur, use real name
+#     1        => Mangle this entry
+#     No Value => Defaults to 0
+#
+#   Mangle Name
+#     No Value => Use a randomized value (if mangling is enabled)
+#     Value    => Use the supplied value as the new name for the entry
+#                 1st char MUST be a letter (max 17 chars)
+#
+#   Trampoline Flag (for ROM symbols only!! Ignored if symbol is in a library)
+#     0         => No trampoline function generated (Data object would use this value)
+#     1         => Trampoline function generated
+#     No Value  => Defaults to 0 (always for SECTION)
+#
+#                  For simplicity if an OBJECT has this flag set to 1, the script is expected to just ignore it.
+#
+#
+#####################################################################################################################################
+# Section  #
+############
+# Name,                                    Type,      Status,     Mangle Flag,      Mangle Name,     Trampoline Flag
+CODE_AREA                         ,     SECTION,      PUBLIC,               0,                 ,
+RO_AREA                           ,     SECTION,      PUBLIC,               0,                 ,
+FIRST_FREE_SECTION_IN_SRAM        ,     SECTION,      PUBLIC,               0,                 ,
+FIRST_FREE_SECTION_IN_AON         ,     SECTION,      PUBLIC,               0,                 ,
+#
+#####################################################################################################################################
+# Symbols -- The corresponding section above must exist IF you are stripping sections/symbols as well. #
+########################################################################################################
+# Name,                                                        Type ,      Status,  Mangle Flag,     Mangle Name,     Trampoline Flag,
+__aeabi_memclr                                   ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+__aeabi_memcpy                                   ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+__aeabi_uldivmod                                 ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+_tx_v7m_get_and_disable_int                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+_tx_v7m_set_int                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+AVCT_Register                                    ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+BTM_SetPacketTypes                               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+BTM_WritePageTimeout                             ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcs_appNotifiDisable                             ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcs_appNotifiEnable                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcs_initAppNotifi                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcs_pmuReleaseBtClock                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcs_pmuWaitForBtClock                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcs_sniffNotifDisable                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcs_sniffNotifEnable                             ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcsulp_connTaskGetPtrFromLtCh                    ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bcsulp_getConnectionRssi                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bttransport_Detect                               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+bttransport_GetType                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+btu_hcif_send_cmd                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+clock_SystemTimeMicroseconds64                   ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+clock_SystemTimeMicroseconds32_nolock            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+copyStreamToBda                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+g_aon_memory_manager_MinAddress                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+g_ble_max_connections                            ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+g_config_Info                                    ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+g_dynamic_memory_MinAddress                      ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+g_rfp_config                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+dynamic_memory_AllocatePermanent                 ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+gpio_slimboot_reinforce_all_outputpin_value      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+lm_GetPowerRegValue                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+memcmp                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+memcpy                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+memset                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+micro_bcsIsNormalModeTransition                  ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+GKI_getbuf                                       ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+osapi_activateTimer                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+osapi_createTimer                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+osapi_deactivateTimer                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+rmulp_constInfo                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+strlen                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+wdog_generate_hw_reset                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+#
+wiced_*                                          ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+#
+# Name,                                                        Type ,      Status,  Mangle Flag,     Mangle Name,     Trampoline Flag,
+#
+CopyPoint                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+crc32_Update                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+curve_p256                                       ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+ECC_Double                                       ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+ECC_PM_B_NAF                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+g_config_Info                                    ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+g_nvram_intf                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+MP_Add                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_CMP                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_Copy                                          ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_Init                                          ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_isZero                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_LShiftMod                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_MersennsMultMod                               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_MersennsSquaMod                               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_RShift                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_Sub                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+MP_SubMod                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+sha2_finish                                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+sha2_starts                                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+sha2_update                                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+#
+allowSlaveLatency                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+pmu_Enable32KhzOscillator                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+BtTransportDetectionPollingRetryMax              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+copyBdaToStream                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+DEFAULT_SUPERVISION_TIMEOUT                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+g_foundation_config_PMUflags                     ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+g_foundation_config_sleepModeParam               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+gatt_find_tcb_by_addr                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+gpio_registerForInterrupt                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+hciulp_leCsFeatureSet                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+mia_isResetReasonPor                             ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+mpaf_pmu_changeLPOSourceSelection                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+mywiced_stack_event_handler_cb                   ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+OSTASK_DisablePreemption                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+OSTASK_RestorePreemption                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+patch_lib_setEnabled                             ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+rmulp_getBaseConnFromHciConnhandle               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+rmulp_getLtchFromConnhandle                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+savedFullbootReason                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+slimboot_ext_wake_enable                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+patch_autoInstall                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+#
+# Wiced_hidd_lib Library
+emConInfo_devInfo                                ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+#
+# mesh
+mesh_proxy_out_flt                               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_conn_id                                ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+node_nv_net_key                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_connected_to_proxy                     ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+network_layer_stats                              ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_connected_dev_id                       ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+foundation_node_identity_timer_net_key_idx       ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_mesh_started                           ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mpaf_cfa_permanentAlloc                          ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_receive_packet_time                    ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_sequence_number                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_beacon_interval                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_proxy_adv_interval                     ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+split_proxy_ptr                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+p_node_state                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+key_refresh_is_phase2_ptr                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+ecdh_calc_secret_ptr                             ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+friend_does_go_to_lpn_ptr                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+friend_find_lpn_ptr                              ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+friend_get_state_ptr                             ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+friend_has_nid_ptr                               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+friend_net_decrypt_ptr                           ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+low_power_friendship_established_ptr             ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+low_power_has_nid_ptr                            ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+low_power_net_decrypt_ptr                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+lower_transport_layer_handle_ptr                 ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_core_seq_changed_callback_ptr               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_find_filter_addr_ptr                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+mesh_send_message_ptr                            ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+pb_transport_close_ptr                           ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+foundation_find_subs_ptr                         ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+p_pb_priv_key                                    ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+p_pb_public_key                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+network_layer_cache                              ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+network_layer_cache_pos                          ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+smp_aes_set_key                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+smp_aes_encrypt                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+AES_CMAC                                         ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+clock_Request                                    ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+foundation_virt_addr                             ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+InitCurve                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+MP_AddMod                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+memmove                                          ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+utilslib_delayUs                                 ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+rtc_getRTCTime                                   ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+rtc_setRTCTime                                   ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+#
+# hid
+#
+hidd_pm_proc_mode_change                         ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+L2CA_SetDesireRole                               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+sfi_allow_deep_sleep                             ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+adc_config                                       ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+adc_startAudio                                   ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+adc_stopAudio                                    ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+SBC_Encoder_encode                               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+SBC_Encoder_Init                                 ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+adcConfig                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+#adc_startAudio_addin_fix                         ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+#
+# iap
+#
+GKI_freebuf                                       , SYMBOL, PUBLIC, 0, , 1
+GKI_get_buf_size                                  , SYMBOL, PUBLIC, 0, , 1
+GKI_get_pool_bufsize                              , SYMBOL, PUBLIC, 0, , 1
+GKI_getpoolbuf                                    , SYMBOL, PUBLIC, 0, , 1
+PORT_Read                                         , SYMBOL, PUBLIC, 0, , 1
+PORT_Write                                        , SYMBOL, PUBLIC, 0, , 1
+i2cm_pingSlave                                    , SYMBOL, PUBLIC, 0, , 1
+i2cm_read                                         , SYMBOL, PUBLIC, 0, , 1
+i2cm_write                                        , SYMBOL, PUBLIC, 0, , 1
+rm_deviceBDAddr                                   , SYMBOL, PUBLIC, 0, , 1
+#
+# rfcomm
+GKI_poolfreecount                                 , SYMBOL, PUBLIC, 0, , 1
+GKI_poolcount                                     , SYMBOL, PUBLIC, 0, , 1

@@ -28,8 +28,10 @@
 #endif
 
 #if ENABLE_DEBUG
-#include "tx_port.h"
 #include "wiced_hal_wdog.h"
+#include <string.h>
+unsigned int _tx_v7m_get_and_disable_int(void);
+void _tx_v7m_set_int(unsigned int posture);
 
 /// When debugging is enabled, sets up the HW for debugging.
 #define SETUP_APP_FOR_DEBUG_IF_DEBUG_ENABLED()   do{        \

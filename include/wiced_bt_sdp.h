@@ -1,5 +1,5 @@
 /*
- * Copyright 2019, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -236,6 +236,25 @@ typedef struct
         SDP_ATTR_SEQUENCE_1(3),                                         \
             SDP_ATTR_UUID16(l2cap_chan)
 
+/* Protocol Descriptor List 0x0004 for SDP */
+#define SDP_ATTR_SDP_PROTOCOL_DESC_LIST(l2cap_chan)                         \
+    SDP_ATTR_ID(ATTR_ID_PROTOCOL_DESC_LIST), SDP_ATTR_SEQUENCE_1(13),   \
+        SDP_ATTR_SEQUENCE_1(6),                                         \
+        SDP_ATTR_UUID16(UUID_PROTOCOL_L2CAP),                           \
+            SDP_ATTR_ID(l2cap_chan),                                    \
+        SDP_ATTR_SEQUENCE_1(3),                                         \
+            SDP_ATTR_UUID16(UUID_PROTOCOL_SDP)
+
+
+/* Protocol Descriptor List 0x0004 for HIDP */
+#define SDP_ATTR_HIDP_PROTOCOL_DESC_LIST(l2cap_chan)                         \
+    SDP_ATTR_ID(ATTR_ID_PROTOCOL_DESC_LIST), SDP_ATTR_SEQUENCE_1(13),   \
+        SDP_ATTR_SEQUENCE_1(6),                                         \
+        SDP_ATTR_UUID16(UUID_PROTOCOL_L2CAP),                           \
+            SDP_ATTR_ID(l2cap_chan),                                    \
+        SDP_ATTR_SEQUENCE_1(3),                                         \
+            SDP_ATTR_UUID16(UUID_PROTOCOL_HIDP)
+
 /* Protocol Descriptor List 0x0004 for RFCOMM */
 #define SDP_ATTR_RFCOMM_PROTOCOL_DESC_LIST(scn)                         \
     SDP_ATTR_ID(ATTR_ID_PROTOCOL_DESC_LIST), SDP_ATTR_SEQUENCE_1(12),   \
@@ -302,9 +321,16 @@ typedef struct
         SDP_ATTR_ID(ATTR_ID_GROUP_ID), SDP_ATTR_SEQUENCE_1(3),          \
         SDP_ATTR_UUID16(uuid)
 
-/* Version Number List 0x0200 */
-#define SDP_ATTR_VERSION_NUMBER_LIST(version)                           \
+#if 1
+ /* Version Number List 0x0200 */
+ #define SDP_ATTR_VERSION_NUMBER_LIST(version)                           \
         SDP_ATTR_UINT2(ATTR_ID_SPECIFICATION_ID, version)
+#else
+ /* Version Number List 0x0200 */
+ #define SDP_ATTR_VERSION_NUMBER_LIST(version)                           \
+        SDP_ATTR_ID(ATTR_ID_SPECIFICATION_ID), SDP_ATTR_SEQUENCE_1(3),  \
+        SDP_ATTR_VALUE_UINT2(version)
+#endif
 
 /* Service Database State 0x0201 */
 #define SDP_ATTR_SERVICE_DATABASE_STATE(state)                          \

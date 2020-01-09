@@ -2,10 +2,10 @@
 <Parameters xml_version="1" xmlns="http://cypress.com/xsd/cydatawounding_v1">
   <Param name="PartNumber" value="CYBT-213043-02" />
   <Param name="PartAvailability" value="Active" />
-  <Param name="DeviceDie" value="20819" />
+  <Param name="DeviceDie" value="20819A1" />
   <Param name="Silicon_Revision" value="SAMPLING" />
   <Param name="Package" value="35-SMT" />
-  <Param name="DeviceSeries" value="20819A1" />
+  <Param name="DeviceSeries" value="20819" />
   <Param name="Speed_MHz" value="96" />
   <Param name="Flash_KB" value="256" />
   <Param name="ROM_KB" value="1024" />

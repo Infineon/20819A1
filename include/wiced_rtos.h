@@ -4,7 +4,7 @@
 * Provides application-level access to RTOS functionality contained in ROM.
 *
 *//*****************************************************************************
-* Copyright 2019, Cypress Semiconductor Corporation or a subsidiary of
+* Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
 * Cypress Semiconductor Corporation. All Rights Reserved.
 *
 * This software, including source code, documentation and related
@@ -511,9 +511,7 @@ wiced_result_t wiced_rtos_unlock_mutex( wiced_mutex_t* mutex );
 *
 * \note
 * The queue APIs will not function until \ref wiced_bt_stack_init is called
-* so that the proper buffer space is allocated at runtime. Furthermore, the
-* number of buffers in \ref wiced_bt_cfg_settings_t.max_number_of_buffer_pools
-* must be increased for each queue the application will utilize.
+* so that the proper buffer space is allocated at runtime.
 *
 */
 
@@ -546,6 +544,8 @@ wiced_queue_t*  wiced_rtos_create_queue( void );
 * \return
 *  - WICED_SUCCESS
 *  - WICED_ERROR
+*
+* Note : This API will create separate private pool so please increase max_number_of_buffer_pools (in wiced_bt_cfg_settings_t structure) by number of rtos queue created
 *
 *******************************************************************************/
 wiced_result_t wiced_rtos_init_queue( wiced_queue_t* queue,
@@ -657,9 +657,7 @@ wiced_result_t wiced_rtos_get_queue_occupancy( wiced_queue_t* queue, uint32_t* c
 *
 * \note
 * The worker thread APIs will not function until \ref wiced_bt_stack_init is
-* called so that the proper buffer space is allocated at runtime. Further, the
-* number of buffers in \ref wiced_bt_cfg_settings_t.max_number_of_buffer_pools
-* must be increased for each worker thread the application will utilize.
+* called so that the proper buffer space is allocated at runtime.
 *
 */
 
@@ -699,6 +697,10 @@ wiced_worker_thread_t* wiced_rtos_create_worker_thread( void );
 * \return
 *  - WICED_SUCCESS
 *  - WICED_ERROR
+*
+* \note
+* The number of buffers in \ref wiced_bt_cfg_settings_t.max_number_of_buffer_pools
+* must be increased for each worker thread the application will utilize.
 *
 *******************************************************************************/
 wiced_result_t wiced_rtos_init_worker_thread( wiced_worker_thread_t* worker_thread,

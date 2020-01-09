@@ -5,7 +5,7 @@
 * 	Header file that includes defines and helper functions
 *
 *//*****************************************************************************
-* Copyright 2019, Cypress Semiconductor Corporation or a subsidiary of
+* Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
 * Cypress Semiconductor Corporation. All Rights Reserved.
 *
 * This software, including source code, documentation and related
