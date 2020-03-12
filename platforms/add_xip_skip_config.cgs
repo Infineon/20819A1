@@ -1,0 +1,19 @@
+# DO NOT EDIT MANUALLY! FW2 VERSION
+ENTRY "Data" = "CODE_AREA from tier2/Generic/add_config/bld/20819_ram_ext.elf"
+{
+	"Address" = 0x270400
+	"Data" =
+	COMMENTED_BYTES
+	{
+		<hex>
+		10 b5 00 21 0c 20 91 f5 e3 fc 04 46 00 21 07 20
+		91 f5 de fc 00 2c 12 d0 00 28 10 d0 01 21 01 80
+		81 70 07 4a c0 f8 03 20 00 22 22 60 0b 22 a2 80
+		e1 80 a0 60 20 46 bd e8 10 40 d7 f5 59 bf 10 bd
+		4f 0c 00 00
+	} END_COMMENTED_BYTES
+}
+ENTRY "Function Call"
+{
+	"Address" = 0x270401
+}

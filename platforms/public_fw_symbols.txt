@@ -90,16 +90,12 @@ g_rfp_config                                     ,           SYMBOL ,      PUBLI
 dynamic_memory_AllocatePermanent                 ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 gpio_slimboot_reinforce_all_outputpin_value      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 lm_GetPowerRegValue                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
-memcmp                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
-memcpy                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
-memset                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 micro_bcsIsNormalModeTransition                  ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 GKI_getbuf                                       ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 osapi_activateTimer                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 osapi_createTimer                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 osapi_deactivateTimer                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 rmulp_constInfo                                  ,           SYMBOL ,      PUBLIC,      0,                      ,              0
-strlen                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 wdog_generate_hw_reset                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 #
 wiced_*                                          ,           SYMBOL ,      PUBLIC,      0,                      ,              1
@@ -111,7 +107,6 @@ crc32_Update                                     ,           SYMBOL ,      PUBLI
 curve_p256                                       ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 ECC_Double                                       ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 ECC_PM_B_NAF                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              1
-g_config_Info                                    ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 g_nvram_intf                                     ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 MP_Add                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 MP_CMP                                           ,           SYMBOL ,      PUBLIC,      0,                      ,              1
@@ -136,7 +131,6 @@ DEFAULT_SUPERVISION_TIMEOUT                      ,           SYMBOL ,      PUBLI
 g_foundation_config_PMUflags                     ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 g_foundation_config_sleepModeParam               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 gatt_find_tcb_by_addr                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
-gpio_registerForInterrupt                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 hciulp_leCsFeatureSet                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 mia_isResetReasonPor                             ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 mpaf_pmu_changeLPOSourceSelection                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
@@ -196,7 +190,6 @@ clock_Request                                    ,           SYMBOL ,      PUBLI
 foundation_virt_addr                             ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 InitCurve                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 MP_AddMod                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
-memmove                                          ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 utilslib_delayUs                                 ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 rtc_getRTCTime                                   ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 rtc_setRTCTime                                   ,           SYMBOL ,      PUBLIC,      0,                      ,              0
@@ -212,7 +205,7 @@ adc_stopAudio                                    ,           SYMBOL ,      PUBLI
 SBC_Encoder_encode                               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 SBC_Encoder_Init                                 ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 adcConfig                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              0
-#adc_startAudio_addin_fix                         ,           SYMBOL ,      PUBLIC,      0,                      ,              0
+adc_pdm_pinconfig                                ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 #
 # iap
 #
@@ -230,3 +223,43 @@ rm_deviceBDAddr                                   , SYMBOL, PUBLIC, 0, , 1
 # rfcomm
 GKI_poolfreecount                                 , SYMBOL, PUBLIC, 0, , 1
 GKI_poolcount                                     , SYMBOL, PUBLIC, 0, , 1
+#
+# peps
+lculp_handleBcsulpReport_patch                    , SYMBOL, PUBLIC, 0, , 1
+#
+# general
+__2sprintf                                        , SYMBOL, PUBLIC, 0, , 1
+__2snprintf                                       , SYMBOL, PUBLIC, 0, , 1
+rtc_init                                          , SYMBOL, PUBLIC, 0, , 1
+strncpy                                           , SYMBOL, PUBLIC, 0, , 1
+strlen                                            , SYMBOL, PUBLIC, 0, , 1
+strcmp                                            , SYMBOL, PUBLIC, 0, , 1
+strchr                                            , SYMBOL, PUBLIC, 0, , 1
+strstr                                            , SYMBOL, PUBLIC, 0, , 1
+g_aon_flags                                       , SYMBOL, PUBLIC, 0, , 1
+gpio_getPortOutput                                , SYMBOL, PUBLIC, 0, , 1
+gpio_setPortOutput                                , SYMBOL, PUBLIC, 0, , 1
+gpio_getPortInput                                 , SYMBOL, PUBLIC, 0, , 1
+gpio_getPortInterruptStatus                       , SYMBOL, PUBLIC, 0, , 1
+gpio_clearPortInterruptStatus                     , SYMBOL, PUBLIC, 0, , 1
+gpio_configurePortPins                            , SYMBOL, PUBLIC, 0, , 1
+gpio_registerForInterrupt                         , SYMBOL, PUBLIC, 0, , 1
+BTM_SetDeviceClass                                , SYMBOL, PUBLIC, 0, , 1
+BTM_ReadDeviceClass                               , SYMBOL, PUBLIC, 0, , 1
+BTM_SetLocalDeviceName                            , SYMBOL, PUBLIC, 0, , 1
+BTM_ReadLocalDeviceName                           , SYMBOL, PUBLIC, 0, , 1
+memmove                                           , SYMBOL, PUBLIC, 0, , 1
+memcmp                                            , SYMBOL, PUBLIC, 0, , 1
+memcpy                                            , SYMBOL, PUBLIC, 0, , 1
+memset                                            , SYMBOL, PUBLIC, 0, , 1
+slist_add_before                                  , SYMBOL, PUBLIC, 0, , 1
+slist_del                                         , SYMBOL, PUBLIC, 0, , 1
+slist_add_front                                   , SYMBOL, PUBLIC, 0, , 1
+slist_add_tail                                    , SYMBOL, PUBLIC, 0, , 1
+slist_add_after                                   , SYMBOL, PUBLIC, 0, , 1
+slist_del_front                                   , SYMBOL, PUBLIC, 0, , 1
+slist_empty                                       , SYMBOL, PUBLIC, 0, , 1
+slist_front                                       , SYMBOL, PUBLIC, 0, , 1
+slist_tail                                        , SYMBOL, PUBLIC, 0, , 1
+slist_get                                         , SYMBOL, PUBLIC, 0, , 1
+slist_count                                       , SYMBOL, PUBLIC, 0, , 1

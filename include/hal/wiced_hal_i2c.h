@@ -227,6 +227,21 @@ uint8_t wiced_hal_i2c_write(uint8_t* data, uint16_t length, uint8_t slave);
 
 
 /*******************************************************************************
+* Function Name: wiced_hal_i2c_select_pads
+****************************************************************************//**
+*
+* Configures GPIOs to use for I2C pins
+*
+* \param[in] scl_pin   LHL GPIO to be used for SCL
+* \param[in] sda_pin   LHL GPIO to be used for SDA
+*
+* \return none
+*
+*******************************************************************************/
+void wiced_hal_i2c_select_pads(uint8_t scl_pin, uint8_t sda_pin);
+
+
+/*******************************************************************************
 * Function Name: wiced_hal_i2c_combined_read
 ****************************************************************************//**
 *

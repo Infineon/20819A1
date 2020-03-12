@@ -42,13 +42,17 @@ uint32_t wiced_ofu_get_ds1_offset(void);
 typedef UINT32 (*POST_CONFIG_CALLBACK)(int);
 void wiced_ofu_set_post_config_callback(POST_CONFIG_CALLBACK cb);
 
-#define OFU_CRYPT_TYPE_AES_CFB128 0
+#define OFU_CRYPT_TYPE_NONE         0
+#define OFU_CRYPT_TYPE_AES_CFB128   1
+#define OFU_CRYPT_TYPE_AES_CTR      2
 
 uint32_t wiced_ofu_get_external_storage_context_size(void);
 BOOL32 wiced_ofu_new_external_storage_key(wiced_bool_t encrypt, uint32_t type, void *handle);
 BOOL32 wiced_ofu_store_external_storage_key(void *handle);
 BOOL32 wiced_ofu_restore_external_storage_key(void *handle);
-BOOL32 wiced_ofu_crypt( wiced_bool_t encrypt, uint16_t length, const uint8_t *input,
+BOOL32 wiced_ofu_crypt( wiced_bool_t encrypt, uint32_t offset, uint32_t length, const uint8_t *input,
                         uint8_t *output, void *handle);
-void wiced_ofu_store_image_length(uint16_t length, void *handle);
-uint16_t wiced_ofu_get_image_length(void *handle);
+void wiced_ofu_store_image_length(uint32_t length, void *handle);
+uint32_t wiced_ofu_get_image_length(void *handle);
+void wiced_ofu_enter_eflash_write_or_erase(void);
+void wiced_ofu_leave_eflash_write_or_erase(void);

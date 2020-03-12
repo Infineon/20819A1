@@ -25,7 +25,9 @@
 #include "wiced_platform.h"
 
 // Disable startup calibrarion that can cause 900 ms delay in startup
+#ifndef DO_RF_CALIBRATION
 #define DISABLE_RF_CALIBRATION
+#endif
 
 /*****************************************************************
 *   External definitions
