@@ -182,6 +182,7 @@ extern "C"
  * Note : This API will create separate private pool so please increase max_number_of_buffer_pools by one (in wiced_bt_cfg_settings_t structure)
  *
  */
+#define wiced_bt_rfcomm_init    wiced_bt_rfcomm_set_buffer_pool
 wiced_bt_dev_status_t wiced_bt_rfcomm_set_buffer_pool(uint16_t buffer_size,
                             uint16_t buffer_count);
 

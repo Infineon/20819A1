@@ -263,3 +263,43 @@ slist_front                                       , SYMBOL, PUBLIC, 0, , 1
 slist_tail                                        , SYMBOL, PUBLIC, 0, , 1
 slist_get                                         , SYMBOL, PUBLIC, 0, , 1
 slist_count                                       , SYMBOL, PUBLIC, 0, , 1
+# homekit
+watchdog_SetCountdown                             , SYMBOL, PUBLIC, 0, , 1
+cfa_mm_Alloc_d                                    , SYMBOL, PUBLIC, 0, , 1
+cfa_mm_Free_d                                     , SYMBOL, PUBLIC, 0, , 1
+ed25519_publickey                                 , SYMBOL, PUBLIC, 0, , 1
+ed25519_sign                                      , SYMBOL, PUBLIC, 0, , 1
+ed25519_sign_open                                 , SYMBOL, PUBLIC, 0, , 1
+curved25519_scalarmult_basepoint                  , SYMBOL, PUBLIC, 0, , 1
+curve25519                                        , SYMBOL, PUBLIC, 0, , 1
+chacha20_poly1305_aead_tls_encrypt                , SYMBOL, PUBLIC, 0, , 1
+chacha20_poly1305_aead_tls_decrypt                , SYMBOL, PUBLIC, 0, , 1
+poly1305_verify                                   , SYMBOL, PUBLIC, 0, , 1
+sha4_starts                                       , SYMBOL, PUBLIC, 0, , 1
+sha4_update                                       , SYMBOL, PUBLIC, 0, , 1
+sha4_finish                                       , SYMBOL, PUBLIC, 0, , 1
+sha4                                              , SYMBOL, PUBLIC, 0, , 1
+sha4_hkdf                                         , SYMBOL, PUBLIC, 0, , 1
+sha1                                              , SYMBOL, PUBLIC, 0, , 1
+BigIntegerInitialize                              , SYMBOL, PUBLIC, 0, , 1
+BigIntegerFromInt                                 , SYMBOL, PUBLIC, 0, , 1
+BigIntegerFromBytes                               , SYMBOL, PUBLIC, 0, , 1
+BigIntegerToCstrEx                                , SYMBOL, PUBLIC, 0, , 1
+BigIntegerAdd                                     , SYMBOL, PUBLIC, 0, , 1
+BigIntegerAddInt                                  , SYMBOL, PUBLIC, 0, , 1
+BigIntegerMul                                     , SYMBOL, PUBLIC, 0, , 1
+BigIntegerMod                                     , SYMBOL, PUBLIC, 0, , 1
+BigIntegerModMul                                  , SYMBOL, PUBLIC, 0, , 1
+BigIntegerModExp                                  , SYMBOL, PUBLIC, 0, , 1
+BigIntegerFree                                    , SYMBOL, PUBLIC, 0, , 1
+cstr_new                                          , SYMBOL, PUBLIC, 0, , 1
+cstr_clear_free                                   , SYMBOL, PUBLIC, 0, , 1
+#
+# for wlp_lib, power profiling
+pmu_sleep_isSleepEnabled                          , SYMBOL, PUBLIC, 0, , 1
+wpl_register_for_low_power_queries                , SYMBOL, PUBLIC, 0, , 1
+cype_sleep_handler_init                           , SYMBOL, PUBLIC, 0, , 1
+retrieve_bcs_profile_data                         , SYMBOL, PUBLIC, 0, , 1
+bcs_profilingReset                                , SYMBOL, PUBLIC, 0, , 1
+mcu_profiling_set                                 , SYMBOL, PUBLIC, 0, , 1
+mcu_profiling_retrieve_data                       , SYMBOL, PUBLIC, 0, , 1
