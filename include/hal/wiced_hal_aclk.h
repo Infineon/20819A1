@@ -68,6 +68,8 @@ enum CLK_SRC_SEL
 {
     ACLK0,
     ACLK1,
+	WICED_ACLK0 = ACLK0,
+	WICED_ACLK1 = ACLK1
 };
 
 /**
@@ -75,7 +77,8 @@ enum CLK_SRC_SEL
  */
 enum CLK_SRC_FREQ_SEL
 {
-    ACLK_FREQ_24_MHZ = 1  /**< Always on, for permanent clk source */
+    ACLK_FREQ_24_MHZ = 1,  /**< Always on, for permanent clk source */
+	WICED_ACLK_FREQ_24_MHZ = ACLK_FREQ_24_MHZ
 };
 
 /** \} group_ACLK_enum */

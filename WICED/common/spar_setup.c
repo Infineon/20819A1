@@ -29,6 +29,7 @@
 #define DISABLE_RF_CALIBRATION
 #endif
 
+#define BLE_MEM_BLOCK 1
 /*****************************************************************
 *   External definitions
 *
@@ -73,6 +74,7 @@ void SPAR_CRT_SETUP(void)
     extern UINT32 Image$$SPAR_DRAM_ZI_AREA$$ZI$$Base;
     extern UINT32 Image$$SPAR_DRAM_ZI_AREA$$ZI$$Length;
     extern UINT32 Image$$first_free_section_in_spar_NV_RAM$$Base;
+    extern UINT8 g_ble_max_connections;
 
     armlink_copy_secinfo_t *cpysecinfo;
 
@@ -108,6 +110,11 @@ void SPAR_CRT_SETUP(void)
     // Install included libraries and patches if any
     install_libs();
 
+    // Max BLE connections by default are 7. To increase number of connections
+    // uncommnent below and update. Note that max connections are limited
+    // by application memory.
+    // g_ble_max_connections = 7 + BLE_MEM_BLOCK;
+
     // WAR please refer to BTSDK-59 resolution comments.
     memcpy((void *)0x200BAE, (void *)&pin_val, sizeof(UINT8));
 
@@ -124,6 +131,8 @@ void SPAR_CRT_SETUP(void)
     extern void* spar_iram_bss_begin;
     extern unsigned spar_iram_data_length, spar_iram_bss_length;
     extern void* spar_irom_data_begin, *spar_iram_data_begin, *spar_iram_end, *aon_iram_end;
+    extern uint8_t g_ble_max_connections;
+
     UINT8  pin_val = 7;
 
 #ifdef DISABLE_RF_CALIBRATION
@@ -157,6 +166,11 @@ void SPAR_CRT_SETUP(void)
 
     // Install included libraries and patches if any
     install_libs();
+
+    // Max BLE connections by default are 7. To increase number of connections
+    // uncommnent below and update. Note that max connections are limited
+    // by application memory.
+    // g_ble_max_connections = 7 + BLE_MEM_BLOCK;
 
     // Setup the application start function.
     wiced_bt_app_pre_init = application_start_internal;

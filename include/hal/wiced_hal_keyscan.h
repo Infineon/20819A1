@@ -152,6 +152,17 @@ void wiced_hal_keyscan_config_gpios(void);
 /////////////////////////////////////////////////////////////////////
 wiced_bool_t wiced_hal_keyscan_is_any_key_pressed(void);
 
+/////////////////////////////////////////////////////////////////////
+/// wiced_hal_keyscan_get_key_pressed_count() -- added in build 130
+///   returns how many keys are pressed
+///
+/// \param -none
+///
+/// \return - key press count
+///
+/////////////////////////////////////////////////////////////////////
+uint8_t wiced_hal_keyscan_get_key_pressed_count(void);
+
 /* @} */
 
 /**  \addtogroup keyscanQueue

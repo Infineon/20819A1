@@ -213,6 +213,7 @@ GKI_freebuf                                       , SYMBOL, PUBLIC, 0, , 1
 GKI_get_buf_size                                  , SYMBOL, PUBLIC, 0, , 1
 GKI_get_pool_bufsize                              , SYMBOL, PUBLIC, 0, , 1
 GKI_getpoolbuf                                    , SYMBOL, PUBLIC, 0, , 1
+PORT_Purge                                        , SYMBOL, PUBLIC, 0, , 1
 PORT_Read                                         , SYMBOL, PUBLIC, 0, , 1
 PORT_Write                                        , SYMBOL, PUBLIC, 0, , 1
 i2cm_pingSlave                                    , SYMBOL, PUBLIC, 0, , 1
