@@ -1,5 +1,5 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -84,8 +84,7 @@ enum
 enum
 {
     I2CM_SUCCESS,   /**< I2C transaction was successful */
-    I2CM_OP_FAILED, /**< I2C transaction failed, possibly due to no ACK from slave */
-    I2CM_BUSY       /**< I2C HW block is busy with another transaction */
+    I2CM_OP_FAILED /**< I2C transaction failed, possibly due to no ACK from slave */
 };
 
 /******************************************************************************
@@ -115,6 +114,9 @@ enum
 * GPIOs, since different HW platforms will have different configuration
 * parameters. Please see the Kit Guide or HW User Manual for your device
 * for more information.
+* In case of change in I2C pins from default platform initialization,
+* the user needs to use external pull-ups or internal GPIO pull-ups.
+* It is recommended to use external pull-ups for a reliable design
 *
 *******************************************************************************/
 void wiced_hal_i2c_init(void);

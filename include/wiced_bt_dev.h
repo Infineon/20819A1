@@ -4,7 +4,7 @@
 * Provides the API declarations for device management.
 *
 *//*****************************************************************************
-* Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+* Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
 * Cypress Semiconductor Corporation. All Rights Reserved.
 *
 * This software, including source code, documentation and related
@@ -51,11 +51,14 @@ extern "C" {
 #endif
 
 /**
- * \addtogroup  wiced_bt_dev WICED Device Management
- * \ingroup     wiced_bt_dev
+ * \addtogroup  wiced_bt_dev Device Management
+ * \ingroup     wicedbt
  * \{
  *
  * WICED Device Management APIs
+ *
+ * \defgroup wiced_bt_dev_classic BT Classic (BR/EDR)
+ * \{
  *
  * \defgroup group_classic_macro Macro
  * \defgroup group_dev_data_structures Data Structures
@@ -73,7 +76,7 @@ extern "C" {
  ******************************************************************************/
 
 /**
-* \addtogroup group_dev_macros
+* \addtogroup group_classic_macro
 * \{
 */
 
@@ -437,7 +440,7 @@ typedef uint8_t wiced_bt_management_evt_t;                                     /
  ******************************************************************************/
 
 /**
-* \addtogroup group_dev_structures
+* \addtogroup group_dev_data_structures
 * \{
 */
 
@@ -1910,6 +1913,8 @@ wiced_bool_t wiced_bt_get_identity_address( wiced_bt_device_address_t bd_addr,
 /** \} group_dev_functions_sec */
 
 /** \} group_dev_functions */
+
+/** \} wiced_bt_dev_classic */
 
 /** \} wiced_bt_dev */
 

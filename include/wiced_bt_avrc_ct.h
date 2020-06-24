@@ -1,5 +1,5 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -35,7 +35,12 @@
  *
  * Bluetooth AVRC Remote Control Application Programming WICED Interface
  *
+ * @addtogroup  wicedbt_avrc_ct       AVRCP Controller Role (CT)
+ * @ingroup wicedbt_avrc
+ *
  * WICED Bluetooth AVRC Remote Control CT Functions
+ *
+ * @{
  */
 
 #pragma once
@@ -59,17 +64,17 @@
 /** AVRC remote control feature mask */
 typedef enum
 {
-    REMOTE_CONTROL_FEATURE_TARGET       = 0x0001,
-    REMOTE_CONTROL_FEATURE_CONTROLLER   = 0x0002,
+    REMOTE_CONTROL_FEATURE_TARGET       = 0x0001, /**< Select to support the features of a Target */
+    REMOTE_CONTROL_FEATURE_CONTROLLER   = 0x0002, /**< Select to support the features of a Controller */
     /* TODO: We need to add the AVRCP feature bits */
 } wiced_bt_avrc_ct_features_t;
 
 /** AVRC remote control connection state */
 typedef enum
 {
-    REMOTE_CONTROL_DISCONNECTED = 0,
-    REMOTE_CONTROL_CONNECTED    = 1,
-    REMOTE_CONTROL_INITIALIZED  = 2
+    REMOTE_CONTROL_DISCONNECTED = 0, /**< Remote control is disconnected from peer */
+    REMOTE_CONTROL_CONNECTED    = 1, /**< Remote control is connected to peer */
+    REMOTE_CONTROL_INITIALIZED  = 2  /**< Remote control is idle (not connected to any peer) */
 } wiced_bt_avrc_ct_connection_state_t;
 
 /** Callback for connection state */
@@ -121,10 +126,6 @@ extern "C" {
 /**
  * AVRC remote control functions
  *
- * @addtogroup  wicedbt_avrc_ct       AVRCP Controller Role (CT)
- * @ingroup wicedbt_avrc
- *
- * @{
  */
 /****************************************************************************/
 

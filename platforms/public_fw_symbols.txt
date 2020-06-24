@@ -138,14 +138,12 @@ mywiced_stack_event_handler_cb                   ,           SYMBOL ,      PUBLI
 OSTASK_DisablePreemption                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 OSTASK_RestorePreemption                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 patch_lib_setEnabled                             ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+patch_lib_isEnabled                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 rmulp_getBaseConnFromHciConnhandle               ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 rmulp_getLtchFromConnhandle                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 savedFullbootReason                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 slimboot_ext_wake_enable                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 patch_autoInstall                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
-#
-# Wiced_hidd_lib Library
-emConInfo_devInfo                                ,           SYMBOL ,      PUBLIC,      0,                      ,              0
 #
 # mesh
 mesh_proxy_out_flt                               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
@@ -216,6 +214,7 @@ GKI_getpoolbuf                                    , SYMBOL, PUBLIC, 0, , 1
 PORT_Purge                                        , SYMBOL, PUBLIC, 0, , 1
 PORT_Read                                         , SYMBOL, PUBLIC, 0, , 1
 PORT_Write                                        , SYMBOL, PUBLIC, 0, , 1
+PORT_ReadData                                     , SYMBOL, PUBLIC, 0, , 1
 i2cm_pingSlave                                    , SYMBOL, PUBLIC, 0, , 1
 i2cm_read                                         , SYMBOL, PUBLIC, 0, , 1
 i2cm_write                                        , SYMBOL, PUBLIC, 0, , 1
@@ -304,3 +303,11 @@ retrieve_bcs_profile_data                         , SYMBOL, PUBLIC, 0, , 1
 bcs_profilingReset                                , SYMBOL, PUBLIC, 0, , 1
 mcu_profiling_set                                 , SYMBOL, PUBLIC, 0, , 1
 mcu_profiling_retrieve_data                       , SYMBOL, PUBLIC, 0, , 1
+#
+# map
+GKI_enqueue                                       , SYMBOL, PUBLIC, 0, , 1
+GKI_enqueue_head                                  , SYMBOL, PUBLIC, 0, , 1
+GKI_dequeue                                       , SYMBOL, PUBLIC, 0, , 1
+GKI_queue_is_empty                                , SYMBOL, PUBLIC, 0, , 1
+btu_stop_timer                                    , SYMBOL, PUBLIC, 0, , 1
+L2CA_FlowControl                                  , SYMBOL, PUBLIC, 0, , 1

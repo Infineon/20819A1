@@ -1,4 +1,5 @@
 # DO NOT EDIT MANUALLY! FW2 VERSION
+DEFINITION <configdef20819A1.hdf>
 ENTRY "Data" = "CODE_AREA from tier2/Generic/add_config/bld/20819_ram_ext.elf"
 {
 	"Address" = 0x270400

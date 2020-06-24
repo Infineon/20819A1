@@ -1,5 +1,5 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -58,7 +58,7 @@
 //#include "mpaf/components/gki/data_types.h"
 
 /* Include common GKI definitions used by this platform */
-//#include "gki_target.h"
+#include "gki_target.h"
 
 #include "bt_types.h" /* This must be defined AFTER buildcfg.h */
 

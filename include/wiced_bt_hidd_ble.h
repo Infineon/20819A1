@@ -1,5 +1,5 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -210,7 +210,7 @@ typedef struct
 
 /**
  *  @addtogroup  hidd_le_api_functions      HIDD over BLE
- *  @ingroup     wicedbt
+ *  @ingroup     wiced_bt_hid
  *
  *  HIDD LE Functions
  *

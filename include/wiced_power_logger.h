@@ -1,5 +1,5 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -33,17 +33,18 @@
 
 /** @file
  *
- * Cypress Power Estimator (CyPE) Tool:
+ * Power Estimator (CyPE) Tool:
  * This header exposes APIs to start CyPE and to tap the power events. These
  * APIs are enabled only when CyPE is enabled.
  */
 
 /*****************************************************************************/
-/** @defgroup wpl       CyPE
+/** @defgroup wpl       Power Estimator (CyPE)
+ *  @ingroup            wicedsys
  *
- * Cypress Power Estimator (CyPE) tool provides an estimate of power consumed by a target
+ * Power Estimator (CyPE) tool provides an estimate of power consumed by a target
  * device (or platform). The CyPE tool consists of two main power logger components: Target-WPL and Host-WPL.
- * The Target-WPL is a Wiced module that captures the power events from different components on the target
+ * The Target-WPL is a WICED module that captures the power events from different components on the target
  * platform and sends these to the Host-WPL. The Host-WPL runs on the PC to receive power events
  * over UART and displays the real-time power plot. It refers to a platform-specific power database (xml)
  * and estimates current based on the power events and duration.

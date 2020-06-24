@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<baseview>
+  <mcu>
+  </mcu>
+  <vendor>Cypress</vendor>
+  <flash>262144</flash>
+  <ram>163840</ram>
+  <package>35-SMT_B</package>
+  <minvoltage>1620</minvoltage>
+  <maxvoltage>3630</maxvoltage>
+  <description>The CYBT-223058-02 device.</description>
+</baseview>

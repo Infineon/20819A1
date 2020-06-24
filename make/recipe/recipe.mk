@@ -1,5 +1,5 @@
 #
-# Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+# Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
 # Cypress Semiconductor Corporation. All Rights Reserved.
 #
 # This software, including source code, documentation and related
@@ -54,6 +54,10 @@ CY_CORE_PATCH_SYMBOLS=$(CY_CORE_PATCH:.elf=.sym)
 else
 CY_CORE_PATCH_SYMBOLS=$(CY_CORE_PATCH)
 endif
+
+# get resource usage information for build
+-include $(dir $(CY_CORE_PATCH))/firmware_resource_usage.inc
+CY_CORE_DEFINES+=-DCY_PATCH_ENTRIES_BASE=$(CY_PATCH_ENTRIES_BASE)
 
 CY_RECIPE_LDFLAGS?=\
     $(LDFLAGS)\
@@ -165,6 +169,7 @@ CY_RECIPE_POSTBUILD?=\
     --entry="$(CY_CORE_APP_ENTRY).entry"\
     --cgslist="$(CY_CORE_CGSLIST)"\
     --cgsargs="$(CY_CORE_CGS_ARGS)"\
+    --sscgs="$(CY_CORE_SS_CGS)"\
     --btp="$(CY_CORE_BTP)"\
     --id="$(CY_CORE_HCI_ID)"\
     --overridebaudfile="$(CY_INTERNAL_BASELIB_PATH)/platforms/BAUDRATEFILE.txt"\

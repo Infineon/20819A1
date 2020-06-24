@@ -4,7 +4,7 @@
 * Provides the API declarations for BLE host stack management.
 *
 *//*****************************************************************************
-* Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+* Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
 * Cypress Semiconductor Corporation. All Rights Reserved.
 *
 * This software, including source code, documentation and related
@@ -46,8 +46,8 @@ extern "C" {
 #endif
 
 /**
- * \addtogroup  wiced_bt_ble BLE Host Stack Management
- * \ingroup     wiced_bt_ble
+ * \addtogroup  wiced_bt_ble BLE (Bluetooth Low Energy)
+ * \ingroup     wiced_bt_dev
  * \{
  *
  * BLE (Bluetooth Low Energy) Functions.
@@ -72,7 +72,7 @@ extern "C" {
  ******************************************************************************/
 
 /**
-* \addtogroup group_ble_macros
+* \addtogroup group_ble_macro
 * \{
 */
 
@@ -136,7 +136,7 @@ extern "C" {
 #define BTM_BLE_CONN_SUP_TOUT_MAX                                   0x0C80
 #define BTM_BLE_CONN_PARAM_UNDEF                                    0xffff
 
-/** \} group_ble_macros */
+/** \} group_ble_macro */
 
 
 /******************************************************************************
@@ -369,7 +369,7 @@ typedef uint8_t wiced_bt_ble_sec_action_type_t;
  ******************************************************************************/
 
 /**
-* \addtogroup group_ble_structures
+* \addtogroup group_ble_data_structures
 * \{
 */
 
@@ -431,7 +431,7 @@ typedef wiced_bool_t (wiced_bt_ble_selective_conn_cback_t)(wiced_bt_device_addre
 /** Callback used to return asynchronous results from \ref wiced_bt_ble_scan */
 typedef void (wiced_bt_ble_scan_result_cback_t) (wiced_bt_ble_scan_results_t *p_scan_result, uint8_t *p_adv_data);
 
-/** \} group_ble_structures */
+/** \} group_ble_data_structures */
 
 /******************************************************************************
  * Global functions                                                           *

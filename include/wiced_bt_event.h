@@ -10,10 +10,11 @@
 * see \ref wiced_rtos.h.
 *
 * \defgroup appthread Application Thread Serialization
+* \ingroup  rtos
 *
 ********************************************************************************
 * \copyright
-* Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+* Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
 * Cypress Semiconductor Corporation. All Rights Reserved.
 *
 * This software, including source code, documentation and related
@@ -60,29 +61,29 @@ typedef enum
     WICED_SERIALIZATION_EVENT = 1,
 } wiced_bt_internal_events_t;
 
+/** \endcond */
+
+/**
+* \addtogroup appthread
+* \{
+*/
 
 /******************************************************************************
  * Global Data Structure definitions                                          *
  ******************************************************************************/
 
- /** Structure used in WICED stack to add callback and data into task queue */
+ /** Structure used in WICED stack to add callback and data into task queue.  The serialization queue will have these callbacks */
 typedef struct
 {
     int (*fn)(void*); /**< Callback invoked within the app thread context */
-    void* data; /**< Any arbitrary data to be given to the callback */
+    void* data; /**< Any arbitrary data to be given to the callback.  wiced_app_event_serialize Caller has to allocate and free once serialized event handled */
 } wiced_app_event_srzn_cb_t;
-
-/** \endcond */
 
 
 /******************************************************************************
  * Global functions                                                           *
  ******************************************************************************/
 
-/**
-* \addtogroup appthread
-* \{
-*/
 
 /*******************************************************************************
 * Function Name: wiced_app_event_serialize

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+ * Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
  *
  * This software, including source code, documentation and related
@@ -39,7 +39,15 @@
 #pragma once
 
 #include "wiced_bt_sdp.h"
-
+/**
+ *
+ * @addtogroup    wicedbt_av_a2d_helper      A2DP Helper Functions
+ * @ingroup       wicedbt_a2dp
+ *
+ * Advanced Audio Distribution Profile
+ *
+ * @{
+ */
 /*****************************************************************************
 **  constants
 *****************************************************************************/
@@ -157,6 +165,8 @@ typedef struct
 
 /**< This is the callback to notify the result of the SDP discovery process. */
 typedef void (wiced_bt_a2d_find_cback)(wiced_bool_t found, wiced_bt_a2d_service_t* p_service);
+
+/** @} wicedbt_av_a2d_helper */
 
 /*****************************************************************************
 **  external function declarations

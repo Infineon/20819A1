@@ -4,7 +4,7 @@
 * Provides application-level access to RTOS functionality contained in ROM.
 *
 *//*****************************************************************************
-* Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
+* Copyright 2016-2020, Cypress Semiconductor Corporation or a subsidiary of
 * Cypress Semiconductor Corporation. All Rights Reserved.
 *
 * This software, including source code, documentation and related
@@ -47,11 +47,11 @@ extern "C" {
 #endif
 
 /**
- * \addtogroup  wiced_rtos RTOS
- * \ingroup     wiced_rtos
+ * \addtogroup  rtos RTOS
+ * \ingroup     rtos
  * \{
  *
- * \defgroup group_rtos_macro Macro
+ * \defgroup group_rtos_macros Macros
  * \defgroup group_rtos_globals Global Variables
  * \defgroup group_rtos_data_structures Data Structures
  * \defgroup group_rtos_enums Enumerated Types
@@ -118,7 +118,7 @@ typedef enum
  ******************************************************************************/
 
 /**
-* \addtogroup group_rtos_structures
+* \addtogroup group_rtos_data_structures
 * \{
 */
 
@@ -158,7 +158,7 @@ typedef void ( *wiced_thread_function_t )( uint32_t arg );
 *******************************************************************************/
 typedef wiced_result_t ( *event_handler_t )( void* arg );
 
-/** \} group_rtos_structures */
+/** \} group_rtos_data_structures */
 
 
 /******************************************************************************
@@ -818,7 +818,7 @@ wiced_result_t wiced_rtos_set_event_flags( wiced_event_flags_t* event_flags, uin
 
 /** \} group_rtos_functions */
 
-/** \} wiced_rtos */
+/** \} rtos */
 
 #ifdef __cplusplus
 }
