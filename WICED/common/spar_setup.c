@@ -67,8 +67,10 @@ extern void pmu_Enable32KhzOscillator(void);
 __attribute__((section(".app_init_code"))) void application_start_internal( void )
 {
     wiced_platform_init();
+    #if USE_32K_EXTERNAL_LPO
     // Switching to external LPO
     pmu_Enable32KhzOscillator();
+    #endif
     application_start();
 }
 /*****************************************************************
