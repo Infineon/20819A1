@@ -57,6 +57,13 @@ CY_WICED_TOOLS_DIR=$(CY_WICED_TOOLS_ROOT)/$(CY_OS_DIR)
 ################################################################################
 # Feature processing
 ################################################################################
+#
+# floating point and other device specific compiler flags
+#
+CY_CORE_CFLAGS+=-mfloat-abi=soft
+CY_CORE_EXTRA_LD_FLAGS+=-mfloat-abi=soft
+CY_RECIPE_EXTRA_LIBS+=-lgcc
+
 DIRECT_LOAD?=0
 
 # static section patch
@@ -121,8 +128,8 @@ CY_CORE_DEFINES+=\
 CY_CORE_EXTRA_DEFINES=\
 	-DWICED_SDK_MAJOR_VER=2 \
 	-DWICED_SDK_MINOR_VER=7 \
-	-DWICED_SDK_REV_NUMBER=0 \
-	-DWICED_SDK_BUILD_NUMBER=8978
+	-DWICED_SDK_REV_NUMBER=1 \
+	-DWICED_SDK_BUILD_NUMBER=9289
 
 #
 # Set the output file paths
@@ -203,7 +210,7 @@ else
     CY_OPEN_ClientControlMesh_TOOL=$(CY_BT_APP_TOOLS_DIR)/btsdk-host-apps-mesh/Qt_ClientControl/$(CY_OS_DIR)/RunClientControl.sh
   else
     CY_OPEN_ClientControlMesh_TOOL=open
-    CY_OPEN_ClientControlMesh_TOOL_ARGS=-a $(CY_BT_APP_TOOLS_DIR_ABS)/btsdk-host-apps-mesh/Qt_ClientControl/$(CY_OS_DIR)/mesh_client.app
+    CY_OPEN_ClientControlMesh_TOOL_ARGS=-a $(CY_BT_APP_TOOLS_DIR_ABS)/btsdk-host-apps-mesh/Qt_ClientControl/macos/mesh_client.app
   endif
 endif
 endif
