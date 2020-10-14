@@ -88,6 +88,7 @@ wiced_result_t wiced_bt_stack_init(wiced_bt_management_cback_t *p_bt_management_
                                    const wiced_bt_cfg_settings_t     *p_bt_cfg_settings,
                                    const wiced_bt_cfg_buf_pool_t     wiced_bt_cfg_buf_pools[WICED_BT_CFG_NUM_BUF_POOLS]);
 
+#ifdef WICED_STACK_DEINIT_SUPPORTED
 /**
  * Function         wiced_bt_stack_deinit
  *
@@ -97,6 +98,8 @@ wiced_result_t wiced_bt_stack_init(wiced_bt_management_cback_t *p_bt_management_
  *            BTM_ERR_PROCESSING : if an error occurred
  */
 wiced_result_t wiced_bt_stack_deinit(void);
+
+#endif // WICED_STACK_DEINIT_SUPPORTED
 
 /**@} wicedbt_Framework */
 

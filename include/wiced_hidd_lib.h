@@ -496,6 +496,7 @@ wiced_bt_gatt_status_t wiced_blehidd_send_report(uint16_t gatts_conn_id, uint8_t
 /////////////////////////////////////////////////////////////////////////////////////////////
 wiced_bt_gatt_status_t wiced_blehidd_write_handler(void *data);
 
+#ifdef WICED_HIDD_PWM_BUZZ
 ////////////////////////////////////////////////////////////////////////////////
 /// set PWM BUZ gpio pin
 ///
@@ -571,6 +572,8 @@ void wiced_blehidd_pwm_buz_on(uint8_t id);
 ////////////////////////////////////////////////////////////////////////////////
 void wiced_blehidd_pwm_buz_off(uint8_t id);
 
+#endif // WICED_HIDD_PWM_BUZZ
+
 ////////////////////////////////////////////////////////////////////////////////
 // Get agreed ATT_MTU size with peer device since it can be changed dynamically by exchange MTU req
 ///
@@ -622,6 +625,7 @@ wiced_bool_t wiced_blehidd_is_wakeup_from_conn_req(void);
 /////////////////////////////////////////////////////////////////////////////////
 void wiced_bthidd_setDefaultLinkSupervisionTimeout(UINT16 slots);
 
+#ifdef WICED_BT_HID_POWER_MANAGEMENT_SUPPORTED
 /////////////////////////////////////////////////////////////////////////////////
 ///  Configure power mgmt (active/sniff/sniff subrate) parameters.
 ///
@@ -663,6 +667,7 @@ void wiced_bt_hidd_power_management_unpause(void);
 /////////////////////////////////////////////////////////////////////////////////
 void wiced_bt_hidd_power_management_switch_active_high_state(uint8_t index, wiced_bool_t exitSSR);
 
+#endif // WICED_BT_HID_POWER_MANAGEMENT_SUPPORTED
 
 /** @} hidd_functions */
 

@@ -124,6 +124,18 @@ enum wiced_bt_rfcomm_signal_e
 };
 typedef uint8_t wiced_bt_rfcomm_signal_t;   /**< RFCOMM Signals (see #wiced_bt_rfcomm_signal_e) */
 
+typedef struct
+{
+#define PORT_FLAG_CTS_HOLD  0x01    /* Tx is waiting for CTS signal */
+#define PORT_FLAG_DSR_HOLD  0x02    /* Tx is waiting for DSR signal */
+#define PORT_FLAG_RLSD_HOLD 0x04    /* Tx is waiting for RLSD signal */
+
+    uint16_t  flags;
+    uint16_t  in_queue_size;          /* Number of bytes in the input queue */
+    uint16_t  out_queue_size;         /* Number of bytes in the output queue */
+    uint16_t  mtu_size;               /* peer MTU size */
+} wiced_port_status_t;
+
 /**
  *  Define the callback function prototypes for wiced_bt_rfcomm_data_cback_t
  *
@@ -341,6 +353,20 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_write_data (uint16_t handle, char *p_da
  *              <b> WICED_BT_RFCOMM_LINE_ERR </b>            : If connection is not up and running
  */
 wiced_bt_rfcomm_result_t wiced_bt_rfcomm_check_connection (UINT16 handle, BD_ADDR bd_addr, UINT16 *p_lcid);
+
+#define wiced_bt_rfcomm_port_get_queue_status PORT_GetQueueStatus
+/**
+ *  This function reports current status of a connection.
+ *
+ *  @param[in]  handle              : The connection handle returned by
+ *                                    @link wiced_bt_rfcomm_create_connection wiced_bt_rfcomm_create_connection @endlink
+ *  @param[out]  p_status              : pointer to the wiced_port_status_t structur to receive connection status
+ *
+ *  @return     <b> WICED_BT_RFCOMM_SUCCESS </b>        : If successful
+ *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
+ *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
+ */
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_port_get_queue_status (uint16_t handle, wiced_port_status_t *p_status);
 
 
 #ifdef __cplusplus

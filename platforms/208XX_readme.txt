@@ -19,7 +19,7 @@ SDK Software Features
 - WICED HCI protocol to simplify host/MCU application development.
 - APIs and drivers to access on board peripherals
 - Bluetooth protocols include GAP, GATT, SMP, RFCOMM, SDP, AVDT/AVCT, BLE Mesh
-- BLE and BR/EDR profile APIs, libraries and sample apps
+- BLE and BR/EDR profile APIs, libraries, and sample apps
 - Support for Over-The-Air (OTA) upgrade.
 - Device Configurator for creating custom pin mapping.
 - Bluetooth Configurator for creating BLE GATT Database.
@@ -29,7 +29,7 @@ Kits
 ----
 CYW920819EVB-02:
     62-FBGA package, Arduino compatible headers, 9-axis motion sensor and
-    thermistor, user switches and LEDs, USB connector for power, programming
+    thermistor, user switches and LEDs, USB connector for power, programming,
     and USB-UART bridge.
     Note: Max UART baud rate is 3M
     For more information, see - http://www.cypress.com/CYW920819EVB-02
@@ -39,21 +39,9 @@ CYBT-213043-MESH:
     Flash.
     CYW20819-based dual-mode (BLE/BR/EDR) Bluetooth 5.0 with SIG MESH Qualified
     Module, FCC, ISED, MIC, and CE Certified Module.
-    USB connector for power, programming and USB-UART bridge.
+    USB connector for power, programming, and USB-UART bridge.
     Note: Max UART baud rate is 1M. Use baud rate of 115200 for Client Control.
     For more information, see - http://www.cypress.com/CYBT-213043-MESH
-CYW920820EVB-02:
-    62-FBGA package, Arduino compatible headers, 9-axis motion sensor and
-    thermistor, user switches and LEDs, USB connector for power, programming
-    and USB-UART bridge, 10.5 dBm internal power amplifier.
-    Note: Max UART baud rate is 3M
-    For more information, see - http://www.cypress.com/CYW920820EVB-02
-CYW989820EVB-01:
-    48-WQFN package, Arduino compatible headers, 9-axis motion sensor and
-    thermistor, user switches and LEDs, USB connector for power, programming
-    and USB-UART bridge, 10.5 dBm internal power amplifier.
-    Note: Max UART baud rate is 3M
-    For more information, see - https://www.cypress.com/products/automotive-wireless
 CYBT-213043-EVAL:
     35-SMT package, Arduino compatible headers. CYW20819-based dual-mode
     (BLE/BR/EDR) Bluetooth 5.0-compliant fully certified module
@@ -63,7 +51,7 @@ CYBT-213043-EVAL:
 
 Software Tools
 --------------
-Following applications are installed with ModusToolbox on your computer.
+The following applications are installed with ModusToolbox on your computer.
 
 BT Spy :
     BTSpy is a trace viewer utility that can be used with WICED BT platforms to
@@ -103,7 +91,7 @@ BLE Mesh Client Control:
     Mesh models.
     A limited version supporting only the Lighting model (QT_ClientControl) is
     provided for Windows, Linux, and macOS.
-    <Workspace Dir>\wiced_btsdk\tools\btsdk-host-apps-mesh
+    <Workspace Dir>\wiced_btsdk\tools\btsdk-host-peer-apps-mesh\host
 
 Peer apps:
     Applications that run on Windows, iOS or Android and act as peer BT apps to
@@ -112,7 +100,7 @@ Peer apps:
     BLE apps location:
     <Workspace Dir>\wiced_btsdk\tools\btsdk-peer-apps-ble
     BLE Mesh apps location:
-    <Workspace Dir>\wiced_btsdk\tools\btsdk-peer-apps-mesh
+    <Workspace Dir>\wiced_btsdk\tools\btsdk-host-peer-apps-mesh\peer
     OTA apps location:
     <Workspace Dir>\wiced_btsdk\tools\btsdk-peer-apps-ota
 

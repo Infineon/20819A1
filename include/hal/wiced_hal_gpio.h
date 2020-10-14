@@ -327,6 +327,12 @@ typedef enum
     WICED_UNAVAILABLE = 0xFF  /**< Invalid functionality for error check */
 } wiced_bt_gpio_function_t;
 
+/** Aliases for compatibility with UDD signal definitions */
+#define WICED_PCM_IN_I2S_DI     WICED_PCM_IN
+#define WICED_PCM_OUT_I2S_DO    WICED_PCM_OUT
+#define WICED_PCM_SYNC_I2S_WS   WICED_PCM_SYNC
+#define WICED_PCM_CLK_I2S_CLK   WICED_PCM_CLK
+
 /** Possible return values from wiced_hal_gpio_select_function(...), Callers only need to check for the
  *  GPIO_FAILURE case since any other status means success
  */

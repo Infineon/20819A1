@@ -42,7 +42,7 @@
 
 
 #include <stddef.h>
-#include <assert.h>
+//#include <assert.h>
 
 /* Prefix header for build flags.  This will be created by the build process, in the build output
    folder, using flags extracted from the build/chips/chip_features.xml spreadsheet, and possibly

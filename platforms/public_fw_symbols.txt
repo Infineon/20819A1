@@ -215,6 +215,7 @@ PORT_Purge                                        , SYMBOL, PUBLIC, 0, , 1
 PORT_Read                                         , SYMBOL, PUBLIC, 0, , 1
 PORT_Write                                        , SYMBOL, PUBLIC, 0, , 1
 PORT_ReadData                                     , SYMBOL, PUBLIC, 0, , 1
+PORT_GetQueueStatus                               , SYMBOL, PUBLIC, 0, , 1
 i2cm_pingSlave                                    , SYMBOL, PUBLIC, 0, , 1
 i2cm_read                                         , SYMBOL, PUBLIC, 0, , 1
 i2cm_write                                        , SYMBOL, PUBLIC, 0, , 1
@@ -248,6 +249,9 @@ BTM_SetDeviceClass                                , SYMBOL, PUBLIC, 0, , 1
 BTM_ReadDeviceClass                               , SYMBOL, PUBLIC, 0, , 1
 BTM_SetLocalDeviceName                            , SYMBOL, PUBLIC, 0, , 1
 BTM_ReadLocalDeviceName                           , SYMBOL, PUBLIC, 0, , 1
+BTM_SwitchRole                                    , SYMBOL, PUBLIC, 0, , 1
+BTM_SetLinkSuperTout                              , SYMBOL, PUBLIC, 0, , 1
+BTM_SetLinkPolicy                                 , SYMBOL, PUBLIC, 0, , 1
 memmove                                           , SYMBOL, PUBLIC, 0, , 1
 memcmp                                            , SYMBOL, PUBLIC, 0, , 1
 memcpy                                            , SYMBOL, PUBLIC, 0, , 1

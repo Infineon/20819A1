@@ -21,6 +21,8 @@
   <DRCs/>
 
   <ConfigFirmware>
-
+    <ConfigDefine name="quadrature_`${instNum}`_qdx_$idx_TRIGGER_IN" value="WICED_GPIO" public="true" include="`${true}`" repeatCount="2" />
+    <ConfigDefine name="quadrature_`${instNum}`_qdy_$idx_TRIGGER_IN" value="WICED_GPIO" public="true" include="`${true}`" repeatCount="2" />
+    <ConfigDefine name="quadrature_`${instNum}`_qdz_$idx_TRIGGER_IN" value="WICED_GPIO" public="true" include="`${true}`" repeatCount="2" />
   </ConfigFirmware>
 </Personality>

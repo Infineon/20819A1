@@ -1065,7 +1065,7 @@ ENTRY "Data" = "CODE_AREA from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext
 		01 f0 c5 fd 00 20 bd e8 f0 87 70 b5 3b 48 3c 49
 		0f f6 42 fb 4f f4 4e 14 d4 f8 5c 01 20 f4 80 40
 		c4 f8 5c 01 00 20 c4 f8 a0 02 37 49 35 48 08 60
-		0d f6 b0 fe 10 b9 36 48 34 49 01 60 9f f7 b0 f8
+		0d f6 b0 fe 10 b9 36 48 34 49 01 60 9f f7 62 f9
 		af f2 33 10 33 49 08 60 33 49 02 20 08 70 34 49
 		32 48 08 60 34 48 33 49 01 60 34 49 81 60 35 49
 		33 48 09 68 48 60 35 48 33 49 c0 f8 a0 10 34 48
@@ -1078,7 +1078,7 @@ ENTRY "Data" = "CODE_AREA from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext
 		9c f7 20 00 dc 0b 20 00 a3 3b 27 00 ec 0b 20 00
 		04 04 31 00 6d 1e 20 00 d4 0b 20 00 64 31 20 00
 		a4 0b 20 00 ad fa 20 00 3f 1c 20 00 90 31 20 00
-		80 00 00 00 b0 fa 20 00 64 04 20 00 10 32 20 00
+		80 00 00 00 14 fc 20 00 64 04 20 00 10 32 20 00
 		e4 0b 20 00 4c 58 20 00 6c 59 20 00 71 0c 27 00
 		98 46 20 00 65 12 27 00 08 7d 20 00 73 12 27 00
 		11 10 27 00 6c 71 20 00 b9 d9 09 08 a0 45 20 00
@@ -1998,24 +1998,56 @@ ENTRY "Data" = "SRAM_AREA from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext
 		00 00 00 00
 	} END_COMMENTED_BYTES
 }
-ENTRY "Data" = "INIT_AREA from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext.elf"
+ENTRY "Data" = "OVERFLOW_PATCH_CODE from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext.elf"
 {
 	"Address" = 0x20FAB0
 	"Data" =
 	COMMENTED_BYTES
 	{
 		<hex>
+		2d e9 f7 47 53 48 85 b0 0d 46 00 78 16 46 c0 07
+		09 d0 3e b1 50 48 03 68 43 b1 05 98 08 b0 bd e8
+		f0 47 18 47 00 20 08 b0 bd e8 f0 87 00 20 08 f6
+		68 f9 df f8 28 91 4a 4f 99 f8 00 00 c0 07 02 d0
+		08 f6 3e fb 14 e0 38 78 c0 06 02 d5 08 f6 61 fa
+		0e e0 08 f6 51 fa 08 f6 41 fa 04 46 06 e0 08 f6
+		3d fa 04 46 08 f6 20 f9 08 f6 46 fa a0 07 f6 d5
+		38 78 41 06 34 d5 80 07 01 d5 80 24 01 e0 4f f4
+		80 74 fc 20 00 e0 64 08 84 42 fc d8 05 98 b0 fb
+		f4 f1 04 fb 11 00 27 1a b7 42 00 d9 37 46 f0 1b
+		b0 fb f4 f8 04 fb 18 0a 3a 46 29 46 05 98 08 f6
+		91 fa 05 98 3d 44 38 44 05 90 08 e0 22 46 29 46
+		05 98 08 f6 87 fa 05 98 25 44 20 44 05 90 b8 f1
+		01 08 f3 d2 52 46 29 46 05 98 08 f6 7b fa 2f e0
+		02 20 00 24 8d f8 08 00 01 27 25 e0 08 f6 04 fa
+		9d f8 16 00 8d f8 09 00 9d f8 15 00 8d f8 0a 00
+		9d f8 14 00 8d f8 0b 00 15 f8 01 0b 8d f8 0c 00
+		05 98 40 1c 05 90 08 f6 e1 f9 80 07 fb d5 05 23
+		00 97 1a 46 02 a9 01 20 01 97 8f f6 3a f8 08 f6
+		d5 f9 c0 07 fb d1 64 1c b4 42 d7 d3 08 f6 b3 fa
+		99 f8 00 00 c0 07 01 d0 08 f6 ab fa 08 f6 6d fa
+		30 46 68 e7 cc 58 20 00 b8 58 20 00 7e 58 20 00
+		b4 58 20 00
+	} END_COMMENTED_BYTES
+}
+ENTRY "Data" = "INIT_AREA from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext.elf"
+{
+	"Address" = 0x20FC14
+	"Data" =
+	COMMENTED_BYTES
+	{
+		<hex>
 		70 b5 00 24 12 4d 1c e0 12 48 01 19 0a 68 c2 f3
-		17 00 12 0e 05 d0 93 07 06 d0 49 68 fd f5 80 fa
+		17 00 12 0e 05 d0 93 07 06 d0 49 68 fd f5 ce f9
 		0e e0 49 68 01 60 0b e0 12 f0 0c 0f 03 d0 49 68
-		fd f5 8a fa 04 e0 d2 06 02 d5 49 68 fd f5 8e fa
-		08 34 ac 42 e0 d3 bd e8 70 40 61 f0 8f be 00 00
-		70 02 00 00 08 fb 20 00
+		fd f5 d8 f9 04 e0 d2 06 02 d5 49 68 fd f5 dc f9
+		08 34 ac 42 e0 d3 bd e8 70 40 61 f0 dd bd 00 00
+		78 02 00 00 6c fc 20 00
 	} END_COMMENTED_BYTES
 }
 ENTRY "Data" = "INIT_PATCH_TABLE from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext.elf"
 {
-	"Address" = 0x20FB08
+	"Address" = 0x20FC6C
 	"Data" =
 	COMMENTED_BYTES
 	{
@@ -2050,15 +2082,16 @@ ENTRY "Data" = "INIT_PATCH_TABLE from tier2/Generic/btle/20819FCBGA62/bld/20819_
 		1d 39 04 02 19 07 27 00 09 b3 0a 02 35 07 27 00
 		29 f6 07 02 8b 3c 27 00 15 43 00 01 b9 32 27 00
 		35 24 0b 01 1d 33 27 00 20 3f 00 04 03 e0 d4 f8
-		79 6b 04 02 51 07 27 00 ed 64 00 02 5d 07 27 00
-		61 69 00 01 87 34 27 00 f5 64 00 01 ab 34 27 00
-		1d 6a 00 01 bb 34 27 00 f9 d5 00 02 6d 07 27 00
-		d5 0f 0d 01 dd 35 27 00 b1 0e 0d 01 71 36 27 00
-		e1 bc 0c 02 75 07 27 00 45 b3 02 02 95 07 27 00
-		6d 01 00 02 a1 07 27 00 15 c3 01 02 c9 07 27 00
-		8d 1b 00 02 dd 07 27 00 49 f4 07 02 e1 07 27 00
-		0d fd 07 02 fb 07 27 00 d9 fb 07 02 17 08 27 00
-		55 f1 03 01 a5 38 27 00 91 ee 03 01 37 39 27 00
+		79 6b 04 02 51 07 27 00 75 81 01 01 b1 fa 20 00
+		ed 64 00 02 5d 07 27 00 61 69 00 01 87 34 27 00
+		f5 64 00 01 ab 34 27 00 1d 6a 00 01 bb 34 27 00
+		f9 d5 00 02 6d 07 27 00 d5 0f 0d 01 dd 35 27 00
+		b1 0e 0d 01 71 36 27 00 e1 bc 0c 02 75 07 27 00
+		45 b3 02 02 95 07 27 00 6d 01 00 02 a1 07 27 00
+		15 c3 01 02 c9 07 27 00 8d 1b 00 02 dd 07 27 00
+		49 f4 07 02 e1 07 27 00 0d fd 07 02 fb 07 27 00
+		d9 fb 07 02 17 08 27 00 55 f1 03 01 a5 38 27 00
+		91 ee 03 01 37 39 27 00
 	} END_COMMENTED_BYTES
 }
 ENTRY "AON Data" = "AON_DATA from tier2/Generic/btle/20819FCBGA62/bld/20819_ram_ext.elf"
