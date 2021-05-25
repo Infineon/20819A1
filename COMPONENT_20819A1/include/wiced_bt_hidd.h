@@ -237,7 +237,7 @@ typedef struct wiced_bt_hidd_pwr_md
 
 /**
  *  @addtogroup  hidd_api_functions      HIDD over BR/EDR
- *  @ingroup     wiced_bt_hid
+ *  @ingroup     wicedbt
  *
  *  HIDD Functions
  *
@@ -354,6 +354,7 @@ wiced_bt_hidd_status_t wiced_bt_hidd_send_data(wiced_bool_t control_ch, uint8_t 
 wiced_bt_hidd_status_t wiced_bt_hidd_set_power_mgmt_params(uint8_t conn_substate,
                                                            wiced_bt_hidd_pm_pwr_md_t pm_params);
 #endif // WICED_BT_HIDD_SET_POWER_MGMT_SUPPORTED
+
 #ifdef __cplusplus
 }
 #endif

@@ -299,15 +299,6 @@ BigIntegerFree                                    , SYMBOL, PUBLIC, 0, , 1
 cstr_new                                          , SYMBOL, PUBLIC, 0, , 1
 cstr_clear_free                                   , SYMBOL, PUBLIC, 0, , 1
 #
-# for wlp_lib, power profiling
-pmu_sleep_isSleepEnabled                          , SYMBOL, PUBLIC, 0, , 1
-wpl_register_for_low_power_queries                , SYMBOL, PUBLIC, 0, , 1
-cype_sleep_handler_init                           , SYMBOL, PUBLIC, 0, , 1
-retrieve_bcs_profile_data                         , SYMBOL, PUBLIC, 0, , 1
-bcs_profilingReset                                , SYMBOL, PUBLIC, 0, , 1
-mcu_profiling_set                                 , SYMBOL, PUBLIC, 0, , 1
-mcu_profiling_retrieve_data                       , SYMBOL, PUBLIC, 0, , 1
-#
 # map
 GKI_enqueue                                       , SYMBOL, PUBLIC, 0, , 1
 GKI_enqueue_head                                  , SYMBOL, PUBLIC, 0, , 1

@@ -43,8 +43,8 @@
 
 #include "brcm_fw_types.h"
 
-/**  \addtogroup keyscanButton
- *  \ingroup HardwareDrivers
+/**  \addtogroup keyscanButton Keyscan Button
+ *  \ingroup keyscan
 */
 /*! @{ */
 /**

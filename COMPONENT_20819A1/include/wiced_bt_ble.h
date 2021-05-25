@@ -77,7 +77,7 @@ extern "C" {
 */
 
 /** Default advertising filter policy */
-#define BTM_BLE_ADVERT_FILTER_DEFAULT                                      BTM_BLE_ADVERT_FILTER_ALL_CONNECTION_REQ_ALL_SCAN_REQ
+#define BTM_BLE_ADVERT_FILTER_DEFAULT                                      BTM_BLE_ADV_POLICY_ACCEPT_CONN_AND_SCAN
 
 /** ADV data flag bit definition used for \ref BTM_BLE_ADVERT_TYPE_FLAG */
 #define BTM_BLE_NON_LIMITED_DISCOVERABLE_FLAG                              (0x00)
@@ -160,11 +160,11 @@ typedef int8_t wiced_bt_ble_adv_tx_power_t;
 /** Advertising filter policy */
 enum wiced_bt_ble_advert_filter_policy_e
 {
-    BTM_BLE_ADVERT_FILTER_ALL_CONNECTION_REQ_ALL_SCAN_REQ                  = 0x00, /**< Process scan and connection requests from all devices (i.e., the White List is not in use) (default) */
-    BTM_BLE_ADVERT_FILTER_ALL_CONNECTION_REQ_WHITELIST_SCAN_REQ            = 0x01, /**< Process connection requests from all devices and only scan requests from devices that are in the White List. */
-    BTM_BLE_ADVERT_FILTER_WHITELIST_CONNECTION_REQ_ALL_SCAN_REQ            = 0x02, /**< Process scan requests from all devices and only connection requests from devices that are in the White List */
-    BTM_BLE_ADVERT_FILTER_WHITELIST_CONNECTION_REQ_WHITELIST_SCAN_REQ      = 0x03, /**< Process scan and connection requests only from devices in the White List. */
-    BTM_BLE_ADVERT_FILTER_MAX
+    BTM_BLE_ADV_POLICY_ACCEPT_CONN_AND_SCAN                  = 0x00, /**< Process scan and connection requests from all devices (i.e., the Filter Accept List is not in use) (default) */
+    BTM_BLE_ADV_POLICY_ACCEPT_CONN_FILTER_SCAN            = 0x01, /**< Process connection requests from all devices and only scan requests from devices that are in the Filter Accept List. */
+    BTM_BLE_ADV_POLICY_FILTER_CONN_ACCEPT_SCAN            = 0x02, /**< Process scan requests from all devices and only connection requests from devices that are in the Filter Accept List */
+    BTM_BLE_ADV_POLICY_FILTER_CONN_FILTER_SCAN      = 0x03, /**< Process scan and connection requests only from devices in the Filter Accept List. */
+    BTM_BLE_ADV_POLICY_MAX
 };
 typedef uint8_t wiced_bt_ble_advert_filter_policy_t;                               /**< \ref wiced_bt_ble_advert_filter_policy_e */
 
@@ -208,7 +208,7 @@ enum wiced_bt_ble_advert_type_e
     BTM_BLE_ADVERT_TYPE_SIMPLE_PAIRING_RAND_C                              = 0x0F, /**< Simple Pairing Randomizer R */
     BTM_BLE_ADVERT_TYPE_SM_TK                                              = 0x10, /**< Security manager TK value */
     BTM_BLE_ADVERT_TYPE_SM_OOB_FLAG                                        = 0x11, /**< Security manager Out-of-Band data */
-    BTM_BLE_ADVERT_TYPE_INTERVAL_RANGE                                     = 0x12, /**< Slave connection interval range */
+    BTM_BLE_ADVERT_TYPE_INTERVAL_RANGE                                     = 0x12, /**< Peripheral connection interval range */
     BTM_BLE_ADVERT_TYPE_SOLICITATION_SRV_UUID                              = 0x14, /**< List of solicitated services - 16 bit UUIDs */
     BTM_BLE_ADVERT_TYPE_128SOLICITATION_SRV_UUID                           = 0x15, /**< List of solicitated services - 128 bit UUIDs */
     BTM_BLE_ADVERT_TYPE_SERVICE_DATA                                       = 0x16, /**< Service data - 16 bit UUID */
@@ -259,10 +259,10 @@ typedef uint8_t wiced_bt_ble_multi_advert_type_t;                               
 /** Multi-advertisement Filtering policy */
 enum wiced_bt_ble_multi_advert_filtering_policy_e
 {
-    MULTI_ADVERT_FILTER_POLICY_WHITE_LIST_NOT_USED                         = 0x00, /**< white list not used */
-    MULTI_ADVERT_WHITE_LIST_POLICY_ADV_ALLOW_UNKNOWN_CONNECTION            = 0x01, /**< white list for scan request */
-    MULTI_ADVERT_WHITE_LIST_POLICY_ADV_ALLOW_UNKNOWN_SCANNING              = 0x02, /**< white list for connection request */
-    MULTI_ADVERT_FILTER_POLICY_WHITE_LIST_USED_FOR_ALL                     = 0x03
+    MULTI_ADVERT_FILTER_POLICY_FILTER_ACCEPT_LIST_NOT_USED                         = 0x00, /**< Filter Accept List not used */
+    MULTI_ADVERT_FILTER_ACCEPT_LIST_POLICY_ADV_ALLOW_UNKNOWN_CONNECTION            = 0x01, /**< Filter Accept List for scan request */
+    MULTI_ADVERT_FILTER_ACCEPT_LIST_POLICY_ADV_ALLOW_UNKNOWN_SCANNING              = 0x02, /**< Filter Accept List for connection request */
+    MULTI_ADVERT_FILTER_POLICY_FILTER_ACCEPT_LIST_USED_FOR_ALL                     = 0x03
 };
 typedef uint8_t wiced_bt_ble_multi_advert_filtering_policy_t;                      /**< \ref wiced_bt_ble_multi_advert_filtering_policy_e */
 
@@ -305,15 +305,15 @@ enum wiced_bt_ble_scan_mode_e
 typedef uint8_t wiced_bt_ble_scan_mode_t;                                          /**< \ref wiced_bt_ble_scan_mode_e */
 
 /**
- * Whitelist filter policy
+ * Filter Accept List filter policy
  */
 enum wiced_bt_ble_scanner_filter_policy_e
 {
-    BTM_BLE_SCANNER_FILTER_ALL_ADV_RSP                                     = 0x00, /**< Whitelist OFF (directed ADV to mismatched BD_ADDR ignored) */
-    BTM_BLE_SCANNER_FILTER_WHITELIST_ADV_RSP                               = 0x01, /**< Whtelist ON (directed ADV to mismatched BD_ADDR ignored) */
-    BTM_BLE_SCANNER_FILTER_ALL_RPA_DIR_ADV_RSP                             = 0x02, /**< Whitelist OFF (accepts directed ADV to mismatched BD_ADDR address if RPA)*/
-    BTM_BLE_SCANNER_FILTER_WHITELIST_RPA_DIR_ADV_RSP                       = 0x03, /**< Whitelist ON (accepts directed ADV to mismatched BD_ADDR address if RPA) */
-    BTM_BLE_SCANNER_FILTER_MAX
+    BTM_BLE_SCAN_POLICY_ACCEPT_ADV_RSP                                     = 0x00, /**< Filter Accept List OFF (directed ADV to mismatched BD_ADDR ignored) */
+    BTM_BLE_SCAN_POLICY_FILTER_ADV_RSP                               = 0x01, /**< Whtelist ON (directed ADV to mismatched BD_ADDR ignored) */
+    BTM_BLE_SCAN_POLICY_ACCEPT_RPA_DIR_ADV_RSP                             = 0x02, /**< Filter Accept List OFF (accepts directed ADV to mismatched BD_ADDR address if RPA)*/
+    BTM_BLE_SCAN_POLICY_FILTER_RPA_DIR_ADV_RSP                       = 0x03, /**< Filter Accept List ON (accepts directed ADV to mismatched BD_ADDR address if RPA) */
+    BTM_BLE_SCAN_POLICY_MAX
 };
 typedef uint8_t wiced_bt_ble_scanner_filter_policy_t;                              /**< \ref wiced_bt_ble_scanner_filter_policy_e */
 
@@ -404,7 +404,7 @@ typedef struct
 /** BLE connection parameters */
 typedef struct
 {
-    uint8_t                                 role;                    /**< Master=0, slave=0*/
+    uint8_t                                 role;                    /**< Central=0, Peripheral=0*/
     uint16_t                                conn_interval;           /**< Connection interval */
     uint16_t                                conn_latency;            /**< Connection latency */
     uint16_t                                supervision_timeout;     /**< Supervision Timeout */
@@ -563,28 +563,28 @@ wiced_bt_dev_status_t wiced_bt_ble_set_raw_scan_response_data( uint8_t num_elem,
                                                                wiced_bt_ble_advert_elem_t *p_data );
 
 /*******************************************************************************
-* Function Name: wiced_bt_ble_update_advertising_white_list
+* Function Name: wiced_bt_ble_update_advertising_filter_accept_list
 ****************************************************************************//**
 *
-* Add or remove a device to/from the advertising white list. The purpose of this
-* advertisement whitelist is to filter out connection requests and scan requests
+* Add or remove a device to/from the advertising Filter Accept List. The purpose of this
+* advertisement Filter Accept List is to filter out connection requests and scan requests
 * from other devices before bubbling them up to the application layer.
-* After adding devices to the white list, the filter policy must be set using
+* After adding devices to the Filter Accept List, the filter policy must be set using
 * \ref wiced_btm_ble_update_advertisement_filter_policy.
 *
 * \param[in] add                 WICED_TRUE==add, WICED_FALSE==remove
-* \param[in] remote_bda          address of device to add/remove from white list
+* \param[in] remote_bda          address of device to add/remove from Filter Accept List
 *
 * \return
 *  - WICED_TRUE indicates success
-*  - WICED_FALSE indicates white list full or wrong ADV mode
+*  - WICED_FALSE indicates Filter Accept List full or wrong ADV mode
 *
 * \note
-* This API cannot be used while the white list is in use. If the device is
-* currently advertising using the white list, disable it before using this API.
+* This API cannot be used while the Filter Accept List is in use. If the device is
+* currently advertising using the Filter Accept List, disable it before using this API.
 *
 *******************************************************************************/
-wiced_bool_t wiced_bt_ble_update_advertising_white_list( wiced_bool_t add,
+wiced_bool_t wiced_bt_ble_update_advertising_filter_accept_list( wiced_bool_t add,
                                                          wiced_bt_device_address_t remote_bda );
 
 /*******************************************************************************
@@ -592,23 +592,23 @@ wiced_bool_t wiced_bt_ble_update_advertising_white_list( wiced_bool_t add,
 ****************************************************************************//**
 *
 * Updates the filter policy when the local device is the advertiser. The purpose
-* of this advertisement white list is to filter out connection requests and scan
+* of this advertisement Filter Accept List is to filter out connection requests and scan
 * requests from other devices before bubbling them up to the application layer.
-* Before enabling the advertisement white list, the white list must be populated
-* using \ref wiced_bt_ble_update_advertising_white_list.
+* Before enabling the advertisement Filter Accept List, the Filter Accept List must be populated
+* using \ref wiced_bt_ble_update_advertising_filter_accept_list.
 *
 * \param[in] clientCallback           \ref wiced_bt_ble_advert_filter_policy_t
-*  - BTM_BLE_ADVERT_FILTER_ALL_CONNECTION_REQ_ALL_SCAN_REQ
-*  - BTM_BLE_ADVERT_FILTER_ALL_CONNECTION_REQ_WHITELIST_SCAN_REQ
-*  - BTM_BLE_ADVERT_FILTER_WHITELIST_CONNECTION_REQ_ALL_SCAN_REQ
-*  - BTM_BLE_ADVERT_FILTER_WHITELIST_CONNECTION_REQ_WHITELIST_SCAN_REQ
+*  - BTM_BLE_ADV_POLICY_ACCEPT_CONN_AND_SCAN
+*  - BTM_BLE_ADV_POLICY_ACCEPT_CONN_FILTER_SCAN
+*  - BTM_BLE_ADV_POLICY_FILTER_CONN_ACCEPT_SCAN
+*  - BTM_BLE_ADV_POLICY_FILTER_CONN_FILTER_SCAN
 *
 * \return
 *  - WICED_TRUE indicates success
 *  - WICED_FALSE indicates feature not supported or wrong ADV mode
 *
 * \note
-* The element ble_white_list_size of the struct \ref wiced_bt_cfg_settings_t
+* The element ble_filter_accept_list_size of the struct \ref wiced_bt_cfg_settings_t
 * must be set to a positive value in order for this API to function. This
 * config struct is to be passed at stack init (\ref wiced_bt_stack_init).
 *
@@ -684,7 +684,7 @@ wiced_result_t wiced_bt_ble_read_adv_tx_power( wiced_bt_dev_cmpl_cback_t *p_cbac
 ****************************************************************************//**
 *
 * This API allows the device to register a callback to receive _connectable_
-* ADV packets from slave devices. It is fundamentally the same as the API
+* ADV packets from peripheral devices. It is fundamentally the same as the API
 * \ref wiced_bt_ble_observe, except that the scan results are filtered to only
 * allow connectable packets. The scan interval, window, duration, and type
 * (active or passive), are initialized in \ref wiced_bt_cfg_settings_t upon
@@ -823,10 +823,10 @@ wiced_bt_ble_scan_type_t wiced_bt_ble_get_current_scan_state( void );
 uint8_t* wiced_bt_ble_check_advertising_data( uint8_t *p_adv, wiced_bt_ble_advert_type_t type, uint8_t *p_length );
 
 /*******************************************************************************
-* Function Name: wiced_bt_ble_update_scanner_white_list
+* Function Name: wiced_bt_ble_update_scanner_filter_list
 ****************************************************************************//**
 *
-* Add or remove a device from the scanner white list. Behavior of white list is
+* Add or remove a device from the scanner Filter Accept List. Behavior of Filter Accept List is
 * controlled by \ref wiced_bt_ble_update_scanner_filter_policy.
 *
 * \param[in] add                           WICED_TRUE==add, WICED_FALSE==remove
@@ -842,11 +842,11 @@ uint8_t* wiced_bt_ble_check_advertising_data( uint8_t *p_adv, wiced_bt_ble_adver
 *  - WICED_FALSE error, transport buffer allocation failure
 *
 * \note
-* This API cannot be used while the white list is in use. If the device is
-* currently scanning using the white list, disable it before using this API.
+* This API cannot be used while the Filter Accept List is in use. If the device is
+* currently scanning using the Filter Accept List, disable it before using this API.
 *
 *******************************************************************************/
-wiced_bool_t wiced_bt_ble_update_scanner_white_list( wiced_bool_t add,
+wiced_bool_t wiced_bt_ble_update_scanner_filter_list( wiced_bool_t add,
                                                      wiced_bt_device_address_t remote_bda,
                                                      wiced_bt_ble_address_type_t addr_type );
 
@@ -854,10 +854,10 @@ wiced_bool_t wiced_bt_ble_update_scanner_white_list( wiced_bool_t add,
 * Function Name: wiced_bt_ble_update_scanner_filter_policy
 ****************************************************************************//**
 *
-* Controls the use of the scanner white list. Using \ref wiced_bt_ble_scan and
+* Controls the use of the scanner Filter Accept List. Using \ref wiced_bt_ble_scan and
 * \ref wiced_bt_ble_observe will by default allow any device's advertising
 * packets to be received (dropping directed ADV packets whose target address
-* does not match our local address). Enabling the whitelist allows the callback
+* does not match our local address). Enabling the Filter Accept List allows the callback
 * to only be triggered in the event that an ADV packet is scanned from a small
 * list of devices.
 *
@@ -869,10 +869,10 @@ wiced_bool_t wiced_bt_ble_update_scanner_white_list( wiced_bool_t add,
 * address resolution is occurring on the host side).
 *
 * \param[in] scanner_policy            \ref wiced_bt_ble_scanner_filter_policy_t
-*  - BTM_BLE_SCANNER_FILTER_ALL_ADV_RSP: (default) WL OFF, drops dir to RPA
-*  - BTM_BLE_SCANNER_FILTER_WHITELIST_ADV_RSP: WL ON, drops dir to RPA
-*  - BTM_BLE_SCANNER_FILTER_ALL_RPA_DIR_ADV_RSP: WL OFF, passes dir to RPA
-*  - BTM_BLE_SCANNER_FILTER_WHITELIST_RPA_DIR_ADV_RSP: WL ON, passes dir to RPA
+*  - BTM_BLE_SCAN_POLICY_ACCEPT_ADV_RSP: (default) WL OFF, drops dir to RPA
+*  - BTM_BLE_SCAN_POLICY_FILTER_ADV_RSP: WL ON, drops dir to RPA
+*  - BTM_BLE_SCAN_POLICY_ACCEPT_RPA_DIR_ADV_RSP: WL OFF, passes dir to RPA
+*  - BTM_BLE_SCAN_POLICY_FILTER_RPA_DIR_ADV_RSP: WL ON, passes dir to RPA
 *
 * \return void
 *
@@ -891,7 +891,7 @@ void wiced_bt_ble_update_scanner_filter_policy( wiced_bt_ble_scanner_filter_poli
 *
 * Sets the local devices background connection procedure. The setting applies to
 * central devices that want to auto-reconnect to a small list of peripherals.
-* Peripheral devices are added into the white list using the API
+* Peripheral devices are added into the Filter Accept List using the API
 * \ref wiced_bt_ble_update_background_connection_device. Once added, this API
 * can be called to start the connection procedure.
 *
@@ -952,45 +952,45 @@ wiced_bool_t wiced_bt_ble_set_background_connection_type( wiced_bt_ble_conn_type
 * \note
 * Devices that allow SDS sleep are a special case regarding the size of the
 * background connections list. Due to memory constraints during sleep, the size
-* of the white list is limited to 2 slots. Otherwise, the max number of devices
-* is equal to the size of the white list in \ref wiced_bt_cfg_settings_t.
+* of the Filter Accept List is limited to 2 slots. Otherwise, the max number of devices
+* is equal to the size of the Filter Accept List in \ref wiced_bt_cfg_settings_t.
 *
 *******************************************************************************/
 wiced_bool_t wiced_bt_ble_update_background_connection_device( wiced_bool_t add_remove,
                                                                wiced_bt_device_address_t remote_bda );
 
 /*******************************************************************************
-* Function Name: wiced_bt_ble_clear_white_list
+* Function Name: wiced_bt_ble_clear_filter_accept_list
 ****************************************************************************//**
 *
-* Clears the ADV and scan white lists, as well as the background connections
-* list. This API will while the white list is in use. Any ADV and scans that use
-* the white list, must first be stopped. Any background connections must be
+* Clears the ADV and scan Filter Accept Lists, as well as the background connections
+* list. This API will while the Filter Accept List is in use. Any ADV and scans that use
+* the Filter Accept List, must first be stopped. Any background connections must be
 * disconnected before this API can be used.
 *
 * \param void
 *
 * \return
 *  - WICED_TRUE success
-*  - WICED_FALSE error, white list in use
+*  - WICED_FALSE error, Filter Accept List in use
 *
 *******************************************************************************/
-wiced_bool_t wiced_bt_ble_clear_white_list( void );
+wiced_bool_t wiced_bt_ble_clear_filter_accept_list( void );
 
 /*******************************************************************************
-* Function Name: wiced_bt_ble_get_white_list_size
+* Function Name: wiced_bt_ble_get_filter_accept_list_size
 ****************************************************************************//**
 *
 * Get the number of devices that can be held by the controller's scanner
-* white list. The size of the white list is set by the ble_white_list_size
+* Filter Accept List. The size of the Filter Accept List is set by the ble_filter_accept_list_size
 * element of \ref wiced_bt_cfg_settings_t.
 *
 * \param void
 *
-* \return number of slots in the white list
+* \return number of slots in the Filter Accept List
 *
 *******************************************************************************/
-uint8_t wiced_bt_ble_get_white_list_size( void );
+uint8_t wiced_bt_ble_get_filter_accept_list_size( void );
 
 /** \} group_ble_functions_bg */
 
@@ -1213,7 +1213,7 @@ wiced_bt_dev_status_t wiced_bt_ble_set_phy( wiced_bt_ble_phy_preferences_t *phy_
 *
 *     wiced_bt_ble_get_connection_parameters(peer_bda, &conn_params);
 *
-*     WICED_BT_TRACE("Role: %s ", (conn_params.role) ? ("Master") : ("Slave"));
+*     WICED_BT_TRACE("Role: %s ", (conn_params.role) ? ("Central") : ("Peripheral"));
 *     WICED_BT_TRACE("Interval: 0x%04x ", conn_params.conn_interval);
 *     WICED_BT_TRACE("Latency: 0x%04x ", conn_params.conn_latency);
 *     WICED_BT_TRACE("Timeout: 0x%04x\r\n", conn_params.supervision_timeout);
@@ -1323,7 +1323,7 @@ wiced_bt_dev_status_t wiced_bt_ble_set_privacy_mode( wiced_bt_device_address_t r
  *         .adv_int_max = WICED_BT_CFG_DEFAULT_LOW_DUTY_ADV_MIN_INTERVAL,
  *         .adv_type = MULTI_ADVERT_NONCONNECTABLE_EVENT,
  *         .channel_map = BTM_BLE_DEFAULT_ADVERT_CHNL_MAP,
- *         .adv_filter_policy = MULTI_ADVERT_FILTER_POLICY_WHITE_LIST_NOT_USED,
+ *         .adv_filter_policy = MULTI_ADVERT_FILTER_POLICY_FILTER_ACCEPT_LIST_NOT_USED,
  *         .adv_tx_power = MULTI_ADV_TX_POWER_MAX,
  *         .peer_addr_type = BLE_ADDR_PUBLIC, //valid only for directed type
  *         .peer_bd_addr = NULL, //valid only for directed type

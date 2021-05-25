@@ -50,6 +50,7 @@ uint32_t wiced_ofu_get_external_storage_context_size(void);
 BOOL32 wiced_ofu_new_external_storage_key(wiced_bool_t encrypt, uint32_t type, void *handle);
 BOOL32 wiced_ofu_store_external_storage_key(void *handle);
 BOOL32 wiced_ofu_restore_external_storage_key(void *handle);
+BOOL32 wiced_ofu_delete_external_storage_key(void *handle);
 BOOL32 wiced_ofu_crypt( wiced_bool_t encrypt, uint32_t offset, uint32_t length, const uint8_t *input,
                         uint8_t *output, void *handle);
 void wiced_ofu_store_image_length(uint32_t length, void *handle);

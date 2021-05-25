@@ -73,8 +73,8 @@ extern "C" {
 #   define HID_HOST_MAX_DEVICES    5 /* 3 for UHE, 1 for RC, 1 reserved */
 #endif
 
-//bt_target.h defined desired role as slave. Do we need below desired role  from buildcfg?
-#define L2CAP_DESIRED_LINK_ROLE (HCI_ROLE_MASTER)
+//bt_target.h defined desired role as peripheral. Do we need below desired role  from buildcfg?
+#define L2CAP_DESIRED_LINK_ROLE (HCI_ROLE_CENTRAL)
 
 
 // --- stack customizations ---
@@ -266,7 +266,7 @@ extern "C" {
 #define BTM_MAX_LOC_BD_NAME_LEN         0
 #define BTM_MAX_PM_RECORDS              1
 #define BTM_MAX_VSE_CALLBACKS           1
-#define BTM_BLE_MAX_BG_CONN_DEV_NUM     (p_btm_cfg_settings->ble_white_list_size)
+#define BTM_BLE_MAX_BG_CONN_DEV_NUM     (p_btm_cfg_settings->ble_filter_accept_list_size)
 #define BTM_OOB_INCLUDED                BR_INCLUDED
 #define BTM_BR_SC_INCLUDED              BR_INCLUDED
 #define BTM_CROSS_TRANSP_KEY_DERIVATION BR_INCLUDED

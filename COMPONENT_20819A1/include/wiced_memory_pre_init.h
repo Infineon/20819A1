@@ -49,7 +49,7 @@
 typedef struct tag_mem_pre_init_control
 {
     uint8_t max_ble_connections;
-    uint8_t max_slave_piconet; /* use to reduce bt connections */
+    uint8_t max_peripheral_piconet; /* use to reduce bt connections */
     uint8_t max_resolving_list;
     uint8_t onfound_list_len;
     uint8_t max_multi_adv_instances;

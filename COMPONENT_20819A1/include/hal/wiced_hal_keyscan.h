@@ -47,7 +47,7 @@
 
 
 
-/**  \addtogroup keyscan
+/**  \addtogroup keyscan Keyscan Interface
  *  \ingroup HardwareDrivers
 */
 /*! @{ */
@@ -165,7 +165,7 @@ uint8_t wiced_hal_keyscan_get_key_pressed_count(void);
 
 /* @} */
 
-/**  \addtogroup keyscanQueue
+/**  \addtogroup keyscanQueue Keyscan Interface Queue
  *  \ingroup keyscan
  */
 
