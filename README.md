@@ -60,7 +60,7 @@ The Infineon CYW20819 is an ultra-low-power dual-mode Bluetooth 5.2 wireless MCU
   Max UART baud rate is 1M. Use baud rate of 115200 for Client Control.
 
 #### CYBT-273063-EVAL:
-- CYW20819-based dual-mode (BLE/BR/EDR) Bluetooth 5.0-compliant fully certified module
+- CYW20819-based dual-mode (LE/BR/EDR) Bluetooth 5.0-compliant fully certified module
   with external PA/LNA and PCB antenna to achieve extended range (CYBT-273063-02),
   Arduino compatible headers for hardware expansion, user switches and LEDs,
   FCC, ISED, MIC, and CE Certified Module on board (CYBT-273063-02), USB connector

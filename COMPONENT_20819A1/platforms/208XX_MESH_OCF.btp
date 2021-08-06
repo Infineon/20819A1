@@ -5,7 +5,7 @@ DevicePreset "20819A1 Serial Flash (4K pages)"
     DLWriteVerifyMode = "Write and verify"
     DLMaxWriteSize = 240
     DLSectorEraseMode = "Chip erase"
-    MinidriverRebaudRate = 3000000
+    MinidriverRebaudRate = 921600
     DLDTRReset = 0
     DLPostResetDelay_ms = 100
     DLAutobaud = 0

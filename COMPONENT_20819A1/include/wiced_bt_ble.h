@@ -1435,6 +1435,61 @@ wiced_bool_t wiced_bt_notify_multi_advertisement_packet_transmissions( uint8_t a
                                                                        void (*clientCallback)( uint32_t ),
                                                                        uint32_t advanceNoticeInMicroSeconds );
 
+/******************************************************************************
+* Function Name: wiced_bt_dev_add_device_to_address_resolution_db
+*******************************************************************************/
+/**
+*
+* Adds link key information to internal address resolution db.
+*
+* \param[in] p_link_keys       link keys information stored in application side
+*
+* \return wiced_result_t
+*
+******************************************************************************/
+wiced_result_t wiced_bt_dev_add_device_to_address_resolution_db( wiced_bt_device_link_keys_t *p_link_keys );
+
+/******************************************************************************
+* Function Name: wiced_bt_dev_remove_device_from_address_resolution_db
+*******************************************************************************/
+/**
+*
+* Removes the link key information from internal address resolution db.
+*
+* \param[in] p_link_keys       link keys information stored in application side
+*
+* \return wiced_result_t
+*
+******************************************************************************/
+wiced_result_t wiced_bt_dev_remove_device_from_address_resolution_db( wiced_bt_device_link_keys_t *p_link_keys );
+
+/******************************************************************************
+* Function Name: wiced_bt_dev_get_ble_keys
+*******************************************************************************/
+/**
+*
+* Gets the LE key mask from stored key information of nv ram.
+*
+* \param[in] bd_addr                                          remote bd address
+* \param[out] p_key_mask                                    ble key mask stored
+*
+* \return wiced_result_t
+*
+******************************************************************************/
+wiced_result_t wiced_bt_dev_get_ble_keys( wiced_bt_device_address_t bd_addr, wiced_bt_dev_le_key_type_t *p_key_mask );
+
+/******************************************************************************
+* Function Name: wiced_btm_get_private_bda
+*******************************************************************************/
+/**
+ *                  Acquire current BLE Resolvable Private Address
+ *
+ * @param[in]       None
+ *
+ * @return          uint8_t * - current rpa's pointer
+ */
+uint8_t *wiced_btm_get_private_bda(void);
+
 /** \} group_ble_functions_multi */
 
 /** \} group_ble_functions */

@@ -288,5 +288,29 @@ wiced_result_t wiced_sleep_enter_hid_off( uint32_t wakeup_time,
  */
 wiced_sleep_wake_reason_t wiced_sleep_hid_off_wake_reason(void);
 
+/**
+ * Function Name: wiced_disable_non_wakeup_interrupt_before_entering_sleep_mode
+ *
+ * Disable all non wake up interrupt before entering sleep mode.
+ *
+ * \param   none
+ *
+ * \return  none
+ *
+ */
+void wiced_disable_non_wakeup_interrupt_before_entering_sleep_mode(void);
+
+/**
+ * Function Name: wiced_restore_non_wakeup_interrupt_after_exiting_sleep_mode
+ *
+ * Restore all non wake up interrupt after exiting sleep mode.
+ *
+ * \param   none
+ *
+ * \return  none
+ *
+ */
+void wiced_restore_non_wakeup_interrupt_after_exiting_sleep_mode(void);
+
 /** @} */
 #endif //_WICED_SLEEP_H_

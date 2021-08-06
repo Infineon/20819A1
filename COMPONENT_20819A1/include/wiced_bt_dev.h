@@ -1872,20 +1872,6 @@ wiced_result_t wiced_bt_dev_get_bonded_devices( wiced_bt_dev_bonded_device_info_
 ******************************************************************************/
 wiced_result_t wiced_bt_dev_delete_bonded_device( wiced_bt_device_address_t bd_addr );
 
-/******************************************************************************
-* Function Name: wiced_bt_dev_get_ble_keys
-***************************************************************************//**
-*
-* Gets the LE key mask from stored key information of nv ram.
-*
-* \param[in] bd_addr                                          remote bd address
-* \param[out] p_key_mask                                    ble key mask stored
-*
-* \return wiced_result_t
-*
-******************************************************************************/
-wiced_result_t wiced_bt_dev_get_ble_keys( wiced_bt_device_address_t bd_addr, wiced_bt_dev_le_key_type_t *p_key_mask );
-
 #if GATT_OVER_BREDR_INCLUDED == TRUE
 /******************************************************************************
 * Function Name: wiced_bt_dev_get_security_state
@@ -1915,32 +1901,6 @@ wiced_bool_t wiced_bt_dev_get_security_state( wiced_bt_device_address_t bd_addr,
 *
 ******************************************************************************/
 void wiced_bt_set_pairable_mode( uint8_t allow_pairing, uint8_t connect_only_paired );
-
-/******************************************************************************
-* Function Name: wiced_bt_dev_add_device_to_address_resolution_db
-***************************************************************************//**
-*
-* Adds link key information to internal address resolution db.
-*
-* \param[in] p_link_keys       link keys information stored in application side
-*
-* \return wiced_result_t
-*
-******************************************************************************/
-wiced_result_t wiced_bt_dev_add_device_to_address_resolution_db( wiced_bt_device_link_keys_t *p_link_keys );
-
-/******************************************************************************
-* Function Name: wiced_bt_dev_remove_device_from_address_resolution_db
-***************************************************************************//**
-*
-* Removes the link key information from internal address resolution db.
-*
-* \param[in] p_link_keys       link keys information stored in application side
-*
-* \return wiced_result_t
-*
-******************************************************************************/
-wiced_result_t wiced_bt_dev_remove_device_from_address_resolution_db( wiced_bt_device_link_keys_t *p_link_keys );
 
 /******************************************************************************
 * Function Name: wiced_bt_get_identity_address

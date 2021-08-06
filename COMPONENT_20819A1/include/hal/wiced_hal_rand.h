@@ -91,5 +91,13 @@ uint32_t wiced_hal_rand_gen_num(void);
 ******************************************************************************/
 void wiced_hal_rand_gen_num_array(uint32_t* randNumberArrayPtr, uint32_t length);
 
+///////////////////////////////////////////////////////////////////////////////
+/// This functin returns a pseudo random number
+///
+/// \param none
+///
+/// \return A randomly generated 32-bit integer.
+///////////////////////////////////////////////////////////////////////////////
+uint32_t wiced_hal_get_pseudo_rand_number(void);
 
 #endif /* _WICED_HAL_RAND_H_ */

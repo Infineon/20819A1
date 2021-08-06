@@ -78,7 +78,7 @@ DIRECT_LOAD?=0
 # static section patch
 CY_CORE_SS_CGS=$(CY_INTERNAL_BASELIB_PATH)/platforms/static_patch.cgs
 
-# BT Device address
+# Bluetooth Device address
 ifneq ($(BT_DEVICE_ADDRESS),)
 CY_CORE_CGS_ARGS+=-O DLConfigBD_ADDRBase:$(BT_DEVICE_ADDRESS)
 endif
@@ -136,9 +136,9 @@ CY_CORE_DEFINES+=\
 
 CY_CORE_EXTRA_DEFINES=\
 	-DWICED_SDK_MAJOR_VER=3 \
-	-DWICED_SDK_MINOR_VER=0 \
+	-DWICED_SDK_MINOR_VER=1 \
 	-DWICED_SDK_REV_NUMBER=0 \
-	-DWICED_SDK_BUILD_NUMBER=14025
+	-DWICED_SDK_BUILD_NUMBER=17479
 
 #
 # Set the output file paths

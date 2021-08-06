@@ -52,6 +52,10 @@
 #ifndef DO_RF_CALIBRATION
 #define DISABLE_RF_CALIBRATION
 #endif
+__attribute__((weak))
+void wiced_pre_init(void)
+{
+}
 
 #define BLE_MEM_BLOCK 1
 /*****************************************************************
@@ -145,6 +149,7 @@ void SPAR_CRT_SETUP(void)
     // WAR please refer to BTSDK-59 resolution comments.
     memcpy((void *)0x200BAE, (void *)&pin_val, sizeof(UINT8));
 
+    wiced_pre_init();
     // Setup the application start function.
     wiced_bt_set_app_start_function(application_start_internal);
 }
@@ -211,6 +216,7 @@ void SPAR_CRT_SETUP(void)
     // optimize memory - use WICED_MEM_PRE_INIT_IGNORE to make no change
     wiced_memory_pre_init(&g_mem_pre_init);
 
+    wiced_pre_init();
     // Setup the application start function.
     wiced_bt_app_pre_init = application_start_internal;
 }

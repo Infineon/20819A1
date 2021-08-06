@@ -637,6 +637,30 @@ wiced_bt_gpio_select_status_t wiced_hal_gpio_select_function(wiced_bt_gpio_numbe
 *******************************************************************************/
 void wiced_hal_unassign_gpio_function(uint32_t pin, uint32_t function);
 
+/**
+ * Function Name: wiced_hal_gpio_disable_interrupt
+ *
+ * Disable GPIO interrupt.
+ *
+ * \param   gpio    GPIO number
+ *
+ * \return  none
+ *
+ */
+void wiced_hal_gpio_disable_interrupt(wiced_bt_gpio_numbers_t gpio);
+
+/**
+ * Function Name: wiced_hal_gpio_deregister_interrupt
+ *
+ * Deregister Interrupt handler with GPIO.
+ *
+ * \param   gpio    GPIO number
+ *
+ * \return  none
+ *
+ */
+void wiced_hal_gpio_deregister_interrupt(wiced_bt_gpio_numbers_t gpio);
+
 /* \} GPIO */
 
 #endif // __WICED_GPIO_H__

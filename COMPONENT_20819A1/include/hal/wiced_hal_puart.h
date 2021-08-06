@@ -338,6 +338,30 @@ void wiced_hal_puart_set_watermark_level(UINT32 watermark_level);
 
 BOOL32 wiced_hal_puart_configuration(UINT32 baudrate, parity_t parity, stop_bit_t stop_bit);
 
+/**
+ * Function Name: wiced_hal_puart_disable_interrupt
+ *
+ * Disable Peripheral UART interrupt.
+ *
+ * \param   none
+ *
+ * \return  none
+ *
+ */
+void wiced_hal_puart_disable_interrupt(void);
+
+/**
+ * Function Name: wiced_hal_puart_deregister_interrupt
+ *
+ * Deregister Interrupt handler with Peripheral UART.
+ *
+ * \param   none
+ *
+ * \return  none
+ *
+ */
+void wiced_hal_puart_deregister_interrupt(void);
+
 /* @} PUARTDriver */
 /* @} HardwareDrivers */
 
