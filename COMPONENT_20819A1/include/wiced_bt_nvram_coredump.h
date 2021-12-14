@@ -42,8 +42,8 @@
 #define __WICED_BT_NVRAM_COREDUMP_H__
 
 /**
-* \addtogroup DBFW WICED BT NVRAM Coredump
-* \ingroup debug
+* \addtogroup DBFW AIROC NVRAM Coredump
+* \ingroup wicedsys
 * \{
 * Defines coredump nvram management interface
 */

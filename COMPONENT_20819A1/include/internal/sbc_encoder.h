@@ -38,9 +38,6 @@
 **
 **  Revision :   $Id: sbc_encoder.h,v 1.28 2006/06/27 12:29:32 mjougit Exp $
 **
-**  Copyright (c) 1999-2008, Cypress Semiconductor., All Rights Reserved.
-**  Cypress Semiconductor Bluetooth Core. Proprietary and confidential.
-**
 ******************************************************************************/
 
 #ifndef SBC_ENCODER_H

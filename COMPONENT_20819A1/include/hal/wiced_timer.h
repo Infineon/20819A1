@@ -65,7 +65,7 @@ extern "C"
  * \{
  */
 
-/** WICED Timer Types */
+/** AIROC Timer Types */
 enum wiced_timer_type_e
 {
     WICED_SECONDS_TIMER = 1,
@@ -91,7 +91,7 @@ typedef uint8_t  wiced_timer_type_t;/* (see #wiced_timer_type_e) */
 typedef void ( *wiced_timer_callback_t )( TIMER_PARAM_TYPE cb_params );
 
 /**
- * Defines the WICED timer instance size
+ * Defines the AIROC timer instance size
  */
 #if defined _WIN32 || defined WICEDX || defined __ANDROID__ || defined __APPLE__
     #define WICED_TIMER_INSTANCE_SIZE_IN_WORDS      17
@@ -108,7 +108,7 @@ typedef void ( *wiced_timer_callback_t )( TIMER_PARAM_TYPE cb_params );
  */
 
 /*
- * Defines the WICED timer structure
+ * Defines the AIROC timer structure
  * requires. Timer module doesn't use any dynamic memory and the number of timers
  * depends on the memory available to the application to define the timers
  */

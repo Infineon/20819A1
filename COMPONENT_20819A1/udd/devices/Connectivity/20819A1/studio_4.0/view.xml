@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xml_version="1" xmlns="http://cypress.com/xsd/cystudiouddviewdie_v1">
+  <Files>
+    <Module name="35-SMT" path="modules/module_35-SMT.cydata" />
+    <Module name="35-SMT_A" path="modules/module_35-SMT_A.cydata" />
+    <Module name="35-SMT_B" path="modules/module_35-SMT_B.cydata" />
+  </Files>
+  <HasUserControllableMcu value="true" />
+</View>

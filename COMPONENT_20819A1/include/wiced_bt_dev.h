@@ -55,9 +55,9 @@ extern "C" {
  * \ingroup     wicedbt
  * \{
  *
- * WICED Device Management APIs
+ * AIROC Device Management APIs
  *
- * \defgroup wiced_bt_dev_classic BT Classic (BR/EDR)
+ * \defgroup wiced_bt_dev_classic Bluetooth Classic (BR/EDR)
  * \{
  *
  * \defgroup group_classic_macro Macro
@@ -66,7 +66,7 @@ extern "C" {
  * \defgroup group_dev_functions Functions
  * \{
  *     \defgroup group_dev_functions_ctrl Device Control
- *     \defgroup group_dev_functions_classic BT Classic Host Stack Management
+ *     \defgroup group_dev_functions_classic Bluetooth Classic Host Stack Management
  *     \defgroup group_dev_functions_sec Security
  * \}
  */
@@ -749,7 +749,7 @@ typedef struct
 /** BR/EDR pairing complete infomation */
 typedef struct
 {
-    uint8_t         status;                                                    /**< The status of the simple pairing process (see defintions for HCI status codes). */
+    uint8_t         status;                                                    /**< The status of the simple pairing process (See standard HCI error codes. Please refer Bluetooth version 5.2, volume 1, part F for CONTROLLER ERROR CODES). */
 } wiced_bt_dev_br_edr_pairing_info_t;
 
 /** BLE pairing complete infomation */
@@ -1278,7 +1278,7 @@ wiced_result_t BTM_SetLinkSuperTout(wiced_bt_device_address_t remote_bd_addr, ui
 *
 * Commands to set the TX power on link
 *
-* \param[in] bd_addr         peer address to set ADV TX power keep bd_addr NULL
+* \param[in] bd_addr         peer address
 * \param[in] power           power value in db
 *
 * \return wiced_result_t
@@ -1946,6 +1946,21 @@ wiced_result_t wiced_bt_dev_set_link_policy(wiced_bt_device_address_t remote_bda
 */
 
 wiced_result_t wiced_bt_set_device_class(wiced_bt_dev_class_t dev_class);
+
+/**
+ * Function         wiced_bt_dev_set_local_name
+ *
+ * Set the device local name
+ *
+ * @param[out]      p_name        : Local device name
+ *
+ * @return          wiced_result_t
+ *
+ *                  WICED_BT_PENDING        command initiated successfully
+ *                  WICED_BT_DEV_RESET      device not in the right state to execute the command
+ *                  WICED_BT_NO_RESOURCES   no resources to issue command
+ */
+wiced_result_t wiced_bt_dev_set_local_name( char* p_name );
 
 /** \} group_dev_functions_sec */
 

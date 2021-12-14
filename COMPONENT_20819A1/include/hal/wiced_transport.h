@@ -2,7 +2,7 @@
 * \file <wiced_transport.h>
 *
 * \brief
-* 	This file provides the API declarations for the WICED Transport driver
+* 	This file provides the API declarations for the AIROC Transport driver
 *
 *//*****************************************************************************
 * Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
@@ -43,14 +43,14 @@
 #include "wiced_hal_pspi.h"
 
 /**
-* \defgroup group_Transport     WICED Transport
+* \defgroup group_Transport     AIROC Transport
 * \ingroup HardwareDrivers
 * @{
 *
 * Defines the transport utilities for configuring the transport, sending data and
 * receiving data. This supports the UART transport in HCI Mode
 *
-* The WICED Transport uses the generic pool available for receiving and sending packets
+* The AIROC Transport uses the generic pool available for receiving and sending packets
 * over the transport. Following are the configurations of the generic pool.
 * 1:   The buffer size - 8 bytes, buffer count - 128.
 * 2:   The buffer size - 32 bytes, buffer count - 48.
@@ -81,7 +81,7 @@
 * Enumerations
 *****************************************************************************/
 
-/** WICED Transport Types */
+/** AIROC Transport Types */
 typedef enum
 {
     WICED_TRANSPORT_UART,
@@ -89,7 +89,7 @@ typedef enum
     WICED_TRANSPORT_UNDEFINED
 }wiced_transport_type_t;
 
-/** WICED UART Transport Mode */
+/** AIROC UART Transport Mode */
 typedef enum
 {
     WICED_TRANSPORT_UART_HCI_MODE,
@@ -97,23 +97,23 @@ typedef enum
 }wiced_transport_uart_mode_t;
 /** \} group_transport_enums */
 
-/** WICED Transport Internal Buffer Pool structure */
+/** AIROC Transport Internal Buffer Pool structure */
 typedef struct _wiced_trans_buffer_pool_t wiced_transport_buffer_pool_t;
 
 /**
 * \addtogroup group_transport_cback_functions
 * \{
 */
-/** WICED Transport Status Handler.
+/** AIROC Transport Status Handler.
  * The callback function registered by the application. This callback will be
  * called by the Transport driver once the transport interface has completed
  * initialization.
  *
- * \param type                   - WICED Transport type
+ * \param type                   - AIROC Transport type
  ******************************************************************************/
 typedef void (*wiced_transport_status_handler_t)( wiced_transport_type_t type );
 
-/** WICED Transport Data Handler.
+/** AIROC Transport Data Handler.
 * The callback function registered by the application to recieve data. The
 * application has to free the buffer in which data is received. Use the API
 * wiced_transport_free_buffer to free the RX buffer.
@@ -123,7 +123,7 @@ typedef void (*wiced_transport_status_handler_t)( wiced_transport_type_t type );
 ******************************************************************************/
 typedef uint32_t (*wiced_tranport_data_handler_t)( uint8_t* p_data, uint32_t data_len );
 
-/** WICED Transport Transmit complete indication.
+/** AIROC Transport Transmit complete indication.
 * The callback function registered by the application that indicates to the
 * application that a packet is has been sent using a buffer in the indicated pool.
 *
@@ -146,7 +146,7 @@ typedef PACKED struct
     uint32_t                        baud_rate;                   /**<  UART baud rate. */
 }wiced_uart_transport_cfg_t;
 
-/** WICED SPI Transport Configuration */
+/** AIROC SPI Transport Configuration */
 typedef PACKED struct
 {
     uint8_t          dev_role;            /**< The SPI HW to play either master (1) or slave (2). */
@@ -160,14 +160,14 @@ typedef PACKED struct
     uint8_t          slave_ready_pin;     /**< The GPIO pin to be used as the slave is ready. */
 }wiced_spi_transport_cfg_t;
 
-/** WICED Transport Interface Configuration */
+/** AIROC Transport Interface Configuration */
 typedef PACKED union
 {
     wiced_uart_transport_cfg_t uart_cfg;
     wiced_spi_transport_cfg_t  spi_cfg;
 }wiced_transport_interface_cfg_t;
 
-/** WICED Transport receive buffer pool configuration.
+/** AIROC Transport receive buffer pool configuration.
 * The application uses this to receive
 * a packet of the size( i.e if payload size > 252 ) > 268 bytes.
 ******************************************************************************/
@@ -178,15 +178,15 @@ typedef PACKED struct
     uint32_t buffer_count;
 }wiced_transport_rx_buff_pool_cfg_t;
 
-/** WICED Transport Configuration */
+/** AIROC Transport Configuration */
 typedef PACKED struct
 {
-    wiced_transport_type_t              type;                   /**< WICED transport type. */
-    wiced_transport_interface_cfg_t     cfg;                    /**< WICED transport interface config. */
-    wiced_transport_rx_buff_pool_cfg_t  rx_buff_pool_cfg;       /**< WICED RX buffer pool config. */
-    wiced_transport_status_handler_t    p_status_handler;       /**< WICED transport status handler.*/
-    wiced_tranport_data_handler_t       p_data_handler;         /**< WICED transport receive data handler. */
-    wiced_transport_tx_complete_t       p_tx_complete_cback;    /**< WICED transport TX complete callback. */
+    wiced_transport_type_t              type;                   /**< AIROC transport type. */
+    wiced_transport_interface_cfg_t     cfg;                    /**< AIROC transport interface config. */
+    wiced_transport_rx_buff_pool_cfg_t  rx_buff_pool_cfg;       /**< AIROC RX buffer pool config. */
+    wiced_transport_status_handler_t    p_status_handler;       /**< AIROC transport status handler.*/
+    wiced_tranport_data_handler_t       p_data_handler;         /**< AIROC transport receive data handler. */
+    wiced_transport_tx_complete_t       p_tx_complete_cback;    /**< AIROC transport TX complete callback. */
 }wiced_transport_cfg_t;
 
 #pragma pack()
@@ -207,7 +207,7 @@ typedef PACKED struct
 * Initializes and configures the transport interface and also registers the
 * callback handlers to be invoked when receiving data, init complete, etc.
 *
-* \param[in]    p_cfg            - The WICED transport config.
+* \param[in]    p_cfg            - The AIROC transport config.
 *
 * \return     wiced_result_t
 ******************************************************************************/

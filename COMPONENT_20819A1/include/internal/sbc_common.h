@@ -37,9 +37,6 @@
 **  Description: This file contains common defines / structure and structures used by Encoder and
 **               Decoder
 **
-**  Copyright (c) 1999-2008, Cypress Semiconductor., All Rights Reserved.
-**  Cypress Semiconductor Bluetooth Core. Proprietary and confidential.
-**
 ******************************************************************************/
 
 #ifndef SBC_COMMON_H

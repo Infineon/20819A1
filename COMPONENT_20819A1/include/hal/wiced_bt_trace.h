@@ -38,7 +38,7 @@
 * so agrees to indemnify Cypress against all liability.
 *******************************************************************************/
 /**
-* \addtogroup  wiced_utils  WICED Trace Utilities
+* \addtogroup  wiced_utils  AIROC Trace Utilities
 * \ingroup     wicedsys
 *
 * @{
@@ -57,8 +57,6 @@
 #include "string.h"
 #include "wiced.h"
 #include "wiced_bt_types.h"
-#include "wiced_hal_puart.h"
-
 
 
 /** Debug trace message destinations.
@@ -67,7 +65,7 @@ typedef enum
 {
     WICED_ROUTE_DEBUG_NONE,             /** < No Traces */
     WICED_ROUTE_DEBUG_TO_WICED_UART,    /**< Set to WICED UART to send debug
-                                             strings over the WICED debug interface */
+                                             strings over the AIROC debug interface */
     WICED_ROUTE_DEBUG_TO_HCI_UART,      /**< Use this to direct the debug traces over HCI  UART */
     WICED_ROUTE_DEBUG_TO_DBG_UART,      /**< Use this to direct the debug traces over debug UART */
     WICED_ROUTE_DEBUG_TO_PUART          /**< Use this to direct the debug traces over peripheral UART */
@@ -98,20 +96,6 @@ typedef enum
 	#define WICED_BT_TRACE(format, ...)
 	#define WICED_BT_TRACE_ARRAY(ptr, len, ...)
 #endif
-
-
-/*******************************************************************************
-* Function Name:        wiced_bt_trace_array
-****************************************************************************//**
-*
-* \param[in]      string     : Pointer to a  string to be prepended to array
-* \param[in]      array      : Pointer to array to be printed
-* \param[in]      len        : Length of array to be printed
-*
-* \return         void
-*
-*******************************************************************************/
-void wiced_bt_trace_array( const char *string, const uint8_t* array, const uint16_t len );
 
 /*******************************************************************************
 * Function Name:        wiced_trace_array

@@ -36,9 +36,6 @@
 **
 **  Description: This file contains types used by SBC
 **
-**  Copyright (c) 1999-2008, Cypress Semiconductor., All Rights Reserved.
-**  Cypress Semiconductor Bluetooth Core. Proprietary and confidential.
-**
 ******************************************************************************/
 
 

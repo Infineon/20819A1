@@ -42,10 +42,6 @@
 **
 **  NOTE        This file should always be included first.
 **
-**
-**  Copyright (c) 1999-2016, Cypress Semiconductor., All Rights Reserved.
-**  Cypress Semiconductor Bluetooth Core. Proprietary and confidential.
-**
 *****************************************************************************/
 
 #ifndef BT_TARGET_H

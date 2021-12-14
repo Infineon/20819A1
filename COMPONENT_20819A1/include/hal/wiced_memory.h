@@ -50,7 +50,7 @@
 * \{
 *
 * The following APIs provides the memory buffer management used by the
-* application and the upper layer stack of the WICED Bluetooth(BT) Stack.
+* application and the upper layer stack of the AIROC Bluetooth Stack.
 *
 * \note
 * For more information on application buffer pool allocation, please refer to

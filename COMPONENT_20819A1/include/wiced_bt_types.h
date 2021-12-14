@@ -2,7 +2,7 @@
 * \file <wiced_bt_types.h_>
 *
 * \brief
-*   This file provides definitions for generic types used by WICED
+*   This file provides definitions for generic types used by AIROC BTSDK
 *
 *//*****************************************************************************
 * Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or

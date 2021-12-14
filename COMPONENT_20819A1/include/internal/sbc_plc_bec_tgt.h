@@ -37,9 +37,6 @@
 **
 **  Description: This file enables / disable optional feature of the SBC PLC BEC library
 **
-**  Copyright (c) 1999-2008, Cypress Semiconductor., All Rights Reserved.
-**  Cypress Semiconductor Bluetooth Core. Proprietary and confidential.
-**
 ******************************************************************************/
 
 /* Include MONO A2DP code */

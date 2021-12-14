@@ -137,7 +137,9 @@ void clock_DelayMicroseconds(UINT32 us);
 
 
 //! System time in us, 64bits will not roll over.
+#if !defined __ANDROID__    // Exclude Android due to type conflict
 UINT64 clock_SystemTimeMicroseconds64(void);
+#endif
 //! System time in us, 32bits will roll over every 1 hour 11 minutes.
 UINT32 clock_SystemTimeMicroseconds32(void);
 

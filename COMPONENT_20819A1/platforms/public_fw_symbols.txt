@@ -53,6 +53,7 @@ wiced_bt_ble_get_white_list_size                 ,           SYMBOL,       PUBLI
 wiced_bt_ble_clear_white_list                    ,           SYMBOL,       PUBLIC,      2, wiced_bt_ble_clear_filter_accept_list,      1
 wiced_bt_ble_update_scanner_white_list           ,           SYMBOL,       PUBLIC,      2, wiced_bt_ble_update_scanner_filter_list,    1
 sha2_hmac                                        ,           SYMBOL,       PUBLIC,      2, wiced_sha2_hmac,                            1
+BTM_SetLocalDeviceName                           ,           SYMBOL,       PUBLIC,      2, wiced_bt_dev_set_local_name,                1
 #
 # Generic
 #
@@ -243,7 +244,6 @@ gpio_configurePortPins                            , SYMBOL, PUBLIC, 0, , 1
 gpio_registerForInterrupt                         , SYMBOL, PUBLIC, 0, , 1
 BTM_SetDeviceClass                                , SYMBOL, PUBLIC, 0, , 1
 BTM_ReadDeviceClass                               , SYMBOL, PUBLIC, 0, , 1
-BTM_SetLocalDeviceName                            , SYMBOL, PUBLIC, 0, , 1
 BTM_ReadLocalDeviceName                           , SYMBOL, PUBLIC, 0, , 1
 BTM_SwitchRole                                    , SYMBOL, PUBLIC, 0, , 1
 BTM_SetLinkSuperTout                              , SYMBOL, PUBLIC, 0, , 1

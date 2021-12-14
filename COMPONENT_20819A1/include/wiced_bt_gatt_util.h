@@ -34,7 +34,7 @@
 
 /** \file <wiced_bt_gatt_util.h>
 *
-*  \brief WICED Generic Attribute (GATT) Application Programming Interface
+*  \brief AIROC Generic Attribute (GATT) Application Programming Interface
 *
 ******************************************************************************/
 #pragma once

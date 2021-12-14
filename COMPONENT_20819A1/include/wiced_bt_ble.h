@@ -1,7 +1,7 @@
 /***************************************************************************//**
 * \file <wiced_bt_ble.h>
 *
-* Provides the API declarations for BLE host stack management.
+* Provides the API declarations for LE host stack management.
 *
 *//*****************************************************************************
 * Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
@@ -46,11 +46,11 @@ extern "C" {
 #endif
 
 /**
- * \addtogroup  wiced_bt_ble BLE (Bluetooth Low Energy)
+ * \addtogroup  wiced_bt_ble Bluetooth Low Energy
  * \ingroup     wiced_bt_dev
  * \{
  *
- * BLE (Bluetooth Low Energy) Functions.
+ * Bluetooth Low Energy (LE) Functions.
  *
  * \defgroup group_ble_macro Macro
  * \defgroup group_ble_data_structures Data Structures
@@ -98,13 +98,13 @@ extern "C" {
 /** default advertising channel map */
 #define BTM_BLE_DEFAULT_ADVERT_CHNL_MAP                                    (BTM_BLE_ADVERT_CHNL_37 | BTM_BLE_ADVERT_CHNL_38 | BTM_BLE_ADVERT_CHNL_39)
 
-/** BLE data signature length 8 Bytes + 4 bytes counter */
+/** LE data signature length 8 Bytes + 4 bytes counter */
 #define BTM_BLE_AUTH_SIGNATURE_SIZE                                        12
 
 /** AFH channel map size for BR/EDR transport */
 #define BTM_AFH_CHNL_MAP_SIZE                                              HCI_AFH_CHANNEL_MAP_LEN
 
-/** AFH channel map size for BLE transport */
+/** AFH channel map size for LE transport */
 #define BTM_BLE_CHNL_MAP_SIZE                                              HCI_BLE_CHNL_MAP_SIZE
 
 /**
@@ -120,7 +120,7 @@ extern "C" {
 #define MULTI_ADV_TX_POWER_MIN                                             0
 #define MULTI_ADV_TX_POWER_MAX                                             4
 
-/** SIG-define minimum/maximums for BLE parameters */
+/** SIG-define minimum/maximums for LE parameters */
 #define BTM_BLE_ADVERT_INTERVAL_MIN                                 0x0020
 #define BTM_BLE_ADVERT_INTERVAL_MAX                                 0x4000
 
@@ -148,7 +148,7 @@ extern "C" {
 * \{
 */
 
-/** BLE AFH Channel map */
+/** LE AFH Channel map */
 typedef uint8_t wiced_bt_ble_chnl_map_t[BTM_AFH_CHNL_MAP_SIZE];
 
 /** Auth signature \ref BTM_BLE_AUTH_SIGNATURE_SIZE */
@@ -401,7 +401,7 @@ typedef struct
     uint8_t                                 resrved;                 /**< Reserved for future use */
 } wiced_bt_ble_phy_preferences_t;
 
-/** BLE connection parameters */
+/** LE connection parameters */
 typedef struct
 {
     uint8_t                                 role;                    /**< Central=0, Peripheral=0*/
@@ -1022,9 +1022,9 @@ void wiced_bt_ble_security_grant( wiced_bt_device_address_t bd_addr, uint8_t res
 ****************************************************************************//**
 *
 * Generates an authentication signature using AES128 CMAC algorithm. The BD_ADDR
-* given as a parameter is used to find the keys stored by WICED stack, then
+* given as a parameter is used to find the keys stored by AIROC stack, then
 * the keys are used to generate an authentication signature. This functionality
-* is used to perform host-side authentication in the WICED stack. Rarely used
+* is used to perform host-side authentication in the AIROC stack. Rarely used
 * at the application layer.
 *
 * \param[in] bd_addr            peer device to sign data for (using stored keys)
@@ -1049,7 +1049,7 @@ wiced_bool_t wiced_bt_ble_data_signature( wiced_bt_device_address_t bd_addr,
 * This function is used to check a given data signature against the original
 * unsigned data. The function uses the stored keys of the given LE peer device
 * to verify the signature. This functionality is used to perform host-side
-* authentication in the WICED stack. Rarely used at the application layer.
+* authentication in the AIROC stack. Rarely used at the application layer.
 *
 * \param[in] bd_addr            peer device to sign data for (using stored keys)
 * \param[in] p_orig             original data to check signature for
@@ -1073,7 +1073,7 @@ wiced_bool_t wiced_bt_ble_verify_signature( wiced_bt_device_address_t bd_addr,
 ****************************************************************************//**
 *
 * Get security mode 1 flags and encryption key size for LE peer. The GATT layer
-* of the WICED stack will check the link's encryption status before triggering
+* of the AIROC stack will check the link's encryption status before triggering
 * GATT read/write events on auth_readable/auth_writable characteristics. For
 * further MITM checking, the below API should be used to verify the encryption
 * status of the link before responding to GATT operations from the peer. This
@@ -1112,7 +1112,7 @@ wiced_bool_t wiced_bt_ble_get_security_state( wiced_bt_device_address_t bd_addr,
 ****************************************************************************//**
 *
 * Sends an HCI command to the controller to set the host preferences for
-* BLE AFH channel map. The controller will block any channels indicated by the
+* LE AFH channel map. The controller will block any channels indicated by the
 * map, but may also block additional channels based on its channel assessment.
 * In other words, this API can be used to force a channel to be blocked, but
 * cannot force a channel to remain open if the controller deems it a bad
@@ -1144,7 +1144,7 @@ wiced_result_t wiced_bt_ble_set_channel_classification( const wiced_bt_ble_chnl_
 ****************************************************************************//**
 *
 * Sends an HCI command to the controller to set the host preferences for
-* the BLE PHY used on a specific pre-established LE connection. The response to
+* the LE PHY used on a specific pre-established LE connection. The response to
 * this event is triggered asynchronously via the event BTM_BLE_PHY_UPDATE_EVT,
 * sent to the BT stack management handler \ref wiced_bt_management_cback_t
 * registered in \ref wiced_bt_stack_init. The handler will receive a flags
@@ -1242,7 +1242,7 @@ wiced_result_t wiced_bt_ble_get_connection_parameters( wiced_bt_device_address_t
 *
 * Sends an HCI command to the controller to tell it whether to use device
 * privacy or network privacy for a specific pre-existing LE connection. These
-* privacy modes were introduced in BT 5.0. WICED devices will default to device
+* privacy modes were introduced in Bluetooth 5.0. AIROC devices will default to device
 * privacy mode for all links.
 *
 * These privacy modes are used for peer devices that use an RPA. The modes
@@ -1276,7 +1276,7 @@ wiced_bt_dev_status_t wiced_bt_ble_set_privacy_mode( wiced_bt_device_address_t r
 * \addtogroup group_ble_functions_multi
 * \{
 *
-* Multi advertisements allow the device to advertise as if it is multiple BLE
+* Multi advertisements allow the device to advertise as if it is multiple LE
 * broadcast devices. The device makes available 16 advertising instances.
 * Instance 0 is controlled by the default ADV functionality using
 * \ref wiced_bt_ble_start_advertisements and should not be controlled using the
@@ -1471,7 +1471,7 @@ wiced_result_t wiced_bt_dev_remove_device_from_address_resolution_db( wiced_bt_d
 * Gets the LE key mask from stored key information of nv ram.
 *
 * \param[in] bd_addr                                          remote bd address
-* \param[out] p_key_mask                                    ble key mask stored
+* \param[out] p_key_mask                                    le key mask stored
 *
 * \return wiced_result_t
 *
@@ -1482,7 +1482,7 @@ wiced_result_t wiced_bt_dev_get_ble_keys( wiced_bt_device_address_t bd_addr, wic
 * Function Name: wiced_btm_get_private_bda
 *******************************************************************************/
 /**
- *                  Acquire current BLE Resolvable Private Address
+ *                  Acquire current LE Resolvable Private Address
  *
  * @param[in]       None
  *
