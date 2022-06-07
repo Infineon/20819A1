@@ -5,7 +5,7 @@
 * This file defines an RTC driver
 *
 *//*****************************************************************************
-* Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -77,7 +77,7 @@ enum
 };
 
 /*
- *  time converation reference timebase
+ *  time conversion reference timebase
  *  2010/1/1
  */
 typedef enum
@@ -214,7 +214,7 @@ void rtc_setReferenceTime(RtcTime* ref_time);
 * Function Name: rtc_setRTCTime
 ***************************************************************************//**
 * set the current time
-* This function call will asume the current time is later then
+* This function call will assume the current time is later then
 * 2010/1/1.
 *
 * \param newTime
@@ -227,11 +227,11 @@ BOOL32 rtc_setRTCTime(RtcTime  *newTime);
 * Function Name: rtc_ctime
 ***************************************************************************//**
 * This function call will convert the RtcTime object pointed by rtctime to
-* c string containing a human-readable verion of the correspoing
+* c string containing a human-readable verion of the corresponding
 * local time and data. Caller should make sure *outbuf size
 * larger then 22 bytes.
 *
-* the returned string has the folloing format
+* the returned string has the following format
 *
 * Mmm dd hh:mm:ss yyyy
 * where

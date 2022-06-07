@@ -1,5 +1,5 @@
 #
-# Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
+# Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or
 # an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 #
 # This software, including source code, documentation and related
@@ -64,7 +64,15 @@ CY_MODUS_SHELL_DIR_BWC:=$(CY_INTERNAL_TOOLS)/$(CY_TOOL_modus-shell_BASE)
 #
 # all apps need mpaf_lib patches installed
 #
+CY_20819A1_APP_PATCH_LIBS += adva_lib.a
+CY_20819A1_APP_PATCH_LIBS += bt_lib.a
+CY_20819A1_APP_PATCH_LIBS += common_lib.a
+CY_20819A1_APP_PATCH_LIBS += foundation_lib.a
 CY_20819A1_APP_PATCH_LIBS += mpaf_lib.a
+CY_20819A1_APP_PATCH_LIBS += special_hw_lib.a
+CY_20819A1_APP_PATCH_LIBS += wiced_blurtooth_lib.a
+CY_20819A1_APP_PATCH_LIBS += wiced_hal_lib.a
+CY_20819A1_APP_PATCH_LIBS += wiced_hci_lib.a
 
 #
 # floating point and other device specific compiler flags
@@ -136,9 +144,9 @@ CY_CORE_DEFINES+=\
 
 CY_CORE_EXTRA_DEFINES=\
 	-DWICED_SDK_MAJOR_VER=3 \
-	-DWICED_SDK_MINOR_VER=2 \
+	-DWICED_SDK_MINOR_VER=3 \
 	-DWICED_SDK_REV_NUMBER=0 \
-	-DWICED_SDK_BUILD_NUMBER=20467
+	-DWICED_SDK_BUILD_NUMBER=23146
 
 #
 # Set the output file paths

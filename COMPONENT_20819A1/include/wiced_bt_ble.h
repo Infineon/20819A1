@@ -4,7 +4,7 @@
 * Provides the API declarations for LE host stack management.
 *
 *//*****************************************************************************
-* Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -1463,6 +1463,20 @@ wiced_result_t wiced_bt_dev_add_device_to_address_resolution_db( wiced_bt_device
 ******************************************************************************/
 wiced_result_t wiced_bt_dev_remove_device_from_address_resolution_db( wiced_bt_device_link_keys_t *p_link_keys );
 
+
+/**
+ * Function         wiced_bt_ble_config_privacy
+ *
+ * This function sets the local privacy mode
+ *
+ * @param[in]       privacy_mode: TRUE to enable privacy on local device,
+ *                                FALSE to disable privacy on local device
+ *
+ * @return          wiced_bt_dev_status_t
+ */
+wiced_bt_dev_status_t wiced_bt_ble_config_privacy(wiced_bool_t privacy_mode);
+
+
 /******************************************************************************
 * Function Name: wiced_bt_dev_get_ble_keys
 *******************************************************************************/
@@ -1489,6 +1503,21 @@ wiced_result_t wiced_bt_dev_get_ble_keys( wiced_bt_device_address_t bd_addr, wic
  * @return          uint8_t * - current rpa's pointer
  */
 uint8_t *wiced_btm_get_private_bda(void);
+
+#define BD_FEATURES_LEN 8                                /**< Features length */
+typedef uint8_t wiced_bt_features_t[BD_FEATURES_LEN]; /**< Features supported data structure */
+/**
+* Function         wiced_bt_ble_read_le_features
+*
+*                  This API returns the features supported by the \p bda
+*
+* @param[in]  bda       Device address pointer, pass NULL for local device
+* @param[out] features  Pointer to store the supported features
+* @return          wiced_result_t
+*                  WICED_BT_SUCCESS contents of features are valid
+*                  WICED_BT_ERROR   otherwise.
+*/
+wiced_result_t wiced_bt_ble_read_le_features(wiced_bt_device_address_t bda, wiced_bt_features_t features);
 
 /** \} group_ble_functions_multi */
 

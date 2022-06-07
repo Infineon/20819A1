@@ -5,7 +5,7 @@
 * 	This file provides the API declarations for the AIROC Transport driver
 *
 *//*****************************************************************************
-* Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -63,7 +63,7 @@
 * pool of the desired size. (Refer APIs wiced_transport_create_buffer_pool,
 * wiced_transport_allocate_buffer,wiced_transport_send_buffer).
 *
-* If the application wants to recieve a packet of a size more than the max size of the buffer
+* If the application wants to receive a packet of a size more than the max size of the buffer
 * available in the generic pool, the application can do so by configuring a receive buffer pool
 * of the desired size when doing the transport init.
 *
@@ -114,7 +114,7 @@ typedef struct _wiced_trans_buffer_pool_t wiced_transport_buffer_pool_t;
 typedef void (*wiced_transport_status_handler_t)( wiced_transport_type_t type );
 
 /** AIROC Transport Data Handler.
-* The callback function registered by the application to recieve data. The
+* The callback function registered by the application to receive data. The
 * application has to free the buffer in which data is received. Use the API
 * wiced_transport_free_buffer to free the RX buffer.
 *
@@ -387,7 +387,7 @@ wiced_result_t wiced_transport_send_raw_buffer( uint8_t* p_buf, uint16_t length 
  * Note: If user would like to turn off HCI UART flow control,
  *       then this function must be called in APPLICATION_START()
  *
- * \param[in]    on  - true, enalbe CTS RTS Flow Control
+ * \param[in]    on  - true, enable CTS RTS Flow Control
  *                     false, disable CTS RTS Flow Control
  *
  * \return       none

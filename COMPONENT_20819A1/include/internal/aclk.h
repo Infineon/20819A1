@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -49,7 +49,6 @@
 /**
 * Defines an Aclk driver.
 */
-#if defined(BCM20739) || defined (BCM20735) || defined(BCM20819)
 enum
 {
     HW_MIA_ACLK_CTL_ACLK0_SHIFT                     = 0,
@@ -84,42 +83,6 @@ enum
                                       | HW_MIA_ACLK_CTL_ACLK1_ENABLE_MASK
                                       | HW_MIA_ACLK_CTL_ACLK1_CLK_SRC_SEL_MASK),
 };
-#else
-enum
-{
-    HW_MIA_ACLK_CTL_ACLK0_SHIFT                     = 0,
-    HW_MIA_ACLK_CTL_ACLK0_DIV_MASK                  = 0x000000FF,
-    HW_MIA_ACLK_CTL_ACLK0_DIV_SHIFT                 = 0,
-    HW_MIA_ACLK_CTL_ACLK0_POST_DIV_MASK             = 0x00000700,
-    HW_MIA_ACLK_CTL_ACLK0_POST_DIV_SHIFT            = 8,
-    HW_MIA_ACLK_CTL_ACLK0_ENABLE_MASK               = 0x00001000,
-    HW_MIA_ACLK_CTL_ACLK0_ENABLE                    = 0x00001000,
-    HW_MIA_ACLK_CTL_ACLK0_DISABLE                   = 0x00000000,
-    HW_MIA_ACLK_CTL_ACLK0_CLK_SRC_SEL_MASK          = 0x00008000,
-    HW_MIA_ACLK_CTL_ACLK0_CLK_SRC_24_MHZ            = 0x00008000,
-    HW_MIA_ACLK_CTL_ACLK0_CLK_SRC_1_MHZ             = 0x00000000,
-    HW_MIA_ACLK_CTL_ACLK0_MASK_ALL  = (HW_MIA_ACLK_CTL_ACLK0_DIV_MASK
-                                       | HW_MIA_ACLK_CTL_ACLK0_POST_DIV_MASK
-                                       | HW_MIA_ACLK_CTL_ACLK0_ENABLE_MASK
-                                       | HW_MIA_ACLK_CTL_ACLK0_CLK_SRC_SEL_MASK),
-
-    HW_MIA_ACLK_CTL_ACLK1_SHIFT                     = 16,
-    HW_MIA_ACLK_CTL_ACLK1_DIV_MASK                  = 0x00FF0000,
-    HW_MIA_ACLK_CTL_ACLK1_DIV_SHIFT                 = 16,
-    HW_MIA_ACLK_CTL_ACLK1_POST_DIV_MASK             = 0x07000000,
-    HW_MIA_ACLK_CTL_ACLK1_POST_DIV_SHIFT            = 24,
-    HW_MIA_ACLK_CTL_ACLK1_ENABLE_MASK               = 0x10000000,
-    HW_MIA_ACLK_CTL_ACLK1_ENABLE                    = 0x10000000,
-    HW_MIA_ACLK_CTL_ACLK1_DISABLE                   = 0x00000000,
-    HW_MIA_ACLK_CTL_ACLK1_CLK_SRC_SEL_MASK          = (int)0x80000000,
-    HW_MIA_ACLK_CTL_ACLK1_CLK_SRC_24_MHZ            = (int)0x80000000,
-    HW_MIA_ACLK_CTL_ACLK1_CLK_SRC_1_MHZ             = 0x00000000,
-    HW_MIA_ACLK_CTL_ACLK1_MASK_ALL = (HW_MIA_ACLK_CTL_ACLK1_DIV_MASK
-                                      | HW_MIA_ACLK_CTL_ACLK1_POST_DIV_MASK
-                                      | HW_MIA_ACLK_CTL_ACLK1_ENABLE_MASK
-                                      | HW_MIA_ACLK_CTL_ACLK1_CLK_SRC_SEL_MASK),
-};
-#endif
 enum CLK_SRC_SEL
 {
     ACLK0,

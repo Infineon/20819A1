@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2021, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -45,12 +45,12 @@
 * BRCM standard applications [Mouse or Keyboard].
 */
 
-/// PWM HW block has 4 PWMs Channels(10 bit)
+/// PWM HW block has 6 PWMs Channels(16 bit)
 /// This macros enable to switch from Pwm to its mask value.
 /// These mask values are used in enable/disable case.
 #define pwmIdToMask(id)           (1<<id)
 
-/// PWM HW block has 4 PWM channels each with its own 10 bit counter.
+/// PWM HW block has 6 PWM channels each with its own 16 bit counter.
 /// The first PWM id is PWM0;
 enum
 {
@@ -58,13 +58,9 @@ enum
     PWM1  = 1,
     PWM2  = 2,
     PWM3  = 3,
-#if defined(BCM20739) || defined(BCM20735) || defined(BCM20819)
     PWM4  = 4,
     PWM5  = 5,
     MAX_PWMS = 6
-#else
-    MAX_PWMS = 4
-#endif
 };
 /// Clock used for PWM. When LHL_CLK is set, 128 KHz is used. When PMU_CLK is set, 1 MHz or 8 MHz.
 typedef enum
@@ -76,20 +72,12 @@ typedef enum
 enum
 {
     // PWM Channel Mask.
-#if defined(BCM20739) || defined(BCM20735) || defined(BCM20819)
     PWM_CHANNEL_MASK        =   0x300F
-#else
-    PWM_CHANNEL_MASK        =   0x0F
-#endif
 };
 
 enum
 {
-#if defined(BCM20739) || defined(BCM20735) || defined(BCM20819)
     MAX_TOGGLE_COUNT        = 0xFFFF
-#else
-    MAX_TOGGLE_COUNT        = 0x3FF
-#endif
 };
 
 

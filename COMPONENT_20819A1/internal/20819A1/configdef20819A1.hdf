@@ -1,5 +1,5 @@
 # DO NOT EDIT MANUALLY! FW2 VERSION
-# Automatically generated on Tue Nov  2 11:39:08 2021 from firmware 0.0.0
+# Automatically generated on Fri Mar 18 18:27:19 2022 from firmware 0.0.0
 SECTION "Config Data Entries" 0
 {
      COMMAND "Config layout" 0x0100
@@ -13719,6 +13719,974 @@ SECTION "Config Data Entries" 0
     }
 
     COMMAND "Zigbee TCA Table" 0x070a
+    {
+        doc "TCA temperature compensation tables for LE2 This format supports"
+            "up to 15 8-bit and 5 16-bit register assignments and "
+            "up to 6 temperature zones. Supports 32-bit addressing"
+            "with 16-bit addressing offsets for each page of 5 registers."
+            "------------------------------------------------------------------------"
+            "                   Temperature switching points."
+            " Temperatures are floored, i.e. the temperature listed is the minimum"
+            " temperature for the designated zone."
+            "------------------------------------------------------------------------"
+            "                      8-bit and 16-bit page descriptors."
+            " The page descriptors are used  to encapsulate the information common to"
+            " a register  for all temperature ranges. This includes the base address,"
+            " the address offsets, and the bitmasks."
+            " Legend:"
+            " Single array index = [Page]"
+            " Dual array index = [Page][Reg]"
+            "------------------------------------------------------------------------"
+            "                       8-bit and 16-bit page data."
+            " The page data are the temperature-dependent data for each register"
+            " listed in the page descriptors above"
+            " Legend: "
+            " Triple Array Indices: [TStep][Page][Reg] "
+            " Triple Array Indices: [TStep][Page][Reg] "
+            PARAM "FAB ID"
+            uint8
+            doc "8-bit unique code for identifying the actual foundary at which"
+            "this device was manufactured. Used to allow variable tuning for"
+            "parts from different foundaries in the same products."
+            default = 0xff;
+        PARAM "Num TSteps"
+            uint8
+            doc "The number of temperature minimum switching points. The value"
+            "is actually the desired temperature plus a 50 degree Celsius offset"
+            "For example, a switching point of -5C would be input as 45"
+            "NOTE: The accuracy of the temperature sensor is around +/- 8C,"
+            "therefore switching points should be chosen carefully to avoid"
+            "repeated adjustments around a switching point."
+            min = 1
+            max = 6;
+
+    # TSSI Target Settings - GFSK
+        PARAM "Num TssiTargets"
+            uint8
+            doc "No of Tssi Target values - single or per frequency bin"
+            "Set value either 1 or 5."
+            min = 1
+            max = 5;
+
+        PARAM "TssiTarget[0][0]"
+            uint16
+            doc "TSSI target for the GFSK PA gain binary search for"
+            "the TStep0 temperature setting.";
+        PARAM "TssiTarget[0][1]"
+            uint16
+            present_if("Num TssiTargets" > 1);
+        PARAM "TssiTarget[0][2]"
+            uint16
+            present_if("Num TssiTargets" > 2);
+        PARAM "TssiTarget[0][3]"
+            uint16
+            present_if("Num TssiTargets" > 3);
+        PARAM "TssiTarget[0][4]"
+            uint16
+            present_if("Num TssiTargets" > 4);
+
+        PARAM "TssiTarget[1][0]"
+            uint16
+            doc "TSSI target for the GFSK PA gain binary search for"
+            "the TStep1 temperature setting."
+            present_if("Num TSteps" > 1);
+        PARAM "TssiTarget[1][1]"
+            uint16
+            present_if(("Num TSteps" > 1) and ("Num TssiTargets" > 1));
+        PARAM "TssiTarget[1][2]"
+            uint16
+            present_if(("Num TSteps" > 1) and ("Num TssiTargets" > 2));
+        PARAM "TssiTarget[1][3]"
+            uint16
+            present_if(("Num TSteps" > 1) and ("Num TssiTargets" > 3));
+        PARAM "TssiTarget[1][4]"
+            uint16
+            present_if(("Num TSteps" > 1) and ("Num TssiTargets" > 4));
+
+        PARAM "TssiTarget[2][0]"
+            uint16
+            doc "TSSI target for the GFSK PA gain binary search for"
+            "the TStep2 temperature setting."
+            present_if("Num TSteps" > 2);
+        PARAM "TssiTarget[2][1]"
+            uint16
+            present_if(("Num TSteps" > 2) and ("Num TssiTargets" > 1));
+        PARAM "TssiTarget[2][2]"
+            uint16
+            present_if(("Num TSteps" > 2) and ("Num TssiTargets" > 2));
+        PARAM "TssiTarget[2][3]"
+            uint16
+            present_if(("Num TSteps" > 2) and ("Num TssiTargets" > 3));
+        PARAM "TssiTarget[2][4]"
+            uint16
+            present_if(("Num TSteps" > 2) and ("Num TssiTargets" > 4));
+
+        PARAM "TssiTarget[3][0]"
+            uint16
+            doc "TSSI target for the GFSK PA gain binary search for"
+            "the TStep3 temperature setting."
+            present_if("Num TSteps" > 3);
+        PARAM "TssiTarget[3][1]"
+            uint16
+            present_if(("Num TSteps" > 3) and ("Num TssiTargets" > 1));
+        PARAM "TssiTarget[3][2]"
+            uint16
+            present_if(("Num TSteps" > 3) and ("Num TssiTargets" > 2));
+        PARAM "TssiTarget[3][3]"
+            uint16
+            present_if(("Num TSteps" > 3) and ("Num TssiTargets" > 3));
+        PARAM "TssiTarget[3][4]"
+            uint16
+            present_if(("Num TSteps" > 3) and ("Num TssiTargets" > 4));
+
+        PARAM "TssiTarget[4][0]"
+            uint16
+            doc "TSSI target for the GFSK PA gain binary search for"
+            "the TStep4 temperature setting."
+            present_if("Num TSteps" > 4);
+        PARAM "TssiTarget[4][1]"
+            uint16
+            present_if(("Num TSteps" > 4) and ("Num TssiTargets" > 1));
+        PARAM "TssiTarget[4][2]"
+            uint16
+            present_if(("Num TSteps" > 4) and ("Num TssiTargets" > 2));
+        PARAM "TssiTarget[4][3]"
+            uint16
+            present_if(("Num TSteps" > 4) and ("Num TssiTargets" > 3));
+        PARAM "TssiTarget[4][4]"
+            uint16
+            present_if(("Num TSteps" > 4) and ("Num TssiTargets" > 4));
+
+        PARAM "TssiTarget[5][0]"
+            uint16
+            doc "TSSI target for the GFSK PA gain binary search for"
+            "the TStep5 temperature setting."
+            present_if("Num TSteps" > 5);
+        PARAM "TssiTarget[5][1]"
+            uint16
+            present_if(("Num TSteps" > 5) and ("Num TssiTargets" > 1));
+        PARAM "TssiTarget[5][2]"
+            uint16
+            present_if(("Num TSteps" > 5) and ("Num TssiTargets" > 2));
+        PARAM "TssiTarget[5][3]"
+            uint16
+            present_if(("Num TSteps" > 5) and ("Num TssiTargets" > 3));
+        PARAM "TssiTarget[5][4]"
+            uint16
+            present_if(("Num TSteps" > 5) and ("Num TssiTargets" > 4));
+
+
+    # TSSI ranges - GFSK
+        PARAM "TssiRangeLow[0]"
+            uint8
+            doc "Value of the low endpoint for the PA gain binary search for"
+            "the lowest temperature setting.";
+        PARAM "TssiRangeHigh[0]"
+            uint8
+            doc "Value of the high endpoint for the PA gain binary search for"
+            "the lowest temperture setting.";
+        PARAM "TssiRangeLow[1]"
+            uint8
+            present_if("Num TSteps" > 1);
+        PARAM "TssiRangeHigh[1]"
+            uint8
+            present_if("Num TSteps" > 1);
+        PARAM "TssiRangeLow[2]"
+            uint8
+            present_if("Num TSteps" > 2);
+        PARAM "TssiRangeHigh[2]"
+            uint8
+            present_if("Num TSteps" > 2);
+        PARAM "TssiRangeLow[3]"
+            uint8
+            present_if("Num TSteps" > 3);
+        PARAM "TssiRangeHigh[3]"
+            uint8
+            present_if("Num TSteps" > 3);
+        PARAM "TssiRangeLow[4]"
+            uint8
+            present_if("Num TSteps" > 4);
+        PARAM "TssiRangeHigh[4]"
+            uint8
+            present_if("Num TSteps" > 4);
+        PARAM "TssiRangeLow[5]"
+            uint8
+            present_if("Num TSteps" > 5);
+        PARAM "TssiRangeHigh[5]"
+            uint8
+            present_if("Num TSteps" > 5);
+
+
+    # Temperature dependent PA gain calibration factors
+        PARAM "Num Pages8"
+            uint8
+            doc "Number of 8-bit data pages."
+            min = 1
+            max = 3;
+        PARAM "Num Pages16"
+            uint8
+            doc "Number of 16-bit data pages."
+            min = 0
+            max = 1;
+    ######################################################################
+    #                              PAGE DESCRIPTORS
+    #
+    # Legend:
+    # Single array index = [Page]
+    # Dual array index   = [Page][Reg]
+    #######################################################################
+    #######################################################################
+    #
+    # 8 - BIT PAGE DESCRIPTORS
+    #
+    #######################################################################
+    # Page 0 is reserved for the PA Driver gain control
+    # Page 0
+        PARAM "BaseAddress8[0]"
+            uint32
+            doc " 32-bit base address for Page 0"
+            present_if("Num Pages8" > 0);
+        PARAM "NumRegs8[0]"
+            uint8
+            doc " Number of registers in Page 0"
+            min = 1
+            max = 5
+            present_if("Num Pages8" > 0);
+        PARAM "AdrOffset8[0][0]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 0 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 0 ));
+        PARAM "Bitmask8[0][0]"
+            uint8
+            doc " 8-bit bit mask for Page 0 Reg 0 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 0 ));
+        PARAM "AdrOffset8[0][1]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 1 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 1 ));
+        PARAM "Bitmask8[0][1]"
+            uint8
+            doc " 8-bit bit mask for Page 0 Reg 1 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 1 ));
+        PARAM "AdrOffset8[0][2]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 2 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 2 ));
+        PARAM "Bitmask8[0][2]"
+            uint8
+            doc " 8-bit bit mask for Page 0 Reg 2 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 2 ));
+        PARAM "AdrOffset8[0][3]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 3 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 3 ));
+        PARAM "Bitmask8[0][3]"
+            uint8
+            doc " 8-bit bit mask for Page 0 Reg 3 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 3 ));
+        PARAM "AdrOffset8[0][4]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 4 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 4 ));
+        PARAM "Bitmask8[0][4]"
+            uint8
+            doc " 8-bit bit mask for Page 0 Reg 4 "
+            present_if(( "Num Pages8" > 0) and ("NumRegs8[0]" > 4 ));
+
+
+    # Page 1
+        PARAM "BaseAddress8[1]"
+            uint32
+            doc " 32-bit base address for Page 1"
+            present_if("Num Pages8" > 1);
+        PARAM "NumRegs8[1]"
+            uint8
+            doc " Number of registers in Page 1"
+            min = 1
+            max = 5
+            present_if("Num Pages8" > 1);
+        PARAM "AdrOffset8[1][0]"
+            uint16
+            doc " 16-bit offset to the base address for Page 1 Reg 0 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 0 ));
+        PARAM "Bitmask8[1][0]"
+            uint8
+            doc " 8-bit bit mask for Page 1 Reg 0 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 0 ));
+        PARAM "AdrOffset8[1][1]"
+            uint16
+            doc " 16-bit offset to the base address for Page 1 Reg 1 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 1 ));
+        PARAM "Bitmask8[1][1]"
+            uint8
+            doc " 8-bit bit mask for Page 1 Reg 1 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 1 ));
+        PARAM "AdrOffset8[1][2]"
+            uint16
+            doc " 16-bit offset to the base address for Page 1 Reg 2 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 2 ));
+        PARAM "Bitmask8[1][2]"
+            uint8
+            doc " 8-bit bit mask for Page 1 Reg 2 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 2 ));
+        PARAM "AdrOffset8[1][3]"
+            uint16
+            doc " 16-bit offset to the base address for Page 1 Reg 3 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 3 ));
+        PARAM "Bitmask8[1][3]"
+            uint8
+            doc " 8-bit bit mask for Page 1 Reg 3 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 3 ));
+        PARAM "AdrOffset8[1][4]"
+            uint16
+            doc " 16-bit offset to the base address for Page 1 Reg 4 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 4 ));
+        PARAM "Bitmask8[1][4]"
+            uint8
+            doc " 8-bit bit mask for Page 1 Reg 4 "
+            present_if(( "Num Pages8" > 1) and ("NumRegs8[1]" > 4 ));
+
+    # Page 2
+        PARAM "BaseAddress8[2]"
+            uint32
+            doc " 32-bit base address for Page 2"
+            present_if("Num Pages8" > 2);
+        PARAM "NumRegs8[2]"
+            uint8
+            doc " Number of registers in Page 2"
+            min = 1
+            max = 5
+            present_if("Num Pages8" > 2);
+        PARAM "AdrOffset8[2][0]"
+            uint16
+            doc " 16-bit offset to the base address for Page 2 Reg 0 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 0 ));
+        PARAM "Bitmask8[2][0]"
+            uint8
+            doc " 8-bit bit mask for Page 2 Reg 0 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 0 ));
+        PARAM "AdrOffset8[2][1]"
+            uint16
+            doc " 16-bit offset to the base address for Page 2 Reg 1 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 1 ));
+        PARAM "Bitmask8[2][1]"
+            uint8
+            doc " 8-bit bit mask for Page 2 Reg 1 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 1 ));
+        PARAM "AdrOffset8[2][2]"
+            uint16
+            doc " 16-bit offset to the base address for Page 2 Reg 2 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 2 ));
+        PARAM "Bitmask8[2][2]"
+            uint8
+            doc " 8-bit bit mask for Page 2 Reg 2 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 2 ));
+        PARAM "AdrOffset8[2][3]"
+            uint16
+            doc " 16-bit offset to the base address for Page 2 Reg 3 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 3 ));
+        PARAM "Bitmask8[2][3]"
+            uint8
+            doc " 8-bit bit mask for Page 2 Reg 3 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 3 ));
+        PARAM "AdrOffset8[2][4]"
+            uint16
+            doc " 16-bit offset to the base address for Page 2 Reg 4 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 4 ));
+        PARAM "Bitmask8[2][4]"
+            uint8
+            doc " 8-bit bit mask for Page 2 Reg 4 "
+            present_if(( "Num Pages8" > 2) and ("NumRegs8[2]" > 4 ));
+
+    #######################################################################
+    #
+    # 16-BIT PAGE DESCRIPTORS
+    #
+    #######################################################################
+    # Page 0
+        PARAM "BaseAddress16[0]"
+            uint32
+            doc " 32-bit base address for Page 0"
+            present_if("Num Pages16" > 0);
+        PARAM "NumRegs16[0]"
+            uint8
+            doc " Number of registers in Page 0"
+            min = 1
+            max = 5
+            present_if("Num Pages16" > 0);
+        PARAM "AdrOffset16[0][0]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 0 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 0 ));
+        PARAM "Bitmask16[0][0]"
+            uint16
+            doc " 16-bit bit mask for Page 0 Reg 0 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 0 ));
+        PARAM "AdrOffset16[0][1]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 1 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 1 ));
+        PARAM "Bitmask16[0][1]"
+            uint16
+            doc " 16-bit bit mask for Page 0 Reg 1 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 1 ));
+        PARAM "AdrOffset16[0][2]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 2 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 2 ));
+        PARAM "Bitmask16[0][2]"
+            uint16
+            doc " 16-bit bit mask for Page 0 Reg 2 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 2 ));
+        PARAM "AdrOffset16[0][3]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 3 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 3 ));
+        PARAM "Bitmask16[0][3]"
+            uint16
+            doc " 16-bit bit mask for Page 0 Reg 3 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 3 ));
+        PARAM "AdrOffset16[0][4]"
+            uint16
+            doc " 16-bit offset to the base address for Page 0 Reg 4 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 4 ));
+        PARAM "Bitmask16[0][4]"
+            uint16
+            doc " 16-bit bit mask for Page 0 Reg 4 "
+            present_if(( "Num Pages16" > 0) and ("NumRegs16[0]" > 4 ));
+    #######################################################################
+    # PAGE DATA
+    #
+    # Legend:
+    # Triple Array Indices: [TStep][Page][Reg]
+    #######################################################################
+    #######################################################################
+    #
+    # 8-BIT PAGE DATA
+    #
+    #######################################################################
+    # TStep 0
+    # Page 0
+        PARAM "Data8[0][0][0]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 0 Reg 0"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 0) );
+        PARAM "Data8[0][0][1]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 0 Reg 1"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 1) );
+        PARAM "Data8[0][0][2]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 0 Reg 2"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 2) );
+        PARAM "Data8[0][0][3]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 0 Reg 3"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 3) );
+        PARAM "Data8[0][0][4]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 0 Reg 4"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 4) );
+    # Page 1
+        PARAM "Data8[0][1][0]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 1 Reg 0"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 0) );
+        PARAM "Data8[0][1][1]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 1 Reg 1"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 1) );
+        PARAM "Data8[0][1][2]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 1 Reg 2"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 2) );
+        PARAM "Data8[0][1][3]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 1 Reg 3"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 3) );
+        PARAM "Data8[0][1][4]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 1 Reg 4"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 4) );
+    # Page 2
+        PARAM "Data8[0][2][0]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 2 Reg 0"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 0) );
+        PARAM "Data8[0][2][1]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 2 Reg 1"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 1) );
+        PARAM "Data8[0][2][2]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 2 Reg 2"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 2) );
+        PARAM "Data8[0][2][3]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 2 Reg 3"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 3) );
+        PARAM "Data8[0][2][4]"
+            uint8
+            doc " 8-bit data for TStep 0 Page 2 Reg 4"
+            present_if( ( "Num TSteps" > 0) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 4) );
+    # TStep 1
+    # Page 0
+        PARAM "Data8[1][0][0]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 0 Reg 0"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 0) );
+        PARAM "Data8[1][0][1]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 0 Reg 1"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 1) );
+        PARAM "Data8[1][0][2]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 0 Reg 2"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 2) );
+        PARAM "Data8[1][0][3]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 0 Reg 3"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 3) );
+        PARAM "Data8[1][0][4]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 0 Reg 4"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 4) );
+    # Page 1
+        PARAM "Data8[1][1][0]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 1 Reg 0"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 0) );
+        PARAM "Data8[1][1][1]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 1 Reg 1"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 1) );
+        PARAM "Data8[1][1][2]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 1 Reg 2"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 2) );
+        PARAM "Data8[1][1][3]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 1 Reg 3"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 3) );
+        PARAM "Data8[1][1][4]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 1 Reg 4"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 4) );
+    # Page 2
+        PARAM "Data8[1][2][0]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 2 Reg 0"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 0) );
+        PARAM "Data8[1][2][1]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 2 Reg 1"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 1) );
+        PARAM "Data8[1][2][2]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 2 Reg 2"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 2) );
+        PARAM "Data8[1][2][3]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 2 Reg 3"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 3) );
+        PARAM "Data8[1][2][4]"
+            uint8
+            doc " 8-bit data for TStep 1 Page 2 Reg 4"
+            present_if( ( "Num TSteps" > 1) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 4) );
+    # TStep 2
+    # Page 0
+        PARAM "Data8[2][0][0]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 0 Reg 0"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 0) );
+        PARAM "Data8[2][0][1]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 0 Reg 1"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 1) );
+        PARAM "Data8[2][0][2]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 0 Reg 2"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 2) );
+        PARAM "Data8[2][0][3]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 0 Reg 3"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 3) );
+        PARAM "Data8[2][0][4]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 0 Reg 4"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 4) );
+    # Page 1
+        PARAM "Data8[2][1][0]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 1 Reg 0"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 0) );
+        PARAM "Data8[2][1][1]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 1 Reg 1"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 1) );
+        PARAM "Data8[2][1][2]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 1 Reg 2"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 2) );
+        PARAM "Data8[2][1][3]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 1 Reg 3"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 3) );
+        PARAM "Data8[2][1][4]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 1 Reg 4"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 4) );
+    # Page 2
+        PARAM "Data8[2][2][0]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 2 Reg 0"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 0) );
+        PARAM "Data8[2][2][1]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 2 Reg 1"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 1) );
+        PARAM "Data8[2][2][2]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 2 Reg 2"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 2) );
+        PARAM "Data8[2][2][3]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 2 Reg 3"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 3) );
+        PARAM "Data8[2][2][4]"
+            uint8
+            doc " 8-bit data for TStep 2 Page 2 Reg 4"
+            present_if( ( "Num TSteps" > 2) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 4) );
+    # TStep 3
+    # Page 0
+        PARAM "Data8[3][0][0]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 0 Reg 0"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 0) );
+        PARAM "Data8[3][0][1]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 0 Reg 1"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 1) );
+        PARAM "Data8[3][0][2]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 0 Reg 2"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 2) );
+        PARAM "Data8[3][0][3]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 0 Reg 3"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 3) );
+        PARAM "Data8[3][0][4]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 0 Reg 4"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 4) );
+    # Page 1
+        PARAM "Data8[3][1][0]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 1 Reg 0"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 0) );
+        PARAM "Data8[3][1][1]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 1 Reg 1"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 1) );
+        PARAM "Data8[3][1][2]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 1 Reg 2"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 2) );
+        PARAM "Data8[3][1][3]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 1 Reg 3"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 3) );
+        PARAM "Data8[3][1][4]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 1 Reg 4"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 4) );
+    # Page 2
+        PARAM "Data8[3][2][0]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 2 Reg 0"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 0) );
+        PARAM "Data8[3][2][1]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 2 Reg 1"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 1) );
+        PARAM "Data8[3][2][2]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 2 Reg 2"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 2) );
+        PARAM "Data8[3][2][3]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 2 Reg 3"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 3) );
+        PARAM "Data8[3][2][4]"
+            uint8
+            doc " 8-bit data for TStep 3 Page 2 Reg 4"
+            present_if( ( "Num TSteps" > 3) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 4) );
+    # TStep 4
+    # Page 0
+        PARAM "Data8[4][0][0]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 0 Reg 0"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 0) );
+        PARAM "Data8[4][0][1]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 0 Reg 1"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 1) );
+        PARAM "Data8[4][0][2]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 0 Reg 2"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 2) );
+        PARAM "Data8[4][0][3]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 0 Reg 3"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 3) );
+        PARAM "Data8[4][0][4]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 0 Reg 4"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 4) );
+    # Page 1
+        PARAM "Data8[4][1][0]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 1 Reg 0"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 0) );
+        PARAM "Data8[4][1][1]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 1 Reg 1"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 1) );
+        PARAM "Data8[4][1][2]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 1 Reg 2"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 2) );
+        PARAM "Data8[4][1][3]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 1 Reg 3"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 3) );
+        PARAM "Data8[4][1][4]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 1 Reg 4"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 4) );
+    # Page 2
+        PARAM "Data8[4][2][0]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 2 Reg 0"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 0) );
+        PARAM "Data8[4][2][1]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 2 Reg 1"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 1) );
+        PARAM "Data8[4][2][2]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 2 Reg 2"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 2) );
+        PARAM "Data8[4][2][3]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 2 Reg 3"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 3) );
+        PARAM "Data8[4][2][4]"
+            uint8
+            doc " 8-bit data for TStep 4 Page 2 Reg 4"
+            present_if( ( "Num TSteps" > 4) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 4) );
+    # TStep 5
+    # Page 0
+        PARAM "Data8[5][0][0]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 0 Reg 0"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 0) );
+        PARAM "Data8[5][0][1]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 0 Reg 1"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 1) );
+        PARAM "Data8[5][0][2]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 0 Reg 2"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 2) );
+        PARAM "Data8[5][0][3]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 0 Reg 3"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 3) );
+        PARAM "Data8[5][0][4]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 0 Reg 4"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 0) and ("NumRegs8[0]" > 4) );
+    # Page 1
+        PARAM "Data8[5][1][0]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 1 Reg 0"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 0) );
+        PARAM "Data8[5][1][1]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 1 Reg 1"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 1) );
+        PARAM "Data8[5][1][2]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 1 Reg 2"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 2) );
+        PARAM "Data8[5][1][3]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 1 Reg 3"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 3) );
+        PARAM "Data8[5][1][4]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 1 Reg 4"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 1) and ("NumRegs8[1]" > 4) );
+    # Page 2
+        PARAM "Data8[5][2][0]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 2 Reg 0"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 0) );
+        PARAM "Data8[5][2][1]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 2 Reg 1"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 1) );
+        PARAM "Data8[5][2][2]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 2 Reg 2"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 2) );
+        PARAM "Data8[5][2][3]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 2 Reg 3"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 3) );
+        PARAM "Data8[5][2][4]"
+            uint8
+            doc " 8-bit data for TStep 5 Page 2 Reg 4"
+            present_if( ( "Num TSteps" > 5) and ("Num Pages8" > 2) and ("NumRegs8[2]" > 4) );
+
+    # 16-BIT PAGE DATA
+    #######################################################################
+    # TStep 0
+    # Page 0
+        PARAM "Data16[0][0][0]"
+            uint16
+            doc " 16-bit data for TStep 0 Page 0 Reg 0"
+            present_if( ("Num TSteps" > 0) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 0) );
+        PARAM "Data16[0][0][1]"
+            uint16
+            doc " 16-bit data for TStep 0 Page 0 Reg 1"
+            present_if( ("Num TSteps" > 0) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 1) );
+        PARAM "Data16[0][0][2]"
+            uint16
+            doc " 16-bit data for TStep 0 Page 0 Reg 2"
+            present_if( ("Num TSteps" > 0) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 2) );
+        PARAM "Data16[0][0][3]"
+            uint16
+            doc " 16-bit data for TStep 0 Page 0 Reg 3"
+            present_if( ("Num TSteps" > 0) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 3) );
+        PARAM "Data16[0][0][4]"
+            uint16
+            doc " 16-bit data for TStep 0 Page 0 Reg 4"
+            present_if( ("Num TSteps" > 0) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 4) );
+    # TStep 1
+    # Page 0
+        PARAM "Data16[1][0][0]"
+            uint16
+            doc " 16-bit data for TStep 1 Page 0 Reg 0"
+            present_if( ("Num TSteps" > 1) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 0) );
+        PARAM "Data16[1][0][1]"
+            uint16
+            doc " 16-bit data for TStep 1 Page 0 Reg 1"
+            present_if( ("Num TSteps" > 1) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 1) );
+        PARAM "Data16[1][0][2]"
+            uint16
+            doc " 16-bit data for TStep 1 Page 0 Reg 2"
+            present_if( ("Num TSteps" > 1) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 2) );
+        PARAM "Data16[1][0][3]"
+            uint16
+            doc " 16-bit data for TStep 1 Page 0 Reg 3"
+            present_if( ("Num TSteps" > 1) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 3) );
+        PARAM "Data16[1][0][4]"
+            uint16
+            doc " 16-bit data for TStep 1 Page 0 Reg 4"
+            present_if( ("Num TSteps" > 1) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 4) );
+    # TStep 2
+    # Page 0
+        PARAM "Data16[2][0][0]"
+            uint16
+            doc " 16-bit data for TStep 2 Page 0 Reg 0"
+            present_if( ("Num TSteps" > 2) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 0) );
+        PARAM "Data16[2][0][1]"
+            uint16
+            doc " 16-bit data for TStep 2 Page 0 Reg 1"
+            present_if( ("Num TSteps" > 2) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 1) );
+        PARAM "Data16[2][0][2]"
+            uint16
+            doc " 16-bit data for TStep 2 Page 0 Reg 2"
+            present_if( ("Num TSteps" > 2) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 2) );
+        PARAM "Data16[2][0][3]"
+            uint16
+            doc " 16-bit data for TStep 2 Page 0 Reg 3"
+            present_if( ("Num TSteps" > 2) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 3) );
+        PARAM "Data16[2][0][4]"
+            uint16
+            doc " 16-bit data for TStep 2 Page 0 Reg 4"
+            present_if( ("Num TSteps" > 2) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 4) );
+    # TStep 3
+    # Page 0
+        PARAM "Data16[3][0][0]"
+            uint16
+            doc " 16-bit data for TStep 3 Page 0 Reg 0"
+            present_if( ("Num TSteps" > 3) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 0) );
+        PARAM "Data16[3][0][1]"
+            uint16
+            doc " 16-bit data for TStep 3 Page 0 Reg 1"
+            present_if( ("Num TSteps" > 3) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 1) );
+        PARAM "Data16[3][0][2]"
+            uint16
+            doc " 16-bit data for TStep 3 Page 0 Reg 2"
+            present_if( ("Num TSteps" > 3) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 2) );
+        PARAM "Data16[3][0][3]"
+            uint16
+            doc " 16-bit data for TStep 3 Page 0 Reg 3"
+            present_if( ("Num TSteps" > 3) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 3) );
+        PARAM "Data16[3][0][4]"
+            uint16
+            doc " 16-bit data for TStep 3 Page 0 Reg 4"
+            present_if( ("Num TSteps" > 3) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 4) );
+    # TStep 4
+    # Page 0
+        PARAM "Data16[4][0][0]"
+            uint16
+            doc " 16-bit data for TStep 4 Page 0 Reg 0"
+            present_if( ("Num TSteps" > 4) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 0) );
+        PARAM "Data16[4][0][1]"
+            uint16
+            doc " 16-bit data for TStep 4 Page 0 Reg 1"
+            present_if( ("Num TSteps" > 4) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 1) );
+        PARAM "Data16[4][0][2]"
+            uint16
+            doc " 16-bit data for TStep 4 Page 0 Reg 2"
+            present_if( ("Num TSteps" > 4) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 2) );
+        PARAM "Data16[4][0][3]"
+            uint16
+            doc " 16-bit data for TStep 4 Page 0 Reg 3"
+            present_if( ("Num TSteps" > 4) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 3) );
+        PARAM "Data16[4][0][4]"
+            uint16
+            doc " 16-bit data for TStep 4 Page 0 Reg 4"
+            present_if( ("Num TSteps" > 4) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 4) );
+    # TStep 5
+    # Page 0
+        PARAM "Data16[5][0][0]"
+            uint16
+            doc " 16-bit data for TStep 5 Page 0 Reg 0"
+            present_if( ("Num TSteps" > 5) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 0) );
+        PARAM "Data16[5][0][1]"
+            uint16
+            doc " 16-bit data for TStep 5 Page 0 Reg 1"
+            present_if( ("Num TSteps" > 5) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 1) );
+        PARAM "Data16[5][0][2]"
+            uint16
+            doc " 16-bit data for TStep 5 Page 0 Reg 2"
+            present_if( ("Num TSteps" > 5) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 2) );
+        PARAM "Data16[5][0][3]"
+            uint16
+            doc " 16-bit data for TStep 5 Page 0 Reg 3"
+            present_if( ("Num TSteps" > 5) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 3) );
+        PARAM "Data16[5][0][4]"
+            uint16
+            doc " 16-bit data for TStep 5 Page 0 Reg 4"
+            present_if( ("Num TSteps" > 5) and ("Num Pages16" > 0) and ("NumRegs16[0]" > 4) );
+    }
+
+    COMMAND "TCA Table EDR3" 0x070b
     {
         doc "TCA temperature compensation tables for LE2 This format supports"
             "up to 15 8-bit and 5 16-bit register assignments and "

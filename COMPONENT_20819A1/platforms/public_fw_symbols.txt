@@ -4,7 +4,7 @@
 # Each symbol defined below is used in conjunction with the elf file symbol tables.
 #
 #
-# Comma Seperated Value file
+# Comma Separated Value file
 #
 # Name,     Type,     Visibility,     Rename Flag,     Rename Name,     Reserved Flag,
 #
@@ -98,6 +98,10 @@ wdog_generate_hw_reset                           ,           SYMBOL ,      PUBLI
 #
 wiced_*                                          ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 #
+# exclude wiced_bt_mesh_core_calc_uri_hash
+#
+!~wiced_bt_mesh_core_calc_*                      ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+#
 # Name,                                                        Type ,      Status,  Mangle Flag,     Mangle Name,     Trampoline Flag,
 #
 CopyPoint                                        ,           SYMBOL ,      PUBLIC,      0,                      ,              1
@@ -141,6 +145,8 @@ rmulp_getLtchFromConnhandle                      ,           SYMBOL ,      PUBLI
 savedFullbootReason                              ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 slimboot_ext_wake_enable                         ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 patch_autoInstall                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+patch_autoReplace                                ,           SYMBOL ,      PUBLIC,      0,                      ,              1
+patch_autoReplaceData                            ,           SYMBOL ,      PUBLIC,      0,                      ,              1
 #
 # mesh
 mesh_proxy_out_flt                               ,           SYMBOL ,      PUBLIC,      0,                      ,              0
@@ -212,7 +218,7 @@ PORT_Purge                                        , SYMBOL, PUBLIC, 0, , 1
 PORT_Read                                         , SYMBOL, PUBLIC, 0, , 1
 PORT_Write                                        , SYMBOL, PUBLIC, 0, , 1
 PORT_ReadData                                     , SYMBOL, PUBLIC, 0, , 1
-PORT_GetQueueStatus                               , SYMBOL, PUBLIC, 0, , 1
+PORT_GetQueueStatus                               , SYMBOL, PUBLIC, 2, wiced_bt_rfcomm_port_get_queue_status, 1
 i2cm_pingSlave                                    , SYMBOL, PUBLIC, 0, , 1
 i2cm_read                                         , SYMBOL, PUBLIC, 0, , 1
 i2cm_write                                        , SYMBOL, PUBLIC, 0, , 1
