@@ -76,7 +76,7 @@
 typedef struct BUFFER_POOL_T wiced_bt_buffer_pool_t;
 
 /**
-* wiced bt dynamic buffer statistics
+* AIROC Bluetooth dynamic buffer statistics
 */
 #pragma pack(1)
 typedef PACKED struct

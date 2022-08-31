@@ -1,10 +1,10 @@
 /***************************************************************************//**
 * \file <wiced_bt_uuid.h>
 *
-*   BLE GATT UUID Definitions
+*   Bluetooth Low Energy (LE) GATT UUID Definitions
 *
 * \brief
-*   This file has the BLE GATT UUIDs defined as per www.bluetooth.com/specifications/gatt
+*   This file has the LE GATT UUIDs defined as per www.bluetooth.com/specifications/gatt
 *
 *//*****************************************************************************
 * Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or

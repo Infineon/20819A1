@@ -141,7 +141,7 @@ void SPAR_CRT_SETUP(void)
     // Install included libraries and patches if any
     install_libs();
 
-    // Max BLE connections by default are 7. To increase number of connections
+    // Max LE connections by default are 7. To increase number of connections
     // uncommnent below and update. Note that max connections are limited
     // by application memory.
     // g_ble_max_connections = 7 + BLE_MEM_BLOCK;

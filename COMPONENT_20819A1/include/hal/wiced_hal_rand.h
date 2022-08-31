@@ -66,7 +66,7 @@
 * Generates and returns a random 32-bit integer. Internal functions check
 * that the generating hardware is warmed up and ready before returning
 * the random value. If the hardware is too "cold" at the time of use,
-* the function instead uses the BT clock as a "seed" and generates a
+* the function instead uses the Bluetooth clock as a "seed" and generates a
 * "soft" random number.
 *
 * \param          None.

@@ -251,7 +251,7 @@ wiced_sleep_boot_type_t wiced_sleep_get_boot_mode(void);
 * Function Name: wiced_sleep_enter_hid_off
 ****************************************************************************//**
  * This API is used to enter HID OFF mode. The application can call this API
- * at any time when there is not BT activity
+ * at any time when there is not Bluetooth activity
  *
  * \param[in]       wakeup_time :       wake up time in milliseconds.
  *                                      Application can configure for both GPIO wake and/or timed wake.
@@ -272,7 +272,7 @@ wiced_sleep_boot_type_t wiced_sleep_get_boot_mode(void);
  *                  Never returns if HID off sleep configure success.
  *
  * \note
- * API must be called without any BT activity.
+ * API must be called without any Bluetooth activity.
  *
  */
 wiced_result_t wiced_sleep_enter_hid_off( uint32_t wakeup_time,

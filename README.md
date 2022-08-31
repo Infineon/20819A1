@@ -1,5 +1,4 @@
-------------------------------------------------------------------------------------
-# BTSDK - CYW20819
+# AIROC&#8482; BTSDK - CYW20819
 
 ## Overview
 
@@ -66,5 +65,3 @@ The Infineon CYW20819 is an ultra-low-power dual-mode Bluetooth&#174; 5.2 wirele
   FCC, ISED, MIC, and CE Certified Module on board (CYBT-273063-02), USB connector
   for power, programming, and USB-UART bridge.<br>
   Max UART baud rate is 1M. Use baud rate of 115200 for Client Control.
-
-------------------------------------------------------------------------------------

@@ -133,7 +133,7 @@ extern "C" {
 
 /**@}  AIROC result list */
 
-/* AIROC BT result list */
+/* AIROC Bluetooth result list */
 #define BT_RESULT_LIST( prefix ) \
     RESULT_ENUM( prefix, SUCCESS,                       0    ),   /**< Success */\
     RESULT_ENUM( prefix, PARTIAL_RESULTS,               3    ),   /**< Partial results */\
@@ -187,7 +187,7 @@ extern "C" {
     RESULT_ENUM( prefix, USE_DEFAULT_SECURITY,          8120 ),   /**< Use default security */\
     RESULT_ENUM( prefix, KEY_MISSING,                   8121 ),   /**< Key Missing */\
     RESULT_ENUM( prefix, ENCRYPT_DISABLED,              8122 ),   /**< Encryption is disabled */\
-/*  AIROC BT result list */
+/*  AIROC Bluetooth result list */
 
 /*************************************************************************/
 /**
