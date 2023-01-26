@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2022, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -74,10 +74,10 @@
 /** Enumeration of speed options */
 enum
 {
-    I2CM_SPEED_100KHZ = 240, /**< I2C speed is 100kHz */
-    I2CM_SPEED_400KHZ = 60,  /**< I2C speed is 499kHz */
-    I2CM_SPEED_800KHZ = 30,  /**< I2C speed is 800kHz */
-    I2CM_SPEED_1000KHZ = 24, /**< I2C speed is 1MHz */
+    I2CM_SPEED_100KHZ = 233, /**< I2C speed is 100kHz */
+    I2CM_SPEED_400KHZ = 53,  /**< I2C speed is 499kHz */
+    I2CM_SPEED_800KHZ = 23,  /**< I2C speed is 800kHz */
+    I2CM_SPEED_1000KHZ = 17, /**< I2C speed is 1MHz */
 };
 
 /** Enumeration of I2C transaction return values */
@@ -269,6 +269,123 @@ void wiced_hal_i2c_select_pads(uint8_t scl_pin, uint8_t sda_pin);
 *
 *******************************************************************************/
 uint8_t wiced_hal_i2c_combined_read(uint8_t* rx_data, uint8_t rx_data_len, uint8_t* tx_data, uint16_t tx_data_len, uint8_t slave);
+
+/*******************************************************************************
+ *
+ * For I2C slave, please add
+ * CY_20819A1_APP_PATCH_LIBS += wiced_hal_i2c_slave_lib.a
+ * in the app's makefile.
+ *
+ * Usage example:
+ *  1. setup your slave device address by calling wiced_hal_i2c_slave_set_device_address.
+ *  2. setup your gpio pins by calling wiced_hal_i2c_slave_select_pads.
+ *  3. Register app's call back function by calling wiced_hal_i2c_slave_register_cb.
+ *  4. Initialize I2C slave by calling wiced_hal_i2c_slave_init.
+ *  5. Please make sure I2C master has the time interval at least 10ms between each I2C read/write.
+ *******************************************************************************/
+enum
+{
+    I2C_TRAN_EVENT_MASK_RX_DONE = 1,
+    I2C_TRAN_EVENT_MASK_TX_DONE = 2,
+    I2C_TRAN_EVENT_MASK_RX_STOP = 4,
+};
+
+/*
+ * I2C_SLAVE_CALLBACK_HANDLER
+ *
+ * Description:
+ *      This is a call back function while the firmware has RX or TX event.
+ * Input:
+ *      evtFlag       - The event Flag as following:
+ *                      enum
+ *                      {
+ *                          I2C_TRAN_EVENT_MASK_RX_DONE = 1,
+ *                          I2C_TRAN_EVENT_MASK_TX_DONE = 2,
+ *                          I2C_TRAN_EVENT_MASK_RX_STOP = 4,
+ *                      };
+ *      rx_PktPointer - Point to a caller's buffer which will have received data.
+ *      rx_PktLength  - The received data length (in bytes).
+ * Output:
+ *      None
+ * Return:
+ *      None
+ */
+typedef void I2C_SLAVE_CALLBACK_HANDLER(uint32_t evtFlag, uint8_t* rx_PktPointer, uint16_t rx_PktLength);
+
+/*
+ * wiced_hal_i2c_slave_set_device_address
+ *
+ * Description:
+ *      Set the 7-bit I2C slave device address.
+ *      By default, the device addresses are 0x77, 0x76, and 0x66
+ * Input:
+ *      address - 7-bit I2C slave device address.
+ * Output:
+ *      None
+ * Return:
+ *      None
+ */
+void wiced_hal_i2c_slave_set_device_address(UINT8 address);
+
+/*
+ * wiced_hal_i2c_slave_select_pads
+ *
+ * Description:
+ *      Select the SCL and SDA for the I2C slave hardware to use.
+ * Input:
+ *      scl_pin - SCL pin for I2C slave (input)
+ *      sda_pin - SDA pin ofr I2C slave (input/output)
+ * Output:
+ *      None
+ * Return:
+ *      None
+ */
+void wiced_hal_i2c_slave_select_pads(UINT32 scl_pin, UINT32 sda_pin);
+
+/*
+ * wiced_hal_i2c_slave_init
+ *
+ * Description:
+ *      Initializes the I2C slave driver
+ * Input:
+ *      None
+ * Output:
+ *      None
+ * Return:
+ *      None
+ */
+void wiced_hal_i2c_slave_init(void);
+
+/*
+ * wiced_hal_i2c_slave_register_cb
+ *
+ * Description:
+ *      The WICED Application call this function to register a call back function.
+ *      The call back function will be called after received data from I2C master.
+ * Input:
+ *      cb - Call back function of caller
+ * Output:
+ *      None
+ * Return:
+ *      None
+ */
+void wiced_hal_i2c_slave_register_cb(I2C_SLAVE_CALLBACK_HANDLER* cb);
+
+/*
+ * wiced_hal_i2c_slave_synchronous_write
+ *
+ * Description:
+ *      This function processes write request
+ * Input:
+ *      buffer - Point to the data buffer
+ *      length - Bytes will be transmited
+ * Output:
+ *      None
+ * Return:
+ *      None
+ */
+void wiced_hal_i2c_slave_synchronous_write( UINT8* buffer, UINT32 length );
+
 
 /** \} I2C */
 

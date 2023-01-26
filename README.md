@@ -23,6 +23,12 @@ The Infineon CYW20819 is an ultra-low-power dual-mode Bluetooth&#174; 5.2 wirele
   and USB-UART bridge.<br>
   Max UART baud rate is 3M
 
+#### CYW920819M2EVB-01:
+- 62-FBGA package, Arduino compatible headers, an ambient light sensor, thermistor,
+  footprint for analog microphone, and footprint for Infineon digital microphone, user
+  switches, LEDs, USB connector for power, programming, and USB-UART bridge.<br>
+  Max UART baud rate is 3M
+
 #### CYBT-213043-MESH:
 - 35-SMT package, PIR sensor (motion detection), Ambient Light Sensor and
   thermistor, user switches and RGB LEDs, with additional 1MB External Serial
@@ -37,11 +43,6 @@ The Infineon CYW20819 is an ultra-low-power dual-mode Bluetooth&#174; 5.2 wirele
   (LE/BR/EDR) Bluetooth&#174; 5.0-compliant fully certified module
   (CYBT-213043-02).<br>
   Max UART baud rate is 1M. Use baud rate of 115200 for Client Control.
-
-#### CYW920819REF-KB-01:
-- 112-pin CYW20819 module dual-mode (LE/BR/EDR) Bluetooth&#174; 5.2-compliant wireless
-  MCU with internal Power Amplifier (iPA), reference keyboard hardware.<br>
-  Max UART baud rate is 3M.
 
 #### CYBT-223058-EVAL:
 - CYW20819-based dual-mode (LE/BR/EDR) Bluetooth&#174; 5.0-compliant fully certified module

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2022, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2020-2023, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -38,6 +38,54 @@
 #ifndef __WICED_MEMORY_PRE_INIT_H__
 #define __WICED_MEMORY_PRE_INIT_H__
 
+/* Usage:
+ * This information shows how to use this memory allocation tuning:
+ *
+ * Step 1:
+ *      In application add this head file:
+ *      #include "wiced_memory_pre_init.h"
+ *
+ * Step 2:
+ *      In application add the global variable, g_mem_pre_init:
+ *      For example:
+ *          WICED_MEM_PRE_INIT_CONTROL g_mem_pre_init =
+ *          {
+ *              .max_ble_connections = WICED_MEM_PRE_INIT_IGNORE,
+ *              .max_peripheral_piconet = WICED_MEM_PRE_INIT_IGNORE,
+ *              .max_resolving_list = WICED_MEM_PRE_INIT_IGNORE,
+ *              .onfound_list_len = 0,
+ *              .max_multi_adv_instances = WICED_MEM_PRE_INIT_IGNORE,
+ *          };
+ * Step 3:
+ *      Modify the value of parameters in g_mem_pre_init (WICED_MEM_PRE_INIT_CONTROL structure).
+ *
+ *      Please see the following for the parameters of WICED_MEM_PRE_INIT_CONTROL structure.
+ *
+ *      max_ble_connections     - This is for BLE connections which device could support
+ *                                Default value is 8
+ *                                Max value is 8, user is able to tuning this value form 0 to 8.
+ *
+ *      max_peripheral_piconet  - This is for BT connections which device could support
+ *                                Default value is 4
+ *                                Max value is 4, user is able to tuning this value from 0 to 4.
+ *
+ *      max_resolving_list      - The Resolving List is used by the Link Layer to resolve
+ *                                Resolvable Private Addresses used by advertisers, scanners or initiators.
+ *                                This allows the Host to configure the Link Layer to act on a request
+ *                                without awakening the Host.
+ *                                Default value is 20
+ *                                Max value is 20, user is able to tuning this value from 0 to 20.
+ *
+ *      onfound_list_len        - This is for BLE on found device entries.
+ *                                This is for Android. Reference: Google LE HCI spec
+ *                                Default value is 20
+ *                                Max value is 20, user is able to tuning this value from 0 to 20.
+ *
+ *      max_multi_adv_instances - This is for device support multiple adverstising event instances
+ *                                Default value is 8
+ *                                Max value is 8, user is able to tuing this value from 0 to 8.
+ */
+
 /**
  * use this define value to indicate no change to parameter
  */
@@ -56,8 +104,18 @@ typedef struct tag_mem_pre_init_control
 } WICED_MEM_PRE_INIT_CONTROL;
 
 /**
- * set pre-init memory allocation parameters
- * call this from spar_crt_init function to set parameters prior to allocations
+ * Description:
+ *      set pre-init memory allocation parameters.
+ *      call this from spar_crt_init function to set parameters prior to allocations
+ *      Note: Application don't need to call this function.
+ *            Application only need to provide global variable, g_mem_pre_init and tuning the parameters.
+ *
+ * Input:
+ *      mem_pre_init -  Parameters to pre init the memory, please see the above usage for more information.
+ * Output:
+ *      None
+ * Return:
+ *      None
  */
 void wiced_memory_pre_init(WICED_MEM_PRE_INIT_CONTROL *mem_pre_init);
 #endif
