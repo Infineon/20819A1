@@ -550,12 +550,24 @@ typedef PACKED struct
 #pragma pack()
 
 #pragma pack(1)
+typedef PACKED struct
+/** ACL/SCO statistics */
+{
+    uint32_t                            re_trans_cnt;                           /**< Packet retransmission count */
+    uint16_t                            re_trans_percent;                       /**< Packet retransmission percentage */
+    uint16_t                            pkt_err_rate;                           /**< Packet error rate */
+} wiced_bt_lq_generic_stats;
+#pragma pack()
+
+#pragma pack(1)
 /** LQ Quality Result (in response to wiced_bt_dev_lq_stats) */
 typedef PACKED struct
 {
     uint8_t                             status;                                /**< eEvent status */
     uint16_t                            conn_handle;                           /**< Connection handle of link quality stats */
     uint8_t                             action;                                /**< see wiced_bt_dev_link_quality_stats_param for options */
+    uint8_t                             conn_type;                             /**< Connection type. 0: BLE, 1: ACL, 2: SCO/ESCO */
+    wiced_bt_lq_generic_stats           generic_stats;                         /**< ACL/SCO statistics */
     PACKED union
     {
         wiced_bt_lq_br_edr_stats        br_edr_stats;                          /**< br edr statistics */

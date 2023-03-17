@@ -44,100 +44,100 @@
 #include "l2cdefs.h"
 #include "wiced_bt_types.h"
 
-/* GATT Status Codes*/
+/** GATT Status Codes*/
 enum wiced_bt_gatt_status_e
 {
-    WICED_BT_GATT_SUCCESS                    = 0x00,                     /* Success */
-    WICED_BT_GATT_INVALID_HANDLE             = 0x01,                     /* Invalid Handle */
-    WICED_BT_GATT_READ_NOT_PERMIT            = 0x02,                     /* Read Not Permitted */
-    WICED_BT_GATT_WRITE_NOT_PERMIT           = 0x03,                     /* Write Not permitted */
-    WICED_BT_GATT_INVALID_PDU                = 0x04,                     /* Invalid PDU */
-    WICED_BT_GATT_INSUF_AUTHENTICATION       = 0x05,                     /* Insufficient Authentication */
-    WICED_BT_GATT_REQ_NOT_SUPPORTED          = 0x06,                     /* Request Not Supported */
-    WICED_BT_GATT_INVALID_OFFSET             = 0x07,                     /* Invalid Offset */
-    WICED_BT_GATT_INSUF_AUTHORIZATION        = 0x08,                     /* Insufficient Authorization */
-    WICED_BT_GATT_PREPARE_Q_FULL             = 0x09,                     /* Prepare Queue Full */
-    WICED_BT_GATT_NOT_FOUND                  = 0x0a,                     /* Not Found */
-    WICED_BT_GATT_NOT_LONG                   = 0x0b,                     /* Not Long Size */
-    WICED_BT_GATT_INSUF_KEY_SIZE             = 0x0c,                     /* Insufficient Key Size */
-    WICED_BT_GATT_INVALID_ATTR_LEN           = 0x0d,                     /* Invalid Attribute Length */
-    WICED_BT_GATT_ERR_UNLIKELY               = 0x0e,                     /* Error Unlikely */
-    WICED_BT_GATT_INSUF_ENCRYPTION           = 0x0f,                     /* Insufficient Encryption */
-    WICED_BT_GATT_UNSUPPORT_GRP_TYPE         = 0x10,                     /* Unsupported Group Type */
-    WICED_BT_GATT_INSUF_RESOURCE             = 0x11,                     /* Insufficient Resource */
-    WICED_BT_GATT_DATABASE_OUT_OF_SYNC       = 0x12,                     /* GATT Database Out of Sync */
-    WICED_BT_GATT_VALUE_NOT_ALLOWED          = 0x13,                     /* Value Not allowed */
+    WICED_BT_GATT_SUCCESS                    = 0x00,         /**< Success */
+    WICED_BT_GATT_INVALID_HANDLE             = 0x01,         /**< Invalid Handle */
+    WICED_BT_GATT_READ_NOT_PERMIT            = 0x02,         /**< Read Not Permitted */
+    WICED_BT_GATT_WRITE_NOT_PERMIT           = 0x03,         /**< Write Not permitted */
+    WICED_BT_GATT_INVALID_PDU                = 0x04,         /**< Invalid PDU */
+    WICED_BT_GATT_INSUF_AUTHENTICATION       = 0x05,         /**< Insufficient Authentication */
+    WICED_BT_GATT_REQ_NOT_SUPPORTED          = 0x06,         /**< Request Not Supported */
+    WICED_BT_GATT_INVALID_OFFSET             = 0x07,         /**< Invalid Offset */
+    WICED_BT_GATT_INSUF_AUTHORIZATION        = 0x08,         /**< Insufficient Authorization */
+    WICED_BT_GATT_PREPARE_Q_FULL             = 0x09,         /**< Prepare Queue Full */
+    WICED_BT_GATT_NOT_FOUND                  = 0x0a,         /**< Not Found */
+    WICED_BT_GATT_NOT_LONG                   = 0x0b,         /**< Not Long Size */
+    WICED_BT_GATT_INSUF_KEY_SIZE             = 0x0c,         /**< Insufficient Key Size */
+    WICED_BT_GATT_INVALID_ATTR_LEN           = 0x0d,         /**< Invalid Attribute Length */
+    WICED_BT_GATT_ERR_UNLIKELY               = 0x0e,         /**< Error Unlikely */
+    WICED_BT_GATT_INSUF_ENCRYPTION           = 0x0f,         /**< Insufficient Encryption */
+    WICED_BT_GATT_UNSUPPORT_GRP_TYPE         = 0x10,         /**< Unsupported Group Type */
+    WICED_BT_GATT_INSUF_RESOURCE             = 0x11,         /**< Insufficient Resource */
+    WICED_BT_GATT_DATABASE_OUT_OF_SYNC       = 0x12,         /**< GATT Database Out of Sync */
+    WICED_BT_GATT_VALUE_NOT_ALLOWED          = 0x13,         /**< Value Not allowed */
 
-    WICED_BT_GATT_ILLEGAL_PARAMETER          = 0x87,                     /* Illegal Parameter */
-    WICED_BT_GATT_NO_RESOURCES               = 0x80,                     /* No Resources */
-    WICED_BT_GATT_INTERNAL_ERROR             = 0x81,                     /* Internal Error */
-    WICED_BT_GATT_WRONG_STATE                = 0x82,                     /* Wrong State */
-    WICED_BT_GATT_DB_FULL                    = 0x83,                     /* DB Full */
-    WICED_BT_GATT_BUSY                       = 0x84,                     /* Busy */
-    WICED_BT_GATT_ERROR                      = 0x85,                     /* Error */
-    WICED_BT_GATT_CMD_STARTED                = 0x86,                     /* Command Started */
-    WICED_BT_GATT_PENDING                    = 0x88,                     /* Pending */
-    WICED_BT_GATT_AUTH_FAIL                  = 0x89,                     /* Authentication Fail */
-    WICED_BT_GATT_MORE                       = 0x8a,                     /* More */
-    WICED_BT_GATT_INVALID_CFG                = 0x8b,                     /* Invalid Configuration */
-    WICED_BT_GATT_SERVICE_STARTED            = 0x8c,                     /* Service Started */
-    WICED_BT_GATT_ENCRYPED_MITM              = WICED_BT_GATT_SUCCESS,    /* Encrypted MITM */
-    WICED_BT_GATT_ENCRYPED_NO_MITM           = 0x8d,                     /* Encrypted No MITM */
-    WICED_BT_GATT_NOT_ENCRYPTED              = 0x8e,                     /* Not Encrypted */
-    WICED_BT_GATT_CONGESTED                  = 0x8f,                     /* Congested */
+    WICED_BT_GATT_ILLEGAL_PARAMETER          = 0x87,         /**< Illegal Parameter */
+    WICED_BT_GATT_NO_RESOURCES               = 0x80,         /**< No Resources */
+    WICED_BT_GATT_INTERNAL_ERROR             = 0x81,         /**< Internal Error */
+    WICED_BT_GATT_WRONG_STATE                = 0x82,         /**< Wrong State */
+    WICED_BT_GATT_DB_FULL                    = 0x83,         /**< DB Full */
+    WICED_BT_GATT_BUSY                       = 0x84,         /**< Busy */
+    WICED_BT_GATT_ERROR                      = 0x85,         /**< Error */
+    WICED_BT_GATT_CMD_STARTED                = 0x86,         /**< Command Started */
+    WICED_BT_GATT_PENDING                    = 0x88,         /**< Pending */
+    WICED_BT_GATT_AUTH_FAIL                  = 0x89,         /**< Authentication Fail */
+    WICED_BT_GATT_MORE                       = 0x8a,         /**< More */
+    WICED_BT_GATT_INVALID_CFG                = 0x8b,         /**< Invalid Configuration */
+    WICED_BT_GATT_SERVICE_STARTED            = 0x8c,         /**< Service Started */
+    WICED_BT_GATT_ENCRYPED_MITM              = WICED_BT_GATT_SUCCESS, /**< Encrypted MITM */
+    WICED_BT_GATT_ENCRYPED_NO_MITM           = 0x8d,         /**< Encrypted No MITM */
+    WICED_BT_GATT_NOT_ENCRYPTED              = 0x8e,         /**< Not Encrypted */
+    WICED_BT_GATT_CONGESTED                  = 0x8f,         /**< Congested */
 
                                                     /* 0xE0 ~ 0xFB reserved for future use */
-    WICED_BT_GATT_WRITE_REQ_REJECTED         = 0xFC,                     /* Write operation rejected */
-    WICED_BT_GATT_CCC_CFG_ERR                = 0xFD,                     /* Improper Client Char Configuration */
-    WICED_BT_GATT_PRC_IN_PROGRESS            = 0xFE,                     /* Procedure Already in Progress */
-    WICED_BT_GATT_OUT_OF_RANGE               = 0xFF,                     /* Value Out of Range */
+    WICED_BT_GATT_WRITE_REQ_REJECTED         = 0xFC,         /**< Write operation rejected */
+    WICED_BT_GATT_CCC_CFG_ERR                = 0xFD,         /**< Improper Client Char Configuration */
+    WICED_BT_GATT_PRC_IN_PROGRESS            = 0xFE,         /**< Procedure Already in Progress */
+    WICED_BT_GATT_OUT_OF_RANGE               = 0xFF,         /**< Value Out of Range */
 };
-typedef uint8_t wiced_bt_gatt_status_t;     /* GATT status (see #wiced_bt_gatt_status_e) */
+typedef uint8_t wiced_bt_gatt_status_t;     /**< GATT status (see #wiced_bt_gatt_status_e) */
 
 
-/* GATT Operation Codes */
-#define  GATT_RSP_ERROR                  0x01                            /* Error Response */
-#define  GATT_REQ_MTU                    0x02                            /* Exchange MTU Request */
-#define  GATT_RSP_MTU                    0x03                            /* Exchange MTU Response */
-#define  GATT_REQ_FIND_INFO              0x04                            /* Find Information Request */
-#define  GATT_RSP_FIND_INFO              0x05                            /* Find Information Response */
-#define  GATT_REQ_FIND_TYPE_VALUE        0x06                            /* Find By Type Value Request */
-#define  GATT_RSP_FIND_TYPE_VALUE        0x07                            /* Find By Type Value Response */
-#define  GATT_REQ_READ_BY_TYPE           0x08                            /* Read By Type Request */
-#define  GATT_RSP_READ_BY_TYPE           0x09                            /* Read By Type Response */
-#define  GATT_REQ_READ                   0x0A                            /* Read Request */
-#define  GATT_RSP_READ                   0x0B                            /* Read Response */
-#define  GATT_REQ_READ_BLOB              0x0C                            /* Read Blob Request */
-#define  GATT_RSP_READ_BLOB              0x0D                            /* Read Blob Response */
-#define  GATT_REQ_READ_MULTI             0x0E                            /* Read Multiple Request */
-#define  GATT_RSP_READ_MULTI             0x0F                            /* Read Multiple Response */
-#define  GATT_REQ_READ_BY_GRP_TYPE       0x10                            /* Read By Group Type Request */
-#define  GATT_RSP_READ_BY_GRP_TYPE       0x11                            /* Read By Group Type Response */
-#define  GATT_REQ_WRITE                  0x12                            /* Write Request */
-#define  GATT_RSP_WRITE                  0x13                            /* Write Request */
-#define  GATT_CMD_WRITE                  0x52                            /* Write Command */
-#define  GATT_REQ_PREPARE_WRITE          0x16                            /* Prepare Write Request */
-#define  GATT_RSP_PREPARE_WRITE          0x17                            /* Prepare Write Response */
-#define  GATT_REQ_EXEC_WRITE             0x18                            /* Execute Write Request */
-#define  GATT_RSP_EXEC_WRITE             0x19                            /* Execute Write Response */
-#define  GATT_HANDLE_VALUE_NOTIF         0x1B                            /* Handle Value Notification */
-#define  GATT_HANDLE_VALUE_IND           0x1D                            /* Handle Value Indication */
-#define  GATT_HANDLE_VALUE_CONF          0x1E                            /* Handle Value Confirmation */
-#define  GATT_OP_CODE_MAX                (GATT_HANDLE_VALUE_CONF + 1)    /*  Maximum opcode value */
-#define  GATT_SIGN_CMD_WRITE             0xD2                            /* changed in V4.0 1101-0010 (signed write)  see write cmd above */
+/** GATT Operation Codes */
+#define  GATT_RSP_ERROR                  0x01       /**< Error Response */
+#define  GATT_REQ_MTU                    0x02       /**< Exchange MTU Request */
+#define  GATT_RSP_MTU                    0x03       /**< Exchange MTU Response */
+#define  GATT_REQ_FIND_INFO              0x04       /**< Find Information Request */
+#define  GATT_RSP_FIND_INFO              0x05       /**< Find Information Response */
+#define  GATT_REQ_FIND_TYPE_VALUE        0x06       /**< Find By Type Value Request */
+#define  GATT_RSP_FIND_TYPE_VALUE        0x07       /**< Find By Type Value Response */
+#define  GATT_REQ_READ_BY_TYPE           0x08       /**< Read By Type Request */
+#define  GATT_RSP_READ_BY_TYPE           0x09       /**< Read By Type Response */
+#define  GATT_REQ_READ                   0x0A       /**< Read Request */
+#define  GATT_RSP_READ                   0x0B       /**< Read Response */
+#define  GATT_REQ_READ_BLOB              0x0C       /**< Read Blob Request */
+#define  GATT_RSP_READ_BLOB              0x0D       /**< Read Blob Response */
+#define  GATT_REQ_READ_MULTI             0x0E       /**< Read Multiple Request */
+#define  GATT_RSP_READ_MULTI             0x0F       /**< Read Multiple Response */
+#define  GATT_REQ_READ_BY_GRP_TYPE       0x10       /**< Read By Group Type Request */
+#define  GATT_RSP_READ_BY_GRP_TYPE       0x11       /**< Read By Group Type Response */
+#define  GATT_REQ_WRITE                  0x12       /**< Write Request */
+#define  GATT_RSP_WRITE                  0x13       /**< Write Request */
+#define  GATT_CMD_WRITE                  0x52       /**< Write Command */
+#define  GATT_REQ_PREPARE_WRITE          0x16       /**< Prepare Write Request */
+#define  GATT_RSP_PREPARE_WRITE          0x17       /**< Prepare Write Response */
+#define  GATT_REQ_EXEC_WRITE             0x18       /**< Execute Write Request */
+#define  GATT_RSP_EXEC_WRITE             0x19       /**< Execute Write Response */
+#define  GATT_HANDLE_VALUE_NOTIF         0x1B       /**< Handle Value Notification */
+#define  GATT_HANDLE_VALUE_IND           0x1D       /**< Handle Value Indication */
+#define  GATT_HANDLE_VALUE_CONF          0x1E       /**< Handle Value Confirmation */
+#define  GATT_OP_CODE_MAX                (GATT_HANDLE_VALUE_CONF + 1) /**<  Maximum opcode value */
+#define  GATT_SIGN_CMD_WRITE             0xD2       /**< changed in V4.0 1101-0010 (signed write)  see write cmd above*/
 
-/* GATT Disconnection reason */
+/**  GATT Disconnection reason */
 enum wiced_bt_gatt_disconn_reason_e {
-    GATT_CONN_UNKNOWN                       = 0,                                    /* Unknown reason */
-    GATT_CONN_L2C_FAILURE                   = 1,                                    /* General L2cap failure  */
-    GATT_CONN_TIMEOUT                       = HCI_ERR_CONNECTION_TOUT,              /* Connection timeout  */
-    GATT_CONN_TERMINATE_PEER_USER           = HCI_ERR_PEER_USER,                    /* Connection terminated by peer user  */
-    GATT_CONN_TERMINATE_LOCAL_HOST          = HCI_ERR_CONN_CAUSE_LOCAL_HOST,        /* Connection terminated by local host  */
-    GATT_CONN_FAIL_ESTABLISH                = HCI_ERR_CONN_FAILED_ESTABLISHMENT,    /* Connection fail to establish  */
-    GATT_CONN_LMP_TIMEOUT                   = HCI_ERR_LMP_RESPONSE_TIMEOUT,         /* Connection fail due to LMP response tout */
-    GATT_CONN_CANCEL                        = L2CAP_CONN_CANCEL                     /* L2CAP connection cancelled  */
+    GATT_CONN_UNKNOWN                       = 0,                                    /**< Unknown reason */
+    GATT_CONN_L2C_FAILURE                   = 1,                                    /**< General L2cap failure  */
+    GATT_CONN_TIMEOUT                       = HCI_ERR_CONNECTION_TOUT,              /**< Connection timeout  */
+    GATT_CONN_TERMINATE_PEER_USER           = HCI_ERR_PEER_USER,                    /**< Connection terminated by peer user  */
+    GATT_CONN_TERMINATE_LOCAL_HOST          = HCI_ERR_CONN_CAUSE_LOCAL_HOST,        /**< Connection terminated by local host  */
+    GATT_CONN_FAIL_ESTABLISH                = HCI_ERR_CONN_FAILED_ESTABLISHMENT,    /**< Connection fail to establish  */
+    GATT_CONN_LMP_TIMEOUT                   = HCI_ERR_LMP_RESPONSE_TIMEOUT,         /**< Connection fail due to LMP response tout */
+    GATT_CONN_CANCEL                        = L2CAP_CONN_CANCEL                     /**< L2CAP connection cancelled  */
 };
-typedef uint16_t wiced_bt_gatt_disconn_reason_t;    /* GATT disconnection reason (see #wiced_bt_gatt_disconn_reason_e) */
+typedef uint16_t wiced_bt_gatt_disconn_reason_t;    /**< GATT disconnection reason (see #wiced_bt_gatt_disconn_reason_e) */
 
 /* Default GATT MTU size over LE link */
 #define GATT_DEF_BLE_MTU_SIZE       23
@@ -146,7 +146,7 @@ typedef uint16_t wiced_bt_gatt_disconn_reason_t;    /* GATT disconnection reason
 #define GATT_INVALID_CONN_ID        0xFFFF
 
 
-/* Characteristic descriptor: client configuration value */
+/** Characteristic descriptor: client configuration value */
 enum wiced_bt_gatt_client_char_config_e
 {
     GATT_CLIENT_CONFIG_NONE          = 0x0000,                               /* Does not allow both notifications and indications */
@@ -155,24 +155,24 @@ enum wiced_bt_gatt_client_char_config_e
 };
 typedef uint16_t wiced_bt_gatt_client_char_config_t;                         /* GATT client config (see #wiced_bt_gatt_client_char_config_e) */
 
-/* Characteristic descriptor: server configuration value */
+/** Characteristic descriptor: server configuration value */
 #define GATT_SERVER_CONFIG_NONE               0x0000                         /* No broadcast */
 #define GATT_SERVER_CONFIG_BROADCAST          0x0001                         /* Broadcast */
 typedef uint16_t wiced_bt_gatt_server_char_config_t;                         /* GATT server config (see #wiced_bt_gatt_server_char_config_e) */
 
 
-/* GATT Characteristic Properties Mask */
+/**  GATT Characteristic Properties Mask */
 enum wiced_bt_gatt_char_properties_e {
-    GATT_CHAR_PROPERTIES_BIT_BROADCAST      = (1 << 0),                      /* bit 0: Broadcast */
-    GATT_CHAR_PROPERTIES_BIT_READ           = (1 << 1),                      /* bit 1: Read */
-    GATT_CHAR_PROPERTIES_BIT_WRITE_NR       = (1 << 2),                      /* bit 2: Write (No Response) */
-    GATT_CHAR_PROPERTIES_BIT_WRITE          = (1 << 3),                      /* bit 3: Write */
-    GATT_CHAR_PROPERTIES_BIT_NOTIFY         = (1 << 4),                      /* bit 4: Notify */
-    GATT_CHAR_PROPERTIES_BIT_INDICATE       = (1 << 5),                      /* bit 5: Indicate */
-    GATT_CHAR_PROPERTIES_BIT_AUTH           = (1 << 6),                      /* bit 6: Authenticate */
-    GATT_CHAR_PROPERTIES_BIT_EXT_PROP       = (1 << 7)                       /* bit 7: Extended Properties */
+    GATT_CHAR_PROPERTIES_BIT_BROADCAST      = (1 << 0),     /**< bit 0: Broadcast */
+    GATT_CHAR_PROPERTIES_BIT_READ           = (1 << 1),     /**< bit 1: Read */
+    GATT_CHAR_PROPERTIES_BIT_WRITE_NR       = (1 << 2),     /**< bit 2: Write (No Response) */
+    GATT_CHAR_PROPERTIES_BIT_WRITE          = (1 << 3),     /**< bit 3: Write */
+    GATT_CHAR_PROPERTIES_BIT_NOTIFY         = (1 << 4),     /**< bit 4: Notify */
+    GATT_CHAR_PROPERTIES_BIT_INDICATE       = (1 << 5),     /**< bit 5: Indicate */
+    GATT_CHAR_PROPERTIES_BIT_AUTH           = (1 << 6),     /**< bit 6: Authenticate */
+    GATT_CHAR_PROPERTIES_BIT_EXT_PROP       = (1 << 7)      /**< bit 7: Extended Properties */
 };
-typedef uint8_t wiced_bt_gatt_char_properties_t;                             /* GATT characteristic properties mask (see #wiced_bt_gatt_char_properties_e) */
+typedef uint8_t wiced_bt_gatt_char_properties_t;            /**< GATT characteristic properties mask (see #wiced_bt_gatt_char_properties_e) */
 
 /******************************************************************************
 *  Macros for parsing results GATT discovery results
@@ -200,238 +200,240 @@ typedef uint8_t wiced_bt_gatt_char_properties_t;                             /* 
 #define GATT_DISCOVERY_RESULT_CHARACTERISTIC_UUID32(p_event_data)                   (p_event_data->discovery_result.discovery_data.characteristic_declaration.char_uuid.uu.uuid32)
 #define GATT_DISCOVERY_RESULT_CHARACTERISTIC_UUID128(p_event_data)                  (p_event_data->discovery_result.discovery_data.characteristic_declaration.char_uuid.uu.uuid128)
 
-/* Authentication requirement */
+/** Authentication requirement */
 enum wiced_bt_gatt_auth_req_e {
-    GATT_AUTH_REQ_NONE                  = 0,                                        /* No Authentication Required */
-    GATT_AUTH_REQ_NO_MITM               = 1,                                        /* Unauthenticated encryption (No MITM) */
-    GATT_AUTH_REQ_MITM                  = 2,                                        /* Authenticated encryption (MITM) */
-    GATT_AUTH_REQ_SIGNED_NO_MITM        = 3,                                        /* Signed Data (No MITM) */
-    GATT_AUTH_REQ_SIGNED_MITM           = 4                                         /* Signed Data (MITM) */
+    GATT_AUTH_REQ_NONE                  = 0,    /**< No Authentication Required */
+    GATT_AUTH_REQ_NO_MITM               = 1,    /**< Unauthenticated encryption (No MITM) */
+    GATT_AUTH_REQ_MITM                  = 2,    /**< Authenticated encryption (MITM) */
+    GATT_AUTH_REQ_SIGNED_NO_MITM        = 3,    /**< Signed Data (No MITM) */
+    GATT_AUTH_REQ_SIGNED_MITM           = 4     /**< Signed Data (MITM) */
 };
-typedef uint8_t wiced_bt_gatt_auth_req_t;                                           /* GATT authentication requirement (see #wiced_bt_gatt_auth_req_e) */
+typedef uint8_t wiced_bt_gatt_auth_req_t;   /**< GATT authentication requirement (see #wiced_bt_gatt_auth_req_e)*/
 
-/* Attribute value, used for GATT write operations, and read response callbacks */
+/** Attribute value, used for GATT write operations, and read response callbacks */
 typedef struct
 {
-    uint16_t                    handle;                                             /* Attribute handle */
-    uint16_t                    offset;                                             /* Attribute value offset, ignored if not needed for a command */
-    uint16_t                    len;                                                /* Length of attribute value */
-    wiced_bt_gatt_auth_req_t    auth_req;                                           /* Authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
-    uint8_t                     value[1];                                           /* The attribute value (actual length is specified by 'len') */
+    uint16_t                    handle;                     /**< Attribute handle */
+    uint16_t                    offset;                     /**< Attribute value offset, ignored if not needed for a command */
+    uint16_t                    len;                        /**< Length of attribute value */
+    wiced_bt_gatt_auth_req_t    auth_req;                   /**< Authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
+    uint8_t                     value[1];                   /**< The attribute value (actual length is specified by 'len') */
 } wiced_bt_gatt_value_t;
 
 /* Defines the macro to get the GATT Response Structure Size. Substracting 1 to take care of size of the placeholder array which holds the start of the attribute value. */
 #define GATT_RESPONSE_SIZE( attr_val_len ) ( sizeof( wiced_bt_gatt_value_t ) - 1 + attr_val_len )
 
-/* GATT Write Execute request flags */
+/** GATT Write Execute request flags */
 enum wiced_bt_gatt_exec_flag_e {
-    GATT_PREP_WRITE_CANCEL      = 0x00,         /* GATT_PREP_WRITE_CANCEL */
-    GATT_PREP_WRITE_EXEC        = 0x01          /* GATT_PREP_WRITE_EXEC */
+    GATT_PREP_WRITE_CANCEL      = 0x00,         /**< GATT_PREP_WRITE_CANCEL */
+    GATT_PREP_WRITE_EXEC        = 0x01          /**< GATT_PREP_WRITE_EXEC */
 };
-typedef uint8_t   wiced_bt_gatt_exec_flag_t;    /* GATT execute flag (see #wiced_bt_gatt_exec_flag_e) */
+typedef uint8_t   wiced_bt_gatt_exec_flag_t;    /**< GATT execute flag (see #wiced_bt_gatt_exec_flag_e) */
 
-/* Attribute read request */
+/** Attribute read request */
 typedef struct
 {
-    uint16_t        handle;     /* Handle of attribute to read */
-    uint16_t        offset;     /* Offset to read */
-    wiced_bool_t    is_long;    /* TRUE if long read */
-    uint16_t        *p_val_len; /* input and output parameter for value length */
-    uint8_t         *p_val;     /* Value pointer */
+    uint16_t        handle;     /**< Handle of attribute to read */
+    uint16_t        offset;     /**< Offset to read */
+    wiced_bool_t    is_long;    /**< TRUE if long read */
+    uint16_t        *p_val_len; /**< input and output parameter for value length */
+    uint8_t         *p_val;     /**< Value pointer */
 } wiced_bt_gatt_read_t;
 
-/* Attribute write request */
+/** Attribute write request */
 typedef struct
 {
-    uint16_t      handle;     /* Handle of attribute to read */
-    wiced_bool_t  is_prep;    /* TRUE if this is a prepare write request */
-    uint16_t      offset;     /* Offset to write */
-    uint16_t      val_len;    /* Value length */
-    uint8_t       *p_val;     /* Value pointer */
+    uint16_t      handle;     /**< Handle of attribute to read */
+    wiced_bool_t  is_prep;    /**< TRUE if this is a prepare write request */
+    uint16_t      offset;     /**< Offset to write */
+    uint16_t      val_len;    /**< Value length */
+    uint8_t       *p_val;     /**< Value pointer */
 } wiced_bt_gatt_write_t;
 
-/* Attribute information for GATT attribute requests */
+/** Attribute information for GATT attribute requests */
 typedef union
 {
-    wiced_bt_gatt_read_t            read_req;                       /* Parameters for GATTS_REQ_TYPE_READ */
-    wiced_bt_gatt_write_t           write_req;                      /* Parameters for GATTS_REQ_TYPE_WRITE */
-    uint16_t                        handle;                         /* Parameters for GATTS_REQ_TYPE_CONF */
-    uint16_t                        mtu;                            /* Parameters for GATTS_REQ_TYPE_MTU */
-    wiced_bt_gatt_exec_flag_t       exec_write;                     /* Parameters for GATTS_REQ_TYPE_WRITE_EXEC */
+    wiced_bt_gatt_read_t            read_req;                       /**< Parameters for GATTS_REQ_TYPE_READ */
+    wiced_bt_gatt_write_t           write_req;                      /**< Parameters for GATTS_REQ_TYPE_WRITE */
+    uint16_t                        handle;                         /**< Parameters for GATTS_REQ_TYPE_CONF */
+    uint16_t                        mtu;                            /**< Parameters for GATTS_REQ_TYPE_MTU */
+    wiced_bt_gatt_exec_flag_t       exec_write;                     /**< Parameters for GATTS_REQ_TYPE_WRITE_EXEC */
 } wiced_bt_gatt_request_data_t;
 
-/* GATT Attribute Request Type */
+/** GATT Attribute Request Type */
 enum wiced_bt_gatt_request_type_e
 {
-    GATTS_REQ_TYPE_READ = 1,        /* Attribute read notification (attribute value internally read from GATT database) */
-    GATTS_REQ_TYPE_WRITE,           /* Attribute write notification (attribute value internally written to GATT database) */
-    GATTS_REQ_TYPE_PREP_WRITE,      /* Attribute Prepare Write Notification (Suspending write request before triggering actual execute write ) */
-    GATTS_REQ_TYPE_WRITE_EXEC,      /* Execute write request */
-    GATTS_REQ_TYPE_MTU,             /* MTU exchange information */
-    GATTS_REQ_TYPE_CONF,            /* Value confirmation */
+    GATTS_REQ_TYPE_READ = 1,        /**< Attribute read notification (attribute value internally read from GATT database) */
+    GATTS_REQ_TYPE_WRITE,           /**< Attribute write notification (attribute value internally written to GATT database) */
+    GATTS_REQ_TYPE_PREP_WRITE,      /**< Attribute Prepare Write Notification (Suspending write request before triggering actual execute write ) */
+    GATTS_REQ_TYPE_WRITE_EXEC,      /**< Execute write request */
+    GATTS_REQ_TYPE_MTU,             /**< MTU exchange information */
+    GATTS_REQ_TYPE_CONF,            /**< Value confirmation */
 };
-typedef uint8_t wiced_bt_gatt_request_type_t;   /* GATT Attribute Request Type (see #wiced_bt_gatt_request_type_e) */
+typedef uint8_t wiced_bt_gatt_request_type_t;   /**< GATT Attribute Request Type (see #wiced_bt_gatt_request_type_e) */
 
-/* Discovery types */
+/** Discovery types */
 enum wiced_bt_gatt_discovery_type_e
 {
-    GATT_DISCOVER_SERVICES_ALL = 1,             /* discover all services */
-    GATT_DISCOVER_SERVICES_BY_UUID,             /* discover service by UUID */
-    GATT_DISCOVER_INCLUDED_SERVICES,            /* discover an included service within a service */
-    GATT_DISCOVER_CHARACTERISTICS,              /* discover characteristics of a service with/without type requirement */
-    GATT_DISCOVER_CHARACTERISTIC_DESCRIPTORS,   /* discover characteristic descriptors of a character */
+    GATT_DISCOVER_SERVICES_ALL = 1,             /**< discover all services */
+    GATT_DISCOVER_SERVICES_BY_UUID,             /**< discover service by UUID */
+    GATT_DISCOVER_INCLUDED_SERVICES,            /**< discover an included service within a service */
+    GATT_DISCOVER_CHARACTERISTICS,              /**< discover characteristics of a service with/without type requirement */
+    GATT_DISCOVER_CHARACTERISTIC_DESCRIPTORS,   /**< discover characteristic descriptors of a character */
     GATT_DISCOVER_MAX                           /* maximum discovery types */
 };
-typedef uint8_t wiced_bt_gatt_discovery_type_t;    /* GATT Discovery type (see #wiced_bt_gatt_discovery_type_e) */
+typedef uint8_t wiced_bt_gatt_discovery_type_t;    /**< GATT Discovery type (see #wiced_bt_gatt_discovery_type_e) */
 
-/* Parameters used in a GATT Discovery */
+/** Parameters used in a GATT Discovery */
 typedef struct
 {
-    wiced_bt_uuid_t uuid;        /* Service or Characteristic UUID */
-    uint16_t        s_handle;    /* Start handle for range to search */
-    uint16_t        e_handle;    /* End handle for range to search */
+    wiced_bt_uuid_t uuid;        /**< Service or Characteristic UUID */
+    uint16_t        s_handle;    /**< Start handle for range to search */
+    uint16_t        e_handle;    /**< End handle for range to search */
 }wiced_bt_gatt_discovery_param_t;
 
-/* GATT Read Types */
+/** GATT Read Types */
 enum wiced_bt_gatt_read_type_e
 {
-    GATT_READ_BY_TYPE = 1,      /* Read by Type (service or characteristic UUIDs) */
-    GATT_READ_BY_HANDLE,        /* Read by Handle */
-    GATT_READ_MULTIPLE,         /* Read Multiple (array of handles) */
-    GATT_READ_CHAR_VALUE,       /* Read Characteristic Value */
-    GATT_READ_PARTIAL,          /* Read Partial */
+    GATT_READ_BY_TYPE = 1,      /**< Read by Type (service or characteristic UUIDs) */
+    GATT_READ_BY_HANDLE,        /**< Read by Handle */
+    GATT_READ_MULTIPLE,         /**< Read Multiple (array of handles) */
+    GATT_READ_CHAR_VALUE,       /**< Read Characteristic Value */
+    GATT_READ_PARTIAL,          /**< Read Partial */
     GATT_READ_MAX
 };
-typedef uint8_t wiced_bt_gatt_read_type_t;      /* GATT read type (see #wiced_bt_gatt_read_type_e) */
+typedef uint8_t wiced_bt_gatt_read_type_t;      /**< GATT read type (see #wiced_bt_gatt_read_type_e) */
 
-/* Parameters for GATT_READ_BY_TYPE and GATT_READ_CHAR_VALUE */
+/** Parameters for GATT_READ_BY_TYPE and GATT_READ_CHAR_VALUE */
 typedef struct
 {
-    wiced_bt_gatt_auth_req_t    auth_req;       /* Authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
-    uint16_t                    s_handle;       /* Starting handle */
-    uint16_t                    e_handle;       /* Ending handle */
-    wiced_bt_uuid_t             uuid;           /* UUID */
+    wiced_bt_gatt_auth_req_t    auth_req;       /**< Authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
+    uint16_t                    s_handle;       /**< Starting handle */
+    uint16_t                    e_handle;       /**< Ending handle */
+    wiced_bt_uuid_t             uuid;           /**< UUID */
 } wiced_bt_gatt_read_by_type_t;
 
-#define GATT_MAX_READ_MULTI_HANDLES      10     /* Max attributes allowed in one GATT_READ_MULTIPLE request */
-/* Parameters for GATT_READ_MULTIPLE */
+#define GATT_MAX_READ_MULTI_HANDLES      10     /**< Max attributes allowed in one GATT_READ_MULTIPLE request */
+/** Parameters for GATT_READ_MULTIPLE */
 typedef struct
 {
-    wiced_bt_gatt_auth_req_t    auth_req;                               /* authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
-    uint16_t                    num_handles;                            /* number of handles to read */
-    uint16_t                    handles[GATT_MAX_READ_MULTI_HANDLES];   /* handles list to be read */
+    wiced_bt_gatt_auth_req_t    auth_req;                               /**< authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
+    uint16_t                    num_handles;                            /**< number of handles to read */
+    uint16_t                    handles[GATT_MAX_READ_MULTI_HANDLES];   /**< handles list to be read */
 } wiced_bt_gatt_read_multi_t;
 
-/* Parameters for GATT_READ_BY_HANDLE */
+/** Parameters for GATT_READ_BY_HANDLE */
 typedef struct
 {
-    wiced_bt_gatt_auth_req_t    auth_req;    /* authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
-    uint16_t                    handle;      /* handle */
+    wiced_bt_gatt_auth_req_t    auth_req;    /**< authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
+    uint16_t                    handle;      /**< handle */
 } wiced_bt_gatt_read_by_handle_t;
 
-/* Parameters for GATT_READ_PARTIAL */
+/** Parameters for GATT_READ_PARTIAL */
 typedef struct
 {
-    wiced_bt_gatt_auth_req_t    auth_req;    /* authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
-    uint16_t                    handle;      /* handle */
-    uint16_t                    offset;      /* offset */
+    wiced_bt_gatt_auth_req_t    auth_req;    /**< authentication requirement (see @link wiced_bt_gatt_auth_req_e wiced_bt_gatt_auth_req_t @endlink) */
+    uint16_t                    handle;      /**< handle */
+    uint16_t                    offset;      /**< offset */
 } wiced_bt_gatt_read_partial_t;
 
-/* Read request parameters - used when calling #wiced_bt_gatt_send_read */
+/** Read request parameters - used when calling #wiced_bt_gatt_send_read */
 typedef union
 {
-    wiced_bt_gatt_read_by_type_t   service;           /* Parameters for GATT_READ_BY_TYPE */
-    wiced_bt_gatt_read_by_type_t   char_type;         /* Parameters for GATT_READ_CHAR_VALUE */
-    wiced_bt_gatt_read_multi_t     read_multiple;     /* Parameters for GATT_READ_MULTIPLE */
-    wiced_bt_gatt_read_by_handle_t by_handle;         /* Parameters for GATT_READ_BY_HANDLE */
-    wiced_bt_gatt_read_partial_t   partial;           /* Parameters for GATT_READ_PARTIAL  */
+    wiced_bt_gatt_read_by_type_t   service;           /**< Parameters for GATT_READ_BY_TYPE */
+    wiced_bt_gatt_read_by_type_t   char_type;         /**< Parameters for GATT_READ_CHAR_VALUE */
+    wiced_bt_gatt_read_multi_t     read_multiple;     /**< Parameters for GATT_READ_MULTIPLE */
+    wiced_bt_gatt_read_by_handle_t by_handle;         /**< Parameters for GATT_READ_BY_HANDLE */
+    wiced_bt_gatt_read_partial_t   partial;           /**< Parameters for GATT_READ_PARTIAL  */
 } wiced_bt_gatt_read_param_t;
 
-/* Write request types - used when calling #wiced_bt_gatt_send_write */
+/**  Write request types - used when calling #wiced_bt_gatt_send_write */
 enum wiced_bt_gatt_write_type_e
 {
-    GATT_WRITE_NO_RSP = 1,  /* Write without response */
-    GATT_WRITE,             /* Write with response */
-    GATT_WRITE_PREPARE      /* Prepare to write (call #wiced_bt_gatt_send_execute_write to execute the write) */
+    GATT_WRITE_NO_RSP = 1,  /**< Write without response */
+    GATT_WRITE,             /**< Write with response */
+    GATT_WRITE_PREPARE      /**< Prepare to write (call #wiced_bt_gatt_send_execute_write to execute the write) */
 };
-typedef uint8_t wiced_bt_gatt_write_type_t;     /* GATT write type (see #wiced_bt_gatt_write_type_e) */
+typedef uint8_t wiced_bt_gatt_write_type_t;     /**< GATT write type (see #wiced_bt_gatt_write_type_e) */
 
-/* Response data for read operations */
+/**  Response data for read operations */
 typedef struct
 {
-    uint16_t                    handle;     /* handle */
-    uint16_t                    len;        /* length of response data */
-    uint16_t                    offset;     /* offset */
-    uint8_t                     *p_data;    /* attribute data */
+    uint16_t                    handle;     /**< handle */
+    uint16_t                    len;        /**< length of response data */
+    uint16_t                    offset;     /**< offset */
+    uint8_t                     *p_data;    /**< attribute data */
 } wiced_bt_gatt_data_t;
 
-/* Client Operation Complete response data (dependent on operation completed) */
+/** Client Operation Complete response data (dependent on operation completed) */
 typedef union
 {
-    wiced_bt_gatt_data_t    att_value;      /* Response data for read operations (initiated using #wiced_bt_gatt_send_read) */
-    uint16_t                mtu;            /* Response data for configuration operations */
-    uint16_t                handle;         /* Response data for write operations (initiated using #wiced_bt_gatt_send_write) */
-} wiced_bt_gatt_operation_complete_rsp_t;   /* GATT operation complete response type */
+    wiced_bt_gatt_data_t    att_value;      /**< Response data for read operations (initiated using #wiced_bt_gatt_send_read) */
+    uint16_t                mtu;            /**< Response data for configuration operations */
+    uint16_t                handle;         /**< Response data for write operations (initiated using #wiced_bt_gatt_send_write) */
+} wiced_bt_gatt_operation_complete_rsp_t;   /**< GATT operation complete response type */
 
-/* GATT client operation type, used in client callback function. */
+/** GATT client operation type, used in client callback function. */
 enum wiced_bt_gatt_optype_e
 {
-    GATTC_OPTYPE_NONE             = 0,    /* None */
-    GATTC_OPTYPE_DISCOVERY        = 1,    /* Discovery */
-    GATTC_OPTYPE_READ             = 2,    /* Read */
-    GATTC_OPTYPE_WRITE            = 3,    /* Write*/
-    GATTC_OPTYPE_EXE_WRITE        = 4,    /* Execute Write */
-    GATTC_OPTYPE_CONFIG           = 5,    /* Configure */
-    GATTC_OPTYPE_NOTIFICATION     = 6,    /* Notification */
-    GATTC_OPTYPE_INDICATION       = 7     /* Indication */
+    GATTC_OPTYPE_NONE             = 0,    /**< None      */
+    GATTC_OPTYPE_DISCOVERY        = 1,    /**< Discovery */
+    GATTC_OPTYPE_READ             = 2,    /**< Read      */
+    GATTC_OPTYPE_WRITE            = 3,    /**< Write     */
+    GATTC_OPTYPE_EXE_WRITE        = 4,    /**< Execute Write */
+    GATTC_OPTYPE_CONFIG           = 5,    /**< Configure */
+    GATTC_OPTYPE_NOTIFICATION     = 6,    /**< Notification */
+    GATTC_OPTYPE_INDICATION       = 7     /**< Indication */
 };
 
-/* GATT Client Operation Codes */
-typedef uint8_t wiced_bt_gatt_optype_t;   /* GATT operation type (see #wiced_bt_gatt_optype_e) */
+/*  GATT Client Operation Codes */
+typedef uint8_t wiced_bt_gatt_optype_t; /**< GATT operation type (see #wiced_bt_gatt_optype_e) */
 
-/* Characteristic declaration */
+/** characteristic declaration */
 typedef struct
 {
-    wiced_bt_gatt_char_properties_t characteristic_properties;  /* characteristic properties (see @link wiced_bt_gatt_char_properties_e wiced_bt_gatt_char_properties_t @endlink) */
-    uint16_t                        val_handle;                 /* characteristic value attribute handle */
-    uint16_t                        handle;                     /* characteristic declaration handle */
-    wiced_bt_uuid_t                 char_uuid;                  /* characteristic UUID type */
+    wiced_bt_gatt_char_properties_t characteristic_properties;  /**< characteristic properties (see @link wiced_bt_gatt_char_properties_e wiced_bt_gatt_char_properties_t @endlink) */
+    uint16_t                        val_handle;                 /**< characteristic value attribute handle */
+    uint16_t                        handle;                     /**< characteristic declaration handle */
+    wiced_bt_uuid_t                 char_uuid;                  /**< characteristic UUID type */
 } wiced_bt_gatt_char_declaration_t;
 
-/* GATT group value */
+/** GATT group value */
 typedef struct
 {
-    wiced_bt_uuid_t service_type;   /* group type */
-    uint16_t        s_handle;       /* starting handle of the group */
-    uint16_t        e_handle;       /* ending handle of the group */
+    wiced_bt_uuid_t service_type;   /**< group type */
+    uint16_t        s_handle;       /**< starting handle of the group */
+    uint16_t        e_handle;       /**< ending handle of the group */
 } wiced_bt_gatt_group_value_t;
 
 
-/* Included service attribute value */
+/** Included service attribute value */
 typedef struct
 {
-    wiced_bt_uuid_t service_type;   /* included service UUID */
-    uint16_t        handle;         /* included service handle */
-    uint16_t        s_handle;       /* starting handle */
-    uint16_t        e_handle;       /* ending handle */
+    wiced_bt_uuid_t service_type;   /**< included service UUID */
+    uint16_t        handle;         /**< included service handle */
+    uint16_t        s_handle;       /**< starting handle */
+    uint16_t        e_handle;       /**< ending handle */
 } wiced_bt_gatt_included_service_t;
 
-/* Characteristic descriptor information */
+/** Characteristic descriptor information */
 typedef struct
 {
-    wiced_bt_uuid_t         type;      /* descriptor UUID type */
-    uint16_t                handle;    /* descriptor attribute handle */
+    wiced_bt_uuid_t         type;      /**< descriptor UUID type */
+    uint16_t                handle;    /**< descriptor attribute handle */
 }wiced_bt_gatt_char_descr_info_t;
 
 
-/* Discovery result data. Use  GATT_DISCOVERY_RESULT_SERVICE_*
-   or GATT_DISCOVERY_RESULT_CHARACTERISTIC_* macros to parse discovery data). */
+/**
+ * Discovery result data
+ * Use  GATT_DISCOVERY_RESULT_SERVICE_* or GATT_DISCOVERY_RESULT_CHARACTERISTIC_* macros to parse discovery data)
+ */
 typedef union
 {
-    wiced_bt_gatt_included_service_t    included_service;           /* Result for GATT_DISCOVER_INCLUDED_SERVICES */
-    wiced_bt_gatt_group_value_t         group_value;                /* Result for GATT_DISCOVER_SERVICES_ALL or GATT_DISCOVER_SERVICES_BY_UUID  */
-    wiced_bt_gatt_char_declaration_t    characteristic_declaration; /* Result for GATT_DISCOVER_CHARACTERISTICS */
-    wiced_bt_gatt_char_descr_info_t     char_descr_info;            /* Result for GATT_DISCOVER_CHARACTERISTIC_DESCRIPTORS */
+    wiced_bt_gatt_included_service_t    included_service;           /**< Result for GATT_DISCOVER_INCLUDED_SERVICES */
+    wiced_bt_gatt_group_value_t         group_value;                /**< Result for GATT_DISCOVER_SERVICES_ALL or GATT_DISCOVER_SERVICES_BY_UUID  */
+    wiced_bt_gatt_char_declaration_t    characteristic_declaration; /**< Result for GATT_DISCOVER_CHARACTERISTICS */
+    wiced_bt_gatt_char_descr_info_t     char_descr_info;            /**< Result for GATT_DISCOVER_CHARACTERISTIC_DESCRIPTORS */
 } wiced_bt_gatt_discovery_data_t;
 
 #define GATT_LINK_IDLE_TIMEOUT_WHEN_NO_APP  0 /* Start an idle timer for this duration when no application need to use the link. */
@@ -439,7 +441,7 @@ typedef union
 #define GATT_INVALID_ACL_HANDLE             0xFFFF
 #define GATT_HANDLE_IS_VALID(x)             ((x) != 0)
 
-typedef uint16_t wiced_bt_gatt_appearance_t;     /* GATT appearance (see #gatt_appearance_e) */
+typedef uint16_t wiced_bt_gatt_appearance_t;     /**< GATT appearance (see #gatt_appearance_e) */
 
 /*****************************************************************************
 *  GATT Database Definitions
@@ -641,85 +643,85 @@ typedef uint16_t wiced_bt_gatt_appearance_t;     /* GATT appearance (see #gatt_a
 
 
 
-/* GATT events */
+/** GATT events */
 typedef enum
 {
-    GATT_CONNECTION_STATUS_EVT,                         /* GATT connection status change. Event data: #wiced_bt_gatt_connection_status_t */
-    GATT_OPERATION_CPLT_EVT,                            /* GATT operation complete. Event data: #wiced_bt_gatt_event_data_t */
-    GATT_DISCOVERY_RESULT_EVT,                          /* GATT attribute discovery result. Event data: #wiced_bt_gatt_discovery_result_t */
-    GATT_DISCOVERY_CPLT_EVT,                            /* GATT attribute discovery complete. Event data: #wiced_bt_gatt_event_data_t */
-    GATT_ATTRIBUTE_REQUEST_EVT,                         /* GATT attribute request (from remote client). Event data: #wiced_bt_gatt_attribute_request_t */
-    GATT_CONGESTION_EVT                                 /* GATT congestion (running low in tx buffers). Event data: #wiced_bt_gatt_congestion_event_t */
+    GATT_CONNECTION_STATUS_EVT,                         /**< GATT connection status change. Event data: #wiced_bt_gatt_connection_status_t */
+    GATT_OPERATION_CPLT_EVT,                            /**< GATT operation complete. Event data: #wiced_bt_gatt_event_data_t */
+    GATT_DISCOVERY_RESULT_EVT,                          /**< GATT attribute discovery result. Event data: #wiced_bt_gatt_discovery_result_t */
+    GATT_DISCOVERY_CPLT_EVT,                            /**< GATT attribute discovery complete. Event data: #wiced_bt_gatt_event_data_t */
+    GATT_ATTRIBUTE_REQUEST_EVT,                         /**< GATT attribute request (from remote client). Event data: #wiced_bt_gatt_attribute_request_t */
+    GATT_CONGESTION_EVT                                 /**< GATT congestion (running low in tx buffers). Event data: #wiced_bt_gatt_congestion_event_t */
 } wiced_bt_gatt_evt_t;
 
-/* Discovery result (used by GATT_DISCOVERY_RESULT_EVT notification) */
+/** Discovery result (used by GATT_DISCOVERY_RESULT_EVT notification) */
 typedef struct
 {
-    uint16_t                                conn_id;            /* ID of the connection */
-    wiced_bt_gatt_discovery_type_t          discovery_type;     /* Discovery type (see @link wiced_bt_gatt_discovery_type_e wiced_bt_gatt_discovery_type_t @endlink) */
-    wiced_bt_gatt_discovery_data_t          discovery_data;     /* Discovery data */
+    uint16_t                                conn_id;            /**< ID of the connection */
+    wiced_bt_gatt_discovery_type_t          discovery_type;     /**< Discovery type (see @link wiced_bt_gatt_discovery_type_e wiced_bt_gatt_discovery_type_t @endlink) */
+    wiced_bt_gatt_discovery_data_t          discovery_data;     /**< Discovery data  */
 } wiced_bt_gatt_discovery_result_t;
 
-/* Discovery Complete (used by GATT_DISCOVERY_CPLT_EVT notification) */
+/** Discovery Complete (used by GATT_DISCOVERY_CPLT_EVT notification) */
 typedef struct
 {
-    uint16_t                                conn_id;            /* ID of the connection */
-    wiced_bt_gatt_discovery_type_t          disc_type;          /* Discovery type (see @link wiced_bt_gatt_discovery_type_e wiced_bt_gatt_discovery_type_t @endlink) */
-    wiced_bt_gatt_status_t                  status;             /* Status of operation */
+    uint16_t                                conn_id;            /**< ID of the connection */
+    wiced_bt_gatt_discovery_type_t          disc_type;          /**< Discovery type (see @link wiced_bt_gatt_discovery_type_e wiced_bt_gatt_discovery_type_t @endlink) */
+    wiced_bt_gatt_status_t                  status;             /**< Status of operation */
 } wiced_bt_gatt_discovery_complete_t;
 
-/* Response to read/write/disc/config operations (used by GATT_OPERATION_CPLT_EVT notification) */
+/** Response to read/write/disc/config operations (used by GATT_OPERATION_CPLT_EVT notification) */
 typedef struct
 {
-    uint16_t                                conn_id;            /* ID of the connection */
-    wiced_bt_gatt_optype_t                  op;                 /* Type of operation completed (see @link wiced_bt_gatt_optype_e wiced_bt_gatt_optype_t @endlink) */
-    wiced_bt_gatt_status_t                  status;             /* Status of operation */
-    wiced_bt_gatt_operation_complete_rsp_t  response_data;      /* Response data (dependent on optype) */
+    uint16_t                                conn_id;            /**< ID of the connection */
+    wiced_bt_gatt_optype_t                  op;                 /**< Type of operation completed (see @link wiced_bt_gatt_optype_e wiced_bt_gatt_optype_t @endlink) */
+    wiced_bt_gatt_status_t                  status;             /**< Status of operation */
+    wiced_bt_gatt_operation_complete_rsp_t  response_data;      /**< Response data (dependent on optype) */
 } wiced_bt_gatt_operation_complete_t;
 
-/* GATT connection status (used by GATT_CONNECTION_STATUS_EVT notification) */
+/** GATT connection status (used by GATT_CONNECTION_STATUS_EVT notification) */
 typedef struct
 {
-    uint8_t                         *bd_addr;               /* Remote device address */
-    wiced_bt_ble_address_type_t     addr_type;              /* Remote device address type */
-    uint16_t                        conn_id;                /* ID of the connection */
-    wiced_bool_t                    connected;              /* TRUE if connected, FALSE if disconnected */
-    wiced_bt_gatt_disconn_reason_t  reason;                 /* Reason code (see @link wiced_bt_gatt_disconn_reason_e wiced_bt_gatt_disconn_reason_t @endlink) */
-    wiced_bt_transport_t            transport;              /* Transport type of the connection */
-    uint8_t                         link_role;              /* Link role on this connection */
+    uint8_t                         *bd_addr;               /**< Remote device address */
+    wiced_bt_ble_address_type_t     addr_type;              /**< Remmote device address type */
+    uint16_t                        conn_id;                /**< ID of the connection */
+    wiced_bool_t                    connected;              /**< TRUE if connected, FALSE if disconnected */
+    wiced_bt_gatt_disconn_reason_t  reason;                 /**< Reason code (see @link wiced_bt_gatt_disconn_reason_e wiced_bt_gatt_disconn_reason_t @endlink) */
+    wiced_bt_transport_t            transport;              /**< Transport type of the connection */
+    uint8_t                         link_role;              /**< Link role on this connection */
 } wiced_bt_gatt_connection_status_t;
 
-/* GATT attribute request (used by GATT_ATTRIBUTE_REQUEST_EVT notification) */
+/** GATT attribute request (used by GATT_ATTRIBUTE_REQUEST_EVT notification) */
 typedef struct
 {
-    uint16_t                                conn_id;            /* ID of the connection */
-    wiced_bt_gatt_request_type_t            request_type;       /* Request type (see @link wiced_bt_gatt_request_type_e wiced_bt_gatt_request_type_t) */
-    wiced_bt_gatt_request_data_t            data;               /* Information about attribute being request (dependent on request type) */
+    uint16_t                                conn_id;            /**< ID of the connection */
+    wiced_bt_gatt_request_type_t            request_type;       /**< Request type (see @link wiced_bt_gatt_request_type_e wiced_bt_gatt_request_type_t)  */
+    wiced_bt_gatt_request_data_t            data;               /**< Information about attribute being request (dependent on request type) */
 } wiced_bt_gatt_attribute_request_t;
 
-/* GATT channel congestion/uncongestion (used by GATT_CONGESTION_EVT notification) */
+/** GATT channel congestion/uncongestion (used by GATT_CONGESTION_EVT notification) */
 typedef struct
 {
-    uint16_t                                conn_id;            /* ID of the connection */
-    wiced_bool_t                            congested;          /* congestion state */
+    uint16_t                                conn_id;            /**< ID of the connection */
+    wiced_bool_t                            congested;          /**< congestion state */
 } wiced_bt_gatt_congestion_event_t;
 
-/* Stuctures for GATT event notifications */
+/** Stuctures for GATT event notifications */
 typedef union
 {
-    wiced_bt_gatt_discovery_result_t        discovery_result;   /* Data for GATT_DISCOVERY_RESULT_EVT */
-    wiced_bt_gatt_discovery_complete_t      discovery_complete; /* Data for GATT_DISCOVERY_CPLT_EVT */
-    wiced_bt_gatt_operation_complete_t      operation_complete; /* Data for GATT_OPERATION_CPLT_EVT */
-    wiced_bt_gatt_connection_status_t       connection_status;  /* Data for GATT_CONNECTION_STATUS_EVT */
-    wiced_bt_gatt_attribute_request_t       attribute_request;  /* Data for GATT_ATTRIBUTE_REQUEST_EVT */
-    wiced_bt_gatt_congestion_event_t        congestion;         /* Data for GATT_CONGESTION_EVT */
+    wiced_bt_gatt_discovery_result_t        discovery_result;   /**< Data for GATT_DISCOVERY_RESULT_EVT */
+    wiced_bt_gatt_discovery_complete_t      discovery_complete; /**< Data for GATT_DISCOVERY_CPLT_EVT */
+    wiced_bt_gatt_operation_complete_t      operation_complete; /**< Data for GATT_OPERATION_CPLT_EVT */
+    wiced_bt_gatt_connection_status_t       connection_status;  /**< Data for GATT_CONNECTION_STATUS_EVT */
+    wiced_bt_gatt_attribute_request_t       attribute_request;  /**< Data for GATT_ATTRIBUTE_REQUEST_EVT */
+    wiced_bt_gatt_congestion_event_t        congestion;         /**< Data for GATT_CONGESTION_EVT */
 } wiced_bt_gatt_event_data_t;
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * GATT event notification callback
 *
-***************************************************************************//**
+*******************************************************************************
 *
 * The callback for GATT event notifications.
 *
@@ -734,7 +736,7 @@ typedef union
 typedef wiced_bt_gatt_status_t wiced_bt_gatt_cback_t(wiced_bt_gatt_evt_t event, wiced_bt_gatt_event_data_t *p_event_data);
 
 
-/* GATT attribute structure for preferred connection parameters */
+/** GATT attribute structure for preferred connection parameters*/
 typedef struct
 {
     uint16_t      int_min;
@@ -745,7 +747,7 @@ typedef struct
 
 
 
-/* GATT attribute value included in central role DB */
+/** GATT attribute value included in central role DB*/
 typedef union
 {
     wiced_bt_gatt_gap_ble_pref_param_t     conn_param;
@@ -755,13 +757,13 @@ typedef union
     uint8_t                                addr_resolution;
 }wiced_bt_gatt_gap_ble_attr_value_t;
 
-/* Structure used by wiced_bt_gattdb APIS, to parse GATTDB. */
+/** Structure used by wiced_bt_gattdb APIS, to parse GATTDB. */
 #pragma pack(1)
 typedef PACKED struct
 {
-    uint16_t handle;        /* atribute Handle  */
-    uint8_t  perm;          /* attribute permission. */
-    uint8_t  len;           /* attribute length . It excludes the header. */
+    uint16_t handle;        /**< atribute Handle  */
+    uint8_t  perm;          /**< attribute permission.*/
+    uint8_t  len;           /**< attribute length . It excludes the header.*/
 } wiced_gattdb_entry_t;
 #pragma pack()
 /******************************************************************************
@@ -773,32 +775,34 @@ extern "C"
 #endif
 
 /**
-* @addtogroup  wicedbt_gatt   Generic Attribute (GATT)
-* @ingroup     wicedbt
-*
-* Generic Attribute (GATT) Functions.
-*
-* @{
-*
-******************************************************************************/
+ * @addtogroup  wicedbt_gatt   Generic Attribute (GATT)
+ * @ingroup     wicedbt
+ *
+ * Generic Attribute (GATT) Functions.
+ *
+ * @{
+ */
+/****************************************************************************/
 
-/******************************************************************************
+
+/******************************************************************************/
+/**
 * GATT Profile Server Functions
 *
-*  @addtogroup  server_api_functions       Server
+*  @addtogroup  gatt_server_api_functions       Server
 *  @ingroup     wicedbt_gatt
 *
 *  <b> Server API Functions </b> sub module for @b GATT.
 *
 * @{
-*
-******************************************************************************/
+*/
+/******************************************************************************/
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:     wiced_bt_gatt_db_init
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *              Initializes the GATT database.
 *
@@ -810,11 +814,11 @@ extern "C"
 ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_gatt_db_init (const uint8_t *p_gatt_db, uint16_t gatt_db_size);
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:     wiced_bt_gatt_send_indication
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *              Sends a handle value indication to a client.
 *
@@ -828,10 +832,10 @@ wiced_bt_gatt_status_t wiced_bt_gatt_db_init (const uint8_t *p_gatt_db, uint16_t
 ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_gatt_send_indication (uint16_t conn_id, uint16_t attr_handle, uint16_t val_len, uint8_t *p_val );
 
-/******************************************************************************
-* Function Name:     wiced_bt_gatt_send_notification
+/******************************************************************************/
+/** Function Name:     wiced_bt_gatt_send_notification
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *              Sends a handle value notification to a client.
 *
@@ -845,11 +849,11 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_indication (uint16_t conn_id, uint16_t
 ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_gatt_send_notification (uint16_t conn_id, uint16_t attr_handle, uint16_t val_len, uint8_t *p_val );
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:       wiced_bt_gatt_send_response
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                When application receives a Read Request, Writes Request or Indication from the
 *                peer it can reply synchronously or return a WICED_BT_GATT_PENDING result code
@@ -872,20 +876,20 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_response(wiced_bt_gatt_status_t status
 
 /**@} server_api_functions */
 
-/******************************************************************************
-*
-*  GATT Profile Client Functions
-*
-*  @addtogroup  client_api_functions   Client
-*  @ingroup     wicedbt_gatt
-*
-*  @{
-*
-******************************************************************************/
+/*****************************************************************************/
+/**
+ *  GATT Profile Client Functions
+ *
+ *  @addtogroup  gatt_client_api_functions   Client
+ *  @ingroup     wicedbt_gatt
+ *
+ *  @{
+ */
+/*****************************************************************************/
 
-/******************************************************************************
-*
-* Function Name:       wiced_bt_gatt_configure_mtu
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_configure_mtu
 *
 ***************************************************************************//**
 *
@@ -896,15 +900,15 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_response(wiced_bt_gatt_status_t status
 *  @param[in]  mtu                 : New MTU size
 *
 *  @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
-*
-******************************************************************************/
+*/
+/******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_gatt_configure_mtu (uint16_t conn_id, uint16_t mtu);
 
-/******************************************************************************
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_send_discover
 *
-* Function Name:       wiced_bt_gatt_send_discover
-*
-***************************************************************************//**
+*******************************************************************************
 *
 *                Starts an attribute discovery on an ATT server.
 *                Discovery results are notified using <b> GATT_DISCOVERY_RESULT_EVT </b>;
@@ -921,11 +925,11 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_discover (uint16_t conn_id,
                                              wiced_bt_gatt_discovery_type_t discovery_type,
                                              wiced_bt_gatt_discovery_param_t *p_discovery_param );
 
-/******************************************************************************
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_send_read
 *
-* Function Name:       wiced_bt_gatt_send_read
-*
-***************************************************************************//**
+*******************************************************************************
 *
 *                Reads from a remote ATT server.
 *                Thr result is notified using <b> GATT_OPERATION_CPLT_EVT </b> of #wiced_bt_gatt_cback_t.
@@ -940,11 +944,11 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_discover (uint16_t conn_id,
 wiced_bt_gatt_status_t wiced_bt_gatt_send_read (uint16_t conn_id, wiced_bt_gatt_read_type_t type,
                                              wiced_bt_gatt_read_param_t *p_read);
 
-/******************************************************************************
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_send_write
 *
-* Function Name:       wiced_bt_gatt_send_write
-*
-***************************************************************************//**
+*******************************************************************************
 *
 *                Writes to remote the ATT server.
 *                The result is notified using <b> GATT_OPERATION_CPLT_EVT </b> of #wiced_bt_gatt_cback_t.
@@ -959,9 +963,9 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_read (uint16_t conn_id, wiced_bt_gatt_
 wiced_bt_gatt_status_t wiced_bt_gatt_send_write (uint16_t conn_id, wiced_bt_gatt_write_type_t type,
                                               wiced_bt_gatt_value_t *p_write);
 
-/******************************************************************************
-*
-* Function Name:       wiced_bt_gatt_send_execute_write
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_send_execute_write
 *
 ***************************************************************************//**
 *
@@ -975,11 +979,11 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_write (uint16_t conn_id, wiced_bt_gatt
 ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_gatt_send_execute_write (uint16_t conn_id, wiced_bool_t is_execute);
 
-/******************************************************************************
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_send_indication_confirm
 *
-* Function Name:       wiced_bt_gatt_send_indication_confirm
-*
-***************************************************************************//**
+*******************************************************************************
 *
 *                Sends a handle value confirmation to the remote ATT server.
 *                (in response to <b>GATTC_OPTYPE_INDICATION </b>  of #wiced_bt_gatt_cback_t)
@@ -994,8 +998,8 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_indication_confirm (uint16_t conn_id, 
 
 /**@} client_api_functions */
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 *  GATT Profile Common Functions
 *
 *  @addtogroup  common_api_functions Common
@@ -1005,11 +1009,11 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_indication_confirm (uint16_t conn_id, 
 *
 ******************************************************************************/
 
-/******************************************************************************
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_register
 *
-* Function Name:       wiced_bt_gatt_register
-*
-***************************************************************************//**
+*******************************************************************************
 *
 *                Registers an application callback for GATT.
 *
@@ -1020,11 +1024,11 @@ wiced_bt_gatt_status_t wiced_bt_gatt_send_indication_confirm (uint16_t conn_id, 
 ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_gatt_register (wiced_bt_gatt_cback_t *p_gatt_cback);
 
-/******************************************************************************
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_le_connect
 *
-* Function Name:       wiced_bt_gatt_le_connect
-*
-***************************************************************************//**
+*******************************************************************************
 *
 *                Opens GATT over LE connection to a remote device.
 *                The result is notified using <b> GATT_CONNECTION_STATUS_EVT </b> of #wiced_bt_gatt_cback_t.
@@ -1048,11 +1052,11 @@ wiced_bool_t wiced_bt_gatt_le_connect (wiced_bt_device_address_t bd_addr,
                                     wiced_bt_ble_conn_mode_t conn_mode,
                                     wiced_bool_t is_direct);
 
-/******************************************************************************
+/******************************************************************************/
+/**
+* Function        wiced_bt_gatt_bredr_connect
 *
-* Function Name:       wiced_bt_gatt_bredr_connect
-*
-***************************************************************************//**
+*******************************************************************************
 *
 *                Opens GATT over BR/EDR connection to a remote device.
 *                The result is notified using <b> GATT_CONNECTION_STATUS_EVT </b> of #wiced_bt_gatt_cback_t.
@@ -1065,11 +1069,11 @@ wiced_bool_t wiced_bt_gatt_le_connect (wiced_bt_device_address_t bd_addr,
 ******************************************************************************/
 wiced_bool_t wiced_bt_gatt_bredr_connect (wiced_bt_device_address_t bd_addr);
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:       wiced_bt_gatt_cancel_connect
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                Cancels initiating GATT connecton.
 *
@@ -1082,11 +1086,11 @@ wiced_bool_t wiced_bt_gatt_bredr_connect (wiced_bt_device_address_t bd_addr);
 ******************************************************************************/
 wiced_bool_t wiced_bt_gatt_cancel_connect (wiced_bt_device_address_t bd_addr, wiced_bool_t is_direct);
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:       wiced_bt_gatt_disconnect
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                Closes the specified GATT connection.
 *                The result is notified using <b> GATT_CONNECTION_STATUS_EVT </b> of #wiced_bt_gatt_cback_t.
@@ -1098,24 +1102,24 @@ wiced_bool_t wiced_bt_gatt_cancel_connect (wiced_bt_device_address_t bd_addr, wi
 ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_gatt_disconnect (uint16_t conn_id);
 
-/* @} common_api_functions*/
+/** @} common_api_functions*/
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 *  GATT Database Access Functions
 *
-*  @addtogroup  gattdb_api_functions GattDB
+*  @addtogroup  gattdb_api_functions GATT Database
 *  @ingroup     wicedbt_gatt
 *
 *  @{
-*
-******************************************************************************/
+*/
+/******************************************************************************/
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:     wiced_bt_gattdb_next_entry
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                Finds the next GATT attribute entry in the local GATT database
 *                To find the first attribute entry pass the address of the local GATT database as a parameter
@@ -1127,11 +1131,11 @@ wiced_bt_gatt_status_t wiced_bt_gatt_disconnect (uint16_t conn_id);
 ******************************************************************************/
 wiced_gattdb_entry_t * wiced_bt_gattdb_next_entry (wiced_gattdb_entry_t *p_db_entry);
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:     wiced_bt_gattdb_get_handle
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                Gets attribute handle from GATT DB entry.
 *                To get the next attribute handle, the application needs traverse by wiced_bt_gattdb_next_entry.
@@ -1143,11 +1147,11 @@ wiced_gattdb_entry_t * wiced_bt_gattdb_next_entry (wiced_gattdb_entry_t *p_db_en
 ******************************************************************************/
 uint16_t wiced_bt_gattdb_get_handle (wiced_gattdb_entry_t *p_db_entry);
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:     wiced_bt_gattdb_get_attribute_uuid
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                 Gets the attribute UUID from GATT DB entry.
 *
@@ -1160,11 +1164,11 @@ uint16_t wiced_bt_gattdb_get_handle (wiced_gattdb_entry_t *p_db_entry);
 ******************************************************************************/
 int wiced_bt_gattdb_get_attribute_uuid (wiced_gattdb_entry_t *p_db_entry, uint8_t *p_uuid);
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:       wiced_bt_gattdb_get_attribute_value_uuid16
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                Gets the service UUID from GATTDB Primary/Secondary services.
 *
@@ -1175,11 +1179,11 @@ int wiced_bt_gattdb_get_attribute_uuid (wiced_gattdb_entry_t *p_db_entry, uint8_
 ******************************************************************************/
 uint16_t wiced_bt_gattdb_get_attribute_value_uuid16 (wiced_gattdb_entry_t *p_db_entry);
 
-/******************************************************************************
-*
+/******************************************************************************/
+/**
 * Function Name:     wiced_bt_gattdb_get_charcteristic_descriptor_handle
 *
-***************************************************************************//**
+*******************************************************************************
 *
 *                Gets the characteristic descriptor handle value from GATTDB.
 *                If characteristic does not have a characteristic descriptor with specified UUID, the function will return zero.
