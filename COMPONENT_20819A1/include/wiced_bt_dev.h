@@ -537,19 +537,6 @@ typedef PACKED struct
 #pragma pack()
 
 #pragma pack(1)
-/** LE link statistics */
-typedef PACKED struct
-{
-    uint32_t                            tx_pkt_cnt;                            /**< Transmit packet count */
-    uint32_t                            tx_acked_cnt;                          /**< Transmit packet acknowledged count */
-    uint32_t                            rx_good_pkt_cnt;                       /**< Received good packet count */
-    uint32_t                            rx_good_bytes;                         /**< Received good byte count */
-    uint32_t                            rx_all_pkt_sync_to;                    /**< All received packet sync timeout count */
-    uint32_t                            rx_all_pkt_crc_err;                    /**< All received packet crc error count */
-} wiced_bt_lq_le_stats;
-#pragma pack()
-
-#pragma pack(1)
 typedef PACKED struct
 /** ACL/SCO statistics */
 {
@@ -560,14 +547,35 @@ typedef PACKED struct
 #pragma pack()
 
 #pragma pack(1)
+/** LE link statistics */
+typedef PACKED struct
+{
+    uint8_t                             conn_type;                             /**< Connection type. 0: BLE, 1: ACL, 2: SCO/ESCO */
+    wiced_bt_lq_generic_stats           generic_stats;                         /**< ACL/SCO statistics */
+    uint32_t                            tx_pkt_cnt;                            /**< Transmit packet count */
+    uint32_t                            tx_acked_cnt;                          /**< Transmit packet acknowledged count */
+    uint32_t                            rx_good_pkt_cnt;                       /**< Received good packet count */
+    uint32_t                            rx_good_bytes;                         /**< Received good byte count */
+    uint32_t                            rx_all_pkt_sync_to;                    /**< All received packet sync timeout count */
+    uint32_t                            rx_all_pkt_crc_err;                    /**< All received packet crc error count */
+    uint32_t                            sft_rst_cnt;
+    uint32_t                            evt_flow_off_cnt;
+    uint32_t                            evt_alarm_hi_tsk_prioty_cnt;
+    uint32_t                            tx_all_pkt_cnt;                        /**< Transmit all packet count */
+    uint32_t                            tx_all_pkt_ack_cnt;                    /**< Transmit all packet acknowledged count */
+    uint32_t                            rx_all_good_pkt_cnt;                   /**< Received all good packet count */
+    uint32_t                            activate_late_cnt;                     /**< Activate late count */
+    uint32_t                            reserved;
+} wiced_bt_lq_le_stats;
+#pragma pack()
+
+#pragma pack(1)
 /** LQ Quality Result (in response to wiced_bt_dev_lq_stats) */
 typedef PACKED struct
 {
     uint8_t                             status;                                /**< eEvent status */
     uint16_t                            conn_handle;                           /**< Connection handle of link quality stats */
     uint8_t                             action;                                /**< see wiced_bt_dev_link_quality_stats_param for options */
-    uint8_t                             conn_type;                             /**< Connection type. 0: BLE, 1: ACL, 2: SCO/ESCO */
-    wiced_bt_lq_generic_stats           generic_stats;                         /**< ACL/SCO statistics */
     PACKED union
     {
         wiced_bt_lq_br_edr_stats        br_edr_stats;                          /**< br edr statistics */
