@@ -308,3 +308,4 @@ GKI_dequeue                                       , SYMBOL, PUBLIC, 0, , 1
 GKI_queue_is_empty                                , SYMBOL, PUBLIC, 0, , 1
 btu_stop_timer                                    , SYMBOL, PUBLIC, 0, , 1
 L2CA_FlowControl                                  , SYMBOL, PUBLIC, 0, , 1
+aa_pool_create                                    , SYMBOL, PUBLIC, 0, , 1
