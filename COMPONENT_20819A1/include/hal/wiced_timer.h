@@ -175,8 +175,8 @@ wiced_result_t wiced_stop_timer(wiced_timer_t* p_timer);
  * \param   p_timer     Pointer to the timer structure
  *
  * \return   wiced_bool_t
- * - WICED_TRUE if the timer is in use
- * - WICED_FALSE if the timer is not in use
+ * - non-zero value if the timer is in use
+ * - 0 if the timer is not in use
 *******************************************************************************/
 wiced_bool_t wiced_is_timer_in_use(wiced_timer_t* p_timer);
 
