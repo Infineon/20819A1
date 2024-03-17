@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -34,26 +34,31 @@
 #include "wiced_platform.h"
 #include "spar_utils.h"
 
-extern wiced_platform_gpio_t platform_gpio_pins[];
-extern wiced_platform_led_config_t platform_led[];
+extern wiced_platform_gpio_t          platform_gpio_pins[];
+extern wiced_platform_led_config_t    platform_led[];
 extern wiced_platform_button_config_t platform_button[];
-extern wiced_platform_gpio_config_t platform_gpio[];
-extern size_t platform_gpio_pin_count;
-extern size_t led_count;
-extern size_t button_count;
-extern size_t gpio_count;
+extern wiced_platform_gpio_config_t   platform_gpio[];
+extern size_t                         platform_gpio_pin_count;
+extern size_t                         led_count;
+extern size_t                         button_count;
+extern size_t                         gpio_count;
 
+/*
+ * wiced_platform_get_function_gpio_pin
+ */
 wiced_bt_gpio_numbers_t wiced_platform_get_function_gpio_pin(wiced_bt_gpio_function_t fn)
 {
-    for (int i=0;i<platform_gpio_pin_count;i++)
+    for (int i = 0; i < platform_gpio_pin_count; i++)
     {
         if (platform_gpio_pins[i].functionality == fn)
+        {
             return platform_gpio_pins[i].gpio_pin;
+        }
     }
     return MAX_NUM_OF_GPIO; // indicate not found
 }
 
-extern void wiced_app_hal_init(void );
+extern void wiced_app_hal_init(void);
 /* utility functions */
 
 /**
@@ -67,10 +72,10 @@ extern void wiced_app_hal_init(void );
  *  \return none
  *
  */
-void wiced_platform_register_button_callback(wiced_platform_button_number_t button, void (*userfn)(void*, UINT8), void* userdata,
-                wiced_platform_button_interrupt_edge_t trigger_edge)
+void wiced_platform_register_button_callback(wiced_platform_button_number_t button, void (*userfn)(void *, UINT8), void *userdata,
+                                             wiced_platform_button_interrupt_edge_t trigger_edge)
 {
-    if(button < button_count)
+    if (button < button_count)
     {
         wiced_hal_gpio_register_pin_for_interrupt(*platform_button[button].gpio, userfn, userdata);
         wiced_hal_gpio_configure_pin(*platform_button[button].gpio, (platform_button[button].config | trigger_edge), platform_button[button].default_state);
@@ -87,7 +92,7 @@ void wiced_platform_register_button_callback(wiced_platform_button_number_t butt
  */
 uint32_t wiced_platform_get_button_pressed_value(wiced_platform_button_number_t button)
 {
-	return platform_button[button].button_pressed_value;
+    return platform_button[button].button_pressed_value;
 }
 
 /**

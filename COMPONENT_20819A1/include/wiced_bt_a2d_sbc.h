@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -35,7 +35,8 @@
  * Low complexity subband codec (SBC) A2DP Application Programming Interface
  *
  */
-#pragma once
+#ifndef WICED_BT_A2D_SBC_H
+#define WICED_BT_A2D_SBC_H
 
 /*****************************************************************************
 **  Constants
@@ -89,13 +90,13 @@
 /* data type for the SBC Codec Information Element*/
 typedef struct
 {
-    uint8_t   samp_freq;      /* Sampling frequency */
-    uint8_t   ch_mode;        /* Channel mode */
-    uint8_t   block_len;      /* Block length */
-    uint8_t   num_subbands;   /* Number of subbands */
-    uint8_t   alloc_mthd;     /* Allocation method */
-    uint8_t   max_bitpool;    /* Maximum bitpool */
-    uint8_t   min_bitpool;    /* Minimum bitpool */
+    uint8_t samp_freq;        /* Sampling frequency */
+    uint8_t ch_mode;          /* Channel mode */
+    uint8_t block_len;        /* Block length */
+    uint8_t num_subbands;     /* Number of subbands */
+    uint8_t alloc_mthd;       /* Allocation method */
+    uint8_t max_bitpool;      /* Maximum bitpool */
+    uint8_t min_bitpool;      /* Minimum bitpool */
 } wiced_bt_a2d_sbc_cie_t;
 
 
@@ -216,3 +217,5 @@ void wiced_bt_a2d_pars_sbc_mpl_hdr(uint8_t *p_src, wiced_bool_t *p_frag,
 #endif
 
 /** @} wicedbt_a2dp_sbc */
+
+#endif // WICED_BT_A2D_SBC_H

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,6 +31,9 @@
  * so agrees to indemnify Cypress against all liability.
  */
 
+#ifndef WICED_BT_EDR_H
+#define WICED_BT_EDR_H
+
 /** @file
  *
  * EDR feature enable
@@ -49,3 +52,5 @@
  *
  */
 void wiced_bt_edr_acl_3mbps_enable(wiced_bool_t enable);
+
+#endif // WICED_BT_EDR_H

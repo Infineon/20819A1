@@ -1,41 +1,41 @@
 /**************************************************************************//**
-* \file   <bt_types.h>
-*
-* \brief    Contains definitions that are shared between
-*              units in the Bluetooth system such as events.
-*
-*//*****************************************************************************
-* Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
-* an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
-*
-* This software, including source code, documentation and related
-* materials ("Software") is owned by Cypress Semiconductor Corporation
-* or one of its affiliates ("Cypress") and is protected by and subject to
-* worldwide patent protection (United States and foreign),
-* United States copyright laws and international treaty provisions.
-* Therefore, you may use this Software only as provided in the license
-* agreement accompanying the software package from which you
-* obtained this Software ("EULA").
-* If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
-* non-transferable license to copy, modify, and compile the Software
-* source code solely for use in connection with Cypress's
-* integrated circuit products.  Any reproduction, modification, translation,
-* compilation, or representation of this Software except as specified
-* above is prohibited without the express written permission of Cypress.
-*
-* Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
-* reserves the right to make changes to the Software without notice. Cypress
-* does not assume any liability arising out of the application or use of the
-* Software or any product or circuit described in the Software. Cypress does
-* not authorize its products for use in any products where a malfunction or
-* failure of the Cypress product may reasonably be expected to result in
-* significant property damage, injury or death ("High Risk Product"). By
-* including Cypress's product in a High Risk Product, the manufacturer
-* of such system or application assumes all risk of such use and in doing
-* so agrees to indemnify Cypress against all liability.
-*******************************************************************************/
+ * \file   <bt_types.h>
+ *
+ * \brief    Contains definitions that are shared between
+ *              units in the Bluetooth system such as events.
+ *
+ *//*****************************************************************************
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
+ * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
+ *
+ * This software, including source code, documentation and related
+ * materials ("Software") is owned by Cypress Semiconductor Corporation
+ * or one of its affiliates ("Cypress") and is protected by and subject to
+ * worldwide patent protection (United States and foreign),
+ * United States copyright laws and international treaty provisions.
+ * Therefore, you may use this Software only as provided in the license
+ * agreement accompanying the software package from which you
+ * obtained this Software ("EULA").
+ * If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
+ * non-transferable license to copy, modify, and compile the Software
+ * source code solely for use in connection with Cypress's
+ * integrated circuit products.  Any reproduction, modification, translation,
+ * compilation, or representation of this Software except as specified
+ * above is prohibited without the express written permission of Cypress.
+ *
+ * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
+ * reserves the right to make changes to the Software without notice. Cypress
+ * does not assume any liability arising out of the application or use of the
+ * Software or any product or circuit described in the Software. Cypress does
+ * not authorize its products for use in any products where a malfunction or
+ * failure of the Cypress product may reasonably be expected to result in
+ * significant property damage, injury or death ("High Risk Product"). By
+ * including Cypress's product in a High Risk Product, the manufacturer
+ * of such system or application assumes all risk of such use and in doing
+ * so agrees to indemnify Cypress against all liability.
+ *******************************************************************************/
 #ifndef BT_TYPES_H
 #define BT_TYPES_H
 
@@ -48,23 +48,23 @@
 #endif
 
 /******************************************************************************
-* READ WELL !!!
-*
-* This section defines global events. These are events that cross layers.
-* Any event that passes between layers MUST be one of these events. Tasks
-* can use their own events internally, but a FUNDAMENTAL design issue is
-* that global events MUST be one of these events defined below.
-*
-* The convention used is the the event name contains the layer that the
-* event is going to.
-******************************************************************************/
+ * READ WELL !!!
+ *
+ * This section defines global events. These are events that cross layers.
+ * Any event that passes between layers MUST be one of these events. Tasks
+ * can use their own events internally, but a FUNDAMENTAL design issue is
+ * that global events MUST be one of these events defined below.
+ *
+ * The convention used is the the event name contains the layer that the
+ * event is going to.
+ ******************************************************************************/
 #define BT_EVT_MASK                 0xFF00
 #define BT_SUB_EVT_MASK             0x00FF
 
 
 /******************************************************************************
-* To Bluetooth Upper Layers
-******************************************************************************/
+ * To Bluetooth Upper Layers
+ ******************************************************************************/
 #define BT_EVT_TO_BTU_L2C_EVT       0x0900      /* L2CAP event */
 #define BT_EVT_TO_BTU_HCI_EVT       0x1000      /* HCI Event */
 #define BT_EVT_TO_BTU_HCI_BR_EDR_EVT (0x0000 | BT_EVT_TO_BTU_HCI_EVT)      /* Event from BR/EDR controller */
@@ -87,8 +87,8 @@
 #define BT_EVT_BTISE                0x1C00      /* Insight Script Engine event */
 
 /******************************************************************************
-* To LM
-******************************************************************************/
+ * To LM
+ ******************************************************************************/
 #define BT_EVT_TO_LM_HCI_CMD        0x2000      /* HCI Command */
 #define BT_EVT_TO_LM_HCI_ACL        0x2100      /* HCI ACL Data */
 #define BT_EVT_TO_LM_HCI_SCO        0x2200      /* HCI SCO Data */
@@ -138,8 +138,8 @@
 
 
 /******************************************************************************
-* For NFC
-******************************************************************************/
+ * For NFC
+ ******************************************************************************/
 #define BT_EVT_TO_NFC_NCI           0x4000      /* NCI Command, Notification or Data */
 #define BT_EVT_TO_NFC_NCI_VS        0x4200      /* Vendor specific message */
 #define BT_EVT_TO_NFC_MSGS          0x4300      /* Messages between NFC and NCI task */
@@ -190,10 +190,10 @@
 /* Defines the header of each buffer used in the Bluetooth stack. */
 typedef struct
 {
-    UINT16          event;
-    UINT16          len;
-    UINT16          offset;
-    UINT16          layer_specific;
+    UINT16 event;
+    UINT16 len;
+    UINT16 offset;
+    UINT16 layer_specific;
 } BT_HDR;
 
 #define BT_HDR_SIZE (sizeof (BT_HDR))
@@ -225,8 +225,8 @@ typedef struct
 
 
 /******************************************************************************
-* Macros to get and put bytes to and from a stream (Little Endian format).
-******************************************************************************/
+ * Macros to get and put bytes to and from a stream (Little Endian format).
+ ******************************************************************************/
 #define UINT128_TO_STREAM(p, u128) {*(p)++ = (UINT8)(u128);       *(p)++ = (UINT8)((u128) >> 8);*(p)++ = (UINT8)((u128) >> 16); *(p)++ = (UINT8)((u128) >> 24); \
                                     *(p)++ = (UINT8)((u128) >> 32); *(p)++ = (UINT8)((u128) >> 40);*(p)++ = (UINT8)((u128) >> 48); *(p)++ = (UINT8)((u128) >> 56); \
                                     *(p)++ = (UINT8)((u128) >> 64); *(p)++ = (UINT8)((u128) >> 72);*(p)++ = (UINT8)((u128) >> 80); *(p)++ = (UINT8)((u128) >> 88); \
@@ -268,12 +268,12 @@ typedef struct
     #define STREAM_TO_UINT32(u32, p) {u32 = *(UINT32 *)(p); (p) += 4;}
     #define STREAM_TO_UINT16(u16, p) {u16 = *(UINT16 *)(p); (p) += 2;}
 
-    extern UINT8 *copyBdaToStream(UINT8 *pStream, UINT8 *pBDA);
-    extern UINT8 *copyStreamToBda(UINT8 *pBDA, UINT8 *pStream);
+extern UINT8 *copyBdaToStream(UINT8 *pStream, UINT8 *pBDA);
+extern UINT8 *copyStreamToBda(UINT8 *pBDA, UINT8 *pStream);
 
     #define BDADDR_TO_STREAM(p, a)   { p = copyBdaToStream(p, (UINT8 *)(a)); }
     #define STREAM_TO_BDADDR(a, p)   { p = copyStreamToBda((UINT8 *)(a), p);}
-#else
+#else // if !(defined WICEDX) && !(defined WIN32) && !(defined __ANDROID__) && !(defined __APPLE__)
     #define UINT32_TO_STREAM(p, u32) {*(p)++ = (UINT8)(u32); *(p)++ = (UINT8)((u32) >> 8); *(p)++ = (UINT8)((u32) >> 16); *(p)++ = (UINT8)((u32) >> 24);}
     #define UINT16_TO_STREAM(p, u16) {*(p)++ = (UINT8)(u16); *(p)++ = (UINT8)((u16) >> 8);}
     #define BDADDR_TO_STREAM(p, a)   {register int ijk; for (ijk = 0; ijk < BD_ADDR_LEN;  ijk++) *(p)++ = (UINT8) a[BD_ADDR_LEN - 1 - ijk];}
@@ -281,14 +281,13 @@ typedef struct
     #define STREAM_TO_UINT16(u16, p) {u16 = ((UINT16)(*(p)) + (((UINT16)(*((p) + 1))) << 8)); (p) += 2;}
     #define STREAM_TO_UINT32(u32, p) {u32 = (((UINT32)(*(p))) + ((((UINT32)(*((p) + 1)))) << 8) + ((((UINT32)(*((p) + 2)))) << 16) + ((((UINT32)(*((p) + 3)))) << 24)); (p) += 4;}
     #define STREAM_TO_BDADDR(a, p)   {register int ijk; register UINT8 *pbda = (UINT8 *)a + BD_ADDR_LEN - 1; for (ijk = 0; ijk < BD_ADDR_LEN; ijk++) *pbda-- = *p++;}
-#endif
-
+#endif // if !(defined WICEDX) && !(defined WIN32) && !(defined __ANDROID__) && !(defined __APPLE__)
 
 
 /******************************************************************************
-* Macros to get and put bytes to and from a field (Little Endian format).
-* These are the same as to stream, except the pointer is not incremented.
-******************************************************************************/
+ * Macros to get and put bytes to and from a field (Little Endian format).
+ * These are the same as to stream, except the pointer is not incremented.
+ ******************************************************************************/
 #define UINT32_TO_FIELD(p, u32) {*(UINT8 *)(p) = (UINT8)(u32); *((UINT8 *)(p)+1) = (UINT8)((u32) >> 8); *((UINT8 *)(p)+2) = (UINT8)((u32) >> 16); *((UINT8 *)(p)+3) = (UINT8)((u32) >> 24);}
 #define UINT24_TO_FIELD(p, u24) {*(UINT8 *)(p) = (UINT8)(u24); *((UINT8 *)(p)+1) = (UINT8)((u24) >> 8); *((UINT8 *)(p)+2) = (UINT8)((u24) >> 16);}
 #define UINT16_TO_FIELD(p, u16) {*(UINT8 *)(p) = (UINT8)(u16); *((UINT8 *)(p)+1) = (UINT8)((u16) >> 8);}
@@ -296,8 +295,8 @@ typedef struct
 
 
 /******************************************************************************
-* Macros to get and put bytes to and from a stream (Big Endian format)
-******************************************************************************/
+ * Macros to get and put bytes to and from a stream (Big Endian format)
+ ******************************************************************************/
 #define UINT128_TO_BE_STREAM(p, u128) {*(p)++ = (UINT8)(u128)>> 120;       *(p)++ = (UINT8)((u128) >> 112);*(p)++ = (UINT8)((u128) >> 104); *(p)++ = (UINT8)((u128) >> 96); \
                                     *(p)++ = (UINT8)((u128) >> 88); *(p)++ = (UINT8)((u128) >> 80);*(p)++ = (UINT8)((u128) >> 72); *(p)++ = (UINT8)((u128) >> 64); \
                                     *(p)++ = (UINT8)((u128) >> 56); *(p)++ = (UINT8)((u128) >> 48);*(p)++ = (UINT8)((u128) >> 40); *(p)++ = (UINT8)((u128) >> 32); \
@@ -320,9 +319,9 @@ typedef struct
 
 
 /******************************************************************************
-* Macros to get and put bytes to and from a field (Big Endian format).
-* These are the same as to stream, except the pointer is not incremented.
-******************************************************************************/
+ * Macros to get and put bytes to and from a field (Big Endian format).
+ * These are the same as to stream, except the pointer is not incremented.
+ ******************************************************************************/
 #define UINT32_TO_BE_FIELD(p, u32) {*(UINT8 *)(p) = (UINT8)((u32) >> 24);  *((UINT8 *)(p)+1) = (UINT8)((u32) >> 16); *((UINT8 *)(p)+2) = (UINT8)((u32) >> 8); *((UINT8 *)(p)+3) = (UINT8)(u32); }
 #define UINT24_TO_BE_FIELD(p, u24) {*(UINT8 *)(p) = (UINT8)((u24) >> 16); *((UINT8 *)(p)+1) = (UINT8)((u24) >> 8); *((UINT8 *)(p)+2) = (UINT8)(u24);}
 #define UINT16_TO_BE_FIELD(p, u16) {*(UINT8 *)(p) = (UINT8)((u16) >> 8); *((UINT8 *)(p)+1) = (UINT8)(u16);}
@@ -381,14 +380,15 @@ typedef UINT8 ACO[ACO_LEN];                 /* Authenticated ciphering offset */
 #define COF_LEN         12
 typedef UINT8 COF[COF_LEN];                 /* Ciphering offset number */
 
-typedef struct {
-    UINT8               qos_flags;          /* TBD */
-    UINT8               service_type;       /* see below */
-    UINT32              token_rate;         /* bytes/second */
-    UINT32              token_bucket_size;  /* bytes */
-    UINT32              peak_bandwidth;     /* bytes/second */
-    UINT32              latency;            /* microseconds */
-    UINT32              delay_variation;    /* microseconds */
+typedef struct
+{
+    UINT8  qos_flags;                       /* TBD */
+    UINT8  service_type;                    /* see below */
+    UINT32 token_rate;                      /* bytes/second */
+    UINT32 token_bucket_size;               /* bytes */
+    UINT32 peak_bandwidth;                  /* bytes/second */
+    UINT32 latency;                         /* microseconds */
+    UINT32 delay_variation;                 /* microseconds */
 } FLOW_SPEC;
 
 /* Values for service_type */
@@ -443,15 +443,14 @@ typedef struct
 #define LEN_UUID_32     4
 #define LEN_UUID_128    16
 
-    UINT16          len;
+    UINT16 len;
 
     union
     {
-        UINT16      uuid16;
-        UINT32      uuid32;
-        UINT8       uuid128[MAX_UUID_SIZE];
+        UINT16 uuid16;
+        UINT32 uuid32;
+        UINT8  uuid128[MAX_UUID_SIZE];
     } uu;
-
 } tBT_UUID;
 
 #define BT_EIR_FLAGS_TYPE                   0x01
@@ -486,8 +485,8 @@ typedef struct
 #define BRCM_PROPRIETARY_GUID_BASE  0xda23, 0x4102, 0xa3, 0xbb, 0xc1, 0x71, 0xba, 0x09, 0x6f, 0x21
 
 /* We will not allocate a PSM in the reserved range to 3rd party apps. */
-#define BRCM_RESERVED_PSM_START	    0x5AE1
-#define BRCM_RESERVED_PSM_END	    0x5AFF
+#define BRCM_RESERVED_PSM_START     0x5AE1
+#define BRCM_RESERVED_PSM_END       0x5AFF
 
 #define BRCM_UTILITY_SERVICE_PSM    0x5AE1
 #define BRCM_MATCHER_PSM            0x5AE3
@@ -503,20 +502,20 @@ typedef struct
 
 typedef struct
 {
-    UINT32   is_connected;
-    INT32    rssi;
-    UINT32   bytes_sent;
-    UINT32   bytes_rcvd;
-    UINT32   duration;
+    UINT32 is_connected;
+    INT32  rssi;
+    UINT32 bytes_sent;
+    UINT32 bytes_rcvd;
+    UINT32 duration;
 } tBT_CONN_STATS;
 
-#endif
+#endif // ifndef BT_CONN_STATS_DEFINED
 
 /*****************************************************************************
-*                          Low Energy definitions
-*
-*                                Address types
-******************************************************************************/
+ *                          Low Energy definitions
+ *
+ *                                Address types
+ ******************************************************************************/
 #define BLE_ADDR_PUBLIC         0x00
 #define BLE_ADDR_RANDOM         0x01
 #define BLE_ADDR_PUBLIC_ID      0x02
@@ -533,12 +532,12 @@ typedef UINT8 tBT_TRANSPORT;
 
 typedef struct
 {
-    tBLE_ADDR_TYPE      type;
-    BD_ADDR             bda;
+    tBLE_ADDR_TYPE type;
+    BD_ADDR        bda;
 } tBLE_BD_ADDR;
 
 /* Device Types
-*/
+ */
 #define BT_DEVICE_TYPE_BREDR   0x01
 #define BT_DEVICE_TYPE_BLE     0x02
 #define BT_DEVICE_TYPE_DUMO    0x03
@@ -635,7 +634,7 @@ typedef UINT8 tBT_DEVICE_TYPE;
 #define TRACE_ORG_USER_SCR          0x00000800
 #define TRACE_ORG_TESTER            0x00000900
 #define TRACE_ORG_MAX_NUM           10          /* 32-bit mask; must be < 32 */
-#define TRACE_LITE_ORG_MAX_NUM		6
+#define TRACE_LITE_ORG_MAX_NUM      6
 #define TRACE_ORG_ALL               0x03ff
 #define TRACE_ORG_RPC_TRANS         0x04
 

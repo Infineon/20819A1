@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -38,8 +38,8 @@
  *
  * @{
  */
-#ifndef _WICED_BT_AUDIO_H_
-#define _WICED_BT_AUDIO_H_
+#ifndef WICED_BT_AUDIO_H_
+#define WICED_BT_AUDIO_H_
 
 #include "wiced_bt_a2d.h"
 #include "wiced_bt_a2d_sbc.h"
@@ -57,7 +57,7 @@ typedef enum
     AUDIO_ROUTE_APP                  = 0x03,  /**< Route the PCM samples to app.  Receive the audio data OTA, decode and send to app. Applicable in case of audio sink */
     AUDIO_ROUTE_COMPRESSED_TRANSPORT = 0x04,  /**< Route the compressed audio data(AVDTP media packet, including the header) over transport. Receive the audio data OTA and send to transport. Applicable in case of audio sink */
     AUDIO_ROUTE_COMPRESSED_APP       = 0x05,  /**< Route the compressed audio data(AVDTP media packet, including the header) to app. Receive the audio data OTA and send to transport. Applicable in case of audio sink */
-}wiced_audio_route_t;
+} wiced_audio_route_t;
 
 /** wiced device roles */
 typedef enum
@@ -65,7 +65,7 @@ typedef enum
     WICED_AUDIO_SOURCE_ROLE = 1 << 1,   /**< Audio Source */
     WICED_AUDIO_SINK_ROLE   = 1 << 2,   /**< Audio Sink */
     WICED_HF_ROLE           = 1 << 3,   /**< Handsfree */
-}wiced_device_role_t;
+} wiced_device_role_t;
 
 /*****************************************************************************
  *          Type Definitions
@@ -75,13 +75,14 @@ typedef enum
  */
 typedef struct
 {
-    wiced_device_role_t     role;                            /**< Role if audio source, sink or hf device */
+    wiced_device_role_t role;                                /**< Role if audio source, sink or hf device */
     // Size of memory needed by the audio source device to store the Audio data received from a host MCU over UART/SPI transport before encoding and transmitting over BT radio.
     //Or Size of the memory needed by the audio sink device to send the received audio data to the host MCU over transport
-    uint32_t                audio_tx_buffer_size;           /**< Audio Tx buffer size */
+    uint32_t audio_tx_buffer_size;                          /**< Audio Tx buffer size */
     // Size of memory to allocate for use by codec and audio jitter buffer. Applicattion specifies the size based on the codecs supportted for various use cases. See wiced_audio_buffer_initialize()
-    uint32_t                audio_codec_buffer_size;        /**< Codec buffer size */
-    uint8_t                 audio_tx_buffer_watermark_level;/**< Watermark level in % in terms of % of buffers remaining. Default is 50 for 50%. E.g. if set to 70, fw will request additional data when buffer reaches 70% of the full buffer size (i.e., audio_tx_buffer_size). Only applicable for A2DP source applications */
+    uint32_t audio_codec_buffer_size;                       /**< Codec buffer size */
+    uint8_t  audio_tx_buffer_watermark_level;               /**< Watermark level in % in terms of % of buffers remaining. Default is 50 for 50%. E.g. if set to 70, fw will request additional data when buffer reaches 70% of the full buffer size (i.e.,
+                                                               audio_tx_buffer_size). Only applicable for A2DP source applications */
 } wiced_bt_audio_config_buffer_t;
 
 /** A2DP statistics structure
@@ -93,13 +94,14 @@ typedef struct
  *      packet_ack_stats_table [9] will give No of packets having delay between 90 -99 msec
  *      packet_ack_stats_table [10] will give No of packets having delay > 100 msec
  */
-typedef struct {
+typedef struct
+{
     uint32_t duration;                       /**< Duration of the a2dp streaming in which stats were captured */
     uint32_t packet_ack_stats_table[11];     /**< Delay between packet sent OTA and ack received */
 } wiced_bt_a2dp_statistics_t;
 
 /** Audio suspend complete callback */
-typedef void ( *wiced_audio_suspend_complete_cback_t )( void );
+typedef void ( *wiced_audio_suspend_complete_cback_t )(void);
 
 /**
  * Audio buffer empty callback
@@ -109,11 +111,11 @@ typedef void ( *wiced_audio_suspend_complete_cback_t )( void );
  *
  * @param total_intr_count      : Total number of i2s interrupts
  * @param total_empty_count      : Total number of times the audio buffer is empty
-  * @param consecutive_empty_count             : Number of consecutive times the audio buffer is empty, resets on receiving audio data
+ * @param consecutive_empty_count             : Number of consecutive times the audio buffer is empty, resets on receiving audio data
  *
  */
-typedef void ( *wiced_audio_buffer_empty_cback_t )( uint32_t total_intr_count,
-                            uint32_t total_empty_count, uint32_t consecutive_empty_count );
+typedef void ( *wiced_audio_buffer_empty_cback_t )(uint32_t total_intr_count,
+                                                   uint32_t total_empty_count, uint32_t consecutive_empty_count);
 
 /*****************************************************************************
  *          Function Prototypes
@@ -147,7 +149,7 @@ typedef void ( *wiced_audio_buffer_empty_cback_t )( uint32_t total_intr_count,
  *       In case of multiple profiles used by application simultaneously, example A2DP sink and HFP device profiles,
  *            size specified should be the maximum of the recommended value for each profile supported.
  */
-wiced_result_t wiced_audio_buffer_initialize( wiced_bt_audio_config_buffer_t wiced_audio_cfg_pool );
+wiced_result_t wiced_audio_buffer_initialize(wiced_bt_audio_config_buffer_t wiced_audio_cfg_pool);
 
 /**
  * Function         wiced_audio_start
@@ -173,7 +175,7 @@ wiced_result_t wiced_audio_buffer_initialize( wiced_bt_audio_config_buffer_t wic
  * @return          void
  *
  */
-void wiced_audio_start( int is_master, int audio_route, uint16_t lcid, wiced_bt_a2d_sbc_cie_t * pSbc );
+void wiced_audio_start(int is_master, int audio_route, uint16_t lcid, wiced_bt_a2d_sbc_cie_t *pSbc);
 
 /**
  * Function         wiced_audio_stop
@@ -185,7 +187,7 @@ void wiced_audio_start( int is_master, int audio_route, uint16_t lcid, wiced_bt_
  * @return          void
  *
  */
-void wiced_audio_stop( uint16_t lcid );
+void wiced_audio_stop(uint16_t lcid);
 
 /**
  * Function         wiced_audio_suspend
@@ -197,7 +199,7 @@ void wiced_audio_stop( uint16_t lcid );
  * @return          void
  *
  */
-void wiced_audio_suspend ( uint16_t lcid, wiced_audio_suspend_complete_cback_t p_cback );
+void wiced_audio_suspend(uint16_t lcid, wiced_audio_suspend_complete_cback_t p_cback);
 
 /**
  * Function         wiced_audio_register_buffer_empty_cback
@@ -209,7 +211,7 @@ void wiced_audio_suspend ( uint16_t lcid, wiced_audio_suspend_complete_cback_t p
  * @return          void
  *
  */
-void wiced_audio_register_buffer_empty_cback( wiced_audio_buffer_empty_cback_t p_cback );
+void wiced_audio_register_buffer_empty_cback(wiced_audio_buffer_empty_cback_t p_cback);
 
 /**
  * Function         wiced_audio_use_sw_timing
@@ -227,7 +229,7 @@ void wiced_audio_register_buffer_empty_cback( wiced_audio_buffer_empty_cback_t p
  * @return          void
  *
  */
-void wiced_audio_use_sw_timing( int enable );
+void wiced_audio_use_sw_timing(int enable);
 
 /**
  * Function         wiced_audio_set_sinwave
@@ -240,7 +242,7 @@ void wiced_audio_use_sw_timing( int enable );
  * @return          void
  *
  */
-void wiced_audio_set_sinwave( int16_t* pIn );
+void wiced_audio_set_sinwave(int16_t *pIn);
 
 /**
  * Function         wiced_audio_get_statistics
@@ -252,26 +254,27 @@ void wiced_audio_set_sinwave( int16_t* pIn );
  * @return          void
  *
  */
-void wiced_audio_get_statistics (wiced_bt_a2dp_statistics_t *buffer_stat);
+void wiced_audio_get_statistics(wiced_bt_a2dp_statistics_t *buffer_stat);
 
 /**
-* Function Name     wiced_audio_set_packet_types
-*
-* Sets the packet types used for a specific ACL connection and also sets the
-* max_audio_mtu that the audio processing unit uses, based on the provided
-* packet types, to format the SBC frames. By setting the max_audio_mtu according
-* to the packet type, it helps to ensure no fragmentation across SBC frames
-* occur.
-*
-* @param[in] peer_bda        Peer address of the desired ACL connection
-* @param[in] packet_types    Packet type bitmask. See hcidef.h for definitions
-*                            for packet type masks (BT1.2 and BT2.0 definitions).
-*
-* @return result             WICED_BT_PENDING is command has started successfully
-*                            else wiced result error code.
-*
-*/
-wiced_result_t wiced_audio_set_packet_types( BD_ADDR peer_bda, UINT16 packet_types );
+ * Function Name     wiced_audio_set_packet_types
+ *
+ * Sets the packet types used for a specific ACL connection and also sets the
+ * max_audio_mtu that the audio processing unit uses, based on the provided
+ * packet types, to format the SBC frames. By setting the max_audio_mtu according
+ * to the packet type, it helps to ensure no fragmentation across SBC frames
+ * occur.
+ *
+ * @param[in] peer_bda        Peer address of the desired ACL connection
+ * @param[in] packet_types    Packet type bitmask. See hcidef.h for definitions
+ *                            for packet type masks (BT1.2 and BT2.0 definitions).
+ *
+ * @return result             WICED_BT_PENDING is command has started successfully
+ *                            else wiced result error code.
+ *
+ */
+wiced_result_t wiced_audio_set_packet_types(BD_ADDR peer_bda, UINT16 packet_types);
 
-#endif // _WICED_BT_AUDIO_H_
 /** @} wicedbt_audio_utils */
+
+#endif // WICED_BT_AUDIO_H_

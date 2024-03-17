@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,8 +32,8 @@
  */
 
 /********************************************************************************
-* File Name: hidevent.h
-*******************************************************************************/
+ * File Name: hidevent.h
+ *******************************************************************************/
 
 /** \addtogroup HidEvents HID Events
  *  \ingroup wicedbt
@@ -45,8 +45,8 @@
  */
 
 /// @{
-#ifndef __HID_EVENT_H_
-#define __HID_EVENT_H_
+#ifndef HID_EVENT_H_
+#define HID_EVENT_H_
 
 #include "brcm_fw_types.h"
 #include "keyscan.h"
@@ -58,65 +58,65 @@
 /// Predefined event types
 enum
 {
-        /// Reserved event type indicating that no event type is acceptable in places where an event type is required
-        HID_EVENT_NONE=0,
+    /// Reserved event type indicating that no event type is acceptable in places where an event type is required
+    HID_EVENT_NONE=0,
 
-        /// Motion along axis 0
-        HID_EVENT_MOTION_AXIS_0,
+    /// Motion along axis 0
+    HID_EVENT_MOTION_AXIS_0,
 
-        /// Motion along axis 1
-        HID_EVENT_MOTION_AXIS_1,
+    /// Motion along axis 1
+    HID_EVENT_MOTION_AXIS_1,
 
-        /// Motion along axis 2
-        HID_EVENT_MOTION_AXIS_2,
+    /// Motion along axis 2
+    HID_EVENT_MOTION_AXIS_2,
 
-        /// Motion along axis 3
-        HID_EVENT_MOTION_AXIS_3,
+    /// Motion along axis 3
+    HID_EVENT_MOTION_AXIS_3,
 
-        /// Motion along 2 axis. Useful for any input with 2 axis.
-        HID_EVENT_MOTION_AXIS_X_Y,
+    /// Motion along 2 axis. Useful for any input with 2 axis.
+    HID_EVENT_MOTION_AXIS_X_Y,
 
-        /// Motion along 2 axis. Useful for a second input with 2 axis, e.g. trackball on a mouse
-        HID_EVENT_MOTION_AXIS_A_B,
+    /// Motion along 2 axis. Useful for a second input with 2 axis, e.g. trackball on a mouse
+    HID_EVENT_MOTION_AXIS_A_B,
 
-        /// Change in button state
-        HID_EVENT_NEW_BUTTON_STATE,
+    /// Change in button state
+    HID_EVENT_NEW_BUTTON_STATE,
 
-        /// Change in key state
-        HID_EVENT_KEY_STATE_CHANGE,
+    /// Change in key state
+    HID_EVENT_KEY_STATE_CHANGE,
 
-        /// Motion Sensor data available
-        HID_EVENT_MOTION_DATA_AVAILABLE,
+    /// Motion Sensor data available
+    HID_EVENT_MOTION_DATA_AVAILABLE,
 
-        /// Voice data available
-        HID_EVENT_VOICE_DATA_AVAILABLE,
+    /// Voice data available
+    HID_EVENT_VOICE_DATA_AVAILABLE,
 
-        ///the hid event for BRCM_MIC_START
-        HID_EVENT_MIC_START,
+    ///the hid event for BRCM_MIC_START
+    HID_EVENT_MIC_START,
 
-        ///the hid event for BRCM_MIC_STOP
-        HID_EVENT_MIC_STOP,
+    ///the hid event for BRCM_MIC_STOP
+    HID_EVENT_MIC_STOP,
 
-        ///the hid event for BRCM_RC_MIC_START_REQ
-        HID_EVENT_RC_MIC_START_REQ,
+    ///the hid event for BRCM_RC_MIC_START_REQ
+    HID_EVENT_RC_MIC_START_REQ,
 
-        ///the hid event for BRCM_RC_MIC_STOP_REQ
-        HID_EVENT_RC_MIC_STOP_REQ,
+    ///the hid event for BRCM_RC_MIC_STOP_REQ
+    HID_EVENT_RC_MIC_STOP_REQ,
 
-        ///the hid event for BRCM_RC_VOICEMODE_RD_ACK
-        HID_EVENT_AUDIO_MODE,
+    ///the hid event for BRCM_RC_VOICEMODE_RD_ACK
+    HID_EVENT_AUDIO_MODE,
 
-        ///the hid event for BRCM_RC_CODECSETTINGS_RD_ACK
-        HID_EVENT_AUDIO_CODEC_RD,
+    ///the hid event for BRCM_RC_CODECSETTINGS_RD_ACK
+    HID_EVENT_AUDIO_CODEC_RD,
 
-        ///the hid event for BRCM_RC_CODECSETTINGS_WT_ACK
-        HID_EVENT_AUDIO_CODEC_WT,
+    ///the hid event for BRCM_RC_CODECSETTINGS_WT_ACK
+    HID_EVENT_AUDIO_CODEC_WT,
 
-        /// Event fifo overflow event
-        HID_EVENT_EVENT_FIFO_OVERFLOW = 0xfe,
+    /// Event fifo overflow event
+    HID_EVENT_EVENT_FIFO_OVERFLOW = 0xfe,
 
-        /// Reserved event type indicating that any event type is acceptable in places where an event type is required
-        HID_EVENT_ANY=0xff
+    /// Reserved event type indicating that any event type is acceptable in places where an event type is required
+    HID_EVENT_ANY=0xff,
 };
 
 /// Pack all events to limit the amount of memory used
@@ -126,11 +126,11 @@ enum
 typedef PACKED struct
 {
     /// Type of event
-    BYTE    eventType;
+    BYTE eventType;
 
     /// Poll sequence number. Used to identify events from seperate polls
-    BYTE    pollSeqn;
-}HidEvent;
+    BYTE pollSeqn;
+} HidEvent;
 
 /// Single axis event structure
 typedef PACKED struct
@@ -139,8 +139,8 @@ typedef PACKED struct
     HidEvent eventInfo;
 
     /// Motion along the axis
-    INT16   motion;
-}HidEventMotionSingleAxis;
+    INT16 motion;
+} HidEventMotionSingleAxis;
 
 /// XY motion event structure
 typedef PACKED struct
@@ -149,11 +149,11 @@ typedef PACKED struct
     HidEvent eventInfo;
 
     /// Motion along axis X
-    INT16    motionX;
+    INT16 motionX;
 
     /// Motion along axis Y
-    INT16   motionY;
-}HidEventMotionXY;
+    INT16 motionY;
+} HidEventMotionXY;
 
 /// AB motion event structure
 typedef PACKED struct
@@ -162,11 +162,11 @@ typedef PACKED struct
     HidEvent eventInfo;
 
     /// Motion along axis A
-    INT16   motionA;
+    INT16 motionA;
 
     /// Motion along axis B
-    INT16   motionB;
-}HidEventMotionAB;
+    INT16 motionB;
+} HidEventMotionAB;
 
 /// Button state change event structure
 typedef PACKED struct
@@ -175,8 +175,8 @@ typedef PACKED struct
     HidEvent eventInfo;
 
     /// New state of buttons
-    UINT16    buttonState;
-}HidEventButtonStateChange;
+    UINT16 buttonState;
+} HidEventButtonStateChange;
 
 /// Key state change event structure
 typedef PACKED struct
@@ -186,28 +186,28 @@ typedef PACKED struct
 
     /// Key event.
     KeyEvent keyEvent;
-}HidEventKey;
+} HidEventKey;
 
 /// Any generic event
 typedef PACKED struct
 {
-  /// Base event info
-  HidEvent eventInfo;
+    /// Base event info
+    HidEvent eventInfo;
 
-  /// The event
-  UINT32 anyEvent;
-}HidEventAny;
+    /// The event
+    UINT32 anyEvent;
+} HidEventAny;
 
 typedef PACKED struct
 {
     /// Base event info
     HidEvent eventInfo;
 
-    void * userDataPtr;
-}HidEventUserDefine;
+    void *userDataPtr;
+} HidEventUserDefine;
 
 #pragma pack()
 
 /// @}
 
-#endif
+#endif // ifndef HID_EVENT_H_

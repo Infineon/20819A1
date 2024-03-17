@@ -1,43 +1,43 @@
 /**************************************************************************//**
-*
-* \file      <l2cdefs.h>
-*
-* \brief
-*   Contains L2CAP protocol definitions.
-*
-*
-*//*****************************************************************************
-* Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
-* an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
-*
-* This software, including source code, documentation and related
-* materials ("Software") is owned by Cypress Semiconductor Corporation
-* or one of its affiliates ("Cypress") and is protected by and subject to
-* worldwide patent protection (United States and foreign),
-* United States copyright laws and international treaty provisions.
-* Therefore, you may use this Software only as provided in the license
-* agreement accompanying the software package from which you
-* obtained this Software ("EULA").
-* If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
-* non-transferable license to copy, modify, and compile the Software
-* source code solely for use in connection with Cypress's
-* integrated circuit products.  Any reproduction, modification, translation,
-* compilation, or representation of this Software except as specified
-* above is prohibited without the express written permission of Cypress.
-*
-* Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
-* reserves the right to make changes to the Software without notice. Cypress
-* does not assume any liability arising out of the application or use of the
-* Software or any product or circuit described in the Software. Cypress does
-* not authorize its products for use in any products where a malfunction or
-* failure of the Cypress product may reasonably be expected to result in
-* significant property damage, injury or death ("High Risk Product"). By
-* including Cypress's product in a High Risk Product, the manufacturer
-* of such system or application assumes all risk of such use and in doing
-* so agrees to indemnify Cypress against all liability.
-*******************************************************************************/
+ *
+ * \file      <l2cdefs.h>
+ *
+ * \brief
+ *   Contains L2CAP protocol definitions.
+ *
+ *
+ *//*****************************************************************************
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
+ * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
+ *
+ * This software, including source code, documentation and related
+ * materials ("Software") is owned by Cypress Semiconductor Corporation
+ * or one of its affiliates ("Cypress") and is protected by and subject to
+ * worldwide patent protection (United States and foreign),
+ * United States copyright laws and international treaty provisions.
+ * Therefore, you may use this Software only as provided in the license
+ * agreement accompanying the software package from which you
+ * obtained this Software ("EULA").
+ * If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
+ * non-transferable license to copy, modify, and compile the Software
+ * source code solely for use in connection with Cypress's
+ * integrated circuit products.  Any reproduction, modification, translation,
+ * compilation, or representation of this Software except as specified
+ * above is prohibited without the express written permission of Cypress.
+ *
+ * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
+ * reserves the right to make changes to the Software without notice. Cypress
+ * does not assume any liability arising out of the application or use of the
+ * Software or any product or circuit described in the Software. Cypress does
+ * not authorize its products for use in any products where a malfunction or
+ * failure of the Cypress product may reasonably be expected to result in
+ * significant property damage, injury or death ("High Risk Product"). By
+ * including Cypress's product in a High Risk Product, the manufacturer
+ * of such system or application assumes all risk of such use and in doing
+ * so agrees to indemnify Cypress against all liability.
+ *******************************************************************************/
 
 #ifndef L2CDEFS_H
 #define L2CDEFS_H
@@ -180,7 +180,6 @@
 #define L2CAP_FIXED_CHNL_SMP_BR_BIT     (1 << L2CAP_SMP_BR_CID)         /* Security Manager over BR Supported */
 
 
-
 /* Define the L2CAP configuration result codes */
 #define L2CAP_CFG_OK                    0
 #define L2CAP_CFG_UNACCEPTABLE_PARAMS   1
@@ -280,7 +279,8 @@
 #define L2CAP_SDU_LEN_OFFSET       2   /* SDU length offset is 2 bytes */
 #define L2CAP_EXT_CONTROL_OVERHEAD 4   /* Extended Control Field */
 #define L2CAP_MAX_HEADER_FCS       (L2CAP_PKT_OVERHEAD + L2CAP_EXT_CONTROL_OVERHEAD + L2CAP_SDU_LEN_OVERHEAD + L2CAP_FCS_LEN)
-                                   /* length(2), channel(2), control(4), SDU length(2) FCS(2) */
+/* length(2), channel(2), control(4), SDU length(2) FCS(2) */
+
 /* Part of L2CAP_MIN_OFFSET that is not part of L2CAP. */
 #define L2CAP_OFFSET_WO_L2HDR  (L2CAP_MIN_OFFSET-(L2CAP_PKT_OVERHEAD+L2CAP_FCR_OVERHEAD))
 
@@ -319,8 +319,8 @@
 #define L2CAP_FCR_SEQ_MODULO          0x3F     /* Mask for sequence numbers (range 0 - 63) */
 
 /******************************************************************************
-* The following definitions are only used for internal testing of ERTM at the application level
-******************************************************************************/
+ * The following definitions are only used for internal testing of ERTM at the application level
+ ******************************************************************************/
 /* L2CA_SetupErtmTest() corruption test types */
 #define L2CAP_FCR_TTYPE_CORR_IFRAME     0       /* Corrupt one or more I-frames, based on count */
 #define L2CAP_FCR_TTYPE_CORR_SFRAME     1       /* Corrupt an S-frame, (acknowledgement) */

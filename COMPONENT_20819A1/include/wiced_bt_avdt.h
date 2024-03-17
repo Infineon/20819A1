@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -37,7 +37,8 @@
  * Programming Interface
  *
  */
-#pragma once
+#ifndef WICED_BT_AVDT_H
+#define WICED_BT_AVDT_H
 
 #include "wiced_bt_types.h"
 #include "bt_target.h"
@@ -326,142 +327,153 @@ typedef uint8_t AVDT_REPORT_TYPE;
 
 typedef struct
 {
-    uint32_t  ntp_sec;        /* NTP time: seconds relative to 0h UTC on 1 January 1900 */
-    uint32_t  ntp_frac;       /* NTP time: the fractional part */
-    uint32_t  rtp_time;       /* timestamp in RTP header */
-    uint32_t  pkt_count;      /* sender's packet count: since starting transmission
+    uint32_t ntp_sec;         /* NTP time: seconds relative to 0h UTC on 1 January 1900 */
+    uint32_t ntp_frac;        /* NTP time: the fractional part */
+    uint32_t rtp_time;        /* timestamp in RTP header */
+    uint32_t pkt_count;       /* sender's packet count: since starting transmission
                                * up until the time this SR packet was generated. */
-    uint32_t  octet_count;    /* sender's octet count: same comment */
+    uint32_t octet_count;     /* sender's octet count: same comment */
 } wiced_bt_avdt_sender_info_t;
 
 typedef struct
 {
-    uint8_t   frag_lost;      /* fraction lost since last RR */
-    uint32_t  packet_lost;    /* cumulative number of packets lost since the beginning */
-    uint32_t  seq_num_rcvd;   /* extended highest sequence number received */
-    uint32_t  jitter;         /* interarrival jitter */
-    uint32_t  lsr;            /* last SR timestamp */
-    uint32_t  dlsr;           /* delay since last SR */
+    uint8_t  frag_lost;       /* fraction lost since last RR */
+    uint32_t packet_lost;     /* cumulative number of packets lost since the beginning */
+    uint32_t seq_num_rcvd;    /* extended highest sequence number received */
+    uint32_t jitter;          /* interarrival jitter */
+    uint32_t lsr;             /* last SR timestamp */
+    uint32_t dlsr;            /* delay since last SR */
 } wiced_bt_avdt_report_blk_t;
 
 typedef union
 {
-    wiced_bt_avdt_sender_info_t     sr;
-    wiced_bt_avdt_report_blk_t      rr;
-    uint8_t                         cname[AVDT_MAX_CNAME_SIZE + 1];
+    wiced_bt_avdt_sender_info_t sr;
+    wiced_bt_avdt_report_blk_t  rr;
+    uint8_t                     cname[AVDT_MAX_CNAME_SIZE + 1];
 } wiced_bt_avdt_report_data_t;
 
 /** AVDT subsytem configuration */
-typedef struct {
-    uint16_t        ctrl_mtu;                       /**< L2CAP MTU of the AVDTP signaling channel */
-    uint8_t         ret_tout;                       /**< AVDTP signaling retransmission timeout */
-    uint8_t         sig_tout;                       /**< AVDTP signaling message timeout */
-    uint8_t         idle_tout;                      /**< AVDTP idle signaling channel timeout */
-    uint8_t         sec_mask;                       /**< Security mask (not used on AIROC platforms: security is configured using wiced_bt_cfg) */
+typedef struct
+{
+    uint16_t ctrl_mtu;                              /**< L2CAP MTU of the AVDTP signaling channel */
+    uint8_t  ret_tout;                              /**< AVDTP signaling retransmission timeout */
+    uint8_t  sig_tout;                              /**< AVDTP signaling message timeout */
+    uint8_t  idle_tout;                             /**< AVDTP idle signaling channel timeout */
+    uint8_t  sec_mask;                              /**< Security mask (not used on AIROC platforms: security is configured using wiced_bt_cfg) */
 } wiced_bt_avdt_reg_t;
 
 /** Stream endpoint information */
-typedef struct {
-    wiced_bool_t    in_use;                         /**< TRUE if stream is currently in use */
-    uint8_t         seid;                           /**< Stream endpoint identifier */
-    uint8_t         media_type;                     /**< Media type (see @ref AVDT_MEDIA "Media types") */
-    uint8_t         tsep;                           /**< SEP type (see @ref AVDT_SEP_TYPE "Stream endpoint types") */
-    uint16_t        psc_mask;                       /* Protocol service capabilities mask */
+typedef struct
+{
+    wiced_bool_t in_use;                            /**< TRUE if stream is currently in use */
+    uint8_t      seid;                              /**< Stream endpoint identifier */
+    uint8_t      media_type;                        /**< Media type (see @ref AVDT_MEDIA "Media types") */
+    uint8_t      tsep;                              /**< SEP type (see @ref AVDT_SEP_TYPE "Stream endpoint types") */
+    uint16_t     psc_mask;                          /* Protocol service capabilities mask */
 } wiced_bt_avdt_sep_info_t;
 
 /** Stream endpoint configuration */
-typedef struct {
-    uint8_t     codec_info[AVDT_CODEC_SIZE];        /**< Codec capabilities array (dependent on coded type; for SBC,
+typedef struct
+{
+    uint8_t codec_info[AVDT_CODEC_SIZE];            /**< Codec capabilities array (dependent on coded type; for SBC,
                                                             use wiced_bt_a2d_bld_sbc_info or wiced_bt_a2d_pars_sbc_info to build/parse codec_info)  */
-    uint8_t     protect_info[AVDT_PROTECT_SIZE];    /**< Content protection capabilities */
-    uint8_t     num_codec;                          /**< Number of media codec information elements */
-    uint8_t     num_protect;                        /**< Number of content protection information elements */
-    uint16_t    psc_mask;                           /**< Protocol service capabilities mask (see @ref AVDT_PSC "Protocol sevice capabilities") */
-    uint8_t     recov_type;                         /**< Recovery type (see @ref AVDT_RECOV "Recovery types") */
-    uint8_t     recov_mrws;                         /**< Maximum recovery window size */
-    uint8_t     recov_mnmp;                         /**< Recovery maximum number of media packets */
-    uint8_t     hdrcmp_mask;                        /**< Header compression capabilities mask (see @ref AVDT_HDRCMP "Header compression capabilities") */
+    uint8_t  protect_info[AVDT_PROTECT_SIZE];       /**< Content protection capabilities */
+    uint8_t  num_codec;                             /**< Number of media codec information elements */
+    uint8_t  num_protect;                           /**< Number of content protection information elements */
+    uint16_t psc_mask;                              /**< Protocol service capabilities mask (see @ref AVDT_PSC "Protocol sevice capabilities") */
+    uint8_t  recov_type;                            /**< Recovery type (see @ref AVDT_RECOV "Recovery types") */
+    uint8_t  recov_mrws;                            /**< Maximum recovery window size */
+    uint8_t  recov_mnmp;                            /**< Recovery maximum number of media packets */
+    uint8_t  hdrcmp_mask;                           /**< Header compression capabilities mask (see @ref AVDT_HDRCMP "Header compression capabilities") */
 #if AVDT_MULTIPLEXING == TRUE
-    uint8_t     mux_mask;                           /**< Multiplexing capabilities. AVDT_MUX_XXX bits can be combined with a bitwise OR */
-    uint8_t     mux_tsid_media;                     /**< TSID for media transport session */
-    uint8_t     mux_tcid_media;                     /**< TCID for media transport session */
-    uint8_t     mux_tsid_report;                    /**< TSID for reporting transport session */
-    uint8_t     mux_tcid_report;                    /**< TCID for reporting transport session */
-    uint8_t     mux_tsid_recov;                     /**< TSID for recovery transport session */
-    uint8_t     mux_tcid_recov;                     /**< TCID for recovery transport session */
+    uint8_t mux_mask;                               /**< Multiplexing capabilities. AVDT_MUX_XXX bits can be combined with a bitwise OR */
+    uint8_t mux_tsid_media;                         /**< TSID for media transport session */
+    uint8_t mux_tcid_media;                         /**< TCID for media transport session */
+    uint8_t mux_tsid_report;                        /**< TSID for reporting transport session */
+    uint8_t mux_tcid_report;                        /**< TCID for reporting transport session */
+    uint8_t mux_tsid_recov;                         /**< TSID for recovery transport session */
+    uint8_t mux_tcid_recov;                         /**< TCID for recovery transport session */
 #endif
 } wiced_bt_avdt_cfg_t;
 
 /** Header for AVDT event callback data */
-typedef struct {
-    uint8_t     err_code;                           /**< Zero if operation succeeded; nonzero if operation failed */
-    uint8_t     err_param;                          /**< Error parameter included for some events */
-    uint8_t     label;                              /**< Transaction label */
-    uint8_t     seid;                               /**< For internal use only */
-    uint8_t     sig_id;                             /**< For internal use only */
-    uint8_t     ccb_idx;                            /**< For internal use only */
+typedef struct
+{
+    uint8_t err_code;                               /**< Zero if operation succeeded; nonzero if operation failed */
+    uint8_t err_param;                              /**< Error parameter included for some events */
+    uint8_t label;                                  /**< Transaction label */
+    uint8_t seid;                                   /**< For internal use only */
+    uint8_t sig_id;                                 /**< For internal use only */
+    uint8_t ccb_idx;                                /**< For internal use only */
 } wiced_bt_avdt_evt_hdr_t;
 
 /** Data for AVDT_GETCAP_CFM_EVT, AVDT_RECONFIG_IND_EVT, and AVDT_RECONFIG_CFM_EVT */
-typedef struct {
-    wiced_bt_avdt_evt_hdr_t     hdr;                /**< Event header */
-    wiced_bt_avdt_cfg_t         *p_cfg;             /**< Pointer to configuration for this SEP */
+typedef struct
+{
+    wiced_bt_avdt_evt_hdr_t hdr;                    /**< Event header */
+    wiced_bt_avdt_cfg_t    *p_cfg;                  /**< Pointer to configuration for this SEP */
 } wiced_bt_avdt_config_t;
 
 /** Data for AVDT_CONFIG_IND_EVT */
-typedef struct {
-    wiced_bt_avdt_evt_hdr_t     hdr;                /**< Event header */
-    wiced_bt_avdt_cfg_t         *p_cfg;             /**< Pointer to configuration for this SEP */
-    uint8_t                     int_seid;           /**< Stream endpoint ID of stream initiating the operation */
+typedef struct
+{
+    wiced_bt_avdt_evt_hdr_t hdr;                    /**< Event header */
+    wiced_bt_avdt_cfg_t    *p_cfg;                  /**< Pointer to configuration for this SEP */
+    uint8_t                 int_seid;               /**< Stream endpoint ID of stream initiating the operation */
 } wiced_bt_avdt_setconfig_t;
 
 /** This data structure is associated with the AVDT_OPEN_IND_EVT and AVDT_OPEN_CFM_EVT */
-typedef struct {
-    wiced_bt_avdt_evt_hdr_t     hdr;                /**< Event header */
-    uint16_t                    peer_mtu;           /**< Transport channel L2CAP MTU of the peer */
-    uint16_t                    lcid;               /**< L2CAP LCID for media channel */
+typedef struct
+{
+    wiced_bt_avdt_evt_hdr_t hdr;                    /**< Event header */
+    uint16_t                peer_mtu;               /**< Transport channel L2CAP MTU of the peer */
+    uint16_t                lcid;                   /**< L2CAP LCID for media channel */
 } wiced_bt_avdt_open_t;
 
 /** Data for AVDT_SECURITY_IND_EVT and AVDT_SECURITY_CFM_EVT */
-typedef struct {
-    wiced_bt_avdt_evt_hdr_t     hdr;                /**< Event header */
-    uint8_t                     *p_data;            /**< Pointer to security data */
-    uint16_t                    len;                /**< Length in bytes of the security data */
+typedef struct
+{
+    wiced_bt_avdt_evt_hdr_t hdr;                    /**< Event header */
+    uint8_t                *p_data;                 /**< Pointer to security data */
+    uint16_t                len;                    /**< Length in bytes of the security data */
 } wiced_bt_avdt_security_t;
 
 /** Data for AVDT_DISCOVER_CFM_EVT */
-typedef struct {
-    wiced_bt_avdt_evt_hdr_t     hdr;                /**< Event header */
-    wiced_bt_avdt_sep_info_t    *p_sep_info;        /**< Pointer to SEP information */
-    uint8_t                     num_seps;           /**< Number of stream endpoints */
+typedef struct
+{
+    wiced_bt_avdt_evt_hdr_t   hdr;                  /**< Event header */
+    wiced_bt_avdt_sep_info_t *p_sep_info;           /**< Pointer to SEP information */
+    uint8_t                   num_seps;             /**< Number of stream endpoints */
 } wiced_bt_avdt_discover_t;
 
 /** Data for AVDT_DELAY_REPORT_EVT */
-typedef struct {
-    wiced_bt_avdt_evt_hdr_t     hdr;                /**< Event header */
-    uint16_t                    delay;              /**< Delay value */
+typedef struct
+{
+    wiced_bt_avdt_evt_hdr_t hdr;                    /**< Event header */
+    uint16_t                delay;                  /**< Delay value */
 } wiced_bt_avdt_delay_rpt_t;
 
 /** Data for AVDT event notifications */
-typedef union {
-    wiced_bt_avdt_evt_hdr_t       hdr;              /**< Generic event data */
-    wiced_bt_avdt_discover_t      discover_cfm;     /**< Discovery confirm (AVDT_DISCOVER_CFM_EVT) */
-    wiced_bt_avdt_config_t        getcap_cfm;       /**< Get Capabilities result (AVDT_GETCAP_CFM_EVT) */
-    wiced_bt_avdt_open_t          open_cfm;         /**< Open confirm (AVDT_OPEN_CFM_EVT) */
-    wiced_bt_avdt_open_t          open_ind;         /**< Open indication (AVDT_OPEN_IND_EVT) */
-    wiced_bt_avdt_setconfig_t     config_ind;       /**< Configuration indication (AVDT_CONFIG_IND_EVT) */
-    wiced_bt_avdt_evt_hdr_t       start_cfm;        /**< Start confirm (AVDT_START_CFM_EVT) */
-    wiced_bt_avdt_evt_hdr_t       start_ind;        /**< Start indication (AVDT_START_IND_EVT) */
-    wiced_bt_avdt_evt_hdr_t       suspend_cfm;      /**< Suspend confirm (AVDT_SUSPEND_CFM_EVT) */
-    wiced_bt_avdt_evt_hdr_t       close_cfm;        /**< Close confirm (AVDT_CLOSE_CFM_EVT) */
-    wiced_bt_avdt_config_t        reconfig_cfm;     /**< Reconfiguration confirm (AVDT_RECONFIG_CFM_EVT) */
-    wiced_bt_avdt_config_t        reconfig_ind;     /**< Reconfiguration indication (AVDT_RECONFIG_IND_EVT) */
-    wiced_bt_avdt_security_t      security_cfm;     /**< Security confirm (AVDT_SECURITY_CFM_EVT) */
-    wiced_bt_avdt_security_t      security_ind;     /**< Security indication (AVDT_SECURITY_IND_EVT) */
-    wiced_bt_avdt_evt_hdr_t       connect_ind;      /**< Connect Indication (AVDT_CONNECT_IND_EVT) */
-    wiced_bt_avdt_evt_hdr_t       disconnect_ind;   /**< Disconnect Indication (AVDT_DISCONNECT_IND_EVT) */
-    wiced_bt_avdt_evt_hdr_t       report_conn;      /**< Reporting channel connected (AVDT_REPORT_CONN_EVT) */
-    wiced_bt_avdt_delay_rpt_t     delay_rpt_cmd;    /**< Delay report received (AVDT_DELAY_REPORT_EVT) */
+typedef union
+{
+    wiced_bt_avdt_evt_hdr_t   hdr;                  /**< Generic event data */
+    wiced_bt_avdt_discover_t  discover_cfm;         /**< Discovery confirm (AVDT_DISCOVER_CFM_EVT) */
+    wiced_bt_avdt_config_t    getcap_cfm;           /**< Get Capabilities result (AVDT_GETCAP_CFM_EVT) */
+    wiced_bt_avdt_open_t      open_cfm;             /**< Open confirm (AVDT_OPEN_CFM_EVT) */
+    wiced_bt_avdt_open_t      open_ind;             /**< Open indication (AVDT_OPEN_IND_EVT) */
+    wiced_bt_avdt_setconfig_t config_ind;           /**< Configuration indication (AVDT_CONFIG_IND_EVT) */
+    wiced_bt_avdt_evt_hdr_t   start_cfm;            /**< Start confirm (AVDT_START_CFM_EVT) */
+    wiced_bt_avdt_evt_hdr_t   start_ind;            /**< Start indication (AVDT_START_IND_EVT) */
+    wiced_bt_avdt_evt_hdr_t   suspend_cfm;          /**< Suspend confirm (AVDT_SUSPEND_CFM_EVT) */
+    wiced_bt_avdt_evt_hdr_t   close_cfm;            /**< Close confirm (AVDT_CLOSE_CFM_EVT) */
+    wiced_bt_avdt_config_t    reconfig_cfm;         /**< Reconfiguration confirm (AVDT_RECONFIG_CFM_EVT) */
+    wiced_bt_avdt_config_t    reconfig_ind;         /**< Reconfiguration indication (AVDT_RECONFIG_IND_EVT) */
+    wiced_bt_avdt_security_t  security_cfm;         /**< Security confirm (AVDT_SECURITY_CFM_EVT) */
+    wiced_bt_avdt_security_t  security_ind;         /**< Security indication (AVDT_SECURITY_IND_EVT) */
+    wiced_bt_avdt_evt_hdr_t   connect_ind;          /**< Connect Indication (AVDT_CONNECT_IND_EVT) */
+    wiced_bt_avdt_evt_hdr_t   disconnect_ind;       /**< Disconnect Indication (AVDT_DISCONNECT_IND_EVT) */
+    wiced_bt_avdt_evt_hdr_t   report_conn;          /**< Reporting channel connected (AVDT_REPORT_CONN_EVT) */
+    wiced_bt_avdt_delay_rpt_t delay_rpt_cmd;        /**< Delay report received (AVDT_DELAY_REPORT_EVT) */
 } wiced_bt_avdt_ctrl_t;
 
 /**
@@ -526,7 +538,7 @@ typedef void (wiced_bt_avdt_data_cback_t)(uint8_t handle, BT_HDR *p_pkt, uint32_
  * @return          Nothing
  */
 typedef void (wiced_bt_avdt_media_cback_t)(uint8_t handle, uint8_t *p_payload, uint32_t payload_len,
-                                uint32_t time_stamp, uint16_t seq_num, uint8_t m_pt, uint8_t marker);
+                                           uint32_t time_stamp, uint16_t seq_num, uint8_t m_pt, uint8_t marker);
 #endif
 
 #if AVDT_REPORTING == TRUE
@@ -549,7 +561,7 @@ typedef void (wiced_bt_avdt_media_cback_t)(uint8_t handle, uint8_t *p_payload, u
  * @return          Nothing
  */
 typedef void (wiced_bt_avdt_report_cback_t)(uint8_t handle, AVDT_REPORT_TYPE type,
-                                wiced_bt_avdt_report_data_t *p_data);
+                                            wiced_bt_avdt_report_data_t *p_data);
 #endif
 
 typedef uint16_t (wiced_bt_avdt_getcap_req_t) (wiced_bt_device_address_t bd_addr, uint8_t seid, wiced_bt_avdt_cfg_t *p_cfg, wiced_bt_avdt_ctrl_cback_t *p_cback);
@@ -557,19 +569,20 @@ typedef uint16_t (wiced_bt_avdt_getcap_req_t) (wiced_bt_device_address_t bd_addr
 /** This structure contains information required when a stream is created.
 ** It is passed to the wiced_bt_avdt_create_stream() function.
 */
-typedef struct {
-    wiced_bt_avdt_cfg_t             cfg;            /**< SEP configuration */
-    wiced_bt_avdt_ctrl_cback_t      *p_ctrl_cback;  /**< Control callback function */
-    wiced_bt_avdt_data_cback_t      *p_data_cback;  /**< Data callback function */
+typedef struct
+{
+    wiced_bt_avdt_cfg_t         cfg;                /**< SEP configuration */
+    wiced_bt_avdt_ctrl_cback_t *p_ctrl_cback;       /**< Control callback function */
+    wiced_bt_avdt_data_cback_t *p_data_cback;       /**< Data callback function */
 #if AVDT_MULTIPLEXING == TRUE
-    wiced_bt_avdt_media_cback_t     *p_media_cback; /**< Media callback function. It will be called only if p_data_cback is NULL */
+    wiced_bt_avdt_media_cback_t *p_media_cback;     /**< Media callback function. It will be called only if p_data_cback is NULL */
 #endif
 #if AVDT_REPORTING == TRUE
-    wiced_bt_avdt_report_cback_t    *p_report_cback;/**< Report callback function. */
+    wiced_bt_avdt_report_cback_t *p_report_cback;   /**< Report callback function. */
 #endif
-    uint8_t                         tsep;           /**< SEP type (see @ref AVDT_SEP_TYPE "Stream endpoint types") */
-    uint8_t                         media_type;     /**< Media type (see @ref AVDT_MEDIA "Media types") */
-    uint16_t                        nsc_mask;       /**< Non-supported protocol command messages mask (see @ref AVDT_NSC "Non-supported commands mask") */
+    uint8_t  tsep;                                  /**< SEP type (see @ref AVDT_SEP_TYPE "Stream endpoint types") */
+    uint8_t  media_type;                            /**< Media type (see @ref AVDT_MEDIA "Media types") */
+    uint16_t nsc_mask;                              /**< Non-supported protocol command messages mask (see @ref AVDT_NSC "Non-supported commands mask") */
 } wiced_bt_avdt_cs_t;
 
 /**
@@ -596,7 +609,7 @@ typedef uint8_t wiced_bt_avdt_data_opt_mask_t;
  * APIs to enable the upper layers to stream audio/video data over Bluetooth
  *
  * @{
-*/
+ */
 
 #ifdef __cplusplus
 extern "C"
@@ -650,7 +663,7 @@ void wiced_bt_avdt_deregister(void);
  * @return          Result code (see @ref AVDT_RESULT "AVDT result codes")
  *                  AVDT_SUCCESS if successful, otherwise error.
  *
-*/
+ */
 uint16_t wiced_bt_avdt_create_stream(uint8_t *p_handle, wiced_bt_avdt_cs_t *p_cs);
 
 /**
@@ -688,7 +701,7 @@ uint16_t wiced_bt_avdt_remove_stream(uint8_t handle);
  * @return          Result code (see @ref AVDT_RESULT "AVDT result codes")
  *                  AVDT_SUCCESS if successful, otherwise error.
  *
-*******************************************************************************/
+ *******************************************************************************/
 uint16_t wiced_bt_avdt_update_stream(uint8_t sep_type, wiced_bool_t available);
 
 
@@ -912,13 +925,13 @@ uint16_t wiced_bt_avdt_start_req(uint8_t *p_handles, uint8_t num_handles);
  *
  * @param[in]       handle   : AVDT connection handle
  * @param[in]       label    : Transaction label
-  * @param[in]      status   : Indicates if start request is accepted(AVDT_SUCCESS) or rejected(AVDT Error codes)
+ * @param[in]      status   : Indicates if start request is accepted(AVDT_SUCCESS) or rejected(AVDT Error codes)
  *
  * @return          Result code (see @ref AVDT_RESULT "AVDT result codes")
  *                  AVDT_SUCCESS if successful, otherwise error.
  *
  */
-uint16_t wiced_bt_avdt_start_resp( uint8_t handle, uint8_t label, uint8_t status );
+uint16_t wiced_bt_avdt_start_resp(uint8_t handle, uint8_t label, uint8_t status);
 
 /**
  *
@@ -1216,10 +1229,12 @@ uint16_t wiced_bt_avdt_send_report(uint8_t handle, AVDT_REPORT_TYPE type,
  * @return          The new trace level or current trace level if
  *                  the input parameter is 0xff.
  */
-uint8_t wiced_bt_avdt_set_trace_level (uint8_t new_level);
+uint8_t wiced_bt_avdt_set_trace_level(uint8_t new_level);
 
 #ifdef __cplusplus
 }
 #endif
 
 /** @} wicedbt_avdt */
+
+#endif // WICED_BT_AVDT_H

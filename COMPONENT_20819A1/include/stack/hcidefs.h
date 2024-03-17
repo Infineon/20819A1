@@ -1,43 +1,43 @@
 /**************************************************************************//**
-*
-* \file <hcidefs.h>
-*
-* \brief
-*   Contains Host Controller Interface definitions.
-*
-*
-*//*****************************************************************************
-* Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
-* an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
-*
-* This software, including source code, documentation and related
-* materials ("Software") is owned by Cypress Semiconductor Corporation
-* or one of its affiliates ("Cypress") and is protected by and subject to
-* worldwide patent protection (United States and foreign),
-* United States copyright laws and international treaty provisions.
-* Therefore, you may use this Software only as provided in the license
-* agreement accompanying the software package from which you
-* obtained this Software ("EULA").
-* If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
-* non-transferable license to copy, modify, and compile the Software
-* source code solely for use in connection with Cypress's
-* integrated circuit products.  Any reproduction, modification, translation,
-* compilation, or representation of this Software except as specified
-* above is prohibited without the express written permission of Cypress.
-*
-* Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
-* reserves the right to make changes to the Software without notice. Cypress
-* does not assume any liability arising out of the application or use of the
-* Software or any product or circuit described in the Software. Cypress does
-* not authorize its products for use in any products where a malfunction or
-* failure of the Cypress product may reasonably be expected to result in
-* significant property damage, injury or death ("High Risk Product"). By
-* including Cypress's product in a High Risk Product, the manufacturer
-* of such system or application assumes all risk of such use and in doing
-* so agrees to indemnify Cypress against all liability.
-*******************************************************************************/
+ *
+ * \file <hcidefs.h>
+ *
+ * \brief
+ *   Contains Host Controller Interface definitions.
+ *
+ *
+ *//*****************************************************************************
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
+ * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
+ *
+ * This software, including source code, documentation and related
+ * materials ("Software") is owned by Cypress Semiconductor Corporation
+ * or one of its affiliates ("Cypress") and is protected by and subject to
+ * worldwide patent protection (United States and foreign),
+ * United States copyright laws and international treaty provisions.
+ * Therefore, you may use this Software only as provided in the license
+ * agreement accompanying the software package from which you
+ * obtained this Software ("EULA").
+ * If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
+ * non-transferable license to copy, modify, and compile the Software
+ * source code solely for use in connection with Cypress's
+ * integrated circuit products.  Any reproduction, modification, translation,
+ * compilation, or representation of this Software except as specified
+ * above is prohibited without the express written permission of Cypress.
+ *
+ * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
+ * reserves the right to make changes to the Software without notice. Cypress
+ * does not assume any liability arising out of the application or use of the
+ * Software or any product or circuit described in the Software. Cypress does
+ * not authorize its products for use in any products where a malfunction or
+ * failure of the Cypress product may reasonably be expected to result in
+ * significant property damage, injury or death ("High Risk Product"). By
+ * including Cypress's product in a High Risk Product, the manufacturer
+ * of such system or application assumes all risk of such use and in doing
+ * so agrees to indemnify Cypress against all liability.
+ *******************************************************************************/
 
 #ifndef HCIDEFS_H
 #define HCIDEFS_H
@@ -716,7 +716,6 @@
 #define HCI_SET_TRIGGERED_CLOCK_CAPTURE_EVT 0x4E
 
 
-
 /* ULP HCI Event */
 #define HCI_BLE_EVENT                               0x3e
 
@@ -990,29 +989,29 @@
 #define HCI_PKT_TYPES_MASK_DH5              0x8000
 
 /* The packet type should be one of the valid but at least one should be specified */
-#define HCI_VALID_SCO_PKT_TYPE(t) (((((t) & ~(HCI_PKT_TYPES_MASK_HV1	\
-                                           |  HCI_PKT_TYPES_MASK_HV2	\
-                                           |  HCI_PKT_TYPES_MASK_HV3)) == 0))	\
+#define HCI_VALID_SCO_PKT_TYPE(t) (((((t) & ~(HCI_PKT_TYPES_MASK_HV1    \
+                                           |  HCI_PKT_TYPES_MASK_HV2    \
+                                           |  HCI_PKT_TYPES_MASK_HV3)) == 0))   \
                                     && ((t) != 0))
 
 /* The packet type should not be invalid and at least one should be specified */
-#define HCI_VALID_ACL_PKT_TYPE(t) (((((t) & ~(HCI_PKT_TYPES_MASK_DM1	\
-                                           |  HCI_PKT_TYPES_MASK_DH1	\
-                                           |  HCI_PKT_TYPES_MASK_DM3	\
-                                           |  HCI_PKT_TYPES_MASK_DH3	\
-                                           |  HCI_PKT_TYPES_MASK_DM5	\
-                                           |  HCI_PKT_TYPES_MASK_DH5	\
-                                           |  HCI_PKT_TYPES_MASK_NO_2_DH1	\
-                                           |  HCI_PKT_TYPES_MASK_NO_3_DH1	\
-                                           |  HCI_PKT_TYPES_MASK_NO_2_DH3	\
-                                           |  HCI_PKT_TYPES_MASK_NO_3_DH3	\
-                                           |  HCI_PKT_TYPES_MASK_NO_2_DH5	\
+#define HCI_VALID_ACL_PKT_TYPE(t) (((((t) & ~(HCI_PKT_TYPES_MASK_DM1    \
+                                           |  HCI_PKT_TYPES_MASK_DH1    \
+                                           |  HCI_PKT_TYPES_MASK_DM3    \
+                                           |  HCI_PKT_TYPES_MASK_DH3    \
+                                           |  HCI_PKT_TYPES_MASK_DM5    \
+                                           |  HCI_PKT_TYPES_MASK_DH5    \
+                                           |  HCI_PKT_TYPES_MASK_NO_2_DH1   \
+                                           |  HCI_PKT_TYPES_MASK_NO_3_DH1   \
+                                           |  HCI_PKT_TYPES_MASK_NO_2_DH3   \
+                                           |  HCI_PKT_TYPES_MASK_NO_3_DH3   \
+                                           |  HCI_PKT_TYPES_MASK_NO_2_DH5   \
                                            |  HCI_PKT_TYPES_MASK_NO_3_DH5  )) == 0))\
-                                    && (((t) &  (HCI_PKT_TYPES_MASK_DM1	\
-                                              |  HCI_PKT_TYPES_MASK_DH1	\
-                                              |  HCI_PKT_TYPES_MASK_DM3	\
-                                              |  HCI_PKT_TYPES_MASK_DH3	\
-                                              |  HCI_PKT_TYPES_MASK_DM5	\
+                                    && (((t) &  (HCI_PKT_TYPES_MASK_DM1 \
+                                              |  HCI_PKT_TYPES_MASK_DH1 \
+                                              |  HCI_PKT_TYPES_MASK_DM3 \
+                                              |  HCI_PKT_TYPES_MASK_DH3 \
+                                              |  HCI_PKT_TYPES_MASK_DM5 \
                                               |  HCI_PKT_TYPES_MASK_DH5)) != 0))
 
 /* Definitions for eSCO packet type masks (Bluetooth 1.2 and Bluetooth 2.0 definitions) */
@@ -1424,12 +1423,12 @@
 /* Defines the extended flow specification fields used by AMP. */
 typedef struct
 {
-    UINT8       id;
-    UINT8       stype;
-    UINT16      max_sdu_size;
-    UINT32      sdu_inter_time;
-    UINT32      access_latency;
-    UINT32      flush_timeout;
+    UINT8  id;
+    UINT8  stype;
+    UINT16 max_sdu_size;
+    UINT32 sdu_inter_time;
+    UINT32 access_latency;
+    UINT32 flush_timeout;
 } tHCI_EXT_FLOW_SPEC;
 
 
@@ -1835,7 +1834,7 @@ typedef struct
 #define HCI_FEATURE_ANON_MODE_MASK      0x40
 #define HCI_FEATURE_ANON_MODE_OFF       4
 #define HCI_LMP_ANON_MODE_SUPPORTED(x)  ((x)[HCI_FEATURE_ANON_MODE_OFF] & HCI_FEATURE_ANON_MODE_MASK)
-#endif
+#endif // if 1
 
 #define HCI_FEATURE_3_SLOT_EDR_ACL_MASK 0x80
 #define HCI_FEATURE_3_SLOT_EDR_ACL_OFF  4
@@ -2044,7 +2043,7 @@ typedef struct
 
 /*
    LE features encoding - page 2
-*/
+ */
 
 /* Minimum Number of Used Channels Procedure feature: bit 16*/
 //Todo
@@ -3086,8 +3085,8 @@ typedef struct
 #define HCI_DEBUG_LC_CMD_MIN           (0x0300 | HCI_GRP_VENDOR_SPECIFIC)
 #define HCI_DEBUG_LC_CMD_MAX           (0x03FF | HCI_GRP_VENDOR_SPECIFIC)
 #define HCI_DEBUG_LC_COMMAND           HCI_DEBUG_LC_CMD_MAX
-#endif
+#endif // ifdef _WIDCOMM
 #define HCI_BRCM_LQ_LE_STATS           (0x00ED | HCI_GRP_VENDOR_SPECIFIC)
 #define HCI_BRCM_LQ_BREDR_STATS        (0x01CE | HCI_GRP_VENDOR_SPECIFIC)
 
-#endif /* _HCIDEFS_H_ */
+#endif /* HCIDEFS_H_ */

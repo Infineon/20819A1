@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -53,19 +53,18 @@ extern "C" {
 typedef struct
 {
     // 4 bytes aligned.
-    UINT16          connHandle;
-    UINT8           flag;
+    UINT16 connHandle;
+    UINT8  flag;
 
-    UINT8           peerAddressType;
-
-    // 4 bytes aligned
-    UINT8           peerAddress[BD_ADDRESS_SIZE]; // this is 6 bytes peer address.
-    UINT16          connInterval; // connection interval in frames.
+    UINT8 peerAddressType;
 
     // 4 bytes aligned
-    UINT16          connLatency;
-    UINT16          supervisionTimeout;
+    UINT8  peerAddress[BD_ADDRESS_SIZE];          // this is 6 bytes peer address.
+    UINT16 connInterval;          // connection interval in frames.
 
+    // 4 bytes aligned
+    UINT16 connLatency;
+    UINT16 supervisionTimeout;
 } EMCONINFO_DEVINFO;
 
 // all the macros need this variable to be exported.
@@ -78,18 +77,18 @@ void emconinfo_init(EMCONINFO_DEVINFO *pdevInfo);
 void emconinfo_setPtr(EMCONINFO_DEVINFO *pdevInfo);
 EMCONINFO_DEVINFO *emconinfo_getPtr(void);
 
-int  emconinfo_getConnHandle(void);
+int emconinfo_getConnHandle(void);
 void emconinfo_setConnHandle(UINT16 connHandle);
 
 UINT8 *emconninfo_getPeerAddr(void);
 
 void emconninfo_setPeerAddrType(int type);
-int  emconninfo_getPeerAddrType(void);
+int emconninfo_getPeerAddrType(void);
 
 int emconninfo_getConnInterval(void);
 void emconninfo_setConnInterval(int interval);
 
-int  emconninfo_getPeripheralLatency(void);
+int emconninfo_getPeripheralLatency(void);
 void emconninfo_setPeripheralLatency(int latency);
 
 int emconninfo_getSupervisionTimeout(void);

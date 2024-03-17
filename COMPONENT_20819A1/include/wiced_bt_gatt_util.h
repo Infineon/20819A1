@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,137 +31,139 @@
  * so agrees to indemnify Cypress against all liability.
  */
 
+#ifndef WICED_BT_GATT_UTIL_H
+#define WICED_BT_GATT_UTIL_H
 
 /** \file <wiced_bt_gatt_util.h>
-*
-*  \brief AIROC Generic Attribute (GATT) Application Programming Interface
-*
-******************************************************************************/
-#pragma once
-
+ *
+ *  \brief AIROC Generic Attribute (GATT) Application Programming Interface
+ *
+ ******************************************************************************/
 
 /******************************************************************************
-*  External Function Declarations
-******************************************************************************/
+ *  External Function Declarations
+ ******************************************************************************/
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
 /**
-* \addtogroup  wicedbt_gatt_utils   GATT Utilities
-* \ingroup     wicedbt_gatt
-*
-* Generic Attribute (GATT) Utility Functions
-*
-* @{
-*
-******************************************************************************/
+ * \addtogroup  wicedbt_gatt_utils   GATT Utilities
+ * \ingroup     wicedbt_gatt
+ *
+ * Generic Attribute (GATT) Utility Functions
+ *
+ * @{
+ *
+ ******************************************************************************/
 
 /******************************************************************************
-*
-* Function Name:     wiced_bt_util_set_gatt_client_config_descriptor
-*
-***************************************************************************//**
-*
-*              Sets the value of the Client Configuration Descriptor.
-*
-* @param[in]   conn_id   : GATT connection ID
-* @param[in]   handle    : Handle of the descriptor to modify
-* @param[in]   value     : Value to set
-*
-* @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
-*
-******************************************************************************/
+ *
+ * Function Name:     wiced_bt_util_set_gatt_client_config_descriptor
+ *
+ ***************************************************************************//**
+ *
+ *              Sets the value of the Client Configuration Descriptor.
+ *
+ * @param[in]   conn_id   : GATT connection ID
+ * @param[in]   handle    : Handle of the descriptor to modify
+ * @param[in]   value     : Value to set
+ *
+ * @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
+ *
+ ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_util_set_gatt_client_config_descriptor(uint16_t conn_id, uint16_t handle, uint16_t value);
 
 /******************************************************************************
-*
-* Function Name:     wiced_bt_util_send_gatt_discover
-*
-***************************************************************************//**
-*
-*              Formats and sends a GATT discover request.
-*
-*  @param[in]  conn_id     : connection identifier.
-*  @param[in]  type        : GATT discovery type.
-*  @param[in]  uuid        : UUID of the attribute to search for.
-*  @param[in]  s_handle    : Start handle.
-*  @param[in]  e_handle    : Start handle.
-*
-*  @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
-*
-******************************************************************************/
+ *
+ * Function Name:     wiced_bt_util_send_gatt_discover
+ *
+ ***************************************************************************//**
+ *
+ *              Formats and sends a GATT discover request.
+ *
+ *  @param[in]  conn_id     : connection identifier.
+ *  @param[in]  type        : GATT discovery type.
+ *  @param[in]  uuid        : UUID of the attribute to search for.
+ *  @param[in]  s_handle    : Start handle.
+ *  @param[in]  e_handle    : Start handle.
+ *
+ *  @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
+ *
+ ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_util_send_gatt_discover(uint16_t conn_id, wiced_bt_gatt_discovery_type_t type, uint16_t uuid, uint16_t s_handle, uint16_t e_handle);
 
 /******************************************************************************
-*
-* Function Name:     wiced_bt_gatt_status_t wiced_bt_util_send_gatt_read_by_handle(uint16_t conn_id, uint16_t handle)
-*
-***************************************************************************//**
-*              Formats and sends a Read By Handle GATT request.
-*
-*  @param[in]  conn_id     : connection identifier.
-*  @param[in]  handle      : Attribute handle of the attribute to read.
-*
-*  @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
-*
-******************************************************************************/
+ *
+ * Function Name:     wiced_bt_gatt_status_t wiced_bt_util_send_gatt_read_by_handle(uint16_t conn_id, uint16_t handle)
+ *
+ ***************************************************************************//**
+ *              Formats and sends a Read By Handle GATT request.
+ *
+ *  @param[in]  conn_id     : connection identifier.
+ *  @param[in]  handle      : Attribute handle of the attribute to read.
+ *
+ *  @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
+ *
+ ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_util_send_gatt_read_by_handle(uint16_t conn_id, uint16_t handle);
 
 /******************************************************************************
-*
-* Function Name:       wiced_bt_util_send_gatt_read_by_type
-*
-***************************************************************************//**
-*
-*                Formats and sends a Read by Type GATT request.
-*
-*  @param[in]  conn_id     : Connection handle
-*  @param[in]  s_handle    : Start handle
-*  @param[in]  e_handle    : End handle
-*  @param[in]  uuid        : UUID of the attribute to read
-*
-*  @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
-*
-******************************************************************************/
+ *
+ * Function Name:       wiced_bt_util_send_gatt_read_by_type
+ *
+ ***************************************************************************//**
+ *
+ *                Formats and sends a Read by Type GATT request.
+ *
+ *  @param[in]  conn_id     : Connection handle
+ *  @param[in]  s_handle    : Start handle
+ *  @param[in]  e_handle    : End handle
+ *  @param[in]  uuid        : UUID of the attribute to read
+ *
+ *  @return @link wiced_bt_gatt_status_e wiced_bt_gatt_status_t @endlink
+ *
+ ******************************************************************************/
 wiced_bt_gatt_status_t wiced_bt_util_send_gatt_read_by_type(uint16_t conn_id, uint16_t s_handle, uint16_t e_handle, uint16_t uuid);
 
 /******************************************************************************
-*
-* Function Name:       wiced_bt_util_uuid_cpy
-*
-***************************************************************************//**
-*
-*                Copies a UUID.
-*
-*  @param[out] p_dst       : Destination UUID
-*  @param[in]  p_src       : Source UUID
-*
-*  @return  int 0 if success, -1 if error
-*
-******************************************************************************/
+ *
+ * Function Name:       wiced_bt_util_uuid_cpy
+ *
+ ***************************************************************************//**
+ *
+ *                Copies a UUID.
+ *
+ *  @param[out] p_dst       : Destination UUID
+ *  @param[in]  p_src       : Source UUID
+ *
+ *  @return  int 0 if success, -1 if error
+ *
+ ******************************************************************************/
 int wiced_bt_util_uuid_cpy(wiced_bt_uuid_t *p_dst, wiced_bt_uuid_t *p_src);
 
 /******************************************************************************
-*
-* Function Name:       wiced_bt_util_uuid_cmp
-*
-***************************************************************************//**
-*
-*                Compares two UUIDs.
-*  \note Can only compare UUIDs of the same length.
-*
-*  @param[out] p_uuid1     : First UUID
-*  @param[in]  p_uuid2     : Second UUID
-*
-*  @return  int 0 if UUID are equal; -1 if error, 1 if UUIDs are different.
-*
-******************************************************************************/
+ *
+ * Function Name:       wiced_bt_util_uuid_cmp
+ *
+ ***************************************************************************//**
+ *
+ *                Compares two UUIDs.
+ *  \note Can only compare UUIDs of the same length.
+ *
+ *  @param[out] p_uuid1     : First UUID
+ *  @param[in]  p_uuid2     : Second UUID
+ *
+ *  @return  int 0 if UUID are equal; -1 if error, 1 if UUIDs are different.
+ *
+ ******************************************************************************/
 int wiced_bt_util_uuid_cmp(wiced_bt_uuid_t *p_uuid1, wiced_bt_uuid_t *p_uuid2);
 
 /**@} wicedbt_gatt_utils */
 
 #ifdef __cplusplus
 }
-#endif /* _WICED_BT_GATT_UTIL_H_ */
+#endif
+
+#endif // WICED_BT_GATT_UTIL_H

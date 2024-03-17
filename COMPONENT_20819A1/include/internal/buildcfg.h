@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -151,7 +151,7 @@ extern "C" {
 #define RFCOMM_CMD_POOL_BUF_SIZE        (p_btm_cfg_buf_pools[RFCOMM_CMD_POOL_ID].buf_size)
 #define RFCOMM_DATA_POOL_ID             GKI_POOL_ID_2
 #define RFCOMM_DATA_POOL_BUF_SIZE       (p_btm_cfg_buf_pools[RFCOMM_DATA_POOL_ID].buf_size)
-#if (defined(BTU_DYNAMIC_CB_INCLUDED)  && (BTU_DYNAMIC_CB_INCLUDED == TRUE))
+#if (defined(BTU_DYNAMIC_CB_INCLUDED) && (BTU_DYNAMIC_CB_INCLUDED == TRUE))
 #define MAX_RFC_PORTS                   (p_btm_cfg_settings->rfcomm_cfg.max_ports)
 #define MAX_BD_CONNECTIONS              (p_btm_cfg_settings->rfcomm_cfg.max_links)
 #else
@@ -205,7 +205,7 @@ extern "C" {
 
 #ifdef WICED_ENABLE
 /* Profiles */
-#if (BR_INCLUDED == TRUE )
+#if (BR_INCLUDED == TRUE)
 #define A2DP_SINK_ENABLE                FALSE    // A2DP sync profile
 #define HANDSFREE_ENABLE                FALSE    // Handsfree profile
 #define AVRC_CT_ENABLE                  FALSE    // AVRC controller profile
@@ -293,7 +293,7 @@ extern "C" {
 #define SPP_DYNAMIC_MEMORY          FALSE
 #define HID_DYNAMIC_MEMORY          FALSE
 
-#if (defined(BTU_DYNAMIC_CB_INCLUDED)  && (BTU_DYNAMIC_CB_INCLUDED == TRUE))
+#if (defined(BTU_DYNAMIC_CB_INCLUDED) && (BTU_DYNAMIC_CB_INCLUDED == TRUE))
 #define MAX_L2CAP_CLIENTS               (btu_cb.l2c_cfg_max_clients)
 #define MAX_L2CAP_LINKS                 (btu_cb.l2c_cfg_max_links)
 #define MAX_L2CAP_CHANNELS              (btu_cb.l2c_cfg_max_channels)
@@ -335,4 +335,4 @@ extern "C" {
 }
 #endif
 
-#endif
+#endif // ifndef BUILDCFG_H

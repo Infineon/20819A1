@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -35,7 +35,8 @@
  *
  *  AIROC Bluetooth OBEX Application Programming Interface
  */
-#pragma once
+#ifndef WICED_BT_OBEX_H
+#define WICED_BT_OBEX_H
 
 #include "wiced.h"
 #include "wiced_bt_types.h"
@@ -46,8 +47,9 @@ enum
     OBEX_SUCCESS,           /* Status is successful. */
     OBEX_BAD_PARAMS,        /* Bad parameter(s). */
     OBEX_NO_RESOURCES,      /* No resources (GKI buffers, control block) */
-    OBEX_BAD_HANDLE         /* The OBEX handle is not valid. */
+    OBEX_BAD_HANDLE,        /* The OBEX handle is not valid. */
 };
+
 typedef uint8_t     wiced_bt_obex_status_t;
 
 typedef uint16_t    wiced_bt_obex_handle_t;
@@ -140,9 +142,9 @@ typedef uint8_t     wiced_bt_obex_action_t;
 /* OBEX request parameter */
 typedef union
 {
-    wiced_bt_obex_setpath_flag_t    sp_flags;   /* Set Path request */
+    wiced_bt_obex_setpath_flag_t sp_flags;      /* Set Path request */
     wiced_bool_t                    final;      /* Put and Get request */
-    wiced_bt_obex_action_t          action;     /* Action request */
+    wiced_bt_obex_action_t action;              /* Action request */
 } wiced_bt_obex_req_param_t;
 
 
@@ -162,7 +164,8 @@ enum
 
     /* client events */
     OBEX_CONNECT_RSP_EVT,       /* param = packet MTU */
-    OBEX_SESSION_RSP_EVT,       /* A response for Create Session or Resume Session is received by the client. The client needs to remember the session id. The session id is to be used in calling wiced_bt_obex_resume_session, if the current session is terminated prematurely. */
+    OBEX_SESSION_RSP_EVT,       /* A response for Create Session or Resume Session is received by the client. The client needs to remember the session id. The session id is to be used in calling wiced_bt_obex_resume_session, if the current session is
+                                   terminated prematurely. */
     OBEX_DISCONNECT_RSP_EVT,
     OBEX_PUT_RSP_EVT,
     OBEX_GET_RSP_EVT,
@@ -174,38 +177,40 @@ enum
     OBEX_SESSION_INFO_EVT,      /* the session information event to resume the session. */
     OBEX_CLOSE_IND_EVT,         /* when transport goes down; p_pkt = NULL; no response needed */
     OBEX_TIMEOUT_EVT,           /* param = wiced_bt_obex_event_t */
-    OBEX_PASSWORD_EVT
+    OBEX_PASSWORD_EVT,
 };
+
 typedef uint8_t     wiced_bt_obex_event_t;
 
 enum
 {
     OBEX_PUT_TYPE_PUT,          /* Regular Put request */
     OBEX_PUT_TYPE_DELETE,       /* Delete request - a Put request with NO Body or End-of-Body header. */
-    OBEX_PUT_TYPE_CREATE        /* Create-Empty request - a Put request with an empty End-of-Body header. */
+    OBEX_PUT_TYPE_CREATE,       /* Create-Empty request - a Put request with an empty End-of-Body header. */
 };
+
 typedef uint8_t     wiced_bt_obex_put_type_t;
 
 typedef struct
 {
-    uint8_t                     ssn;    /* session sequence number */
+    uint8_t ssn;                        /* session sequence number */
     wiced_bool_t                final;  /* TRUE, if this is the final packet of this PUT transaction. */
-    wiced_bt_obex_put_type_t    type;   /* The type of PUT request. */
+    wiced_bt_obex_put_type_t type;      /* The type of PUT request. */
 } wiced_bt_obex_put_evt_t;
 
 typedef struct
 {
-    uint8_t             ssn;        /* session sequence number */
+    uint8_t ssn;                    /* session sequence number */
     wiced_bool_t        final;      /* TRUE, if this is the final packet of this GET transaction. */
 } wiced_bt_obex_get_evt_t;
 
 typedef struct
 {
-    uint8_t                     ssn;        /* session sequence number */
-    wiced_bt_device_address_t   peer_addr;  /* The peer Bluetooth Address. */
-    uint16_t                    mtu;        /* The peer MTU. This element is associated with OBEX_CONNECT_REQ_EVT and OBEX_CONNECT_RSP_EVT. */
-    wiced_bt_obex_handle_t      handle;     /* the OBEX handle returned by OBEX_StartServer(), OBEX_CreateSession() and OBEX_ConnectReq() */
-    wiced_bool_t                no_rsp;     /* TRUE, when the event is generated as a part of RESUME SESSION */
+    uint8_t                   ssn;          /* session sequence number */
+    wiced_bt_device_address_t peer_addr;    /* The peer Bluetooth Address. */
+    uint16_t                  mtu;          /* The peer MTU. This element is associated with OBEX_CONNECT_REQ_EVT and OBEX_CONNECT_RSP_EVT. */
+    wiced_bt_obex_handle_t    handle;       /* the OBEX handle returned by OBEX_StartServer(), OBEX_CreateSession() and OBEX_ConnectReq() */
+    wiced_bool_t              no_rsp;       /* TRUE, when the event is generated as a part of RESUME SESSION */
 } wiced_bt_obex_conn_evt_t;
 
 /* Session Opcode Definitions: */
@@ -223,8 +228,9 @@ enum
     OBEX_SESS_ST_NONE,          /* 0x00    session is not engaged/closed */
     OBEX_SESS_ST_ACTIVE,        /* 0x01    session is active. */
     OBEX_SESS_ST_SUSPENDED,     /* 0x02    session is suspended. */
-    OBEX_SESS_ST_EXT_MAX
+    OBEX_SESS_ST_EXT_MAX,
 };
+
 typedef uint8_t     wiced_bt_obex_sess_state_t;
 
 typedef struct
@@ -233,7 +239,7 @@ typedef struct
     wiced_bt_obex_sess_opcode_t sess_op;        /* the session op code */
     wiced_bt_obex_sess_state_t  sess_st;        /* the session state */
     wiced_bt_device_address_t   peer_addr;      /* The peer Bluetooth Address. */
-    uint8_t                     *p_sess_info;   /* The session ID and the local nonce for a reliable session, a reference to the location in OBEX control block or NULL */
+    uint8_t                    *p_sess_info;    /* The session ID and the local nonce for a reliable session, a reference to the location in OBEX control block or NULL */
     uint32_t                    timeout;        /* The number of seconds remaining in suspend. 0xffff if infinite. */
     uint32_t                    obj_offset;     /* The object offset for resume session. */
     uint8_t                     nssn;           /* The next session sequence number the server expects */
@@ -241,14 +247,14 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                 ssn;        /* session sequence number */
-    wiced_bt_obex_action_t  action;     /* The action opcode. */
+    uint8_t                ssn;         /* session sequence number */
+    wiced_bt_obex_action_t action;      /* The action opcode. */
 } wiced_bt_obex_action_evt_t;
 
 typedef struct
 {
-    uint8_t                         ssn;        /* session sequence number */
-    wiced_bt_obex_setpath_flag_t    flag;       /* The set path flags. */
+    uint8_t                      ssn;           /* session sequence number */
+    wiced_bt_obex_setpath_flag_t flag;          /* The set path flags. */
 } wiced_bt_obex_setpath_evt_t;
 
 /* permission flags */
@@ -259,13 +265,13 @@ typedef struct
 
 typedef union
 {
-    uint8_t                         ssn;        /* session sequence number */
-    wiced_bt_obex_conn_evt_t        conn;       /* This element is associated with OBEX_CONNECT_REQ_EVT and OBEX_CONNECT_RSP_EVT. */
-    wiced_bt_obex_sess_evt_t        sess;       /* This element is associated with OBEX_SESSION_REQ_EVT and OBEX_SESSION_RSP_EVT. */
-    wiced_bt_obex_put_evt_t         put;        /* This element is associated with OBEX_PUT_REQ_EVT. */
-    wiced_bt_obex_setpath_evt_t     sp;         /* This element is associated with OBEX_SETPATH_REQ_EVT. */
-    wiced_bt_obex_action_evt_t      action;     /* This element is associated with OBEX_ACTION_REQ_EVT */
-    wiced_bt_obex_get_evt_t         get;        /* This element is associated with OBEX_GET_REQ_EVT. TRUE, if this is the final packet that contains the OBEX headers for this GET request. */
+    uint8_t                     ssn;            /* session sequence number */
+    wiced_bt_obex_conn_evt_t    conn;           /* This element is associated with OBEX_CONNECT_REQ_EVT and OBEX_CONNECT_RSP_EVT. */
+    wiced_bt_obex_sess_evt_t    sess;           /* This element is associated with OBEX_SESSION_REQ_EVT and OBEX_SESSION_RSP_EVT. */
+    wiced_bt_obex_put_evt_t     put;            /* This element is associated with OBEX_PUT_REQ_EVT. */
+    wiced_bt_obex_setpath_evt_t sp;             /* This element is associated with OBEX_SETPATH_REQ_EVT. */
+    wiced_bt_obex_action_evt_t  action;         /* This element is associated with OBEX_ACTION_REQ_EVT */
+    wiced_bt_obex_get_evt_t     get;            /* This element is associated with OBEX_GET_REQ_EVT. TRUE, if this is the final packet that contains the OBEX headers for this GET request. */
 } wiced_bt_obex_evt_param_t;
 
 /* Server Callback type: */
@@ -278,27 +284,27 @@ typedef void (wiced_bt_obex_client_cback_t) (wiced_bt_obex_handle_t handle, wice
 
 typedef struct
 {
-    uint16_t        len;                            /* Length of target header. */
-    uint8_t         target[OBEX_MAX_TARGET_LEN];    /* The byte sequence that describes the target header. */
+    uint16_t len;                                   /* Length of target header. */
+    uint8_t  target[OBEX_MAX_TARGET_LEN];           /* The byte sequence that describes the target header. */
 } wiced_bt_obex_target_t;
 
 typedef struct
 {
-    wiced_bt_obex_target_t          *p_target;
-    wiced_bt_obex_server_cback_t    *p_cback;
-    uint16_t        mtu;
-    uint8_t         scn;            /* The RFCOMM SCN number that this server listens for incoming requests. 0, if do not wish to listen to connection from RFCOMM. */
-    wiced_bool_t    authenticate;
-    uint8_t         auth_option;
-    uint8_t         realm_charset;
-    uint8_t         *p_realm;
-    uint8_t         realm_len;
-    uint8_t         max_sessions;
-    wiced_bool_t    get_nonf;       /* report GET non-final request event. If FALSE, GET response is sent automatically */
-    uint16_t        psm;            /* The L2CAP PSM number that this server listens for incoming requests. 0, if do not wish to listen to connection from L2CAP. */
-    uint32_t        nonce;          /* This is converted to UINT8[16] internally before adding to the OBEX header. This value is copied to the server control block and is increased after each use. 0, if only legacy OBEX (unreliable) session is desired. */
-    wiced_bool_t    srm;            /* TRUE, to support single response mode. */
-    uint8_t         max_suspend;    /* Max number of suspended session. must be less than OBEX_MAX_SUSPEND_SESSIONS. ignored, if nonce is 0 */
+    wiced_bt_obex_target_t       *p_target;
+    wiced_bt_obex_server_cback_t *p_cback;
+    uint16_t                      mtu;
+    uint8_t                       scn; /* The RFCOMM SCN number that this server listens for incoming requests. 0, if do not wish to listen to connection from RFCOMM. */
+    wiced_bool_t                  authenticate;
+    uint8_t                       auth_option;
+    uint8_t                       realm_charset;
+    uint8_t                      *p_realm;
+    uint8_t                       realm_len;
+    uint8_t                       max_sessions;
+    wiced_bool_t                  get_nonf; /* report GET non-final request event. If FALSE, GET response is sent automatically */
+    uint16_t                      psm;      /* The L2CAP PSM number that this server listens for incoming requests. 0, if do not wish to listen to connection from L2CAP. */
+    uint32_t                      nonce;    /* This is converted to UINT8[16] internally before adding to the OBEX header. The value is copied to the server control block and incremented each use. 0 if only legacy OBEX (unreliable) session desired. */
+    wiced_bool_t                  srm;      /* TRUE, to support single response mode. */
+    uint8_t                       max_suspend; /* Max number of suspended session. must be less than OBEX_MAX_SUSPEND_SESSIONS. ignored, if nonce is 0 */
 } wiced_bt_obex_start_params_t;
 
 
@@ -336,9 +342,9 @@ typedef uint8_t     wiced_bt_obex_header_identifier_t;
 
 typedef struct
 {
-    uint8_t     tag;
-    uint8_t     len;
-    uint8_t     *p_array;
+    uint8_t  tag;
+    uint8_t  len;
+    uint8_t *p_array;
 } wiced_bt_obex_triplet_t;
 
 
@@ -487,7 +493,7 @@ uint16_t wiced_bt_obex_get_peer_addr(wiced_bt_obex_handle_t handle, wiced_bt_dev
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_connect(wiced_bt_device_address_t bd_addr, uint8_t scn, uint16_t mtu,
-        wiced_bt_obex_client_cback_t *p_cback, wiced_bt_obex_handle_t *p_handle, uint8_t *p_pkt);
+                                             wiced_bt_obex_client_cback_t *p_cback, wiced_bt_obex_handle_t *p_handle, uint8_t *p_pkt);
 
 /**
  * Function     wiced_bt_obex_disconnect
@@ -536,7 +542,7 @@ wiced_bt_obex_status_t wiced_bt_obex_send_request(wiced_bt_obex_handle_t handle,
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_alloc_session(uint8_t *p_session_info, uint8_t scn, uint16_t *p_psm,
-        wiced_bt_obex_client_cback_t *p_cback, wiced_bt_obex_handle_t *p_handle);
+                                                   wiced_bt_obex_client_cback_t *p_cback, wiced_bt_obex_handle_t *p_handle);
 
 /**
  * Function     wiced_bt_obex_create_session
@@ -555,7 +561,7 @@ wiced_bt_obex_status_t wiced_bt_obex_alloc_session(uint8_t *p_session_info, uint
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_create_session(wiced_bt_device_address_t bd_addr, uint16_t mtu,
-        wiced_bool_t srm, uint32_t nonce, wiced_bt_obex_handle_t handle, uint8_t *p_pkt);
+                                                    wiced_bool_t srm, uint32_t nonce, wiced_bt_obex_handle_t handle, uint8_t *p_pkt);
 
 /**
  * Function     wiced_bt_obex_close_session
@@ -596,7 +602,7 @@ wiced_bt_obex_status_t wiced_bt_obex_suspend_session(wiced_bt_obex_handle_t hand
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_resume_session(wiced_bt_device_address_t bd_addr, uint8_t ssn,
-        uint32_t offset, wiced_bt_obex_handle_t handle);
+                                                    uint32_t offset, wiced_bt_obex_handle_t handle);
 
 /**
  * Function     wiced_bt_obex_set_session_timeout
@@ -610,7 +616,7 @@ wiced_bt_obex_status_t wiced_bt_obex_resume_session(wiced_bt_device_address_t bd
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_set_session_timeout(wiced_bt_obex_handle_t handle, uint32_t timeout);
-#endif
+#endif // ifdef OBEX_LIB_SESSION_SUPPORTED
 
 
 /****************************************************************************/
@@ -645,7 +651,7 @@ wiced_bt_obex_status_t wiced_bt_obex_set_session_timeout(wiced_bt_obex_handle_t 
  *  @return     A pointer to allocated packet
  *
  */
-uint8_t * wiced_bt_obex_header_init(wiced_bt_obex_handle_t handle, uint16_t pkt_size);
+uint8_t *wiced_bt_obex_header_init(wiced_bt_obex_handle_t handle, uint16_t pkt_size);
 
 /**
  * Function     wiced_bt_obex_add_header
@@ -672,7 +678,7 @@ uint8_t * wiced_bt_obex_header_init(wiced_bt_obex_handle_t handle, uint16_t pkt_
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_add_header(uint8_t *p_pkt, wiced_bt_obex_header_identifier_t id,
-        uint8_t *p_data, uint16_t len);
+                                                uint8_t *p_data, uint16_t len);
 
 /**
  * Function     wiced_bt_obex_add_header_utf8
@@ -702,7 +708,7 @@ wiced_bt_obex_status_t wiced_bt_obex_add_header_utf8(uint8_t *p_pkt, wiced_bt_ob
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_add_triplet_header(uint8_t *p_pkt, wiced_bt_obex_header_identifier_t id,
-        wiced_bt_obex_triplet_t *p_triplet, uint8_t num);
+                                                        wiced_bt_obex_triplet_t *p_triplet, uint8_t num);
 
 /**
  * Function     wiced_bt_obex_add_byte_sequence_start
@@ -718,7 +724,7 @@ wiced_bt_obex_status_t wiced_bt_obex_add_triplet_header(uint8_t *p_pkt, wiced_bt
  *  @return     Starting point to the OBEX packet byte sequence header buffer
  *
  */
-uint8_t * wiced_bt_obex_add_byte_sequence_start(uint8_t *p_pkt, uint16_t *p_len);
+uint8_t *wiced_bt_obex_add_byte_sequence_start(uint8_t *p_pkt, uint16_t *p_len);
 
 /**
  * Function     wiced_bt_obex_add_byte_sequence_end
@@ -735,7 +741,7 @@ uint8_t * wiced_bt_obex_add_byte_sequence_start(uint8_t *p_pkt, uint16_t *p_len)
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_add_byte_sequence_end(uint8_t *p_pkt, wiced_bt_obex_header_identifier_t id,
-        uint16_t len);
+                                                           uint16_t len);
 
 /**
  * Function     wiced_bt_obex_read_header
@@ -759,7 +765,7 @@ wiced_bt_obex_status_t wiced_bt_obex_add_byte_sequence_end(uint8_t *p_pkt, wiced
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_read_header(uint8_t *p_pkt, wiced_bt_obex_header_identifier_t id,
-        uint8_t *p_data, uint16_t *p_len);
+                                                 uint8_t *p_data, uint16_t *p_len);
 
 /**
  * Function     wiced_bt_obex_read_header_utf8
@@ -775,7 +781,7 @@ wiced_bt_obex_status_t wiced_bt_obex_read_header(uint8_t *p_pkt, wiced_bt_obex_h
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_read_header_utf8(uint8_t *p_pkt, wiced_bt_obex_header_identifier_t id,
-        uint8_t *p_data, uint16_t max_len);
+                                                      uint8_t *p_data, uint16_t max_len);
 
 /**
  * Function     wiced_bt_obex_find_byte_sequence_header
@@ -791,7 +797,7 @@ wiced_bt_obex_status_t wiced_bt_obex_read_header_utf8(uint8_t *p_pkt, wiced_bt_o
  *
  */
 wiced_bt_obex_status_t wiced_bt_obex_find_byte_sequence_header(uint8_t *p_pkt, wiced_bt_obex_header_identifier_t id,
-        uint8_t **p_data, uint16_t *p_len);
+                                                               uint8_t **p_data, uint16_t *p_len);
 
 /**
  * Function     wiced_bt_obex_find_body_header
@@ -815,3 +821,5 @@ uint8_t wiced_bt_obex_find_body_header(uint8_t *p_pkt, uint8_t **p_body, uint16_
 #ifdef __cplusplus
 }
 #endif
+
+#endif // WICED_BT_OBEX_H

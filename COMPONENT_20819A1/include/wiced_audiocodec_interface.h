@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -38,21 +38,21 @@
 //  History:
 //  *******************************************************************************
 
-#ifndef __WICED_AUDIOCODEC_INTERFACE_H__
-#define __WICED_AUDIOCODEC_INTERFACE_H__
+#ifndef WICED_AUDIOCODEC_INTERFACE_H__
+#define WICED_AUDIOCODEC_INTERFACE_H__
 
 #include "brcm_fw_types.h"
 #include "wiced.h"
 
 /**
-* \addtogroup  interfaces   Audio Codec Interface
-* \ingroup     wicedbt_av
-*/
+ * \addtogroup  interfaces   Audio Codec Interface
+ * \ingroup     wicedbt_av
+ */
 /*! @{ */
 /**
-* Defines an audio codec interface.  Application uses this
-* interface to control external audio codec activities.
-*/
+ * Defines an audio codec interface.  Application uses this
+ * interface to control external audio codec activities.
+ */
 
 typedef struct
 {
@@ -75,4 +75,4 @@ typedef struct
     void (*regWrite)(int8_t index, uint16_t data);
 } wiced_audio_codec_interface_func_tbl;
 
-#endif
+#endif // ifndef WICED_AUDIOCODEC_INTERFACE_H__

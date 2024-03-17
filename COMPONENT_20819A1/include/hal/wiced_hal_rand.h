@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -33,63 +33,63 @@
 
 
 /** \file <wiced_hal_rand.h>>
-*
-* \brief
-* Lists the parameters and defined functions needed to utilize the
-* Random Number Generator (RNG).
-*
-******************************************************************************/
+ *
+ * \brief
+ * Lists the parameters and defined functions needed to utilize the
+ * Random Number Generator (RNG).
+ *
+ ******************************************************************************/
 
-#ifndef __WICED_HAL_RAND_H__
-#define __WICED_HAL_RAND_H__
+#ifndef WICED_HAL_RAND_H__
+#define WICED_HAL_RAND_H__
 
 #include "wiced.h"
 
 /**  \addtogroup RandomNumberGenerator Random Number Generator (RNG)
-* \ingroup HardwareDrivers
-* @{
-*
-* Defines a driver for the Random Number Generator (RNG). The RNG uses a
-* special hardware module to generate either a single 32-bit random number or
-* fill a given array with 32-bit random numbers. These are useful for
-* applications such as authentication.
-*
-******************************************************************************/
+ * \ingroup HardwareDrivers
+ * @{
+ *
+ * Defines a driver for the Random Number Generator (RNG). The RNG uses a
+ * special hardware module to generate either a single 32-bit random number or
+ * fill a given array with 32-bit random numbers. These are useful for
+ * applications such as authentication.
+ *
+ ******************************************************************************/
 
 /******************************************************************************
-* Function Prototypes and Defines
-******************************************************************************/
+ * Function Prototypes and Defines
+ ******************************************************************************/
 
 /******************************************************************************
-* Function Name: wiced_hal_rand_gen_num
-***************************************************************************//**
-* Generates and returns a random 32-bit integer. Internal functions check
-* that the generating hardware is warmed up and ready before returning
-* the random value. If the hardware is too "cold" at the time of use,
-* the function instead uses the Bluetooth clock as a "seed" and generates a
-* "soft" random number.
-*
-* \param          None.
-*
-* \return         - A randomly generated 32-bit integer.
-******************************************************************************/
+ * Function Name: wiced_hal_rand_gen_num
+ ***************************************************************************//**
+ * Generates and returns a random 32-bit integer. Internal functions check
+ * that the generating hardware is warmed up and ready before returning
+ * the random value. If the hardware is too "cold" at the time of use,
+ * the function instead uses the Bluetooth clock as a "seed" and generates a
+ * "soft" random number.
+ *
+ * \param          None.
+ *
+ * \return         - A randomly generated 32-bit integer.
+ ******************************************************************************/
 uint32_t wiced_hal_rand_gen_num(void);
 
 
 /******************************************************************************
-* Function Name: wiced_hal_rand_gen_num_array
-***************************************************************************//**
-* Fills a given array with randomly generated 32-bit integers. Uses the
-* function wiced_hal_rand_gen_num().
-*
-* \param randNumberArrayPtr - The pointer to an array to be populated with
-*                             random numbers.
-* \param length             - The length of the array pointed to by
-*                             randNumberArrayPtr.
-*
-* \return None.
-******************************************************************************/
-void wiced_hal_rand_gen_num_array(uint32_t* randNumberArrayPtr, uint32_t length);
+ * Function Name: wiced_hal_rand_gen_num_array
+ ***************************************************************************//**
+ * Fills a given array with randomly generated 32-bit integers. Uses the
+ * function wiced_hal_rand_gen_num().
+ *
+ * \param randNumberArrayPtr - The pointer to an array to be populated with
+ *                             random numbers.
+ * \param length             - The length of the array pointed to by
+ *                             randNumberArrayPtr.
+ *
+ * \return None.
+ ******************************************************************************/
+void wiced_hal_rand_gen_num_array(uint32_t *randNumberArrayPtr, uint32_t length);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// This functin returns a pseudo random number
@@ -100,4 +100,4 @@ void wiced_hal_rand_gen_num_array(uint32_t* randNumberArrayPtr, uint32_t length)
 ///////////////////////////////////////////////////////////////////////////////
 uint32_t wiced_hal_get_pseudo_rand_number(void);
 
-#endif /* _WICED_HAL_RAND_H_ */
+#endif /* WICED_HAL_RAND_H_ */

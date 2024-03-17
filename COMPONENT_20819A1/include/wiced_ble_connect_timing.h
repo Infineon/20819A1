@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2020-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -35,15 +35,15 @@
  * support callback notification with timing since last ble connection
  *
  */
-#ifndef __WICED_BLE_CONNECT_TIMING_H__
-#define __WICED_BLE_CONNECT_TIMING_H__
+#ifndef WICED_BLE_CONNECT_TIMING_H__
+#define WICED_BLE_CONNECT_TIMING_H__
 
 typedef struct tag_app_connect_timing_data
 {
-    UINT64  cur_local_time64;               // Free-running local time in uSecs, at instant of callback
-    UINT32  time_since_conn_evt;            // Time since Connection Event in uSecs
-    UINT16  connection_handle;
-    UINT8   rssi;
+    UINT64 cur_local_time64;                // Free-running local time in uSecs, at instant of callback
+    UINT32 time_since_conn_evt;             // Time since Connection Event in uSecs
+    UINT16 connection_handle;
+    UINT8  rssi;
 } BLE_CONNECT_TIMING_APP_DATA;
 
 typedef void (*BLE_CONNECT_TIMING_CB_t)(BLE_CONNECT_TIMING_APP_DATA *app_data);
@@ -53,4 +53,4 @@ void ble_connect_timing_disable();
 void ble_bms_placement_enable(void);
 void ble_bms_placement_disable(void);
 
-#endif
+#endif // ifndef WICED_BLE_CONNECT_TIMING_H__

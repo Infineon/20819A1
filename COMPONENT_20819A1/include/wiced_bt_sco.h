@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -36,7 +36,8 @@
  * Bluetooth Synchronous Connection Oriented Channel Application Programming Interface
  *
  */
-#pragma once
+#ifndef WICED_BT_SCO_H
+#define WICED_BT_SCO_H
 
 #include "wiced.h"
 /**
@@ -72,34 +73,33 @@
 #define WICED_SCO_PKT_TYPES_MASK_NO_3_EV3 0x0080
 #define WICED_SCO_PKT_TYPES_MASK_NO_2_EV5 0x0100
 #define WICED_SCO_PKT_TYPES_MASK_NO_3_EV5 0x0200
-#endif
+#endif // ifndef WICED_SCO_PKT_TYPES_MASK
 
 /** SCO route path */
 typedef enum
 {
     WICED_BT_SCO_OVER_PCM = 0,   /**< [DEFAULT] PCM data config for routing over I2S/PCM interface */
-}wiced_bt_sco_route_path_t;
+} wiced_bt_sco_route_path_t;
 
 /******************************************************
  *              Type Definitions
  ******************************************************/
-#define  WICED_BT_SCO_DATA_CB_GET_LENGTH(ltch_len)   ((ltch_len>>8)&0xff)	/**< SCO data callback length */
+#define  WICED_BT_SCO_DATA_CB_GET_LENGTH(ltch_len)   ((ltch_len>>8)&0xff)   /**< SCO data callback length */
 
 /** Subset for the enhanced setup/accept synchronous connection paramters. See BT 4.1 or later HCI spec for details */
 typedef struct
 {
-    uint16_t max_latency;                   /**< Maximum latency (0x4-0xFFFE in msecs) */
-    uint16_t packet_types;                  /**< Packet Types */
-    uint8_t retrans_effort;                 /**< 0x00-0x02, 0xFF don't care */
+    uint16_t     max_latency;               /**< Maximum latency (0x4-0xFFFE in msecs) */
+    uint16_t     packet_types;              /**< Packet Types */
+    uint8_t      retrans_effort;            /**< 0x00-0x02, 0xFF don't care */
     wiced_bool_t use_wbs;                   /**< True to use wide band, False to use narrow band */
-
 } wiced_bt_sco_params_t;
 
 /** SCO path config */
 typedef struct
 {
-    wiced_bt_sco_route_path_t    path;           /**< sco routing path  0:pcm/i2s; 1: app*/
-}wiced_bt_voice_path_setup_t;
+    wiced_bt_sco_route_path_t path;              /**< sco routing path  0:pcm/i2s; 1: app*/
+} wiced_bt_voice_path_setup_t;
 
 /******************************************************
  *              Function Declarations
@@ -126,9 +126,9 @@ extern "C"
  *                                                    reached
  *              <b> WICED_BT_PENDING </b>            : Create connection successfully, "p_sco_index" is returned
  */
-wiced_bt_dev_status_t wiced_bt_sco_create_as_initiator (wiced_bt_device_address_t bd_addr,
-                                                        uint16_t *p_sco_index,
-                                                        wiced_bt_sco_params_t *p_params);
+wiced_bt_dev_status_t wiced_bt_sco_create_as_initiator(wiced_bt_device_address_t bd_addr,
+                                                       uint16_t *p_sco_index,
+                                                       wiced_bt_sco_params_t *p_params);
 
 /**
  * Function         wiced_bt_sco_create_as_acceptor
@@ -147,7 +147,7 @@ wiced_bt_dev_status_t wiced_bt_sco_create_as_initiator (wiced_bt_device_address_
  *                                                    reached
  *              <b> WICED_BT_PENDING </b>            : Create connection successfully, "p_sco_index" is returned
  */
-wiced_bt_dev_status_t wiced_bt_sco_create_as_acceptor (uint16_t *p_sco_index);
+wiced_bt_dev_status_t wiced_bt_sco_create_as_acceptor(uint16_t *p_sco_index);
 
 /**
  * Function         wiced_bt_sco_remove
@@ -162,7 +162,7 @@ wiced_bt_dev_status_t wiced_bt_sco_create_as_acceptor (uint16_t *p_sco_index);
  *                                                    listening for incoming connection
  *              <b> WICED_BT_PENDING </b>            : Remove connection successfully
  */
-wiced_bt_dev_status_t wiced_bt_sco_remove (uint16_t sco_index);
+wiced_bt_dev_status_t wiced_bt_sco_remove(uint16_t sco_index);
 
 /**
  * Function         wiced_bt_sco_accept_connection
@@ -179,8 +179,8 @@ wiced_bt_dev_status_t wiced_bt_sco_remove (uint16_t sco_index);
  *  @param[in]  p_params            : Pointer to the SCO parameter structure
  *
  */
-void wiced_bt_sco_accept_connection (uint16_t sco_index, uint8_t hci_status,
-                                     wiced_bt_sco_params_t *p_params);
+void wiced_bt_sco_accept_connection(uint16_t sco_index, uint8_t hci_status,
+                                    wiced_bt_sco_params_t *p_params);
 
 
 /**
@@ -198,7 +198,6 @@ void wiced_bt_sco_accept_connection (uint16_t sco_index, uint8_t hci_status,
 wiced_bt_dev_status_t wiced_bt_sco_setup_voice_path(wiced_bt_voice_path_setup_t *pData);
 
 
-
 /**
  * Function         wiced_bt_sco_output_stream
  *
@@ -211,7 +210,7 @@ wiced_bt_dev_status_t wiced_bt_sco_setup_voice_path(wiced_bt_voice_path_setup_t 
  *
  *  @return                     : Return the legth of non transmited stream.
  */
-uint16_t wiced_bt_sco_output_stream( uint16_t sco_index, uint8_t* p_pcmsrc,uint16_t len );
+uint16_t wiced_bt_sco_output_stream(uint16_t sco_index, uint8_t *p_pcmsrc, uint16_t len);
 
 /**
  * Function         wiced_bt_sco_turn_off_pcm_clock
@@ -222,10 +221,12 @@ uint16_t wiced_bt_sco_output_stream( uint16_t sco_index, uint8_t* p_pcmsrc,uint1
  *  @return                     : None
  */
 
-void  wiced_bt_sco_turn_off_pcm_clock( void );
+void wiced_bt_sco_turn_off_pcm_clock(void);
 
 
 #ifdef __cplusplus
 }
 #endif
 /** @} wicedbt_sco */
+
+#endif // WICED_BT_SCO_H

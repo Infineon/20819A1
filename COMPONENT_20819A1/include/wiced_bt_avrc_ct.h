@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -43,7 +43,8 @@
  * @{
  */
 
-#pragma once
+#ifndef WICED_BT_AVRC_CT_H
+#define WICED_BT_AVRC_CT_H
 
 #include "wiced.h"
 #include "wiced_bt_types.h"
@@ -64,8 +65,8 @@
 /** AVRC remote control feature mask */
 typedef enum
 {
-    REMOTE_CONTROL_FEATURE_TARGET       = 0x0001, /**< Select to support the features of a Target */
-    REMOTE_CONTROL_FEATURE_CONTROLLER   = 0x0002, /**< Select to support the features of a Controller */
+    REMOTE_CONTROL_FEATURE_TARGET     = 0x0001,   /**< Select to support the features of a Target */
+    REMOTE_CONTROL_FEATURE_CONTROLLER = 0x0002,   /**< Select to support the features of a Controller */
     /* TODO: We need to add the AVRCP feature bits */
 } wiced_bt_avrc_ct_features_t;
 
@@ -74,22 +75,22 @@ typedef enum
 {
     REMOTE_CONTROL_DISCONNECTED = 0, /**< Remote control is disconnected from peer */
     REMOTE_CONTROL_CONNECTED    = 1, /**< Remote control is connected to peer */
-    REMOTE_CONTROL_INITIALIZED  = 2  /**< Remote control is idle (not connected to any peer) */
+    REMOTE_CONTROL_INITIALIZED  = 2, /**< Remote control is idle (not connected to any peer) */
 } wiced_bt_avrc_ct_connection_state_t;
 
 /** Callback for connection state */
-typedef void (*wiced_bt_avrc_ct_connection_state_cback_t)( uint8_t handle, wiced_bt_device_address_t remote_addr,
-                            wiced_result_t status, wiced_bt_avrc_ct_connection_state_t connection_state,
-                            uint32_t peer_features);
+typedef void (*wiced_bt_avrc_ct_connection_state_cback_t)(uint8_t handle, wiced_bt_device_address_t remote_addr,
+                                                          wiced_result_t status, wiced_bt_avrc_ct_connection_state_t connection_state,
+                                                          uint32_t peer_features);
 
 /** Response callback from peer device for AVRCP commands */
-typedef void (*wiced_bt_avrc_ct_rsp_cback_t)    ( uint8_t handle, wiced_bt_avrc_response_t *avrc_rsp);
+typedef void (*wiced_bt_avrc_ct_rsp_cback_t)    (uint8_t handle, wiced_bt_avrc_response_t *avrc_rsp);
 
 /** Callback when peer device sends AVRCP commands */
-typedef void (*wiced_bt_avrc_ct_cmd_cback_t)    ( uint8_t handle, wiced_bt_avrc_command_t *avrc_cmd);
+typedef void (*wiced_bt_avrc_ct_cmd_cback_t)    (uint8_t handle, wiced_bt_avrc_command_t *avrc_cmd);
 
 /** Callback when peer device sends response to AVRCP passthrough commands */
-typedef void (*wiced_bt_avrc_ct_pt_rsp_cback_t) ( uint8_t handle, wiced_bt_avrc_msg_pass_t *avrc_pass_rsp );
+typedef void (*wiced_bt_avrc_ct_pt_rsp_cback_t) (uint8_t handle, wiced_bt_avrc_msg_pass_t *avrc_pass_rsp);
 
 #if AVRC_ADV_CTRL_INCLUDED == TRUE
 /* Callback used to indicates some peer features */
@@ -102,7 +103,7 @@ typedef enum
 /* Data associated with WICED_BT_AVRC_CT_FEATURES_ABS_VOL_SUPPORTED event */
 typedef struct
 {
-    uint8_t handle;
+    uint8_t      handle;
     wiced_bool_t supported;
 } wiced_bt_avrc_ct_features_abs_vol_t;
 
@@ -112,7 +113,7 @@ typedef union
 } wiced_bt_avrc_ct_features_data_t;
 
 typedef void (*wiced_bt_avrc_ct_features_cback_t) (wiced_bt_avrc_ct_features_event_t event,
-        wiced_bt_avrc_ct_features_data_t *p_data);
+                                                   wiced_bt_avrc_ct_features_data_t *p_data);
 #endif /* AVRC_ADV_CTRL_INCLUDED == TRUE */
 
 /** Callback when peer device sends AVRCP passthrough commands op code */
@@ -148,11 +149,11 @@ extern "C" {
  *
  */
 wiced_result_t wiced_bt_avrc_ct_init(uint32_t local_features,
-                    uint8_t *supported_events,
-                    wiced_bt_avrc_ct_connection_state_cback_t p_connection_cb,
-                    wiced_bt_avrc_ct_cmd_cback_t p_cmd_cb,
-                    wiced_bt_avrc_ct_rsp_cback_t p_rsp_cb,
-                    wiced_bt_avrc_ct_pt_rsp_cback_t p_ptrsp_cb);
+                                     uint8_t *supported_events,
+                                     wiced_bt_avrc_ct_connection_state_cback_t p_connection_cb,
+                                     wiced_bt_avrc_ct_cmd_cback_t p_cmd_cb,
+                                     wiced_bt_avrc_ct_rsp_cback_t p_rsp_cb,
+                                     wiced_bt_avrc_ct_pt_rsp_cback_t p_ptrsp_cb);
 
 #if AVRC_ADV_CTRL_INCLUDED == TRUE
 /**
@@ -164,8 +165,7 @@ wiced_result_t wiced_bt_avrc_ct_init(uint32_t local_features,
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_features_register(
-        wiced_bt_avrc_ct_features_cback_t features_callback);
+wiced_result_t wiced_bt_avrc_ct_features_register(wiced_bt_avrc_ct_features_cback_t features_callback);
 #endif
 
 #ifdef WICED_BT_AVRC_CT_DEINIT_SUPPORT
@@ -204,7 +204,7 @@ wiced_result_t wiced_bt_avrc_ct_connect(wiced_bt_device_address_t remote_addr);
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_disconnect( uint8_t handle );
+wiced_result_t wiced_bt_avrc_ct_disconnect(uint8_t handle);
 
 /**
  * Function         wiced_bt_avrc_ct_send_pass_through_cmd
@@ -220,7 +220,7 @@ wiced_result_t wiced_bt_avrc_ct_disconnect( uint8_t handle );
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_send_pass_through_cmd( uint8_t handle, uint8_t cmd, uint8_t state, uint8_t data_len, uint8_t *data );
+wiced_result_t wiced_bt_avrc_ct_send_pass_through_cmd(uint8_t handle, uint8_t cmd, uint8_t state, uint8_t data_len, uint8_t *data);
 
 /**
  * Function         wiced_bt_avrc_ct_send_unit_info_cmd
@@ -232,7 +232,7 @@ wiced_result_t wiced_bt_avrc_ct_send_pass_through_cmd( uint8_t handle, uint8_t c
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_send_unit_info_cmd( uint16_t handle );
+wiced_result_t wiced_bt_avrc_ct_send_unit_info_cmd(uint16_t handle);
 
 /**
  * Function         wiced_bt_avrc_ct_send_sub_unit_info_cmd
@@ -244,7 +244,7 @@ wiced_result_t wiced_bt_avrc_ct_send_unit_info_cmd( uint16_t handle );
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_send_sub_unit_info_cmd( uint16_t handle );
+wiced_result_t wiced_bt_avrc_ct_send_sub_unit_info_cmd(uint16_t handle);
 
 /**
  * Function         wiced_bt_avrc_ct_get_element_attr_cmd
@@ -260,7 +260,7 @@ wiced_result_t wiced_bt_avrc_ct_send_sub_unit_info_cmd( uint16_t handle );
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_get_element_attr_cmd( uint8_t handle, wiced_bt_avrc_uid_t element_id, uint8_t num_attr, uint8_t *p_attrs);
+wiced_result_t wiced_bt_avrc_ct_get_element_attr_cmd(uint8_t handle, wiced_bt_avrc_uid_t element_id, uint8_t num_attr, uint8_t *p_attrs);
 
 /**
  * Function         wiced_bt_avrc_ct_get_play_status_cmd
@@ -272,7 +272,7 @@ wiced_result_t wiced_bt_avrc_ct_get_element_attr_cmd( uint8_t handle, wiced_bt_a
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_get_play_status_cmd( uint8_t handle );
+wiced_result_t wiced_bt_avrc_ct_get_play_status_cmd(uint8_t handle);
 
 /*****************************************************************************
  *  APPLICATION SETTINGS FUNCTIONS
@@ -289,7 +289,7 @@ wiced_result_t wiced_bt_avrc_ct_get_play_status_cmd( uint8_t handle );
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_list_player_attrs_cmd( uint8_t handle );
+wiced_result_t wiced_bt_avrc_ct_list_player_attrs_cmd(uint8_t handle);
 
 /**
  * Function         wiced_bt_avrc_ct_list_player_values_cmd
@@ -303,7 +303,7 @@ wiced_result_t wiced_bt_avrc_ct_list_player_attrs_cmd( uint8_t handle );
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_list_player_values_cmd( uint8_t handle, uint8_t attr);
+wiced_result_t wiced_bt_avrc_ct_list_player_values_cmd(uint8_t handle, uint8_t attr);
 
 /**
  * Function         wiced_bt_avrc_ct_get_player_value_cmd
@@ -318,7 +318,7 @@ wiced_result_t wiced_bt_avrc_ct_list_player_values_cmd( uint8_t handle, uint8_t 
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_get_player_value_cmd( uint8_t handle, uint8_t num_attr, uint8_t *p_attrs );
+wiced_result_t wiced_bt_avrc_ct_get_player_value_cmd(uint8_t handle, uint8_t num_attr, uint8_t *p_attrs);
 
 /**
  * Function         wiced_bt_avrc_ct_set_player_value_cmd
@@ -332,7 +332,7 @@ wiced_result_t wiced_bt_avrc_ct_get_player_value_cmd( uint8_t handle, uint8_t nu
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_set_player_value_cmd( uint8_t handle, wiced_bt_avrc_player_app_param_t *p_vals );
+wiced_result_t wiced_bt_avrc_ct_set_player_value_cmd(uint8_t handle, wiced_bt_avrc_player_app_param_t *p_vals);
 
 /**
  * Function         wiced_bt_avrc_ct_get_player_attrs_text_cmd
@@ -347,7 +347,7 @@ wiced_result_t wiced_bt_avrc_ct_set_player_value_cmd( uint8_t handle, wiced_bt_a
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_get_player_attrs_text_cmd( uint8_t handle, uint8_t num_attr, uint8_t *p_attrs );
+wiced_result_t wiced_bt_avrc_ct_get_player_attrs_text_cmd(uint8_t handle, uint8_t num_attr, uint8_t *p_attrs);
 
 /**
  * Function         wiced_bt_avrc_ct_get_player_values_text_cmd
@@ -363,7 +363,7 @@ wiced_result_t wiced_bt_avrc_ct_get_player_attrs_text_cmd( uint8_t handle, uint8
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_get_player_values_text_cmd( uint8_t handle, uint8_t attr, uint8_t num_val, uint8_t *p_values );
+wiced_result_t wiced_bt_avrc_ct_get_player_values_text_cmd(uint8_t handle, uint8_t attr, uint8_t num_val, uint8_t *p_values);
 
 /*****************************************************************************
  *  AVRCP 1.5 BROWSING FUNCTIONS
@@ -380,7 +380,7 @@ wiced_result_t wiced_bt_avrc_ct_get_player_values_text_cmd( uint8_t handle, uint
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_set_addressed_player_cmd( uint8_t handle, uint16_t player_id );
+wiced_result_t wiced_bt_avrc_ct_set_addressed_player_cmd(uint8_t handle, uint16_t player_id);
 
 /**
  * Function         wiced_bt_avrc_ct_set_browsed_player_cmd
@@ -393,7 +393,7 @@ wiced_result_t wiced_bt_avrc_ct_set_addressed_player_cmd( uint8_t handle, uint16
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_set_browsed_player_cmd( uint8_t handle, uint16_t player_id );
+wiced_result_t wiced_bt_avrc_ct_set_browsed_player_cmd(uint8_t handle, uint16_t player_id);
 
 /**
  * Function         wiced_bt_avrc_ct_change_path_cmd
@@ -407,7 +407,7 @@ wiced_result_t wiced_bt_avrc_ct_set_browsed_player_cmd( uint8_t handle, uint16_t
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_change_path_cmd( uint8_t handle, uint8_t direction, wiced_bt_avrc_uid_t path_uid );
+wiced_result_t wiced_bt_avrc_ct_change_path_cmd(uint8_t handle, uint8_t direction, wiced_bt_avrc_uid_t path_uid);
 
 /**
  * Function         wiced_bt_avrc_ct_get_folder_items_cmd
@@ -424,8 +424,8 @@ wiced_result_t wiced_bt_avrc_ct_change_path_cmd( uint8_t handle, uint8_t directi
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_get_folder_items_cmd( uint8_t handle, uint8_t scope, uint32_t start_item,
-                                                    uint32_t end_item, uint8_t num_attr, uint32_t *p_attrs );
+wiced_result_t wiced_bt_avrc_ct_get_folder_items_cmd(uint8_t handle, uint8_t scope, uint32_t start_item,
+                                                     uint32_t end_item, uint8_t num_attr, uint32_t *p_attrs);
 
 /**
  * Function         wiced_bt_avrc_ct_get_item_attributes_cmd
@@ -442,8 +442,8 @@ wiced_result_t wiced_bt_avrc_ct_get_folder_items_cmd( uint8_t handle, uint8_t sc
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_get_item_attributes_cmd( uint8_t handle, uint8_t scope, wiced_bt_avrc_uid_t path_uid,
-                                                    uint8_t num_attr, uint32_t *p_attrs );
+wiced_result_t wiced_bt_avrc_ct_get_item_attributes_cmd(uint8_t handle, uint8_t scope, wiced_bt_avrc_uid_t path_uid,
+                                                        uint8_t num_attr, uint32_t *p_attrs);
 
 /**
  * Function         wiced_bt_avrc_ct_search_cmd
@@ -457,7 +457,7 @@ wiced_result_t wiced_bt_avrc_ct_get_item_attributes_cmd( uint8_t handle, uint8_t
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_search_cmd( uint8_t handle, wiced_bt_avrc_full_name_t search_string );
+wiced_result_t wiced_bt_avrc_ct_search_cmd(uint8_t handle, wiced_bt_avrc_full_name_t search_string);
 
 /**
  * Function         wiced_bt_avrc_ct_play_item_cmd
@@ -471,7 +471,7 @@ wiced_result_t wiced_bt_avrc_ct_search_cmd( uint8_t handle, wiced_bt_avrc_full_n
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_play_item_cmd( uint8_t handle, uint8_t scope, wiced_bt_avrc_uid_t item_uid );
+wiced_result_t wiced_bt_avrc_ct_play_item_cmd(uint8_t handle, uint8_t scope, wiced_bt_avrc_uid_t item_uid);
 
 
 /**
@@ -486,7 +486,7 @@ wiced_result_t wiced_bt_avrc_ct_play_item_cmd( uint8_t handle, uint8_t scope, wi
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_add_to_now_playing_cmd( uint8_t handle, uint8_t scope, wiced_bt_avrc_uid_t item_uid );
+wiced_result_t wiced_bt_avrc_ct_add_to_now_playing_cmd(uint8_t handle, uint8_t scope, wiced_bt_avrc_uid_t item_uid);
 
 /*****************************************************************************
  *  VOLUME FUNCTIONS
@@ -502,7 +502,7 @@ wiced_result_t wiced_bt_avrc_ct_add_to_now_playing_cmd( uint8_t handle, uint8_t 
  * @return          wiced_result_t
  *
  */
-wiced_result_t wiced_bt_avrc_ct_set_volume_cmd( uint8_t handle, uint8_t volume );
+wiced_result_t wiced_bt_avrc_ct_set_volume_cmd(uint8_t handle, uint8_t volume);
 
 #ifdef CT_HANDLE_PASSTHROUGH_COMMANDS
 /**
@@ -510,10 +510,12 @@ wiced_result_t wiced_bt_avrc_ct_set_volume_cmd( uint8_t handle, uint8_t volume )
  *
  * @param pt_evt_cb callback
  */
-void wiced_bt_avrc_ct_register_passthrough_event_callback( wiced_bt_avrc_ct_pt_evt_cback_t pt_evt_cb);
+void wiced_bt_avrc_ct_register_passthrough_event_callback(wiced_bt_avrc_ct_pt_evt_cback_t pt_evt_cb);
 #endif // CT_HANDLE_PASSTHROUGH_COMMANDS
 /** @}*/
 
 #ifdef __cplusplus
 }
 #endif
+
+#endif // WICED_BT_AVRC_CT_H

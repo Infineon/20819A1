@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,42 +32,42 @@
  */
 
 /** @file
-*
-* List of parameters and defined functions needed to access the
-* Battery Monitor.
-*
-*/
+ *
+ * List of parameters and defined functions needed to access the
+ * Battery Monitor.
+ *
+ */
 
-#ifndef __WICED_BATMON_H__
-#define __WICED_BATMON_H__
+#ifndef WICED_BATMON_H__
+#define WICED_BATMON_H__
 
 #include "wiced.h"
 
 /**  \addtogroup BatteryMonitorDriver Battery Monitor
-* \ingroup HardwareDrivers
-* @{
-* Defines a driver to facilitate interfacing with the Battery Monitor.
-* The driver uses the Analog-to-Digital Converter (ADC) driver to take a
-* moving average of the battery voltage, and decides when to suspend or
-* shutdown the system based upon the threshold values defined by the user.
-* This watchful protector ensures that the system is able to cleanly shut
-* down and notify the application and/or host before there is not enough
-* power necessary for proper system functionality. Note that the Battery
-* Monitor relies on polling to check on the status of the battery.
-*
-*/
+ * \ingroup HardwareDrivers
+ * @{
+ * Defines a driver to facilitate interfacing with the Battery Monitor.
+ * The driver uses the Analog-to-Digital Converter (ADC) driver to take a
+ * moving average of the battery voltage, and decides when to suspend or
+ * shutdown the system based upon the threshold values defined by the user.
+ * This watchful protector ensures that the system is able to cleanly shut
+ * down and notify the application and/or host before there is not enough
+ * power necessary for proper system functionality. Note that the Battery
+ * Monitor relies on polling to check on the status of the battery.
+ *
+ */
 
 /******************************************************************************
-*** Parameters.
-***
-*** The following parameters are used to configure the driver or define
-*** return status. They are not modifiable.
-******************************************************************************/
+ *** Parameters.
+ ***
+ *** The following parameters are used to configure the driver or define
+ *** return status. They are not modifiable.
+ ******************************************************************************/
 
 /**
-// Supported ADC input channel selection for battery connection.
-@verbatim
-typedef enum ADC_INPUT_CHANNEL_SEL {
+   // Supported ADC input channel selection for battery connection.
+   @verbatim
+   typedef enum ADC_INPUT_CHANNEL_SEL {
     ADC_INPUT_P17           =   0x0,    //GPIO 16
     ADC_INPUT_P16           =   0x1,    //GPIO 17
     ADC_INPUT_P15           =   0x2,    //GPIO 18
@@ -101,24 +101,24 @@ typedef enum ADC_INPUT_CHANNEL_SEL {
     ADC_INPUT_P19           =   0x1E,   //GPIO 14
     ADC_INPUT_P18           =   0x1F,   //GPIO 15
     ADC_INPUT_CHANNEL_MASK  =   0x1f,
-}ADC_INPUT_CHANNEL_SEL;
-@endverbatim
-**/
+   }ADC_INPUT_CHANNEL_SEL;
+   @endverbatim
+ **/
 
 /******************************************************************************
-*** Function prototypes and defines.
-******************************************************************************/
+ *** Function prototypes and defines.
+ ******************************************************************************/
 
 /******************************************************************************
  * Battery Observer List
-******************************************************************************/
+ ******************************************************************************/
 typedef void (wiced_hal_batmon_observer_fp)(uint32_t);
 
 typedef struct _wiced_hal_batmon_observer
 {
-    struct _wiced_hal_batmon_observer* next;
+    struct _wiced_hal_batmon_observer *next;
 
-    wiced_hal_batmon_observer_fp* callback;
+    wiced_hal_batmon_observer_fp *callback;
 } wiced_hal_batmon_observer_t;
 
 
@@ -206,7 +206,7 @@ uint32_t wiced_hal_batmon_get_battery_raw_vol(void);
 ///
 /// \return none
 /////////////////////////////////////////////////////////////////////////
-void wiced_hal_batmon_add_battery_observer(wiced_hal_batmon_observer_fp* observer);
+void wiced_hal_batmon_add_battery_observer(wiced_hal_batmon_observer_fp *observer);
 
 /////////////////////////////////////////////////////////////////////////
 /// register application callback handler for low battery shut down
@@ -215,7 +215,7 @@ void wiced_hal_batmon_add_battery_observer(wiced_hal_batmon_observer_fp* observe
 ///
 /// \return none
 /////////////////////////////////////////////////////////////////////////
-void wiced_hal_batmon_register_low_battery_shutdown_cb(void (* func_CB)(void));
+void wiced_hal_batmon_register_low_battery_shutdown_cb(void (*func_CB)(void));
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Check if low battery shutdown is on-going
@@ -251,4 +251,4 @@ void wiced_hal_batmon_set_battery_report_sent_flag(wiced_bool_t flag);
 
 /* @} */
 
-#endif // __WICED_BATMON_H__
+#endif // WICED_BATMON_H__

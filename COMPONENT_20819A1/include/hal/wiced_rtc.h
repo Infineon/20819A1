@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,48 +31,48 @@
  * so agrees to indemnify Cypress against all liability.
  */
 /** @file
-*
-* List of parameters and defined functions needed to access Rtc driver
-*
-*/
+ *
+ * List of parameters and defined functions needed to access Rtc driver
+ *
+ */
 
-#ifndef __WICED_RTC_H__
-#define __WICED_RTC_H__
+#ifndef WICED_RTC_H__
+#define WICED_RTC_H__
 
 /**  \addtogroup RTCDriver
-* \ingroup HardwareDrivers
-*/
+ * \ingroup HardwareDrivers
+ */
 /*! @{ */
 /**
-* Defines a driver to facilitate interfacing with the RTC.
-*
-*/
+ * Defines a driver to facilitate interfacing with the RTC.
+ *
+ */
 
 /** broken-down calendar representation of time */
 typedef struct
 {
-    uint16_t  second;                      /**< seconds (0 - 59), not support leap seconds*/
-    uint16_t  minute;                      /**< minutes (0 - 59),*/
-    uint16_t  hour;                        /**< hours (0 - 23),  */
-    uint16_t  day;                         /**< day of the month (1 - 31) */
-    uint16_t  month;                       /**< month (0 - 11, 0=January) */
-    uint16_t  year;                        /**< year, should larger then 2010 */
+    uint16_t second;                       /**< seconds (0 - 59), not support leap seconds*/
+    uint16_t minute;                       /**< minutes (0 - 59),*/
+    uint16_t hour;                         /**< hours (0 - 23),  */
+    uint16_t day;                          /**< day of the month (1 - 31) */
+    uint16_t month;                        /**< month (0 - 11, 0=January) */
+    uint16_t year;                         /**< year, should larger then 2010 */
 } wiced_rtc_time_t;
 
 /** Real time clock read from hardware (48 bits) */
 typedef union
 {
-    uint16_t          wiced_rtc64;
+    uint16_t wiced_rtc64;
 
     struct
     {
-        uint16_t      wiced_rtc16[4];
-    }wiced_reg16map;
+        uint16_t wiced_rtc16[4];
+    } wiced_reg16map;
 
     struct
     {
-        uint32_t      wiced_rtc32[2];
-    }wiced_reg32map;
+        uint32_t wiced_rtc32[2];
+    } wiced_reg32map;
 } wiced_real_time_clock_t;
 
 /**
@@ -119,7 +119,7 @@ void wiced_rtc_get_time(wiced_rtc_time_t *timebuf);
  *
  * @return          void
  */
-void wiced_rtc_set_reference_time(wiced_rtc_time_t* ref_time);
+void wiced_rtc_set_reference_time(wiced_rtc_time_t *ref_time);
 
 /**
  * Function         wiced_set_rtc_time
@@ -132,7 +132,7 @@ void wiced_rtc_set_reference_time(wiced_rtc_time_t* ref_time);
  *
  * Note : This function call will assume the current time is later then 2010/1/1.
  */
-wiced_bool_t wiced_set_rtc_time(wiced_rtc_time_t  *newTime);
+wiced_bool_t wiced_set_rtc_time(wiced_rtc_time_t *newTime);
 
 /**
  * Function         wiced_rtc_ctime
@@ -181,4 +181,4 @@ void wiced_seconds_to_rtc_time(uint32_t second, wiced_rtc_time_t *rtctime);
 void wiced_rtc_time_to_seconds(wiced_rtc_time_t *rtctime, uint32_t *second);
 
 /* @} */
-#endif // __WICED_RTC_H__
+#endif // WICED_RTC_H__

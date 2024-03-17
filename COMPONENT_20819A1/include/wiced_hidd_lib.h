@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,7 +31,7 @@
  * so agrees to indemnify Cypress against all liability.
  */
 
- /** @file
+/** @file
  *
  *  AIROC BLEHIDD COMMON APIs for Human Interface Device Profile (HID) Device over LE
  *
@@ -40,8 +40,8 @@
  *
  */
 
-#ifndef __WICED_HIDD_LIB_H__
-#define __WICED_HIDD_LIB_H__
+#ifndef WICED_HIDD_LIB_H__
+#define WICED_HIDD_LIB_H__
 
 #include "bt_types.h"
 #include "wiced.h"
@@ -49,53 +49,54 @@
 #include "hidevent.h"
 
 /*
-#pragma pack(1)
+ #pragma pack(1)
 
 
-typedef PACKED struct
-{
+   typedef PACKED struct
+   {
     uint8_t eventCode;
     uint8_t length;
     // parameter payload follows
-} HCI_EVT_HDR;
+   } HCI_EVT_HDR;
 
 
-#pragma pack()
+ #pragma pack()
 
-*/
+ */
 
 /*
  * Report or boot mode
-*/
+ */
 enum
 {
-    PROTOCOL_BOOT = 0,
-    PROTOCOL_REPORT = 1
+    PROTOCOL_BOOT   = 0,
+    PROTOCOL_REPORT = 1,
 };
 
 /*
  * HID Device Report Type
-*/
+ */
 enum wiced_hidd_report_type_e
 {
-    WICED_HID_REPORT_TYPE_OTHER         = 0,
-    WICED_HID_REPORT_TYPE_INPUT         = 1,
-    WICED_HID_REPORT_TYPE_OUTPUT        = 2,
-    WICED_HID_REPORT_TYPE_FEATURE       = 3,
-    WICED_HID_CLIENT_CHAR_CONF          = 4,  // not a standard report type.
+    WICED_HID_REPORT_TYPE_OTHER   = 0,
+    WICED_HID_REPORT_TYPE_INPUT   = 1,
+    WICED_HID_REPORT_TYPE_OUTPUT  = 2,
+    WICED_HID_REPORT_TYPE_FEATURE = 3,
+    WICED_HID_CLIENT_CHAR_CONF    = 4,        // not a standard report type.
 };
+
 typedef uint8_t  wiced_hidd_report_type_t; // see #wiced_hidd_report_type_e
 
 /*
  * Callback wiced_blehidd_write_cback_t
  *
  * The callbacks for incoming HID reports (OUTPUT/FEATURE),  client configuration characteristic descriptors or other write command/request
-*/
+ */
 typedef void (wiced_blehidd_write_cback_t)(wiced_hidd_report_type_t reportType, uint8_t reportId, void *payload, uint16_t payloadSize);
 
 /*
  * Data structure for application event queue (circular)
-*/
+ */
 typedef struct
 {
     HidEvent eventFifoOverflow;
@@ -127,15 +128,15 @@ typedef struct
  *     -One for sending HID report via Gatt Notification
  *     -One for client to write client configuration characteristic descriptor value.
  * Each incoming HID report (OUTPUT/FEATURE)  have one entry.
-*/
+ */
 typedef struct
 {
-    uint8_t                         reportId;                   //HID report ID
-    wiced_hidd_report_type_t        reportType;                 // value see enum wiced_hidd_report_type_e
-    uint16_t                        handle;                     // Gatt attribute handle
-    uint8_t                         sendNotification;           // WICED_TRUE or WICED_FALSE. client should write it
-    wiced_blehidd_write_cback_t*    writeCallback;              // callback function to handle client write command/request
-    uint16_t                        clientConfigBitmap;         //the bit in client configuration characteristic descriptor bitmap for the specific HID report(outgoing)
+    uint8_t                      reportId;                      //HID report ID
+    wiced_hidd_report_type_t     reportType;                    // value see enum wiced_hidd_report_type_e
+    uint16_t                     handle;                        // Gatt attribute handle
+    uint8_t                      sendNotification;              // WICED_TRUE or WICED_FALSE. client should write it
+    wiced_blehidd_write_cback_t *writeCallback;                 // callback function to handle client write command/request
+    uint16_t                     clientConfigBitmap;            //the bit in client configuration characteristic descriptor bitmap for the specific HID report(outgoing)
 } wiced_blehidd_report_gatt_characteristic_t;
 
 /** BR/EDR link power state/mode  */
@@ -154,7 +155,7 @@ enum
     POWER_MODE_BFC_SUSPEND = 0xF0,
 
     /// Link disconnect requested
-    POWER_MODE_DISCONNECT = 0xF1
+    POWER_MODE_DISCONNECT = 0xF1,
 };
 
 /** Sniff type */
@@ -164,7 +165,7 @@ enum
     SNIFF_NORMAL = 0,
 
     /// Asymmetric sniff.
-    SNIFF_ASYMMETRIC
+    SNIFF_ASYMMETRIC,
 };
 
 
@@ -204,25 +205,24 @@ typedef struct
 
     /// The parameters for this type of sniff.
     wiced_bt_hidd_pm_sniff_params sniffParams;
-
 } wiced_bt_hidd_pm_pwr_state_t;
 
 enum wiced_hidd_pwmbuz_freq_e
 {
-    WICED_PWMBUZ_125 = 0,
-    WICED_PWMBUZ_250 = 1,
-    WICED_PWMBUZ_500 = 2,
-    WICED_PWMBUZ_1000 = 3,
-    WICED_PWMBUZ_2000 = 4,
-    WICED_PWMBUZ_4000 = 5,
-    WICED_PWMBUZ_8000 = 6,
-    WICED_PWMBUZ_FREQ_MAX = 7,
+    WICED_PWMBUZ_125         = 0,
+    WICED_PWMBUZ_250         = 1,
+    WICED_PWMBUZ_500         = 2,
+    WICED_PWMBUZ_1000        = 3,
+    WICED_PWMBUZ_2000        = 4,
+    WICED_PWMBUZ_4000        = 5,
+    WICED_PWMBUZ_8000        = 6,
+    WICED_PWMBUZ_FREQ_MAX    = 7,
     WICED_PWMBUZ_FREQ_MANUAL = 0xFF,
 };
 
 /*******************************************************
-******common APIs for BR/EDR/LE (wiced_hidd_xxx) **********
-*******************************************************/
+ ******common APIs for BR/EDR/LE (wiced_hidd_xxx) **********
+ *******************************************************/
 
 /**
  *  @addtogroup  hidd_functions      HIDD Library API
@@ -270,7 +270,7 @@ void wiced_hidd_register_callback_for_poll_event(wiced_bt_transport_t transport_
 ///
 /// \return none
 ////////////////////////////////////////////////////////////////////////////////
-void wiced_hidd_event_queue_init(wiced_hidd_app_event_queue_t* theq, void *bufStart_c, uint8_t elementSize_c, uint8_t maxNumElements_c);
+void wiced_hidd_event_queue_init(wiced_hidd_app_event_queue_t *theq, void *bufStart_c, uint8_t elementSize_c, uint8_t maxNumElements_c);
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Discards all elements in the queue, including any elements in the overflow slot.
@@ -279,7 +279,7 @@ void wiced_hidd_event_queue_init(wiced_hidd_app_event_queue_t* theq, void *bufSt
 ///
 /// \return none
 ////////////////////////////////////////////////////////////////////////////////
-void wiced_hidd_event_queue_flush(wiced_hidd_app_event_queue_t* theq);
+void wiced_hidd_event_queue_flush(wiced_hidd_app_event_queue_t *theq);
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Gets the number of elements currently in the queue
@@ -288,7 +288,7 @@ void wiced_hidd_event_queue_flush(wiced_hidd_app_event_queue_t* theq);
 ///
 /// \return -   Number of elements in the queue
 ////////////////////////////////////////////////////////////////////////////////
-uint8_t wiced_hidd_event_queue_get_num_elements(wiced_hidd_app_event_queue_t* theq);
+uint8_t wiced_hidd_event_queue_get_num_elements(wiced_hidd_app_event_queue_t *theq);
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Returns pointer to the first element in the queue. If the queue is empty, returns NULL.
@@ -298,7 +298,7 @@ uint8_t wiced_hidd_event_queue_get_num_elements(wiced_hidd_app_event_queue_t* th
 /// \return    pointer to the next element in the queue if the queue is not empty
 ///               NULL if the queue is empty
 ////////////////////////////////////////////////////////////////////////////////
-void *wiced_hidd_event_queue_get_current_element(wiced_hidd_app_event_queue_t* theq);
+void *wiced_hidd_event_queue_get_current_element(wiced_hidd_app_event_queue_t *theq);
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Removes the current element from the queue. Does nothing if the queue is empty.
@@ -307,7 +307,7 @@ void *wiced_hidd_event_queue_get_current_element(wiced_hidd_app_event_queue_t* t
 ///
 /// \return none
 ////////////////////////////////////////////////////////////////////////////////
-void wiced_hidd_event_queue_remove_current_element(wiced_hidd_app_event_queue_t* theq);
+void wiced_hidd_event_queue_remove_current_element(wiced_hidd_app_event_queue_t *theq);
 
 /////////////////////////////////////////////////////////////////////////////////
 /// Queue the given event into the event fifo.
@@ -320,7 +320,7 @@ void wiced_hidd_event_queue_remove_current_element(wiced_hidd_app_event_queue_t*
 ///
 /// \return none
 /////////////////////////////////////////////////////////////////////////////////
-void wiced_hidd_event_queue_add_event_with_overflow(wiced_hidd_app_event_queue_t* theq, HidEvent *event, uint8_t len, uint8_t pollSeqn);
+void wiced_hidd_event_queue_add_event_with_overflow(wiced_hidd_app_event_queue_t *theq, HidEvent *event, uint8_t len, uint8_t pollSeqn);
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Get the current native Bluetooth clock
@@ -365,8 +365,8 @@ wiced_bool_t wiced_hidd_is_transport_detected(void);
 
 
 /*******************************************************
-****************LE only APIs (wiced_blehidd_xxx) ***********
-*******************************************************/
+ ****************LE only APIs (wiced_blehidd_xxx) ***********
+ *******************************************************/
 ///////////////////////////////////////////////////////////////////////////////
 /// Check if the current LE connection is encrypted
 ///
@@ -470,7 +470,7 @@ uint16_t wiced_blehidd_get_connection_handle(void);
 /// \param map - point to HID report table
 /// \param num - number of items in the HID report table
 /////////////////////////////////////////////////////////////////////////////////
-void wiced_blehidd_register_report_table(wiced_blehidd_report_gatt_characteristic_t* table, uint32_t num);
+void wiced_blehidd_register_report_table(wiced_blehidd_report_gatt_characteristic_t *table, uint32_t num);
 
 /////////////////////////////////////////////////////////////////////////////////
 /// send HID report as GATT notification
@@ -615,8 +615,8 @@ void wiced_blehidd_set_asym_peripheral_latency(uint16_t connHandle, uint16_t lat
 wiced_bool_t wiced_blehidd_is_wakeup_from_conn_req(void);
 
 /*******************************************************
-*****************BR/EDR only APIs************************
-*******************************************************/
+ *****************BR/EDR only APIs************************
+ *******************************************************/
 
 /////////////////////////////////////////////////////////////////////////////////
 /// set the default Link Supervision Timeout value
@@ -637,7 +637,7 @@ void wiced_bthidd_setDefaultLinkSupervisionTimeout(UINT16 slots);
 /// \return       WICED_TRUE if successful, otherwise WICED_FALSE
 /////////////////////////////////////////////////////////////////////////////////
 wiced_bool_t wiced_bt_hidd_configure_power_management_params(const wiced_bt_hidd_pm_pwr_state_t *params, uint8_t numParams,
-const wiced_bt_hidd_pm_pwr_state_t *ssrParams, uint8_t numSSRParams);
+                                                             const wiced_bt_hidd_pm_pwr_state_t *ssrParams, uint8_t numSSRParams);
 
 ////////////////////////////////////////////////////////////////////////////////////////
 /// Request to stop actively managing this link's power transition between active, sniff and sniff subrate
@@ -674,5 +674,4 @@ void wiced_bt_hidd_power_management_switch_active_high_state(uint8_t index, wice
 /** @} wicedbt_hidd_ble */
 
 
-
-#endif // __WICED_HIDD_LIB_H__
+#endif // WICED_HIDD_LIB_H__

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -58,8 +58,8 @@
 
 #include "bt_types.h" /* This must be defined AFTER buildcfg.h */
 
-extern void *GKI_getpoolbuf (UINT8 pool_id);
-extern void *GKI_getbuf (UINT16 size);
+extern void *GKI_getpoolbuf(UINT8 pool_id);
+extern void *GKI_getbuf(UINT16 size);
 
 /* #define BYPASS_AVDATATRACE */
 
@@ -391,7 +391,7 @@ extern void *GKI_getbuf (UINT16 size);
 /* Allocate smallest possible buffer (for platforms with limited RAM) */
 #define HCI_GET_CMD_BUF(paramlen)    ((BT_HDR *)GKI_getbuf ((UINT16)(BT_HDR_SIZE + HCIC_PREAMBLE_SIZE + (paramlen))))
 #endif
-#endif  /* HCI_GET_CMD_BUF */
+#endif /* HCI_GET_CMD_BUF */
 
 /******************************************************************************
 **
@@ -405,19 +405,19 @@ extern void *GKI_getbuf (UINT16 size);
 #ifdef __cplusplus
 extern "C" {
 #endif
-BT_API extern void bte_ncisu_send (BT_HDR *p_pkt, UINT16 event);
-BT_API extern void bte_hcisu_send (BT_HDR *p_msg, UINT16 event);
+BT_API extern void bte_ncisu_send(BT_HDR *p_pkt, UINT16 event);
+BT_API extern void bte_hcisu_send(BT_HDR *p_msg, UINT16 event);
 #if (HCISU_H4_INCLUDED == TRUE)
-BT_API extern void bte_hcisu_lp_allow_bt_device_sleep (void);
-BT_API extern void bte_hcisu_lp_wakeup_host (void);
+BT_API extern void bte_hcisu_lp_allow_bt_device_sleep(void);
+BT_API extern void bte_hcisu_lp_wakeup_host(void);
 BT_API extern void bte_hcisu_lp_h4ibss_evt(UINT8 *p, UINT8 evt_len);
 #endif
 
 /* HCILL API for the applications */
 typedef void (tHCILL_SLEEP_ACK)(void);
-BT_API extern void HCILL_GoToSleep( tHCILL_SLEEP_ACK *sl_ack_fn);
+BT_API extern void HCILL_GoToSleep(tHCILL_SLEEP_ACK *sl_ack_fn);
 typedef void (tHCILL_STATE_CBACK)(BOOLEAN is_sleep);
-BT_API extern void HCILL_RegState( tHCILL_STATE_CBACK *p_cback);
+BT_API extern void HCILL_RegState(tHCILL_STATE_CBACK *p_cback);
 #ifdef __cplusplus
 }
 #endif
@@ -557,8 +557,8 @@ BT_API extern void HCILL_RegState( tHCILL_STATE_CBACK *p_cback);
 **
 ******************************************************************************/
 /* if set to TRUE, stack will automatically send an HCI reset at start-up. To be
-set to FALSE for advanced start-up / shut-down procedures using USER_HW_ENABLE_API
-and USER_HW_DISABLE_API macros */
+   set to FALSE for advanced start-up / shut-down procedures using USER_HW_ENABLE_API
+   and USER_HW_DISABLE_API macros */
 #ifndef BTM_AUTOMATIC_HCI_RESET
 #define BTM_AUTOMATIC_HCI_RESET      TRUE
 #endif
@@ -761,7 +761,7 @@ and USER_HW_DISABLE_API macros */
 #endif
 
 /* Maximum local device name length stored btm database.
-  '0' disables storage of the local name in BTM */
+   '0' disables storage of the local name in BTM */
 #ifndef BTM_MAX_LOC_BD_NAME_LEN
 #define BTM_MAX_LOC_BD_NAME_LEN     31
 #endif
@@ -1100,7 +1100,7 @@ and USER_HW_DISABLE_API macros */
 #define L2CAP_FIXED_CHANNELS_SUPPORTED TRUE
 #endif
 
-#if defined(L2CAP_FIXED_CHANNELS_SUPPORTED) && ( L2CAP_FIXED_CHANNELS_SUPPORTED == TRUE )
+#if defined(L2CAP_FIXED_CHANNELS_SUPPORTED) && (L2CAP_FIXED_CHANNELS_SUPPORTED == TRUE)
 #define L2CAP_MIN_NUM_OF_FIXED_CHANNELS_SUPPORTED 3
 #endif
 
@@ -1116,8 +1116,8 @@ and USER_HW_DISABLE_API macros */
 
 #ifndef L2CAP_LAST_FIXED_CHNL
 /* According to spec. we are expected to support cid 4, 5 and 6 for at minimum for LE.
-cid's (0x7 - 0x1f) are reseved and (0x20-0x3e) are assigned numbers. Hence the max.
-valid fixed channel id is 0x3e*/
+   cid's (0x7 - 0x1f) are reseved and (0x20-0x3e) are assigned numbers. Hence the max.
+   valid fixed channel id is 0x3e*/
 #define L2CAP_LAST_FIXED_CHNL           (0x3E)
 #endif
 
@@ -1308,7 +1308,7 @@ valid fixed channel id is 0x3e*/
 #endif
 
 /* number of background connection device allowence, ideally to be the same as WL size
-*/
+ */
 #ifndef GATT_MAX_BG_CONN_DEV
 #define GATT_MAX_BG_CONN_DEV        32
 #endif
@@ -1649,56 +1649,56 @@ valid fixed channel id is 0x3e*/
 #endif
 
 /* This option is application when OBEX over L2CAP is in use
-GKI Buffer Pool ID used to hold MPS segments during SDU reassembly
-*/
+   GKI Buffer Pool ID used to hold MPS segments during SDU reassembly
+ */
 #ifndef OBX_FCR_RX_POOL_ID
 #define OBX_FCR_RX_POOL_ID      HCI_ACL_POOL_ID
 #endif
 
 /* This option is application when OBEX over L2CAP is in use
-GKI Buffer Pool ID used to hold MPS segments used in (re)transmissions.
-L2CAP_DEFAULT_ERM_POOL_ID is specified to use the HCI ACL data pool.
-Note:  This pool needs to have enough buffers to hold two times the window size negotiated
- in the L2CA_SetFCROptions (2 * tx_win_size)  to allow for retransmissions.
- The size of each buffer must be able to hold the maximum MPS segment size passed in
- L2CA_SetFCROptions plus BT_HDR (8) + HCI preamble (4) + L2CAP_MIN_OFFSET (11 - as of Bluetooth 2.1 + EDR Spec).
-*/
+   GKI Buffer Pool ID used to hold MPS segments used in (re)transmissions.
+   L2CAP_DEFAULT_ERM_POOL_ID is specified to use the HCI ACL data pool.
+   Note:  This pool needs to have enough buffers to hold two times the window size negotiated
+   in the L2CA_SetFCROptions (2 * tx_win_size)  to allow for retransmissions.
+   The size of each buffer must be able to hold the maximum MPS segment size passed in
+   L2CA_SetFCROptions plus BT_HDR (8) + HCI preamble (4) + L2CAP_MIN_OFFSET (11 - as of Bluetooth 2.1 + EDR Spec).
+ */
 #ifndef OBX_FCR_TX_POOL_ID
 #define OBX_FCR_TX_POOL_ID      HCI_ACL_POOL_ID
 #endif
 
 /* This option is application when OBEX over L2CAP is in use
-Size of the transmission window when using enhanced retransmission mode. Not used
-in basic and streaming modes. Range: 1 - 63
-*/
+   Size of the transmission window when using enhanced retransmission mode. Not used
+   in basic and streaming modes. Range: 1 - 63
+ */
 #ifndef OBX_FCR_OPT_TX_WINDOW_SIZE_BR_EDR
 #define OBX_FCR_OPT_TX_WINDOW_SIZE_BR_EDR       20
 #endif
 
 /* This option is application when OBEX over L2CAP is in use
-Number of transmission attempts for a single I-Frame before taking
-Down the connection. Used In ERTM mode only. Value is Ignored in basic and
-Streaming modes.
-Range: 0, 1-0xFF
-0 - infinite retransmissions
-1 - single transmission
-*/
+   Number of transmission attempts for a single I-Frame before taking
+   Down the connection. Used In ERTM mode only. Value is Ignored in basic and
+   Streaming modes.
+   Range: 0, 1-0xFF
+   0 - infinite retransmissions
+   1 - single transmission
+ */
 #ifndef OBX_FCR_OPT_MAX_TX_B4_DISCNT
 #define OBX_FCR_OPT_MAX_TX_B4_DISCNT    20
 #endif
 
 /* This option is application when OBEX over L2CAP is in use
-Retransmission Timeout
-Range: Minimum 2000 (2 secs) on BR/EDR when supporting PBF.
+   Retransmission Timeout
+   Range: Minimum 2000 (2 secs) on BR/EDR when supporting PBF.
  */
 #ifndef OBX_FCR_OPT_RETX_TOUT
 #define OBX_FCR_OPT_RETX_TOUT           2000
 #endif
 
 /* This option is application when OBEX over L2CAP is in use
-Monitor Timeout
-Range: Minimum 12000 (12 secs) on BR/EDR when supporting PBF.
-*/
+   Monitor Timeout
+   Range: Minimum 12000 (12 secs) on BR/EDR when supporting PBF.
+ */
 #ifndef OBX_FCR_OPT_MONITOR_TOUT
 #define OBX_FCR_OPT_MONITOR_TOUT        12000
 #endif
@@ -1934,8 +1934,6 @@ Range: Minimum 12000 (12 secs) on BR/EDR when supporting PBF.
 #ifndef PAN_NAP_SECURITY_LEVEL
 #define PAN_NAP_SECURITY_LEVEL           0
 #endif
-
-
 
 
 /******************************************************************************
@@ -2588,90 +2586,90 @@ Range: Minimum 12000 (12 secs) on BR/EDR when supporting PBF.
 #endif
 
 /* Service Name. maximum length: 248
-#ifndef BPP_SERVICE_NAME
-#define BPP_SERVICE_NAME            "Basic Printing"
-#endif
+ #ifndef BPP_SERVICE_NAME
+ #define BPP_SERVICE_NAME            "Basic Printing"
+ #endif
  */
 /* Document Format Supported. ASCII comma-delimited list of MIME type:version string
-#ifndef BPP_DOC_FORMAT_SUPPORTED
-#define BPP_DOC_FORMAT_SUPPORTED    "application/vnd.pwg-xhtml-print:1.0,application/vnd.hp-PCL:5E,application/PDF"
-#endif
+ #ifndef BPP_DOC_FORMAT_SUPPORTED
+ #define BPP_DOC_FORMAT_SUPPORTED    "application/vnd.pwg-xhtml-print:1.0,application/vnd.hp-PCL:5E,application/PDF"
+ #endif
 
-#ifndef BPP_DOC_FORMAT_SUPPORTED_LEN
-#define BPP_DOC_FORMAT_SUPPORTED_LEN    77
-#endif
+ #ifndef BPP_DOC_FORMAT_SUPPORTED_LEN
+ #define BPP_DOC_FORMAT_SUPPORTED_LEN    77
+ #endif
  */
 /* Character repertoires.
-#ifndef BPP_CHARACTER_REPERTOIRES
-#define BPP_CHARACTER_REPERTOIRES {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01}
-#endif
+ #ifndef BPP_CHARACTER_REPERTOIRES
+ #define BPP_CHARACTER_REPERTOIRES {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01}
+ #endif
  */
 /* XHTML formats.
-#ifndef BPP_XHTML_PRINT_FORMATS
-#define BPP_XHTML_PRINT_FORMATS     "image/gif:89A,image/jpeg"
-#endif
+ #ifndef BPP_XHTML_PRINT_FORMATS
+ #define BPP_XHTML_PRINT_FORMATS     "image/gif:89A,image/jpeg"
+ #endif
 
-#ifndef BPP_XHTML_PRINT_FORMATS_LEN
-#define BPP_XHTML_PRINT_FORMATS_LEN 24
-#endif
+ #ifndef BPP_XHTML_PRINT_FORMATS_LEN
+ #define BPP_XHTML_PRINT_FORMATS_LEN 24
+ #endif
  */
 /* Color supported.
-#ifndef BPP_COLOR_SUPORTED
-#define BPP_COLOR_SUPORTED          FALSE
-#endif
+ #ifndef BPP_COLOR_SUPORTED
+ #define BPP_COLOR_SUPORTED          FALSE
+ #endif
  */
 /* 1284 ID string. First 2 bytes are the length.
-#ifndef BPP_1284ID
-#define BPP_1284ID                  "\x00\x48MANUFACTURER:ACME Manufacturing;COMMAND SET:PCL,MPL;MODEL:LaserBeam \?;"
-#endif
+ #ifndef BPP_1284ID
+ #define BPP_1284ID                  "\x00\x48MANUFACTURER:ACME Manufacturing;COMMAND SET:PCL,MPL;MODEL:LaserBeam \?;"
+ #endif
 
-#ifndef BPP_1284ID_LEN
-#define BPP_1284ID_LEN              72
-#endif
+ #ifndef BPP_1284ID_LEN
+ #define BPP_1284ID_LEN              72
+ #endif
  */
 /* Printer name.
-#ifndef BPP_PRINTER_NAME
-#define BPP_PRINTER_NAME            "My Printer"
-#endif
+ #ifndef BPP_PRINTER_NAME
+ #define BPP_PRINTER_NAME            "My Printer"
+ #endif
 
-#ifndef BPP_PRINTER_NAME_LEN
-#define BPP_PRINTER_NAME_LEN        10
-#endif
+ #ifndef BPP_PRINTER_NAME_LEN
+ #define BPP_PRINTER_NAME_LEN        10
+ #endif
  */
 
 /* Printer location.
-#ifndef BPP_PRINTER_LOCATION
-#define BPP_PRINTER_LOCATION        "Hotel Lobby"
-#endif
+ #ifndef BPP_PRINTER_LOCATION
+ #define BPP_PRINTER_LOCATION        "Hotel Lobby"
+ #endif
 
-#ifndef BPP_PRINTER_LOCATION_LEN
-#define BPP_PRINTER_LOCATION_LEN    11
-#endif
+ #ifndef BPP_PRINTER_LOCATION_LEN
+ #define BPP_PRINTER_LOCATION_LEN    11
+ #endif
  */
 /* Duplex printing supported.
-#ifndef BPP_DUPLEX_SUPPORTED
-#define BPP_DUPLEX_SUPPORTED        TRUE
-#endif
+ #ifndef BPP_DUPLEX_SUPPORTED
+ #define BPP_DUPLEX_SUPPORTED        TRUE
+ #endif
  */
 
 /* Media types supported.
-#ifndef BPP_MEDIA_TYPES_SUPPORTED
-#define BPP_MEDIA_TYPES_SUPPORTED   "stationary,continuous-long,photographic-high-gloss,cardstock"
-#endif
+ #ifndef BPP_MEDIA_TYPES_SUPPORTED
+ #define BPP_MEDIA_TYPES_SUPPORTED   "stationary,continuous-long,photographic-high-gloss,cardstock"
+ #endif
 
-#ifndef BPP_MEDIA_TYPES_SUPPORTED_LEN
-#define BPP_MEDIA_TYPES_SUPPORTED_LEN   60
-#endif
+ #ifndef BPP_MEDIA_TYPES_SUPPORTED_LEN
+ #define BPP_MEDIA_TYPES_SUPPORTED_LEN   60
+ #endif
  */
 /* Maximum media with supported.
-#ifndef BPP_MAX_MEDIA_WIDTH
-#define BPP_MAX_MEDIA_WIDTH         205
-#endif
+ #ifndef BPP_MAX_MEDIA_WIDTH
+ #define BPP_MAX_MEDIA_WIDTH         205
+ #endif
  */
 /* Maximum media length supported.
-#ifndef BPP_MAX_MEDIA_LENGTH
-#define BPP_MAX_MEDIA_LENGTH        285
-#endif
+ #ifndef BPP_MAX_MEDIA_LENGTH
+ #define BPP_MAX_MEDIA_LENGTH        285
+ #endif
  */
 /* the maximum string len for the media size of medium loaded */
 #ifndef BPP_MEDIA_SIZE_LEN
@@ -2897,58 +2895,58 @@ Range: Minimum 12000 (12 secs) on BR/EDR when supporting PBF.
 #endif
 
 /*
-GKI Buffer Pool ID used to hold MPS segments during SDU reassembly
-*/
+   GKI Buffer Pool ID used to hold MPS segments during SDU reassembly
+ */
 #ifndef AVCT_BR_FCR_RX_POOL_ID
 #define AVCT_BR_FCR_RX_POOL_ID      HCI_ACL_POOL_ID
 #endif
 
 /*
-GKI Buffer Pool ID used to hold MPS segments used in (re)transmissions.
-L2CAP_DEFAULT_ERM_POOL_ID is specified to use the HCI ACL data pool.
-Note:  This pool needs to have enough buffers to hold two times the window size negotiated
- in the tL2CAP_FCR_OPTIONS (2 * tx_win_size)  to allow for retransmissions.
- The size of each buffer must be able to hold the maximum MPS segment size passed in
- tL2CAP_FCR_OPTIONS plus BT_HDR (8) + HCI preamble (4) + L2CAP_MIN_OFFSET (11 - as of Bluetooth 2.1 + EDR Spec).
-*/
+   GKI Buffer Pool ID used to hold MPS segments used in (re)transmissions.
+   L2CAP_DEFAULT_ERM_POOL_ID is specified to use the HCI ACL data pool.
+   Note:  This pool needs to have enough buffers to hold two times the window size negotiated
+   in the tL2CAP_FCR_OPTIONS (2 * tx_win_size)  to allow for retransmissions.
+   The size of each buffer must be able to hold the maximum MPS segment size passed in
+   tL2CAP_FCR_OPTIONS plus BT_HDR (8) + HCI preamble (4) + L2CAP_MIN_OFFSET (11 - as of Bluetooth 2.1 + EDR Spec).
+ */
 #ifndef AVCT_BR_FCR_TX_POOL_ID
 #define AVCT_BR_FCR_TX_POOL_ID      HCI_ACL_POOL_ID
 #endif
 
 /* AVCTP Browsing channel FCR Option:
-Size of the transmission window when using enhanced retransmission mode. Not used
-in basic and streaming modes. Range: 1 - 63
-*/
+   Size of the transmission window when using enhanced retransmission mode. Not used
+   in basic and streaming modes. Range: 1 - 63
+ */
 #ifndef AVCT_BR_FCR_OPT_TX_WINDOW_SIZE
 #define AVCT_BR_FCR_OPT_TX_WINDOW_SIZE      10
 #endif
 
 /* AVCTP Browsing channel FCR Option:
-Number of transmission attempts for a single I-Frame before taking
-Down the connection. Used In ERTM mode only. Value is Ignored in basic and
-Streaming modes.
-Range: 0, 1-0xFF
-0 - infinite retransmissions
-1 - single transmission
-*/
+   Number of transmission attempts for a single I-Frame before taking
+   Down the connection. Used In ERTM mode only. Value is Ignored in basic and
+   Streaming modes.
+   Range: 0, 1-0xFF
+   0 - infinite retransmissions
+   1 - single transmission
+ */
 #ifndef AVCT_BR_FCR_OPT_MAX_TX_B4_DISCNT
 #define AVCT_BR_FCR_OPT_MAX_TX_B4_DISCNT    20
 #endif
 
 /* AVCTP Browsing channel FCR Option: Retransmission Timeout
-The AVRCP specification set a value in the range of 300 - 2000 ms
-Timeout (in msecs) to detect Lost I-Frames. Only used in Enhanced retransmission mode.
-Range: Minimum 2000 (2 secs) when supporting PBF.
+   The AVRCP specification set a value in the range of 300 - 2000 ms
+   Timeout (in msecs) to detect Lost I-Frames. Only used in Enhanced retransmission mode.
+   Range: Minimum 2000 (2 secs) when supporting PBF.
  */
 #ifndef AVCT_BR_FCR_OPT_RETX_TOUT
 #define AVCT_BR_FCR_OPT_RETX_TOUT           2000
 #endif
 
 /* AVCTP Browsing channel FCR Option: Monitor Timeout
-The AVRCP specification set a value in the range of 300 - 2000 ms
-Timeout (in msecs) to detect Lost S-Frames. Only used in Enhanced retransmission mode.
-Range: Minimum 12000 (12 secs) when supporting PBF.
-*/
+   The AVRCP specification set a value in the range of 300 - 2000 ms
+   Timeout (in msecs) to detect Lost S-Frames. Only used in Enhanced retransmission mode.
+   Range: Minimum 12000 (12 secs) when supporting PBF.
+ */
 #ifndef AVCT_BR_FCR_OPT_MONITOR_TOUT
 #define AVCT_BR_FCR_OPT_MONITOR_TOUT        12000
 #endif
@@ -3023,65 +3021,65 @@ Range: Minimum 12000 (12 secs) when supporting PBF.
 #endif
 
 /*
-GKI Buffer Pool ID used to hold MPS segments during SDU reassembly
-*/
+   GKI Buffer Pool ID used to hold MPS segments during SDU reassembly
+ */
 #ifndef MCA_FCR_RX_POOL_ID
 #define MCA_FCR_RX_POOL_ID      HCI_ACL_POOL_ID
 #endif
 
 /*
-GKI Buffer Pool ID used to hold MPS segments used in (re)transmissions.
-L2CAP_DEFAULT_ERM_POOL_ID is specified to use the HCI ACL data pool.
-Note:  This pool needs to have enough buffers to hold two times the window size negotiated
- in the tL2CAP_FCR_OPTIONS (2 * tx_win_size)  to allow for retransmissions.
- The size of each buffer must be able to hold the maximum MPS segment size passed in
- tL2CAP_FCR_OPTIONS plus BT_HDR (8) + HCI preamble (4) + L2CAP_MIN_OFFSET (11 - as of Bluetooth 2.1 + EDR Spec).
-*/
+   GKI Buffer Pool ID used to hold MPS segments used in (re)transmissions.
+   L2CAP_DEFAULT_ERM_POOL_ID is specified to use the HCI ACL data pool.
+   Note:  This pool needs to have enough buffers to hold two times the window size negotiated
+   in the tL2CAP_FCR_OPTIONS (2 * tx_win_size)  to allow for retransmissions.
+   The size of each buffer must be able to hold the maximum MPS segment size passed in
+   tL2CAP_FCR_OPTIONS plus BT_HDR (8) + HCI preamble (4) + L2CAP_MIN_OFFSET (11 - as of Bluetooth 2.1 + EDR Spec).
+ */
 #ifndef MCA_FCR_TX_POOL_ID
 #define MCA_FCR_TX_POOL_ID      HCI_ACL_POOL_ID
 #endif
 
 /* MCAP control channel FCR Option:
-Size of the transmission window when using enhanced retransmission mode.
-1 is defined by HDP specification for control channel.
-*/
+   Size of the transmission window when using enhanced retransmission mode.
+   1 is defined by HDP specification for control channel.
+ */
 #ifndef MCA_FCR_OPT_TX_WINDOW_SIZE
 #define MCA_FCR_OPT_TX_WINDOW_SIZE      1
 #endif
 
 /* MCAP control channel FCR Option:
-Number of transmission attempts for a single I-Frame before taking
-Down the connection. Used In ERTM mode only. Value is Ignored in basic and
-Streaming modes.
-Range: 0, 1-0xFF
-0 - infinite retransmissions
-1 - single transmission
-*/
+   Number of transmission attempts for a single I-Frame before taking
+   Down the connection. Used In ERTM mode only. Value is Ignored in basic and
+   Streaming modes.
+   Range: 0, 1-0xFF
+   0 - infinite retransmissions
+   1 - single transmission
+ */
 #ifndef MCA_FCR_OPT_MAX_TX_B4_DISCNT
 #define MCA_FCR_OPT_MAX_TX_B4_DISCNT    20
 #endif
 
 /* MCAP control channel FCR Option: Retransmission Timeout
-The AVRCP specification set a value in the range of 300 - 2000 ms
-Timeout (in msecs) to detect Lost I-Frames. Only used in Enhanced retransmission mode.
-Range: Minimum 2000 (2 secs) when supporting PBF.
+   The AVRCP specification set a value in the range of 300 - 2000 ms
+   Timeout (in msecs) to detect Lost I-Frames. Only used in Enhanced retransmission mode.
+   Range: Minimum 2000 (2 secs) when supporting PBF.
  */
 #ifndef MCA_FCR_OPT_RETX_TOUT
 #define MCA_FCR_OPT_RETX_TOUT           2000
 #endif
 
 /* MCAP control channel FCR Option: Monitor Timeout
-The AVRCP specification set a value in the range of 300 - 2000 ms
-Timeout (in msecs) to detect Lost S-Frames. Only used in Enhanced retransmission mode.
-Range: Minimum 12000 (12 secs) when supporting PBF.
-*/
+   The AVRCP specification set a value in the range of 300 - 2000 ms
+   Timeout (in msecs) to detect Lost S-Frames. Only used in Enhanced retransmission mode.
+   Range: Minimum 12000 (12 secs) when supporting PBF.
+ */
 #ifndef MCA_FCR_OPT_MONITOR_TOUT
 #define MCA_FCR_OPT_MONITOR_TOUT        12000
 #endif
 
 /* MCAP control channel FCR Option: Maximum PDU payload size.
-The maximum number of payload octets that the local device can receive in a single PDU.
-*/
+   The maximum number of payload octets that the local device can receive in a single PDU.
+ */
 #ifndef MCA_FCR_OPT_MPS_SIZE
 #define MCA_FCR_OPT_MPS_SIZE            1000
 #endif
@@ -3205,17 +3203,17 @@ The maximum number of payload octets that the local device can receive in a sing
 #endif
 
 /*
-The H5 work around sequence will be:
+   The H5 work around sequence will be:
 
-1. controller sends CONFIG with configuration field. (This is not spec compliance.
+   1. controller sends CONFIG with configuration field. (This is not spec compliance.
    Controller shall not have configuration field. This initiates work around.)
-2. host ignore the configuration field.
-3. Host sends CONFIG with configuration field.
-4. controller reponse CONFIG_RESPONSE with configuration field. This shall be the
+   2. host ignore the configuration field.
+   3. Host sends CONFIG with configuration field.
+   4. controller reponse CONFIG_RESPONSE with configuration field. This shall be the
    final configuration both FW and STACK use. (spec compliance).
-5. Host copied the configuration field over and sent CONFIG_RESPONSE with this
+   5. Host copied the configuration field over and sent CONFIG_RESPONSE with this
    configuration field (workaround)
-*/
+ */
 
 #ifndef SLIP_CONFIG_FIELD_WORK_AROUND_INCLUDED
 #define SLIP_CONFIG_FIELD_WORK_AROUND_INCLUDED       TRUE
@@ -3236,21 +3234,21 @@ The H5 work around sequence will be:
     1: UART with Host wake/BT wake out of band signals
     4: H4IBSS, UART with in band signal without Host/BT wake
     9: H5 with in band signal of SLIP without Host/BT wake
-*/
+ */
 #ifndef HCILP_SLEEP_MODE
 #define HCILP_SLEEP_MODE                (0)
 #endif
 
 /* Host Stack Idle Threshold in 300ms or 25ms, it depends on controller
 
-  In sleep mode 1, this is the number of firmware loops executed with no activity
+   In sleep mode 1, this is the number of firmware loops executed with no activity
     before the Host wake line is deasserted. Activity includes HCI traffic excluding
     certain sleep mode commands and the presence of SCO connections if the
     "Allow Host Sleep During SCO" flag is not set to 1. Each count of this
     parameter is roughly equivalent to 300ms or 25ms.
 
-  Not applicable for sleep mode 4(H4IBSS) and 9(H5)
-*/
+   Not applicable for sleep mode 4(H4IBSS) and 9(H5)
+ */
 #ifndef HCILP_IDLE_THRESHOLD
 #define HCILP_IDLE_THRESHOLD             (1)
 #endif
@@ -3262,8 +3260,8 @@ The H5 work around sequence will be:
     Activity includes HCI traffic excluding certain sleep mode commands and
     the presence of ACL/SCO connections.
 
-  Not applicable for sleep mode 4(H4IBSS)
-*/
+   Not applicable for sleep mode 4(H4IBSS)
+ */
 #ifndef HCILP_HC_IDLE_THRESHOLD
 #define HCILP_HC_IDLE_THRESHOLD          (1)
 #endif
@@ -3301,7 +3299,7 @@ The H5 work around sequence will be:
     This flag should only be set to 1 if SCO traffic is directed to the PCM interface.
 
     Not applicable for sleep mode 4(H4IBSS) and 9(H5)
-*/
+ */
 #ifndef HCILP_ALLOW_HOST_SLEEP_DURING_SCO
 #define HCILP_ALLOW_HOST_SLEEP_DURING_SCO       1
 #endif
@@ -3316,7 +3314,7 @@ The H5 work around sequence will be:
     Permission to sleep in Mode 1 is obtained if the BT_WAKE signal is not asserted.
 
     Not applicable for sleep mode 4(H4IBSS) and 9(H5)
-*/
+ */
 #ifndef HCILP_COMBINE_SLEEP_MODE_AND_LPM
 #define HCILP_COMBINE_SLEEP_MODE_AND_LPM        1
 #endif
@@ -3327,7 +3325,7 @@ The H5 work around sequence will be:
     When set to 1, the device will tristate its UART TX line before going to sleep.
 
     Not applicable for sleep mode 4(H4IBSS) and 9(H5)
-*/
+ */
 #ifndef HCILP_ENABLE_UART_TXD_TRI_STATE
 #define HCILP_ENABLE_UART_TXD_TRI_STATE        0
 #endif
@@ -3335,7 +3333,7 @@ The H5 work around sequence will be:
 /* HCILP_PULSED_HOST_WAKE
 
     Not applicable for sleep mode 4(H4IBSS) and 9(H5)
-*/
+ */
 #ifndef HCILP_PULSED_HOST_WAKE
 #define HCILP_PULSED_HOST_WAKE        0
 #endif
@@ -3344,7 +3342,7 @@ The H5 work around sequence will be:
 
     Only for sleep mode 4(H4IBSS)
     Time in 12.5ms between starting to monitor controller's CTS and raising its RTS
-*/
+ */
 #ifndef HCILP_SLEEP_GUARD_TIME
 #define HCILP_SLEEP_GUARD_TIME                 5
 #endif
@@ -3353,7 +3351,7 @@ The H5 work around sequence will be:
 
     Only for sleep mode 4(H4IBSS)
     Time in 12.5ms between starting to monitor controller's CTS and lowering its RTS
-*/
+ */
 #ifndef HCILP_WAKEUP_GUARD_TIME
 #define HCILP_WAKEUP_GUARD_TIME                 5
 #endif
@@ -3363,7 +3361,7 @@ The H5 work around sequence will be:
     Only for sleep mode 4(H4IBSS)
     0: controller's TXD stays low in sleep mode
     1: controller's TXD stays high in sleep mode (default)
-*/
+ */
 #ifndef HCILP_TXD_CONFIG
 #define HCILP_TXD_CONFIG                        1
 #endif
@@ -3371,7 +3369,7 @@ The H5 work around sequence will be:
 /* HCILP_BT_WAKE_IDLE_TIMEOUT
 
     host's idle time in ms before initiating sleep procedure
-*/
+ */
 #ifndef HCILP_BT_WAKE_IDLE_TIMEOUT
 #define HCILP_BT_WAKE_IDLE_TIMEOUT              50
 #endif
@@ -3493,7 +3491,6 @@ The H5 work around sequence will be:
 #endif
 
 
-
 #define L2CAP_FEATURE_REQ_ID      73
 #define L2CAP_FEATURE_RSP_ID     173
 
@@ -3501,10 +3498,9 @@ The H5 work around sequence will be:
 #define L2CAP_ENHANCED_FEATURES   0
 
 
-
 /* Use gki_delay for patch ram */
 #ifndef BRCM_USE_DELAY
-#if ( SLIP_INCLUDED == TRUE )
+#if (SLIP_INCLUDED == TRUE)
 /* H5 need to be initialized after sending download mini driver HCI command */
 #define BRCM_USE_DELAY           FALSE
 #else

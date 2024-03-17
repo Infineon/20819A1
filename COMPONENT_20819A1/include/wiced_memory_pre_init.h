@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2020-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -35,8 +35,8 @@
  * support memory allocation tuning
  *
  */
-#ifndef __WICED_MEMORY_PRE_INIT_H__
-#define __WICED_MEMORY_PRE_INIT_H__
+#ifndef WICED_MEMORY_PRE_INIT_H__
+#define WICED_MEMORY_PRE_INIT_H__
 
 /* Usage:
  * This information shows how to use this memory allocation tuning:
@@ -118,4 +118,4 @@ typedef struct tag_mem_pre_init_control
  *      None
  */
 void wiced_memory_pre_init(WICED_MEM_PRE_INIT_CONTROL *mem_pre_init);
-#endif
+#endif // ifndef WICED_MEMORY_PRE_INIT_H__

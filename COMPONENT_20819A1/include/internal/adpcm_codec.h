@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,8 +31,8 @@
  * so agrees to indemnify Cypress against all liability.
  */
 
-#ifndef _ADPCM_CODEC_H
-#define _ADPCM_CODEC_H
+#ifndef ADPCM_CODEC_H
+#define ADPCM_CODEC_H
 
 #include "brcm_fw_types.h"
 
@@ -42,18 +42,18 @@
 
 typedef struct CodecState_t
 {
-	int valprev;
-	int index;
-}CodecState;
+    int valprev;
+    int index;
+} CodecState;
 
 
-void encode(CodecState* state, INT16* input, int numSamples, UINT8* output);
+void encode(CodecState *state, INT16 *input, int numSamples, UINT8 *output);
 #if !MODIFIED_EMBEDDED_ENCODE_C
-void decode(CodecState* state, UINT8* input, int numSamples, INT16* output);
+void decode(CodecState *state, UINT8 *input, int numSamples, INT16 *output);
 
 void initDecode68000();
-void decode68000(CodecState* state, UINT8* input, int numSamples, INT16* output);
+void decode68000(CodecState *state, UINT8 *input, int numSamples, INT16 *output);
 #endif //#if !MODIFIED_EMBEDDED_ENCODE_C
 
 
-#endif
+#endif // ifndef ADPCM_CODEC_H

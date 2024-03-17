@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -36,7 +36,8 @@
  * Bluetooth RFCOMM Application Programming Interface
  *
  */
-#pragma once
+#ifndef WICED_BT_RFCOMM_H
+#define WICED_BT_RFCOMM_H
 
 #include "wiced.h"
 #include "wiced_bt_dev.h"
@@ -48,24 +49,24 @@
 /** RFCOMM Port Event Masks */
 typedef enum wiced_bt_rfcomm_port_event_e
 {
-    PORT_EV_RXCHAR          = 0x00000001,         /**< Any Character received */
-    PORT_EV_RXFLAG          = 0x00000002,         /**< Received certain character */
-    PORT_EV_TXEMPTY         = 0x00000004,         /**< Transmitt Queue Empty */
-    PORT_EV_CTS             = 0x00000008,         /**< CTS changed state */
-    PORT_EV_DSR             = 0x00000010,         /**< DSR changed state */
-    PORT_EV_RLSD            = 0x00000020,         /**< RLSD changed state */
-    PORT_EV_BREAK           = 0x00000040,         /**< BREAK received */
-    PORT_EV_ERR             = 0x00000080,         /**< Line status error occurred */
-    PORT_EV_RING            = 0x00000100,         /**< Ring signal detected */
-    PORT_EV_CTSS            = 0x00000400,         /**< CTS state */
-    PORT_EV_DSRS            = 0x00000800,         /**< DSR state */
-    PORT_EV_RLSDS           = 0x00001000,         /**< RLSD state */
-    PORT_EV_OVERRUN         = 0x00002000,         /**< receiver buffer overrun */
-    PORT_EV_TXCHAR          = 0x00004000,         /**< Any character transmitted */
-    PORT_EV_CONNECTED       = 0x00000200,         /**< RFCOMM connection established */
-    PORT_EV_CONNECT_ERR     = 0x00008000,         /**< Was not able to establish connection or disconnected */
-    PORT_EV_FC              = 0x00010000,         /**< data flow enabled flag changed by remote */
-    PORT_EV_FCS             = 0x00020000,         /**< data flow enable status true = enabled */
+    PORT_EV_RXCHAR      = 0x00000001,             /**< Any Character received */
+    PORT_EV_RXFLAG      = 0x00000002,             /**< Received certain character */
+    PORT_EV_TXEMPTY     = 0x00000004,             /**< Transmitt Queue Empty */
+    PORT_EV_CTS         = 0x00000008,             /**< CTS changed state */
+    PORT_EV_DSR         = 0x00000010,             /**< DSR changed state */
+    PORT_EV_RLSD        = 0x00000020,             /**< RLSD changed state */
+    PORT_EV_BREAK       = 0x00000040,             /**< BREAK received */
+    PORT_EV_ERR         = 0x00000080,             /**< Line status error occurred */
+    PORT_EV_RING        = 0x00000100,             /**< Ring signal detected */
+    PORT_EV_CTSS        = 0x00000400,             /**< CTS state */
+    PORT_EV_DSRS        = 0x00000800,             /**< DSR state */
+    PORT_EV_RLSDS       = 0x00001000,             /**< RLSD state */
+    PORT_EV_OVERRUN     = 0x00002000,             /**< receiver buffer overrun */
+    PORT_EV_TXCHAR      = 0x00004000,             /**< Any character transmitted */
+    PORT_EV_CONNECTED   = 0x00000200,             /**< RFCOMM connection established */
+    PORT_EV_CONNECT_ERR = 0x00008000,             /**< Was not able to establish connection or disconnected */
+    PORT_EV_FC          = 0x00010000,             /**< data flow enabled flag changed by remote */
+    PORT_EV_FCS         = 0x00020000,             /**< data flow enable status true = enabled */
 } wiced_bt_rfcomm_port_event_t;
 
 #define PORT_MASK_ALL             (PORT_EV_RXCHAR | PORT_EV_TXEMPTY | PORT_EV_CTS | \
@@ -74,7 +75,6 @@ typedef enum wiced_bt_rfcomm_port_event_e
                                    PORT_EV_DSRS | PORT_EV_CTSS | PORT_EV_RLSDS | \
                                    PORT_EV_RXFLAG | PORT_EV_TXCHAR | PORT_EV_OVERRUN | \
                                    PORT_EV_FC | PORT_EV_FCS | PORT_EV_CONNECTED)
-
 
 
 /** RFCOMM Result Codes */
@@ -105,8 +105,9 @@ enum wiced_bt_rfcomm_result_e
     WICED_BT_RFCOMM_LOCAL_TIMEOUT,                                  /**< Local Timeout */
     WICED_BT_RFCOMM_TX_QUEUE_DISABLED,
     WICED_BT_RFCOMM_PAGE_TIMEOUT,                                   /**< Page Timeout */
-    WICED_BT_RFCOMM_INVALID_SCN                                     /**< Invalid SCN */
+    WICED_BT_RFCOMM_INVALID_SCN,                                    /**< Invalid SCN */
 };
+
 typedef int wiced_bt_rfcomm_result_t;                           /**< RFCOMM result code (see #wiced_bt_rfcomm_result_e) */
 
 /** RFCOMM Signals */
@@ -122,6 +123,7 @@ enum wiced_bt_rfcomm_signal_e
     PORT_CLR_DCD,           /** DCD clear (DCE only) */
     PORT_BREAK,             /** BRK */
 };
+
 typedef uint8_t wiced_bt_rfcomm_signal_t;   /**< RFCOMM Signals (see #wiced_bt_rfcomm_signal_e) */
 
 typedef struct
@@ -130,10 +132,10 @@ typedef struct
 #define PORT_FLAG_DSR_HOLD  0x02    /* Tx is waiting for DSR signal */
 #define PORT_FLAG_RLSD_HOLD 0x04    /* Tx is waiting for RLSD signal */
 
-    uint16_t  flags;
-    uint16_t  in_queue_size;          /* Number of bytes in the input queue */
-    uint16_t  out_queue_size;         /* Number of bytes in the output queue */
-    uint16_t  mtu_size;               /* peer MTU size */
+    uint16_t flags;
+    uint16_t in_queue_size;           /* Number of bytes in the input queue */
+    uint16_t out_queue_size;          /* Number of bytes in the output queue */
+    uint16_t mtu_size;                /* peer MTU size */
 } wiced_port_status_t;
 
 /**
@@ -196,7 +198,7 @@ extern "C"
  */
 #define wiced_bt_rfcomm_init    wiced_bt_rfcomm_set_buffer_pool
 wiced_bt_dev_status_t wiced_bt_rfcomm_set_buffer_pool(uint16_t buffer_size,
-                            uint16_t buffer_count);
+                                                      uint16_t buffer_count);
 
 /**
  *  Establish serial port connection to the peer device, or allow
@@ -230,11 +232,11 @@ wiced_bt_dev_status_t wiced_bt_rfcomm_set_buffer_pool(uint16_t buffer_size,
  *              <b> WICED_BT_RFCOMM_ALREADY_OPENED </b> : If the client tries to establish a connection to the same BD_ADDR
  *              <b> WICED_BT_RFCOMM_NO_RESOURCES </b>   : If there is not enough memory to allocate a control block structure
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_create_connection (uint16_t uuid, uint8_t scn,
-                                            wiced_bool_t is_server, uint16_t mtu,
-                                            wiced_bt_device_address_t bd_addr,
-                                            uint16_t *p_handle,
-                                            wiced_bt_port_mgmt_cback_t *p_mgmt_cb);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_create_connection(uint16_t uuid, uint8_t scn,
+                                                           wiced_bool_t is_server, uint16_t mtu,
+                                                           wiced_bt_device_address_t bd_addr,
+                                                           uint16_t *p_handle,
+                                                           wiced_bt_port_mgmt_cback_t *p_mgmt_cb);
 
 /**
  *  Close the specified connection.
@@ -248,7 +250,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_create_connection (uint16_t uuid, uint8
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_remove_connection (uint16_t handle, wiced_bool_t remove_server);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_remove_connection(uint16_t handle, wiced_bool_t remove_server);
 
 
 /**
@@ -264,7 +266,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_remove_connection (uint16_t handle, wic
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_event_callback (uint16_t port_handle, wiced_bt_port_event_cback_t *p_port_cb);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_event_callback(uint16_t port_handle, wiced_bt_port_event_cback_t *p_port_cb);
 
 /**
  *  Set event data callback the specified connection.
@@ -279,7 +281,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_event_callback (uint16_t port_handl
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_data_callback (uint16_t port_handle, wiced_bt_rfcomm_data_cback_t *p_cb);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_data_callback(uint16_t port_handle, wiced_bt_rfcomm_data_cback_t *p_cb);
 
 
 /**
@@ -293,7 +295,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_data_callback (uint16_t port_handle
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_event_mask (uint16_t port_handle, wiced_bt_rfcomm_port_event_t mask);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_event_mask(uint16_t port_handle, wiced_bt_rfcomm_port_event_t mask);
 
 /**
  *  Send control signal to the peer device.
@@ -306,7 +308,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_set_event_mask (uint16_t port_handle, w
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_control (uint16_t handle, uint8_t signal);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_control(uint16_t handle, uint8_t signal);
 
 /**
  *  This function directs a specified connection to pass flow control message to the peer device.
@@ -322,7 +324,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_control (uint16_t handle, uint8_t signa
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_flow_control (uint16_t handle, wiced_bool_t enable);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_flow_control(uint16_t handle, wiced_bool_t enable);
 
 /**
  *  This function sends the given application data to the peer device.
@@ -339,7 +341,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_flow_control (uint16_t handle, wiced_bo
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_write_data (uint16_t handle, char *p_data, uint16_t max_len, uint16_t *p_len);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_write_data(uint16_t handle, char *p_data, uint16_t max_len, uint16_t *p_len);
 
 /**
  *  This function checks connection referenced by handle is up and running.
@@ -352,7 +354,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_write_data (uint16_t handle, char *p_da
  *  @return     <b> WICED_BT_RFCOMM_SUCCESS </b>        : If successful
  *              <b> WICED_BT_RFCOMM_LINE_ERR </b>            : If connection is not up and running
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_check_connection (UINT16 handle, BD_ADDR bd_addr, UINT16 *p_lcid);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_check_connection(UINT16 handle, BD_ADDR bd_addr, UINT16 *p_lcid);
 
 /**
  *  This function reports current status of a connection.
@@ -365,7 +367,7 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_check_connection (UINT16 handle, BD_ADD
  *              <b> WICED_BT_RFCOMM_BAD_HANDLE </b>     : If the handle is out of range
  *              <b> WICED_BT_RFCOMM_NOT_OPENED </b>     : If the connection is not opened
  */
-wiced_bt_rfcomm_result_t wiced_bt_rfcomm_port_get_queue_status (uint16_t handle, wiced_port_status_t *p_status);
+wiced_bt_rfcomm_result_t wiced_bt_rfcomm_port_get_queue_status(uint16_t handle, wiced_port_status_t *p_status);
 
 
 #ifdef __cplusplus
@@ -373,3 +375,5 @@ wiced_bt_rfcomm_result_t wiced_bt_rfcomm_port_get_queue_status (uint16_t handle,
 #endif
 
 /**@} */
+
+#endif // WICED_BT_RFCOMM_H

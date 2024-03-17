@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,34 +32,34 @@
  */
 
 /** @file
-*
-* List of parameters and defined functions needed to access the
-* Multiple Interface Adapter (MIA) driver.
-*
-*/
+ *
+ * List of parameters and defined functions needed to access the
+ * Multiple Interface Adapter (MIA) driver.
+ *
+ */
 
-#ifndef __WICED_MIA_H__
-#define __WICED_MIA_H__
+#ifndef WICED_MIA_H__
+#define WICED_MIA_H__
 
 #include "brcm_fw_types.h"
 
 /**  \addtogroup MIADriver Multiple Interface Adapter (MIA)
-* \ingroup HardwareDrivers
-* @{
-*
-* Defines a Multiple Interface Adapter (MIA) driver to facilitate interfacing
-* with various components of the hardware
-* The MIA driver controls aspects such as GPIO pin muxing, interrupt
-* managment, and timing.
-*
-* Use this driver to enable and disable interrupts, along with managing
-* hardware events (such as PUART RX). There are many possibilities--please
-* look over the following API functions to see what can be done.
-*/
+ * \ingroup HardwareDrivers
+ * @{
+ *
+ * Defines a Multiple Interface Adapter (MIA) driver to facilitate interfacing
+ * with various components of the hardware
+ * The MIA driver controls aspects such as GPIO pin muxing, interrupt
+ * managment, and timing.
+ *
+ * Use this driver to enable and disable interrupts, along with managing
+ * hardware events (such as PUART RX). There are many possibilities--please
+ * look over the following API functions to see what can be done.
+ */
 
 /******************************************************************************
-*** Function prototypes and defines.
-******************************************************************************/
+ *** Function prototypes and defines.
+ ******************************************************************************/
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Initializes the MIA driver and its private values. Also programs all
@@ -176,4 +176,4 @@ void wiced_hal_mia_restore_lhl_interrupt_state(void);
 
 /* @} */
 
-#endif // __WICED_MIA_H__
+#endif // WICED_MIA_H__

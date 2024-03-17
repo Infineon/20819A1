@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -36,9 +36,9 @@
 typedef struct
 {
     UINT32 *buf_base;
-    UINT16 buf_offset;
-    UINT16 buf_size;
-}tCELT_SCRATCH_BUFFER_STATE;
+    UINT16  buf_offset;
+    UINT16  buf_size;
+} tCELT_SCRATCH_BUFFER_STATE;
 
 
 #define OPUS_CELT_DEC_ST_SIZE   10         //byte
@@ -53,7 +53,6 @@ typedef struct
 #define OPUS_CELT_ENC_SCRATCH_SIZE_BYTE     OPUS_CELT_ENC_SCRATCH_SIZE_UINT32*4
 
 
-
 #if !defined (CELT_INTEGRATE)
 extern UINT32 g_celt_dec_scratch_buf[OPUS_CELT_DEC_SCRATCH_SIZE_UINT32];
 
@@ -65,4 +64,4 @@ extern UINT32 g_opus_celt_enc_st_buf[OPUS_CELT_ENC_ST_SIZE];
 extern tCELT_SCRATCH_BUFFER_STATE g_celt_enc_scratch_buf_st;
 extern tCELT_SCRATCH_BUFFER_STATE g_celt_dec_scratch_buf_st;
 
-#endif
+#endif // ifndef CELT_SCRATCH_H

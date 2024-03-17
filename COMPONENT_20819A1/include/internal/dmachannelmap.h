@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -30,6 +30,9 @@
  * of such system or application assumes all risk of such use and in doing
  * so agrees to indemnify Cypress against all liability.
  */
+
+#ifndef DMACHANNELMAP_H_
+#define DMACHANNELMAP_H_
 
 //==================================================================================================
 //! \file
@@ -105,3 +108,5 @@
 //! dmaccNconfig_adr registers.  This mapping is defined by and must match the hardware, and
 //! dictates which DMA request line will be used by a DMA controller channel when it is active.
 #define DMAC_PERIPHERAL_BT_BASEBAND             3
+
+#endif // DMACHANNELMAP_H_

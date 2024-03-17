@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,69 +32,68 @@
  */
 
 /** @file
-*
-* List of parameters and defined functions needed to access the
-* Quadrature driver
-*
-*/
+ *
+ * List of parameters and defined functions needed to access the
+ * Quadrature driver
+ *
+ */
 
-#ifndef __WICED_QUADRATURE_H__
-#define __WICED_QUADRATURE_H__
+#ifndef WICED_QUADRATURE_H__
+#define WICED_QUADRATURE_H__
 
 #include "brcm_fw_types.h"
 
 
 /**  \addtogroup Quadrature
  *  \ingroup HardwareDrivers
-*/
+ */
 /*! @{ */
 /**
-* Defines the quadrature driver that can detect and decode scroll wheel movement in X, Y, Z axis.
-*
-*/
+ * Defines the quadrature driver that can detect and decode scroll wheel movement in X, Y, Z axis.
+ *
+ */
 
 /* enum value for port0PinsUsedAsQuadratureInput*/
 enum
 {
-    ENABLE_PORT_2_PINS_AS_QUAD_INPUT    =   0,
-    ENABLE_PORT_0_PINS_AS_QUAD_INPUT    =   1,
+    ENABLE_PORT_2_PINS_AS_QUAD_INPUT =   0,
+    ENABLE_PORT_0_PINS_AS_QUAD_INPUT =   1,
 };
 
 /* enum vlaue for QOC LED used in QOC_LEDs_output_polarity */
 enum
 {
-    QUADRATURE_LED_CONFIG_OPEN_SOURCE   =   0x00,   //1 when on, tristate when off(open source)
-    QUADRATURE_LED_CONFIG_SOURCE        =   0x01,   //1 when on, 0 when off
-    QUADRATURE_LED_CONFIG_OPEN_DRAIN    =   0x02,   //tristate when on, 0 when off(open drain)
-    QUADRATURE_LED_CONFIG_DRAIN         =   0x03    //0 when on, 1 when off
+    QUADRATURE_LED_CONFIG_OPEN_SOURCE =   0x00,     //1 when on, tristate when off(open source)
+    QUADRATURE_LED_CONFIG_SOURCE      =   0x01,     //1 when on, 0 when off
+    QUADRATURE_LED_CONFIG_OPEN_DRAIN  =   0x02,     //tristate when on, 0 when off(open drain)
+    QUADRATURE_LED_CONFIG_DRAIN       =   0x03,     //0 when on, 1 when off
 };
 
 /* enum value used for channelEnableAndSamplingRate */
 enum
 {
-    CH_XY_128_KHZ_FIXED_SAMPLE_RATE    = 0x00,
-    CH_XY_64_KHZ_FIXED_SAMPLE_RATE     = 0x01,
-    CH_XY_32_KHZ_FIXED_SAMPLE_RATE     = 0x02,
-    CH_XY_16_KHZ_FIXED_SAMPLE_RATE     = 0x03,
+    CH_XY_128_KHZ_FIXED_SAMPLE_RATE = 0x00,
+    CH_XY_64_KHZ_FIXED_SAMPLE_RATE  = 0x01,
+    CH_XY_32_KHZ_FIXED_SAMPLE_RATE  = 0x02,
+    CH_XY_16_KHZ_FIXED_SAMPLE_RATE  = 0x03,
 
-    CH_XY_SEL_LHL_PWM_RATE             = 0x00,
-    CH_XY_SEL_FIXED_RATE               = 0x04,
+    CH_XY_SEL_LHL_PWM_RATE = 0x00,
+    CH_XY_SEL_FIXED_RATE   = 0x04,
 
-    CH_XY_DISABLE                      = 0x00,
-    CH_XY_ENABLE                       = 0x08,
+    CH_XY_DISABLE = 0x00,
+    CH_XY_ENABLE  = 0x08,
 
-    CH_Z_SAMPLE_ONCE_PER_LHL_PWM       = 0x00,
-    CH_Z_SAMPLE_ONCE_PER_2_LHL_PWM     = 0x10,
-    CH_Z_SAMPLE_ONCE_PER_4_LHL_PWM     = 0x20,
-    CH_Z_SAMPLE_ONCE_PER_8_LHL_PWM     = 0x30,
-    CH_Z_SAMPLE_ONCE_PER_16_LHL_PWM    = 0x40,
-    CH_Z_SAMPLE_ONCE_PER_32_LHL_PWM    = 0x50,
-    CH_Z_SAMPLE_ONCE_PER_64_LHL_PWM    = 0x60,
-    CH_Z_SAMPLE_ONCE_PER_128_LHL_PWM   = 0x70,
+    CH_Z_SAMPLE_ONCE_PER_LHL_PWM     = 0x00,
+    CH_Z_SAMPLE_ONCE_PER_2_LHL_PWM   = 0x10,
+    CH_Z_SAMPLE_ONCE_PER_4_LHL_PWM   = 0x20,
+    CH_Z_SAMPLE_ONCE_PER_8_LHL_PWM   = 0x30,
+    CH_Z_SAMPLE_ONCE_PER_16_LHL_PWM  = 0x40,
+    CH_Z_SAMPLE_ONCE_PER_32_LHL_PWM  = 0x50,
+    CH_Z_SAMPLE_ONCE_PER_64_LHL_PWM  = 0x60,
+    CH_Z_SAMPLE_ONCE_PER_128_LHL_PWM = 0x70,
 
-    CH_Z_DISABLE                       = 0x00,
-    CH_Z_ENABLE                        = 0x80
-
+    CH_Z_DISABLE = 0x00,
+    CH_Z_ENABLE  = 0x80,
 };
 
 
@@ -124,8 +123,8 @@ enum
 /// \return - none
 ///////////////////////////////////////////////////////////////////////////////
 void wiced_hal_quadrature_configure(uint16_t QOC_LEDs_output_polarity, uint16_t quadratureInputGpioConfig, uint8_t port0PinsUsedAsQuadratureInput,
-                          wiced_bool_t configureP26AsQOC0, wiced_bool_t configureP27AsQOC1, wiced_bool_t configureP28AsQOC2, wiced_bool_t configureP29AsQOC3,
-                          uint8_t channelEnableAndSamplingRate, wiced_bool_t pollXAxis, wiced_bool_t pollYAxis, wiced_bool_t pollZAxis);
+                                    wiced_bool_t configureP26AsQOC0, wiced_bool_t configureP27AsQOC1, wiced_bool_t configureP28AsQOC2, wiced_bool_t configureP29AsQOC3,
+                                    uint8_t channelEnableAndSamplingRate, wiced_bool_t pollXAxis, wiced_bool_t pollYAxis, wiced_bool_t pollZAxis);
 
 ////////////////////////////////////////////////////////////////
 /// Initialize the quadrature driver. The quadrature HW is also
@@ -193,10 +192,10 @@ int16_t wiced_hal_quadrature_get_scroll_count(void);
 /// \param userdata will be passed back to userfn as-is; it can be used to
 /// carry the "this", for example.
 //////////////////////////////////////////////////////////////////////////////
-void wiced_hal_quadrature_register_for_event_notification(void (*userfn)(void*), void* userdata);
+void wiced_hal_quadrature_register_for_event_notification(void (*userfn)(void *), void *userdata);
 
 
 /* @} */
 
 
-#endif
+#endif // ifndef WICED_QUADRATURE_H__

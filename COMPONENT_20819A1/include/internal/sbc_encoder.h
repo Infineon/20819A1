@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -47,7 +47,6 @@
 #include "sbc_plc_bec_tgt.h"
 
 
-
 /*DEFINES*/
 #ifndef FALSE
 #define FALSE 0
@@ -60,7 +59,7 @@
 
 /* Set SBC_WB to TRUE to enable Wide Band Speech SBC Codec */
 #ifndef SBC_WB
-#define SBC_WB	TRUE
+#define SBC_WB  TRUE
 #endif
 
 #ifndef SBC_MAX_NUM_FRAME
@@ -167,7 +166,6 @@
 #define DCT_BUF_SIZE 16
 
 
-
 #include "sbc_types.h"
 #include "sbc_common.h"
 
@@ -177,15 +175,13 @@
 
 
 #if (SBC_WB)
-#if (SB_BUFFER_SIZE_WB >SB_BUFFER_SIZE_SIG)
+#if (SB_BUFFER_SIZE_WB > SB_BUFFER_SIZE_SIG)
 #define SB_BUFFER_SIZE SB_BUFFER_SIZE_WB
 #else
 #define SB_BUFFER_SIZE SB_BUFFER_SIZE_SIG
 #endif
 #define SB_BUFFER_SIZE SB_BUFFER_SIZE_SIG
 #endif
-
-
 
 
 typedef struct SBC_ENC_PARAMS_TAG
@@ -200,21 +196,21 @@ typedef struct SBC_ENC_PARAMS_TAG
     SINT16 bitPool;                              /* 16*numOfSb for mono & dual
                                                        32*numOfSb for stereo & joint stereo */
     SINT16 scaleFactor[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
-    SINT16  ScratchMemForBitAlloc[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
+    SINT16 ScratchMemForBitAlloc[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
     SINT16 bits[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
-    UINT8  *packet;
+    UINT8 *packet;
 
 // Keep identical to SBC_COM_PARAMS_TAG
 // -----------------------------------------------------------------
 
-    SINT32 StaticMem[ DCT_BUF_SIZE + ENC_VX_BUFFER_SIZE/2 ];
+    SINT32 StaticMem[DCT_BUF_SIZE + ENC_VX_BUFFER_SIZE/2];
 
     UINT16 u16BitRate;
-    UINT8   u8NumPacketToEncode;                    /* number of sbc frame to encode. Default is 1 */
+    UINT8  u8NumPacketToEncode;                     /* number of sbc frame to encode. Default is 1 */
 #if (SBC_JOINT_STE_INCLUDED == TRUE)
-	SINT16 as16Join[SBC_MAX_NUM_OF_SUBBANDS];       /* 1 if JS, 0 otherwise*/
-	SINT32	 s32LRDiff[SBC_MAX_NUM_OF_BLOCKS];
-	SINT32	 s32LRSum[SBC_MAX_NUM_OF_BLOCKS];
+    SINT16 as16Join[SBC_MAX_NUM_OF_SUBBANDS];       /* 1 if JS, 0 otherwise*/
+    SINT32 s32LRDiff[SBC_MAX_NUM_OF_BLOCKS];
+    SINT32 s32LRSum[SBC_MAX_NUM_OF_BLOCKS];
 #endif
 
 
@@ -226,38 +222,36 @@ typedef struct SBC_ENC_PARAMS_TAG
 #endif
 
 
-    SINT32  s32SbBuffer[SB_BUFFER_SIZE];
+    SINT32 s32SbBuffer[SB_BUFFER_SIZE];
 
-#if (SBC_ENC_BTW==TRUE)
-	SINT16 pcm_buff[SBC_ENCODER_BTW_PCM_BUFF];
-	SINT32 buff_len;
+#if (SBC_ENC_BTW == TRUE)
+    SINT16 pcm_buff[SBC_ENCODER_BTW_PCM_BUFF];
+    SINT32 buff_len;
 #endif
 
 
-    UINT8  *pu8Packet;
+    UINT8 *pu8Packet;
     UINT16 FrameHeader;
     UINT16 u16PacketLength;
 #if (SBC_WB)
     UINT16 sbc_mode;                                /*0: A2DP mode, 1: WideBand mode */
 #endif
-
-}SBC_ENC_PARAMS;
+} SBC_ENC_PARAMS;
 
 #if 0
 extern void SBC_Encoder(SBC_ENC_PARAMS *strEncParams);
-extern SINT16 SBC_Enc_get_PCM_size (SBC_ENC_PARAMS *pstrEncParams);
-extern void SbcAnalysisInit (SBC_ENC_PARAMS *pstrEncParams);
+extern SINT16 SBC_Enc_get_PCM_size(SBC_ENC_PARAMS *pstrEncParams);
+extern void SbcAnalysisInit(SBC_ENC_PARAMS *pstrEncParams);
 extern void SbcAnalysisFilter4(SBC_ENC_PARAMS *strEncParams);
 extern void SbcAnalysisFilter8(SBC_ENC_PARAMS *strEncParams);
-extern void SBC_FastIDCT8 (SINT32 *pInVect, SINT32 *pOutVect);
-extern void SBC_FastIDCT4 (SINT32 *x0, SINT32 *pOutVect);
+extern void SBC_FastIDCT8(SINT32 *pInVect, SINT32 *pOutVect);
+extern void SBC_FastIDCT4(SINT32 *x0, SINT32 *pOutVect);
 extern void EncPacking(SBC_ENC_PARAMS *strEncParams);
 extern void EncQuantizer(SBC_ENC_PARAMS *);
 #endif
 
 extern SINT16 SBC_Encoder_Init(SBC_ENC_PARAMS *strEncParams);
-extern UINT16 SBC_Encoder_encode(SBC_ENC_PARAMS *pstrEncParams, SINT16  * pcm_in, UINT8 * sbc_out, UINT16 len);
+extern UINT16 SBC_Encoder_encode(SBC_ENC_PARAMS *pstrEncParams, SINT16 *pcm_in, UINT8 *sbc_out, UINT16 len);
 
 
-
-#endif
+#endif // ifndef SBC_ENCODER_H

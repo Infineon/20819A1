@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,17 +32,17 @@
  */
 
 /*
-********************************************************************
-*    File Name: adc.h
-*
-*    Abstract: This file defines the ADC chip specific data struct
-*
-*
-********************************************************************
-*/
+ ********************************************************************
+ *    File Name: adc.h
+ *
+ *    Abstract: This file defines the ADC chip specific data struct
+ *
+ *
+ ********************************************************************
+ */
 
-#ifndef __ADC_CS__H__
-#define __ADC_CS__H__
+#ifndef ADC_CS__H__
+#define ADC_CS__H__
 
 #include "brcm_fw_types.h"
 //#include "legacy_interface/inc/types.h"
@@ -50,7 +50,7 @@
 
 /**  \addtogroup ADC
  *  \ingroup HardwareDrivers
-*/
+ */
 
 #define ADC_DMA_FIFO_FULL       (0x1 << 16)
 #define ADC_DMA_FIFO_ERROR      (0x1 << 17)
@@ -68,74 +68,75 @@
 #ifdef ADC_AUDIO_SUPPORT
 typedef struct
 {
-    DMA_LLI_t   *dmaLli;
-    UINT8       *audioFifo;
-    UINT16       fifoSize;
-    UINT16       dataSize;
-}AdcAudioFifo;
+    DMA_LLI_t *dmaLli;
+    UINT8     *audioFifo;
+    UINT16     fifoSize;
+    UINT16     dataSize;
+} AdcAudioFifo;
 #endif
 
 typedef enum
 {
-    ADC_AUDIO_FIFO_OVERLAP  = 0x1,
-    ADC_AUDIO_FIFO_FULL     = 0x2
+    ADC_AUDIO_FIFO_OVERLAP = 0x1,
+    ADC_AUDIO_FIFO_FULL    = 0x2,
 } ADC_AUDIO_FIFO_STATUS;
 
 /// supported ADC input channel selection
 /*
-If you choose LHL P36 as battery input pin and you use ADC_INPUT_P36 as input channel
-*/
+   If you choose LHL P36 as battery input pin and you use ADC_INPUT_P36 as input channel
+ */
 /// supported ADC input channel selection
-typedef enum ADC_INPUT_CHANNEL_SEL {
-    ADC_INPUT_P17           =   0x0,    // ADC CHANNEL #1 on GPIO P17
-    ADC_INPUT_P16           =   0x1,    // ADC CHANNEL #2 on GPIO P16
-    ADC_INPUT_P15           =   0x2,    // ADC CHANNEL #3 on GPIO P15
-    ADC_INPUT_P14           =   0x3,    // ADC CHANNEL #4 on GPIO P14
-    ADC_INPUT_P13           =   0x4,    // ADC CHANNEL #5 on GPIO P13
-    ADC_INPUT_P12           =   0x5,    // ADC CHANNEL #6 on GPIO P12
-    ADC_INPUT_P11           =   0x6,    // ADC CHANNEL #7 on GPIO P11
-    ADC_INPUT_P10           =   0x7,    // ADC CHANNEL #8 on GPIO P10
-    ADC_INPUT_P9            =   0x8,    // ADC CHANNEL #9 on GPIO P9
-    ADC_INPUT_P8            =   0x9,    // ADC CHANNEL #10 on GPIO P8
-    ADC_INPUT_P1            =   0xA,    // ADC CHANNEL #11 on GPIO P1
-    ADC_INPUT_P0            =   0xB,    // ADC CHANNEL #12 on GPIO P0
-    ADC_INPUT_VDDIO         =   0xC,    // ADC_INPUT_VBAT_VDDIO on Channel 13
-    ADC_INPUT_VDD_CORE      =   0xD,    // ADC_INPUT_VDDC on Channel 14
-    ADC_INPUT_ADC_BGREF     =   0xE,    // ADC BANDGAP REF on Channel 15
-    ADC_INPUT_ADC_REFGND    =   0xF,    // ADC REF GND on Channel 16
-    ADC_INPUT_P38           =   0x10,   // ADC CHANNEL #17  on GPIO P38
-    ADC_INPUT_P37           =   0x11,   // ADC CHANNEL #18  on GPIO P37
-    ADC_INPUT_P36           =   0x12,   // ADC CHANNEL #19  on GPIO P36
-    ADC_INPUT_P35           =   0x13,   // ADC CHANNEL #20  on GPIO P35
-    ADC_INPUT_P34           =   0x14,   // ADC CHANNEL #21  on GPIO P34
-    ADC_INPUT_P33           =   0x15,   // ADC CHANNEL #22  on GPIO P33
-    ADC_INPUT_P32           =   0x16,   // ADC CHANNEL #23  on GPIO P32
-    ADC_INPUT_P31           =   0x17,   // ADC CHANNEL #24  on GPIO P31
-    ADC_INPUT_P30           =   0x18,   // ADC CHANNEL #25  on GPIO P30
-    ADC_INPUT_P29           =   0x19,   // ADC CHANNEL #26  on GPIO P29
-    ADC_INPUT_P28           =   0x1A,   // ADC CHANNEL #27  on GPIO P28
-    ADC_INPUT_P23           =   0x1B,   // ADC CHANNEL #28  on GPIO P23
-    ADC_INPUT_P22           =   0x1C,   // ADC CHANNEL #29  on GPIO P22
-    ADC_INPUT_P21           =   0x1D,   // ADC CHANNEL #30  on GPIO P21
-    ADC_INPUT_P19           =   0x1E,   // ADC CHANNEL #31  on GPIO P19
-    ADC_INPUT_P18           =   0x1F,   // ADC CHANNEL #32  on GPIO P18
-    ADC_INPUT_CHANNEL_MASK  =   0x1f,
-}ADC_INPUT_CHANNEL_SEL;
+typedef enum ADC_INPUT_CHANNEL_SEL
+{
+    ADC_INPUT_P17          =   0x0,     // ADC CHANNEL #1 on GPIO P17
+    ADC_INPUT_P16          =   0x1,     // ADC CHANNEL #2 on GPIO P16
+    ADC_INPUT_P15          =   0x2,     // ADC CHANNEL #3 on GPIO P15
+    ADC_INPUT_P14          =   0x3,     // ADC CHANNEL #4 on GPIO P14
+    ADC_INPUT_P13          =   0x4,     // ADC CHANNEL #5 on GPIO P13
+    ADC_INPUT_P12          =   0x5,     // ADC CHANNEL #6 on GPIO P12
+    ADC_INPUT_P11          =   0x6,     // ADC CHANNEL #7 on GPIO P11
+    ADC_INPUT_P10          =   0x7,     // ADC CHANNEL #8 on GPIO P10
+    ADC_INPUT_P9           =   0x8,     // ADC CHANNEL #9 on GPIO P9
+    ADC_INPUT_P8           =   0x9,     // ADC CHANNEL #10 on GPIO P8
+    ADC_INPUT_P1           =   0xA,     // ADC CHANNEL #11 on GPIO P1
+    ADC_INPUT_P0           =   0xB,     // ADC CHANNEL #12 on GPIO P0
+    ADC_INPUT_VDDIO        =   0xC,     // ADC_INPUT_VBAT_VDDIO on Channel 13
+    ADC_INPUT_VDD_CORE     =   0xD,     // ADC_INPUT_VDDC on Channel 14
+    ADC_INPUT_ADC_BGREF    =   0xE,     // ADC BANDGAP REF on Channel 15
+    ADC_INPUT_ADC_REFGND   =   0xF,     // ADC REF GND on Channel 16
+    ADC_INPUT_P38          =   0x10,    // ADC CHANNEL #17  on GPIO P38
+    ADC_INPUT_P37          =   0x11,    // ADC CHANNEL #18  on GPIO P37
+    ADC_INPUT_P36          =   0x12,    // ADC CHANNEL #19  on GPIO P36
+    ADC_INPUT_P35          =   0x13,    // ADC CHANNEL #20  on GPIO P35
+    ADC_INPUT_P34          =   0x14,    // ADC CHANNEL #21  on GPIO P34
+    ADC_INPUT_P33          =   0x15,    // ADC CHANNEL #22  on GPIO P33
+    ADC_INPUT_P32          =   0x16,    // ADC CHANNEL #23  on GPIO P32
+    ADC_INPUT_P31          =   0x17,    // ADC CHANNEL #24  on GPIO P31
+    ADC_INPUT_P30          =   0x18,    // ADC CHANNEL #25  on GPIO P30
+    ADC_INPUT_P29          =   0x19,    // ADC CHANNEL #26  on GPIO P29
+    ADC_INPUT_P28          =   0x1A,    // ADC CHANNEL #27  on GPIO P28
+    ADC_INPUT_P23          =   0x1B,    // ADC CHANNEL #28  on GPIO P23
+    ADC_INPUT_P22          =   0x1C,    // ADC CHANNEL #29  on GPIO P22
+    ADC_INPUT_P21          =   0x1D,    // ADC CHANNEL #30  on GPIO P21
+    ADC_INPUT_P19          =   0x1E,    // ADC CHANNEL #31  on GPIO P19
+    ADC_INPUT_P18          =   0x1F,    // ADC CHANNEL #32  on GPIO P18
+    ADC_INPUT_CHANNEL_MASK =   0x1f,
+} ADC_INPUT_CHANNEL_SEL;
 
 /// input  voltage range selection
 typedef enum ADC_INPUT_RANGE_SEL
 {
     ADC_RANGE_0_3P6V = 0,
     ADC_RANGE_0_1P8V = 1,
-}ADC_INPUT_RANGE_SEL;
+} ADC_INPUT_RANGE_SEL;
 
 
 /// ADC power type
 typedef enum ADC_POWER_TYPE
 {
-    ADC_POWER_DOWN          = 1,
-    ADC_POWER_UP            = 0,
-}ADC_POWER_TYPE;
+    ADC_POWER_DOWN = 1,
+    ADC_POWER_UP   = 0,
+} ADC_POWER_TYPE;
 
 
 ///
@@ -156,8 +157,8 @@ typedef union LHL_ADC_CTL_REG
 
         /// reserved 31:8
         UINT32 reserved1            : 24;               // bit 31:8
-    }bitmap;
-}LHL_ADC_CTL_REG;
+    } bitmap;
+} LHL_ADC_CTL_REG;
 
 
 ///
@@ -205,194 +206,193 @@ typedef union ADC_CTL0_REG
 
         /// bit 8       -   Chip global power down control:
         /// 0: power up (Default); 1: power down
-        UINT32  adcIddq                 : 1;
+        UINT32 adcIddq                  : 1;
 
         /// bit 11:9    -   BG PTAT current adjustment:
-        UINT32  adcBgPtatCtl            : 3;
+        UINT32 adcBgPtatCtl             : 3;
 
         /// bit 14:12    -   BG CTAT current adjustment:
-        UINT32  adcBgCtatCtl            : 3;
+        UINT32 adcBgCtatCtl             : 3;
 
         /// bit 18:15    -   ADC reference voltage programmability:
-        UINT32  adcRefCtl               : 4;
+        UINT32 adcRefCtl                : 4;
 
         /// bit 20:19    -   Switch cap filter clock frequency selection:
-        UINT32  adcScfClkDiv            : 2;
+        UINT32 adcScfClkDiv             : 2;
 
         /// bit 21          -   BG REF switch cap filter bypass
         /// 0: enable switch cap filter; 1: bypass switch cap filter
-        UINT32  ADC_SCF_bypass          : 1;
+        UINT32 ADC_SCF_bypass           : 1;
 
         /// bit 22          -   External power up sequence for BG SCF bypass
-        UINT32  adcScfBypassSeq         : 1;
+        UINT32 adcScfBypassSeq          : 1;
 
         /// bit 23          -   Internal/External BG SCF power up sequence selection:
         /// 0: use internal power up sequence; 1: use external power up sequence
-        UINT32  adcScfSeqSlt            : 1;
+        UINT32 adcScfSeqSlt             : 1;
 
         /// bit 25:24   -   Global bias current programmability
-        UINT32  adcBiasCtl              : 2;
+        UINT32 adcBiasCtl               : 2;
 
         /// reserved bits 28:26
         UINT32 reserved0                : 3;
 
         /// bit 29          -   ADC input range selection for DC measurement path:
         /// 0: 0-3.6V; 1: 0-1.8V
-        UINT32  adcDcInputRange         : 1;
+        UINT32 adcDcInputRange          : 1;
 
         /// bit 30          -   ADC internal clock division:
         /// 0: disable divide-by-2; ADC sampling clock at 12MHz; 1: enable divide-by-2; ADC sampling clock at 6MHz
-        UINT32  adcClkDiv2              : 1;
+        UINT32 adcClkDiv2               : 1;
 
         /// reserved bit 31
         UINT32 reserved1                : 1;
-    }bitmap;
-}ADC_CTL0_REG;
+    } bitmap;
+} ADC_CTL0_REG;
 
 
 enum
 {
     // bit 30
-    CTL0_REG_ADC_CLK_DIV2_DISABLE               =   0x0,
-    CTL0_REG_ADC_CLK_DIV2_ENABLE                =   0x1,
+    CTL0_REG_ADC_CLK_DIV2_DISABLE =   0x0,
+    CTL0_REG_ADC_CLK_DIV2_ENABLE  =   0x1,
 
-    CTL0_REG_ADC_CLK_DIV2_DEFAULT               =   CTL0_REG_ADC_CLK_DIV2_DISABLE ,
+    CTL0_REG_ADC_CLK_DIV2_DEFAULT =   CTL0_REG_ADC_CLK_DIV2_DISABLE,
 
     // bit 29
-    CTL0_REG_ADC_DC_INPUT_RANGE_0_3p6V          =   0x0,
-    CTL0_REG_ADC_DC_INPUT_RANGE_0_1p8V          =   0x1,
+    CTL0_REG_ADC_DC_INPUT_RANGE_0_3p6V =   0x0,
+    CTL0_REG_ADC_DC_INPUT_RANGE_0_1p8V =   0x1,
 
-    CTL0_REG_ADC_DC_INPUT_RANGE_DEFAULT         =   CTL0_REG_ADC_DC_INPUT_RANGE_0_3p6V ,
+    CTL0_REG_ADC_DC_INPUT_RANGE_DEFAULT =   CTL0_REG_ADC_DC_INPUT_RANGE_0_3p6V,
 
     // bit 25:24
-    CTL0_REG_ADC_BIAS_CURR_3uA                  =   0x2,
+    CTL0_REG_ADC_BIAS_CURR_3uA =   0x2,
 //    CTL0_REG_ADC_BIAS_CURR_2p5uA                =   0x3,
-    CTL0_REG_ADC_BIAS_CURR_2p5uA                =   0x0,
-    CTL0_REG_ADC_BIAS_CURR_2uA                  =   0x1,
+    CTL0_REG_ADC_BIAS_CURR_2p5uA =   0x0,
+    CTL0_REG_ADC_BIAS_CURR_2uA   =   0x1,
 
-    CTL0_REG_ADC_BIAS_CURR_DEFAULT              =   CTL0_REG_ADC_BIAS_CURR_2p5uA ,
+    CTL0_REG_ADC_BIAS_CURR_DEFAULT =   CTL0_REG_ADC_BIAS_CURR_2p5uA,
 
     // bit 23
-    CTL0_REG_ADC_SCF_SEQ_SELECT_INT             =   0x0,
-    CTL0_REG_ADC_SCF_SEQ_SELECT_EXT             =   0x1,
+    CTL0_REG_ADC_SCF_SEQ_SELECT_INT =   0x0,
+    CTL0_REG_ADC_SCF_SEQ_SELECT_EXT =   0x1,
 
-    CTL0_REG_ADC_SCF_SEQ_SELECT_DEFAULT         =   CTL0_REG_ADC_SCF_SEQ_SELECT_INT ,
+    CTL0_REG_ADC_SCF_SEQ_SELECT_DEFAULT =   CTL0_REG_ADC_SCF_SEQ_SELECT_INT,
 
     // bit 22
-    CTL0_REG_ADC_SCF_BYPASS_SEQ_DEFAULT         =   0 ,
+    CTL0_REG_ADC_SCF_BYPASS_SEQ_DEFAULT =   0,
 
     // bit 21
-    CTL0_REG_ADC_SCF_ENABLE                     =   0x0,
-    CTL0_REG_ADC_SCF_BYPASS                     =   0x1,
+    CTL0_REG_ADC_SCF_ENABLE =   0x0,
+    CTL0_REG_ADC_SCF_BYPASS =   0x1,
 
-    CTL0_REG_ADC_SCF_BYPASS_DEFAULT             =   CTL0_REG_ADC_SCF_ENABLE ,
+    CTL0_REG_ADC_SCF_BYPASS_DEFAULT =   CTL0_REG_ADC_SCF_ENABLE,
 
     // bit 20:19
-    CTL0_REG_ADC_SCF_CLK_DIV_50KHz              =   0x0,
-    CTL0_REG_ADC_SCF_CLK_DIV_25KHz              =   0x1,
-    CTL0_REG_ADC_SCF_CLK_DIV_100KHz             =   0x2,
-    CTL0_REG_ADC_SCF_CLK_DIV_1p6MHz             =   0x3,
+    CTL0_REG_ADC_SCF_CLK_DIV_50KHz  =   0x0,
+    CTL0_REG_ADC_SCF_CLK_DIV_25KHz  =   0x1,
+    CTL0_REG_ADC_SCF_CLK_DIV_100KHz =   0x2,
+    CTL0_REG_ADC_SCF_CLK_DIV_1p6MHz =   0x3,
 
-    CTL0_REG_ADC_SCF_CLK_DIV_DEFAULT            =   CTL0_REG_ADC_SCF_CLK_DIV_50KHz ,
+    CTL0_REG_ADC_SCF_CLK_DIV_DEFAULT =   CTL0_REG_ADC_SCF_CLK_DIV_50KHz,
 
     // bit 18:15
-    CTL0_REG_ADC_REF_VOL_850p0                  =   0x0,
-    CTL0_REG_ADC_REF_VOL_856p1                  =   0x1,
-    CTL0_REG_ADC_REF_VOL_862p1                  =   0x2,
-    CTL0_REG_ADC_REF_VOL_868p2                  =   0x3,
-    CTL0_REG_ADC_REF_VOL_874p3                  =   0x4,
-    CTL0_REG_ADC_REF_VOL_880p4                  =   0x5,
-    CTL0_REG_ADC_REF_VOL_886p4                  =   0x6,
-    CTL0_REG_ADC_REF_VOL_892p5                  =   0x7,
-    CTL0_REG_ADC_REF_VOL_801p4                  =   0x8,
-    CTL0_REG_ADC_REF_VOL_807p5                  =   0x9,
-    CTL0_REG_ADC_REF_VOL_813p6                  =   0xA,
-    CTL0_REG_ADC_REF_VOL_819p6                  =   0xB,
-    CTL0_REG_ADC_REF_VOL_825p7                  =   0xC,
-    CTL0_REG_ADC_REF_VOL_831p8                  =   0xD,
-    CTL0_REG_ADC_REF_VOL_837p9                  =   0xE,
-    CTL0_REG_ADC_REF_VOL_843p9                  =   0xF,
+    CTL0_REG_ADC_REF_VOL_850p0 =   0x0,
+    CTL0_REG_ADC_REF_VOL_856p1 =   0x1,
+    CTL0_REG_ADC_REF_VOL_862p1 =   0x2,
+    CTL0_REG_ADC_REF_VOL_868p2 =   0x3,
+    CTL0_REG_ADC_REF_VOL_874p3 =   0x4,
+    CTL0_REG_ADC_REF_VOL_880p4 =   0x5,
+    CTL0_REG_ADC_REF_VOL_886p4 =   0x6,
+    CTL0_REG_ADC_REF_VOL_892p5 =   0x7,
+    CTL0_REG_ADC_REF_VOL_801p4 =   0x8,
+    CTL0_REG_ADC_REF_VOL_807p5 =   0x9,
+    CTL0_REG_ADC_REF_VOL_813p6 =   0xA,
+    CTL0_REG_ADC_REF_VOL_819p6 =   0xB,
+    CTL0_REG_ADC_REF_VOL_825p7 =   0xC,
+    CTL0_REG_ADC_REF_VOL_831p8 =   0xD,
+    CTL0_REG_ADC_REF_VOL_837p9 =   0xE,
+    CTL0_REG_ADC_REF_VOL_843p9 =   0xF,
 
-    CTL0_REG_ADC_REF_VOL_DEFAULT                =   CTL0_REG_ADC_REF_VOL_850p0 ,
+    CTL0_REG_ADC_REF_VOL_DEFAULT =   CTL0_REG_ADC_REF_VOL_850p0,
 
     // bit 14:12
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_3p02          =   0x3,
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_1p92          =   0x2,
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_0p92          =   0x1,
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_0             =   0x0,
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N0p93         =   0x7,
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N1p82         =   0x6,
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N2p68         =   0x5,
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N3p51         =   0x4,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_3p02  =   0x3,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_1p92  =   0x2,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_0p92  =   0x1,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_0     =   0x0,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N0p93 =   0x7,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N1p82 =   0x6,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N2p68 =   0x5,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_N3p51 =   0x4,
 
-    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_DEFAULT       =   CTL0_REG_ADC_BG_CTAT_CURR_ADJ_0 ,
+    CTL0_REG_ADC_BG_CTAT_CURR_ADJ_DEFAULT =   CTL0_REG_ADC_BG_CTAT_CURR_ADJ_0,
 
     // bit 11:9
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_3p62          =   0x3,
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_2p32          =   0x2,
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_1p11          =   0x1,
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_0             =   0x0,
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N1p11         =   0x7,
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N2p17         =   0x6,
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N3p19         =   0x5,
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N4p10         =   0x4,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_3p62  =   0x3,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_2p32  =   0x2,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_1p11  =   0x1,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_0     =   0x0,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N1p11 =   0x7,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N2p17 =   0x6,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N3p19 =   0x5,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_N4p10 =   0x4,
 
-    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_DEFAULT       =   CTL0_REG_ADC_BG_PTAT_CURR_ADJ_0 ,
+    CTL0_REG_ADC_BG_PTAT_CURR_ADJ_DEFAULT =   CTL0_REG_ADC_BG_PTAT_CURR_ADJ_0,
 
     // bit 8
-    CTL0_REG_ADC_IDDQ_POWER_UP                  =   0x0,
-    CTL0_REG_ADC_IDDQ_POWER_DOWN                =   0x1,
+    CTL0_REG_ADC_IDDQ_POWER_UP   =   0x0,
+    CTL0_REG_ADC_IDDQ_POWER_DOWN =   0x1,
 
-    CTL0_REG_ADC_IDDQ_DEFAULT                   =   CTL0_REG_ADC_IDDQ_POWER_UP ,
+    CTL0_REG_ADC_IDDQ_DEFAULT =   CTL0_REG_ADC_IDDQ_POWER_UP,
 
     // bit 7
-    CTL0_REG_ADC_MIC_POWER_DOWN_IN_DC           =   0 ,
-    CTL0_REG_ADC_MIC_POWER_DOWN_BY_SIGNAL       =   1 ,
+    CTL0_REG_ADC_MIC_POWER_DOWN_IN_DC     =   0,
+    CTL0_REG_ADC_MIC_POWER_DOWN_BY_SIGNAL =   1,
 
-    CTL0_REG_ADC_MIC_POWER_SELECT_DEFAULT       =   CTL0_REG_ADC_MIC_POWER_DOWN_IN_DC ,
+    CTL0_REG_ADC_MIC_POWER_SELECT_DEFAULT =   CTL0_REG_ADC_MIC_POWER_DOWN_IN_DC,
 
     // bit 6
-    CTL0_REG_ADC_MODE_DC                        =   0x0,
-    CTL0_REG_ADC_MODE_AUDIO                     =   0x1,
+    CTL0_REG_ADC_MODE_DC    =   0x0,
+    CTL0_REG_ADC_MODE_AUDIO =   0x1,
 
-    CTL0_REG_ADC_MODE_DEFAULT                   =   CTL0_REG_ADC_MODE_DC ,
+    CTL0_REG_ADC_MODE_DEFAULT =   CTL0_REG_ADC_MODE_DC,
 
     // bit 5
-    CTL0_REG_ADC_SYN_CLK_PHASE_NON_INVERT       =   0x0,
-    CTL0_REG_ADC_SYN_CLK_PHASE_INVERT           =   0x1,
+    CTL0_REG_ADC_SYN_CLK_PHASE_NON_INVERT =   0x0,
+    CTL0_REG_ADC_SYN_CLK_PHASE_INVERT     =   0x1,
 
-    CTL0_REG_ADC_SYN_CLK_PHASE_DEFAULT          =   CTL0_REG_ADC_SYN_CLK_PHASE_NON_INVERT ,
+    CTL0_REG_ADC_SYN_CLK_PHASE_DEFAULT =   CTL0_REG_ADC_SYN_CLK_PHASE_NON_INVERT,
 
     // bit 4
-    CTL0_REG_ADC_MIC_BIAS_POWER_DOWN            =   0x0,
-    CTL0_REG_ADC_MIC_BIAS_POWER_UP              =   0x1,
+    CTL0_REG_ADC_MIC_BIAS_POWER_DOWN =   0x0,
+    CTL0_REG_ADC_MIC_BIAS_POWER_UP   =   0x1,
 
-    CTL0_REG_ADC_MIC_BIAS_POWER_DEFAULT         =   CTL0_REG_ADC_MIC_BIAS_POWER_DOWN ,
+    CTL0_REG_ADC_MIC_BIAS_POWER_DEFAULT =   CTL0_REG_ADC_MIC_BIAS_POWER_DOWN,
 
     // bit 3
-    CTL0_REG_ADC_MIC_POWER_DOWN                 =   0x0,
-    CTL0_REG_ADC_MIC_POWER_UP                   =   0x1,
+    CTL0_REG_ADC_MIC_POWER_DOWN =   0x0,
+    CTL0_REG_ADC_MIC_POWER_UP   =   0x1,
 
-    CTL0_REG_ADC_MIC_POWER_DEFAULT              =   CTL0_REG_ADC_MIC_POWER_DOWN ,
+    CTL0_REG_ADC_MIC_POWER_DEFAULT =   CTL0_REG_ADC_MIC_POWER_DOWN,
 
     // bit 2
-    CTL0_REG_ADC_CORE_POWER_DOWN                =   0x0,
-    CTL0_REG_ADC_CORE_POWER_UP                  =   0x1,
+    CTL0_REG_ADC_CORE_POWER_DOWN =   0x0,
+    CTL0_REG_ADC_CORE_POWER_UP   =   0x1,
 
-    CTL0_REG_ADC_CORE_POWER_DEFAULT             =   CTL0_REG_ADC_CORE_POWER_DOWN ,
+    CTL0_REG_ADC_CORE_POWER_DEFAULT =   CTL0_REG_ADC_CORE_POWER_DOWN,
 
     // bit 1
-    CTL0_REG_ADC_REF_POWER_DOWN                 =   0x0,
-    CTL0_REG_ADC_REF_POWER_UP                   =   0x1,
+    CTL0_REG_ADC_REF_POWER_DOWN =   0x0,
+    CTL0_REG_ADC_REF_POWER_UP   =   0x1,
 
-    CTL0_REG_ADC_REF_POWER_DEFAULT              =   CTL0_REG_ADC_REF_POWER_DOWN ,
+    CTL0_REG_ADC_REF_POWER_DEFAULT =   CTL0_REG_ADC_REF_POWER_DOWN,
 
     // bit 0
-    CTL0_REG_ADC_POWER_DOWN                     =   0,     // bit 1
-    CTL0_REG_ADC_POWER_UP                       =   1,
+    CTL0_REG_ADC_POWER_DOWN =   0,                         // bit 1
+    CTL0_REG_ADC_POWER_UP   =   1,
 
-    CTL0_REG_ADC_POWER_DEFAULT                  =   CTL0_REG_ADC_POWER_DOWN ,
-
+    CTL0_REG_ADC_POWER_DEFAULT =   CTL0_REG_ADC_POWER_DOWN,
 };
 
 
@@ -442,102 +442,101 @@ typedef union ADC_CTL1_REG
         UINT32 micBiasLz                : 1;
 
         /// reserved bits 15:12
-        UINT32  reserved2               : 4;
+        UINT32 reserved2                : 4;
 
         /// bit 17:16   -   PGA input common mode control
         /// 01 : 0.45 * avdd; 00 : 0.4 * avdd; 10 : 0.35 * avdd
-        UINT32  micPgaIncmCtl           : 2;
+        UINT32 micPgaIncmCtl            : 2;
 
         /// bit 19:18   -   PGA output common mode control
         /// 01 : 0.7V; 00 : 0.6V; 10 : 0.5V
-        UINT32  micPgaOutcmCtl          : 2;
+        UINT32 micPgaOutcmCtl           : 2;
 
         /// bit 21:20   -
-        UINT32  micPgaIncmresCtl        : 2;
+        UINT32 micPgaIncmresCtl         : 2;
 
         /// bit 22      -
-        UINT32  micNegInputSlt          : 1;
+        UINT32 micNegInputSlt           : 1;
 
         /// reserved bits 31:23
         UINT32 reserved1                : 9;
-    }bitmap;
-}ADC_CTL1_REG;
+    } bitmap;
+} ADC_CTL1_REG;
 
 
 enum
 {
     // bit 22
-    CTL1_REG_ADC_MIC_NEG_INPUT_SELECT_DEFAULT   =   0 ,
+    CTL1_REG_ADC_MIC_NEG_INPUT_SELECT_DEFAULT =   0,
 
     // bit 21:20
-    CTL1_REG_ADC_MIC_PGA_INCMRES_CTL_DEFAULT    =   0 ,
+    CTL1_REG_ADC_MIC_PGA_INCMRES_CTL_DEFAULT =   0,
 
     // bit 19:18
-    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p6V     =   0x0,
-    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p7V     =   0x1,
-    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p5V     =   0x2,
+    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p6V =   0x0,
+    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p7V =   0x1,
+    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p5V =   0x2,
 
-    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_DEFAULT  =   CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p6V ,
+    CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_DEFAULT =   CTL1_REG_ADC_MIC_PGA_OUT_COMM_MODE_0p6V,
 
     // bit 17:16
     CTL1_REG_ADC_MIC_PGA_IN_COMM_MODE_0p4_AVDD  =   0x0,
     CTL1_REG_ADC_MIC_PGA_IN_COMM_MODE_0p45_AVDD =   0x1,
     CTL1_REG_ADC_MIC_PGA_IN_COMM_MODE_0p35_AVDD =   0x2,
 
-    CTL1_REG_ADC_MIC_PGA_IN_COMM_MODE_DEFAULT   =   CTL1_REG_ADC_MIC_PGA_IN_COMM_MODE_0p4_AVDD ,
+    CTL1_REG_ADC_MIC_PGA_IN_COMM_MODE_DEFAULT =   CTL1_REG_ADC_MIC_PGA_IN_COMM_MODE_0p4_AVDD,
 
     // bit 15:12 reserved
 
     // bit 11
-    CTL1_REG_ADC_MIC_BIAS_HZ                    =   0 ,
-    CTL1_REG_ADC_MIC_BIAS_LZ                    =   1 ,
+    CTL1_REG_ADC_MIC_BIAS_HZ =   0,
+    CTL1_REG_ADC_MIC_BIAS_LZ =   1,
 
-    CTL1_REG_ADC_MIC_BIAS_LZ_DEFAULT            =   CTL1_REG_ADC_MIC_BIAS_HZ ,
+    CTL1_REG_ADC_MIC_BIAS_LZ_DEFAULT =   CTL1_REG_ADC_MIC_BIAS_HZ,
 
     // bit 10
-    CTL1_REG_MIC_SCF_SEQ_SELECT_INT             =   0x0,
-    CTL1_REG_MIC_SCF_SEQ_SELECT_EXT             =   0x1,
+    CTL1_REG_MIC_SCF_SEQ_SELECT_INT =   0x0,
+    CTL1_REG_MIC_SCF_SEQ_SELECT_EXT =   0x1,
 
-    CTL1_REG_MIC_SCF_SEQ_SELECT_DEFAULT         =   CTL1_REG_MIC_SCF_SEQ_SELECT_INT ,
+    CTL1_REG_MIC_SCF_SEQ_SELECT_DEFAULT =   CTL1_REG_MIC_SCF_SEQ_SELECT_INT,
 
     // bit 9
-    CTL1_REG_ADC_MIC_SCF_BYPASS_SEQ_DEFAULT     =   0 ,
+    CTL1_REG_ADC_MIC_SCF_BYPASS_SEQ_DEFAULT =   0,
 
     // bit 7
-    CTL1_REG_ADC_MIC_SCF_BYPASS_ENABLE          =   0x0,
-    CTL1_REG_ADC_MIC_SCF_BYPASS_DISABLE         =   0x1,
+    CTL1_REG_ADC_MIC_SCF_BYPASS_ENABLE  =   0x0,
+    CTL1_REG_ADC_MIC_SCF_BYPASS_DISABLE =   0x1,
 
-    CTL1_REG_ADC_MIC_SCF_BYPASS_DEFAULT         =   CTL1_REG_ADC_MIC_SCF_BYPASS_ENABLE ,
+    CTL1_REG_ADC_MIC_SCF_BYPASS_DEFAULT =   CTL1_REG_ADC_MIC_SCF_BYPASS_ENABLE,
 
     // bit 6:5
-    CTL1_REG_ADC_MIC_SCF_CLK_50KHz              =   0x0,
-    CTL1_REG_ADC_MIC_SCF_CLK_25KHz              =   0x1,
-    CTL1_REG_ADC_MIC_SCF_CLK_100KHz             =   0x2,
-    CTL1_REG_ADC_MIC_SCF_CLK_1p6MHz             =   0x3,
+    CTL1_REG_ADC_MIC_SCF_CLK_50KHz  =   0x0,
+    CTL1_REG_ADC_MIC_SCF_CLK_25KHz  =   0x1,
+    CTL1_REG_ADC_MIC_SCF_CLK_100KHz =   0x2,
+    CTL1_REG_ADC_MIC_SCF_CLK_1p6MHz =   0x3,
 
-    CTL1_REG_ADC_MIC_SCF_CLK_DEFAULT            =   CTL1_REG_ADC_MIC_SCF_CLK_50KHz ,
+    CTL1_REG_ADC_MIC_SCF_CLK_DEFAULT =   CTL1_REG_ADC_MIC_SCF_CLK_50KHz,
 
     // bit 4
-    CTL1_REG_ADC_MIC_BIAS_REF_SEL_SUPP_VOL      =   0x0,
-    CTL1_REG_ADC_MIC_BIAS_REF_SEL_BG_VOL        =   0x1,
+    CTL1_REG_ADC_MIC_BIAS_REF_SEL_SUPP_VOL =   0x0,
+    CTL1_REG_ADC_MIC_BIAS_REF_SEL_BG_VOL   =   0x1,
 
-    CTL1_REG_ADC_MIC_BIAS_REF_SEL_DEFAULT       =   CTL1_REG_ADC_MIC_BIAS_REF_SEL_SUPP_VOL ,
+    CTL1_REG_ADC_MIC_BIAS_REF_SEL_DEFAULT =   CTL1_REG_ADC_MIC_BIAS_REF_SEL_SUPP_VOL,
 
     // bit 3:2
-    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p12X      =   0x0,
-    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p14X      =   0x1,
-    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p17X      =   0x2,
-    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p10X      =   0x3,
+    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p12X =   0x0,
+    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p14X =   0x1,
+    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p17X =   0x2,
+    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p10X =   0x3,
 
-    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_DEFAULT    =   CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p12X ,
+    CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_DEFAULT =   CTL1_REG_ADC_MIC_BIAS_OUTPUT_VOL_1p12X,
 
     // bit 1:0
-    CTL1_REG_ADC_MIC_BIAS_REF_VOL_75PER         =   0,
-    CTL1_REG_ADC_MIC_BIAS_REF_VOL_70PER         =   1,
-    CTL1_REG_ADC_MIC_BIAS_REF_VOL_80PER         =   2,
+    CTL1_REG_ADC_MIC_BIAS_REF_VOL_75PER =   0,
+    CTL1_REG_ADC_MIC_BIAS_REF_VOL_70PER =   1,
+    CTL1_REG_ADC_MIC_BIAS_REF_VOL_80PER =   2,
 
-    CTL1_REG_ADC_MIC_BIAS_REF_VOL_DEFAULT       =   CTL1_REG_ADC_MIC_BIAS_REF_VOL_75PER ,
-
+    CTL1_REG_ADC_MIC_BIAS_REF_VOL_DEFAULT =   CTL1_REG_ADC_MIC_BIAS_REF_VOL_75PER,
 };
 
 #define CTL2_REG_ADC_MIC_PGA_GAIN_CTL_MASK 0x0003F000
@@ -591,51 +590,50 @@ typedef union ADC_CTL2_REG
 
         /// bit 31:22       -   spare register
         UINT32 adcSpare                 : 10;
-    }bitmap;
-}ADC_CTL2_REG;
+    } bitmap;
+} ADC_CTL2_REG;
 
 enum
 {
     // bit 17:12
-    CTL2_REG_ADC_PGA_GAIN_DEFAULT               =   0,
+    CTL2_REG_ADC_PGA_GAIN_DEFAULT =   0,
 
     // bit 11:10
-    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P95   =   0x0,
-    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P925  =   0x1,
-    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P975  =   0x2,
-    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_1P00   =   0x3,
+    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P95  =   0x0,
+    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P925 =   0x1,
+    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P975 =   0x2,
+    CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_1P00  =   0x3,
 
-    CTL2_REG_ADC_PGA_CLAMP_THRES_DEFAULT        =   CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P95,
+    CTL2_REG_ADC_PGA_CLAMP_THRES_DEFAULT =   CTL2_REG_ADC_PGA_CLAMP_THRES_VOLTAGE_0P95,
 
     // bit 9
-    CTL2_REG_ADC_MIC_PGA_CLAMP_DISABLE          =   0x0,
-    CTL2_REG_ADC_MIC_PGA_CLAMP_ENABLE           =   0x1,
+    CTL2_REG_ADC_MIC_PGA_CLAMP_DISABLE =   0x0,
+    CTL2_REG_ADC_MIC_PGA_CLAMP_ENABLE  =   0x1,
 
-    CTL2_REG_ADC_MIC_PGA_CLAMP_DEFAULT          =   CTL2_REG_ADC_MIC_PGA_CLAMP_ENABLE,
+    CTL2_REG_ADC_MIC_PGA_CLAMP_DEFAULT =   CTL2_REG_ADC_MIC_PGA_CLAMP_ENABLE,
 
     // bit 8
-    CTL2_REG_ADC_RESET_DISABLE                  =   0x0,
-    CTL2_REG_ADC_RESET_ENABLE                   =   0x1,
+    CTL2_REG_ADC_RESET_DISABLE =   0x0,
+    CTL2_REG_ADC_RESET_ENABLE  =   0x1,
 
-    CTL2_REG_ADC_RESET_DEFAULT                  =   CTL2_REG_ADC_RESET_DISABLE ,
+    CTL2_REG_ADC_RESET_DEFAULT =   CTL2_REG_ADC_RESET_DISABLE,
 
     // bit 7
-    CTL2_REG_ADC_SHUFFLER_DISABLE               =   0x0,
-    CTL2_REG_ADC_SHUFFLER_ENABLE                =   0x1,
+    CTL2_REG_ADC_SHUFFLER_DISABLE =   0x0,
+    CTL2_REG_ADC_SHUFFLER_ENABLE  =   0x1,
 
-    CTL2_REG_ADC_SHUFFLER_DEFAULT               =   CTL2_REG_ADC_SHUFFLER_DISABLE ,
+    CTL2_REG_ADC_SHUFFLER_DEFAULT =   CTL2_REG_ADC_SHUFFLER_DISABLE,
 
     // bit 6:5
-    CTL2_REG_ADC_DITHER_CTL_NO_DITHER           =   0x0,
-    CTL2_REG_ADC_DITHER_CTL_PRBS15              =   0x1,
-    CTL2_REG_ADC_DITHER_CTL_PRBS23              =   0x2,
-    CTL2_REG_ADC_DITHER_CTL_PRBS31              =   0x3,
+    CTL2_REG_ADC_DITHER_CTL_NO_DITHER =   0x0,
+    CTL2_REG_ADC_DITHER_CTL_PRBS15    =   0x1,
+    CTL2_REG_ADC_DITHER_CTL_PRBS23    =   0x2,
+    CTL2_REG_ADC_DITHER_CTL_PRBS31    =   0x3,
 
-    CTL2_REG_ADC_DITHER_CTL_DEFAULT             =   CTL2_REG_ADC_DITHER_CTL_NO_DITHER ,
+    CTL2_REG_ADC_DITHER_CTL_DEFAULT =   CTL2_REG_ADC_DITHER_CTL_NO_DITHER,
 
     // bit 4:0
-    CTL2_REG_ADC_DC_INPUT_SEL_DEFAULT           =   ADC_INPUT_P16
-
+    CTL2_REG_ADC_DC_INPUT_SEL_DEFAULT =   ADC_INPUT_P16,
 };
 
 
@@ -652,7 +650,6 @@ typedef union INTF_CTL_REG
 
     struct
     {
-
         /// bit 0    - start ADC
         UINT32 startADC             : 1;
 
@@ -671,19 +668,19 @@ typedef union INTF_CTL_REG
         /// bit 16 - ADC sample ready
         UINT32 SampleReady          : 1;
         UINT32 reserved2            : 15;
-    }bitmap;
-}INTF_CTL_REG;
+    } bitmap;
+} INTF_CTL_REG;
 
 
 /// bit map definition for adc intf control register
 enum
 {
-    INTF_CTL_SAMPLE_READY               =   0x1,
+    INTF_CTL_SAMPLE_READY =   0x1,
 
-    INTF_CTL_ADC_SAMPLE_ONE_SHOT        =   0x1,
-    INTF_CTL_ADC_SAMPLE_CONTINUOUS      =   0x0,
+    INTF_CTL_ADC_SAMPLE_ONE_SHOT   =   0x1,
+    INTF_CTL_ADC_SAMPLE_CONTINUOUS =   0x0,
 
-    INTF_CTL_START_ADC                  =   0x1,
+    INTF_CTL_START_ADC =   0x1,
 };
 
 ///
@@ -699,7 +696,6 @@ typedef union INTF_CTL2_REG
 
     struct
     {
-
         /// bit 2:0     - pattern generator output mode
         UINT32 adcPatGenMode        : 3;
 
@@ -743,79 +739,79 @@ typedef union INTF_CTL2_REG
 
         /// reserved bits 31:24
         UINT32 reserved2            : 8;
-    }bitmap;
-}INTF_CTL2_REG;
+    } bitmap;
+} INTF_CTL2_REG;
 
 
 /// bit map definition for adc intf control register
 enum
 {
     // bit 23:16
-    INTF_CTL2_LATENCY_CNT_MAX_DEFAULT   =   0xF ,
+    INTF_CTL2_LATENCY_CNT_MAX_DEFAULT =   0xF,
 
     // bit 13
-    INTF_CTL2_LATENCY_CNT_SOFTRST       =   0x1 ,
-    INTF_CTL2_LATENCY_CNT_SOFTRST_OFF   =   0x0 ,
+    INTF_CTL2_LATENCY_CNT_SOFTRST     =   0x1,
+    INTF_CTL2_LATENCY_CNT_SOFTRST_OFF =   0x0,
 
 #ifdef BCM20703
     // bit 12
-    INTF_CTL2_USE_LATENCY_CNT_DEFAULT   =   0x1 ,
+    INTF_CTL2_USE_LATENCY_CNT_DEFAULT =   0x1,
 #else
     // bit 12
-    INTF_CTL2_USE_LATENCY_CNT_DEFAULT   =   0x0 ,
+    INTF_CTL2_USE_LATENCY_CNT_DEFAULT =   0x0,
 #endif
 
     // bit 11:9
-    INTF_CTL2_DBG_OUT_SEL_DEFAULT       =   0 ,
+    INTF_CTL2_DBG_OUT_SEL_DEFAULT =   0,
 
     // bit 8
-    INTF_CTL2_FILTER_ALIGN_MSB          =   0x0 ,
-    INTF_CTL2_FILTER_ALIGN_LSB          =   0x1 ,
+    INTF_CTL2_FILTER_ALIGN_MSB =   0x0,
+    INTF_CTL2_FILTER_ALIGN_LSB =   0x1,
 
-    INTF_CTL2_FILTER_ALIGN_DEFAULT      =   INTF_CTL2_FILTER_ALIGN_MSB ,
+    INTF_CTL2_FILTER_ALIGN_DEFAULT =   INTF_CTL2_FILTER_ALIGN_MSB,
 
     // bit 7
-    INTF_CTL2_PAT_GEN_SRC_REG           =   0x0 ,
-    INTF_CTL2_PAT_GEN_SRC_DMA           =   0x1 ,
+    INTF_CTL2_PAT_GEN_SRC_REG =   0x0,
+    INTF_CTL2_PAT_GEN_SRC_DMA =   0x1,
 
-    INTF_CTL2_PAT_GEN_SRC_DEFAULT       =   INTF_CTL2_PAT_GEN_SRC_REG ,
+    INTF_CTL2_PAT_GEN_SRC_DEFAULT =   INTF_CTL2_PAT_GEN_SRC_REG,
 
     // bit 6
-    INTF_CTL2_API_USE_FILTER            =   0x0 ,
-    INTF_CTL2_API_USE_PAT_GEN           =   0x1 ,
+    INTF_CTL2_API_USE_FILTER  =   0x0,
+    INTF_CTL2_API_USE_PAT_GEN =   0x1,
 
-    INTF_CTL2_API_USE_DEFAULT           =   INTF_CTL2_API_USE_FILTER ,
+    INTF_CTL2_API_USE_DEFAULT =   INTF_CTL2_API_USE_FILTER,
 
     // bit 5
-    INTF_CTL2_DMA_USE_FILTER            =   0x0 ,
-    INTF_CTL2_DMA_USE_PAT_GEN           =   0x1 ,
+    INTF_CTL2_DMA_USE_FILTER  =   0x0,
+    INTF_CTL2_DMA_USE_PAT_GEN =   0x1,
 
-    INTF_CTL2_DMA_USE_DEFAULT           =   INTF_CTL2_DMA_USE_FILTER ,
+    INTF_CTL2_DMA_USE_DEFAULT =   INTF_CTL2_DMA_USE_FILTER,
 
     // bit 4
-    INTF_CTL2_PAT_GEN_NOT_INIT          =   0x0 ,
-    INTF_CTL2_PAT_GEN_INIT              =   0x1 ,
+    INTF_CTL2_PAT_GEN_NOT_INIT =   0x0,
+    INTF_CTL2_PAT_GEN_INIT     =   0x1,
 
-    INTF_CTL2_PAT_GEN_INIT_DEFAULT      =   INTF_CTL2_PAT_GEN_NOT_INIT ,
+    INTF_CTL2_PAT_GEN_INIT_DEFAULT =   INTF_CTL2_PAT_GEN_NOT_INIT,
 
     // bit 3
-    INTF_CTL2_PAT_GEN_DISABLE           =   0x0 ,
-    INTF_CTL2_PAT_GEN_ENABLE            =   0x1 ,
+    INTF_CTL2_PAT_GEN_DISABLE =   0x0,
+    INTF_CTL2_PAT_GEN_ENABLE  =   0x1,
 
-    INTF_CTL2_PAT_GEN_EN_DEFAULT        =   INTF_CTL2_PAT_GEN_DISABLE ,
+    INTF_CTL2_PAT_GEN_EN_DEFAULT =   INTF_CTL2_PAT_GEN_DISABLE,
 
 
     // bit 2:0
-    INTF_CTL2_PAT_GEN_MODE_24B_W32B     = 0x0 ,
-    INTF_CTL2_PAT_GEN_MODE_24B_OFF3     = 0x1 ,
-    INTF_CTL2_PAT_GEN_MODE_24B_SAME     = 0x2 ,
-    INTF_CTL2_PAT_GEN_MODE_8B           = 0x3 ,
-    INTF_CTL2_PAT_GEN_MODE_16B_SAME     = 0x4 ,
-    INTF_CTL2_PAT_GEN_MODE_16B_OFF2     = 0x5 ,
-    INTF_CTL2_PAT_GEN_MODE_ZERO         = 0x6 ,
-    INTF_CTL2_PAT_GEN_MODE_FF           = 0x7 ,
+    INTF_CTL2_PAT_GEN_MODE_24B_W32B = 0x0,
+    INTF_CTL2_PAT_GEN_MODE_24B_OFF3 = 0x1,
+    INTF_CTL2_PAT_GEN_MODE_24B_SAME = 0x2,
+    INTF_CTL2_PAT_GEN_MODE_8B       = 0x3,
+    INTF_CTL2_PAT_GEN_MODE_16B_SAME = 0x4,
+    INTF_CTL2_PAT_GEN_MODE_16B_OFF2 = 0x5,
+    INTF_CTL2_PAT_GEN_MODE_ZERO     = 0x6,
+    INTF_CTL2_PAT_GEN_MODE_FF       = 0x7,
 
-    INTF_CTL2_PAT_GEN_MODE_DEFAULT      =   INTF_CTL2_PAT_GEN_MODE_24B_W32B ,
+    INTF_CTL2_PAT_GEN_MODE_DEFAULT =   INTF_CTL2_PAT_GEN_MODE_24B_W32B,
 };
 
 
@@ -834,47 +830,49 @@ typedef union FILTER_CTL0_REG
 
         /// reserved bits 31:3
         UINT32 reserved1            : 29;
-    }bitmap;
-}FILTER_CTL0_REG;
+    } bitmap;
+} FILTER_CTL0_REG;
 
 
 #ifdef BCM20703
 enum
 {
     // bit 2:0
-    FILTER_CTL0_REG_DF_MODE_12KHz       =   0 ,
-    FILTER_CTL0_REG_DF_MODE_24KHz       =   1 ,
+    FILTER_CTL0_REG_DF_MODE_12KHz =   0,
+    FILTER_CTL0_REG_DF_MODE_24KHz =   1,
 //    FILTER_CTL0_REG_DF_MODE_16KHz       =   2 ,
-    FILTER_CTL0_REG_DF_MODE_48KHz       =   3 ,
-    FILTER_CTL0_REG_DF_MODE_96KHz       =   5 ,
+    FILTER_CTL0_REG_DF_MODE_48KHz =   3,
+    FILTER_CTL0_REG_DF_MODE_96KHz =   5,
 
-    FILTER_CTL0_REG_DF_MODE_DEFAULT     =   FILTER_CTL0_REG_DF_MODE_96KHz ,
+    FILTER_CTL0_REG_DF_MODE_DEFAULT =   FILTER_CTL0_REG_DF_MODE_96KHz,
 };
-#else
+
+#else // ifdef BCM20703
 /*
-// new definition for newer devices
-0 -> DC mode, 480kHz, fast
-1 -> DC mode, 480kHz, medium
-2 -> DC mode, 480kHz, slow
-3 -> Audio mode, 16kHz, analog mic
-4 -> Audio mode, 16kHz, digital mic
-5 -> Audio mode, 8kHz, analog mic
-6 -> Audio mode, 8kHz, digital mic
-*/
+   // new definition for newer devices
+   0 -> DC mode, 480kHz, fast
+   1 -> DC mode, 480kHz, medium
+   2 -> DC mode, 480kHz, slow
+   3 -> Audio mode, 16kHz, analog mic
+   4 -> Audio mode, 16kHz, digital mic
+   5 -> Audio mode, 8kHz, analog mic
+   6 -> Audio mode, 8kHz, digital mic
+ */
 enum
 {
     // bit 2:0
-    FILTER_CTL0_REG_DF_MODE_480KHz_FAST =   0 ,
-    FILTER_CTL0_REG_DF_MODE_480KHz_MED  =   1 ,
-    FILTER_CTL0_REG_DF_MODE_480KHz_SLOW =   2 ,
-    FILTER_CTL0_REG_DF_MODE_16KHz_ANA   =   3 ,
-    FILTER_CTL0_REG_DF_MODE_16KHz_DIG   =   4 ,
-    FILTER_CTL0_REG_DF_MODE_8KHz_ANA    =   5 ,
-    FILTER_CTL0_REG_DF_MODE_8KHz_DIG    =   6 ,
+    FILTER_CTL0_REG_DF_MODE_480KHz_FAST =   0,
+    FILTER_CTL0_REG_DF_MODE_480KHz_MED  =   1,
+    FILTER_CTL0_REG_DF_MODE_480KHz_SLOW =   2,
+    FILTER_CTL0_REG_DF_MODE_16KHz_ANA   =   3,
+    FILTER_CTL0_REG_DF_MODE_16KHz_DIG   =   4,
+    FILTER_CTL0_REG_DF_MODE_8KHz_ANA    =   5,
+    FILTER_CTL0_REG_DF_MODE_8KHz_DIG    =   6,
 
-    FILTER_CTL0_REG_DF_MODE_DEFAULT     =   FILTER_CTL0_REG_DF_MODE_480KHz_MED ,
+    FILTER_CTL0_REG_DF_MODE_DEFAULT =   FILTER_CTL0_REG_DF_MODE_480KHz_MED,
 };
-#endif
+
+#endif // ifdef BCM20703
 
 
 ///
@@ -893,8 +891,8 @@ typedef union FILTER_CTL1_REG
         /// bit 31:16   -   High Pass Filter Denominator Co-efficient
         /// 0x7fcf
         UINT32 auxAdchpfDen         : 16;
-    }bitmap;
-}FILTER_CTL1_REG;
+    } bitmap;
+} FILTER_CTL1_REG;
 
 
 ///
@@ -913,8 +911,8 @@ typedef union FILTER_CTL2_REG
         /// bit 31:16   -   Biquad 2 numerator  - 1 (LPF)
         /// 0xb109
         UINT32 auxAdcBq2Num2         : 16;
-    }bitmap;
-}FILTER_CTL2_REG;
+    } bitmap;
+} FILTER_CTL2_REG;
 
 
 ///
@@ -933,8 +931,8 @@ typedef union FILTER_CTL3_REG
         /// bit 31:16   -   Biquad 4 numerator - 1 (LPF)
         /// 0x39bd
         UINT32 auxAdcBq4Num2         : 16;
-    }bitmap;
-}FILTER_CTL3_REG;
+    } bitmap;
+} FILTER_CTL3_REG;
 
 
 ///
@@ -953,8 +951,8 @@ typedef union FILTER_CTL4_REG
         /// bit 31:16   -   Biquad 2 numerator - 2 (LPF)
         /// 0x3fa8
         UINT32 auxAdcBq2Num3         : 16;
-    }bitmap;
-}FILTER_CTL4_REG;
+    } bitmap;
+} FILTER_CTL4_REG;
 
 
 ///
@@ -973,8 +971,8 @@ typedef union FILTER_CTL5_REG
         /// bit 31:16   -   Biquad 4 numerator -2 (LPF)
         /// 0x0c62
         UINT32 auxAdcBq4Num3         : 16;
-    }bitmap;
-}FILTER_CTL5_REG;
+    } bitmap;
+} FILTER_CTL5_REG;
 
 
 ///
@@ -993,8 +991,8 @@ typedef union FILTER_CTL6_REG
         /// bit 31:16   -   Biquad 2 denominator - 1 (LPF)
         /// 0xa607
         UINT32 auxAdcBq2Den2         : 16;
-    }bitmap;
-}FILTER_CTL6_REG;
+    } bitmap;
+} FILTER_CTL6_REG;
 
 
 ///
@@ -1013,8 +1011,8 @@ typedef union FILTER_CTL7_REG
         /// bit 31:16   -   Biquad 4 denominator - 1 (LPF)
         /// 0xa1cd
         UINT32 auxAdcBq4Den2         : 16;
-    }bitmap;
-}FILTER_CTL7_REG;
+    } bitmap;
+} FILTER_CTL7_REG;
 
 
 ///
@@ -1033,8 +1031,8 @@ typedef union FILTER_CTL8_REG
         /// bit 31:16   -   Biquad 2 denominator - 2 (LPF)
         /// 0x2ab5
         UINT32 auxAdcBq2Den3         : 16;
-    }bitmap;
-}FILTER_CTL8_REG;
+    } bitmap;
+} FILTER_CTL8_REG;
 
 
 ///
@@ -1053,8 +1051,8 @@ typedef union FILTER_CTL9_REG
         /// bit 31:16   -   Biquad 4 denominator - 2 (LPF)
         /// 0x3d43
         UINT32 auxAdcBq4Den3         : 16;
-    }bitmap;
-}FILTER_CTL9_REG;
+    } bitmap;
+} FILTER_CTL9_REG;
 
 
 ///
@@ -1095,44 +1093,44 @@ typedef union FILTER_CTLA_REG
 
         /// bit 31:30      -   Output precision: 0 - 24 bits, 1 - 16 bits, 2 - 8 bits (however, the output is always 24 bits MSB aligned)
         UINT32 auxAdcOutPrec        : 2;
-    }bitmap;
-}FILTER_CTLA_REG;
+    } bitmap;
+} FILTER_CTLA_REG;
 
 
 enum
 {
     //bit 31:30
-    FILTER_CTLA_REG_OUT_PREC_24BITS     =   0 ,
-    FILTER_CTLA_REG_OUT_PREC_16BITS     =   1 ,
-    FILTER_CTLA_REG_OUT_PREC_8BITS      =   2 ,
+    FILTER_CTLA_REG_OUT_PREC_24BITS =   0,
+    FILTER_CTLA_REG_OUT_PREC_16BITS =   1,
+    FILTER_CTLA_REG_OUT_PREC_8BITS  =   2,
 
-    FILTER_CTLA_REG_OUT_PREC_DEFAULT    =   FILTER_CTLA_REG_OUT_PREC_24BITS ,
+    FILTER_CTLA_REG_OUT_PREC_DEFAULT =   FILTER_CTLA_REG_OUT_PREC_24BITS,
 
     // bit 29:28
-    FILTER_CTLA_REG_LPF_RATE_8KHz       =   0 ,
-    FILTER_CTLA_REG_LPF_RATE_16KHz      =   1 ,
-    FILTER_CTLA_REG_LPF_RATE_64KHz      =   2 ,
-    FILTER_CTLA_REG_LPF_RATE_128KHz     =   3 ,
+    FILTER_CTLA_REG_LPF_RATE_8KHz   =   0,
+    FILTER_CTLA_REG_LPF_RATE_16KHz  =   1,
+    FILTER_CTLA_REG_LPF_RATE_64KHz  =   2,
+    FILTER_CTLA_REG_LPF_RATE_128KHz =   3,
 
-    FILTER_CTLA_REG_LPF_RATE_DEFAULT    =   FILTER_CTLA_REG_LPF_RATE_64KHz ,
+    FILTER_CTLA_REG_LPF_RATE_DEFAULT =   FILTER_CTLA_REG_LPF_RATE_64KHz,
 
     // bit 27
-    FILTER_CTLA_REG_MPR_BYPASS          =   1 ,
-    FILTER_CTLA_REG_MPR_NOT_BYPASS      =   0 ,
+    FILTER_CTLA_REG_MPR_BYPASS     =   1,
+    FILTER_CTLA_REG_MPR_NOT_BYPASS =   0,
 
     // bit 22
-    FILTER_CTLA_REG_DC_MODE             =   0 ,
-    FILTER_CTLA_REG_AUDIO_MODE          =   1 ,
+    FILTER_CTLA_REG_DC_MODE    =   0,
+    FILTER_CTLA_REG_AUDIO_MODE =   1,
 
     // bit 21
-    FILTER_CTLA_REG_BYPASS_HPF          =   1 ,
-    FILTER_CTLA_REG_NOT_BYPASS_HPF      =   0 ,
+    FILTER_CTLA_REG_BYPASS_HPF     =   1,
+    FILTER_CTLA_REG_NOT_BYPASS_HPF =   0,
 
     // bit 20
-    FILTER_CTLA_REG_RATE_8KHz           =   0 ,
-    FILTER_CTLA_REG_RATE_16KHz          =   1 ,
+    FILTER_CTLA_REG_RATE_8KHz  =   0,
+    FILTER_CTLA_REG_RATE_16KHz =   1,
 
-    FILTER_CTLA_REG_RATE_DEFAULT        =   FILTER_CTLA_REG_RATE_8KHz ,
+    FILTER_CTLA_REG_RATE_DEFAULT =   FILTER_CTLA_REG_RATE_8KHz,
 };
 
 
@@ -1173,7 +1171,7 @@ typedef union FILTER_CTLB_REG
 
         /// reserved bits 15:9
         UINT32 reserved0            : 6;
-#endif
+#endif // ifdef BCM20703
 
         /// bit 16   -
         UINT32 adcDmaFifoEn         : 1;
@@ -1210,8 +1208,8 @@ typedef union FILTER_CTLB_REG
 
         /// bit 31:28
         UINT32 reserved             : 4;
-    }bitmap;
-}FILTER_CTLB_REG;
+    } bitmap;
+} FILTER_CTLB_REG;
 
 
 ///
@@ -1228,8 +1226,8 @@ typedef union FILTER_CTLC_REG
 
         /// bit 31:16   -
         UINT32 adcDmaMaxFrameCnt    : 16;
-    }bitmap;
-}FILTER_CTLC_REG;
+    } bitmap;
+} FILTER_CTLC_REG;
 
 
 ///
@@ -1272,8 +1270,8 @@ typedef union FILTER_CTLD_REG
 
         /// bit 31:23
         UINT32 auxAdcSpare6         : 9;
-    }bitmap;
-}FILTER_CTLD_REG;
+    } bitmap;
+} FILTER_CTLD_REG;
 
 
 ///
@@ -1293,8 +1291,8 @@ typedef union FILTER_CTLE_REG
 
         /// bit 31:7   -   spare register
         UINT32 auxAdcSpare8         : 25;
-    }bitmap;
-}FILTER_CTLE_REG;
+    } bitmap;
+} FILTER_CTLE_REG;
 
 
 ///
@@ -1311,8 +1309,8 @@ typedef union FILTER_CTLF_REG
 
         /// bit 31:16   -   spare register
         UINT32 auxAdcSpare10           : 16;
-    }bitmap;
-}FILTER_CTLF_REG;
+    } bitmap;
+} FILTER_CTLF_REG;
 
 
 ///
@@ -1350,43 +1348,43 @@ typedef union API_CTL0_REG
 
         /// reserved bit 31:8
         UINT32 reserved1            : 24;
-    }bitmap;
-}API_CTL0_REG;
+    } bitmap;
+} API_CTL0_REG;
 
 
 enum
 {
     // bit 7:6
-    API_CTL0_REG_OUT_DATA_SHIFT_24B_8B0 =   0 ,
+    API_CTL0_REG_OUT_DATA_SHIFT_24B_8B0 =   0,
 //    API_CTL0_REG_OUT_DATA_SHIFT_24B_8B0 =   1 ,
-    API_CTL0_REG_OUT_DATA_SHIFT_8B0_24B =   2 ,
-    API_CTL0_REG_OUT_DATA_SHIFT_4B0_24B_4B0 =   3 ,
+    API_CTL0_REG_OUT_DATA_SHIFT_8B0_24B     =   2,
+    API_CTL0_REG_OUT_DATA_SHIFT_4B0_24B_4B0 =   3,
 
-    API_CTL0_REG_OUT_DATA_SHIFT_DEFAULT    =   API_CTL0_REG_OUT_DATA_SHIFT_24B_8B0 ,
+    API_CTL0_REG_OUT_DATA_SHIFT_DEFAULT =   API_CTL0_REG_OUT_DATA_SHIFT_24B_8B0,
 
     // bit 5
-    API_CTL0_REG_OUTPUT_ALIGN_MSB           =   0 ,
-    API_CTL0_REG_OUTPUT_ALIGN_LSB           =   1 ,
+    API_CTL0_REG_OUTPUT_ALIGN_MSB =   0,
+    API_CTL0_REG_OUTPUT_ALIGN_LSB =   1,
 
-    API_CTL0_REG_OUTPUT_ALIGN_DEFAULT       =   API_CTL0_REG_OUTPUT_ALIGN_MSB ,
+    API_CTL0_REG_OUTPUT_ALIGN_DEFAULT =   API_CTL0_REG_OUTPUT_ALIGN_MSB,
 
     // bit 4
-    API_CTL0_REG_INPUT_ALIGN_MSB            =   0 ,
-    API_CTL0_REG_INPUT_ALIGN_LSB            =   1 ,
+    API_CTL0_REG_INPUT_ALIGN_MSB =   0,
+    API_CTL0_REG_INPUT_ALIGN_LSB =   1,
 
-    API_CTL0_REG_INPUT_ALIGN_DEFAULT        =   API_CTL0_REG_INPUT_ALIGN_MSB ,
+    API_CTL0_REG_INPUT_ALIGN_DEFAULT =   API_CTL0_REG_INPUT_ALIGN_MSB,
 
     // bit 3:2
-    API_CTL0_REG_DATA_MODE_16BIT            =   0 ,
-    API_CTL0_REG_DATA_MODE_8BIT             =   1 ,
-    API_CTL0_REG_DATA_MODE_24BIT            =   2 ,
+    API_CTL0_REG_DATA_MODE_16BIT =   0,
+    API_CTL0_REG_DATA_MODE_8BIT  =   1,
+    API_CTL0_REG_DATA_MODE_24BIT =   2,
 //    API_CTL0_REG_DATA_MODE_16BIT            =   3 ,
 
-    API_CTL0_REG_DATA_MODE_DEFAULT          =   API_CTL0_REG_DATA_MODE_16BIT ,
+    API_CTL0_REG_DATA_MODE_DEFAULT =   API_CTL0_REG_DATA_MODE_16BIT,
 
     // bit 0
-    API_CTL0_REG_API_NOT_ENABLE             =   0 ,
-    API_CTL0_REG_API_ENABLE                 =   1 ,
+    API_CTL0_REG_API_NOT_ENABLE =   0,
+    API_CTL0_REG_API_ENABLE     =   1,
 };
 
 
@@ -1435,8 +1433,8 @@ typedef union API_CTL1_REG
 
         /// reserved bit 31:26
         UINT32 reserved2            : 6;
-    }bitmap;
-}API_CTL1_REG;
+    } bitmap;
+} API_CTL1_REG;
 
 
 ///
@@ -1489,8 +1487,8 @@ typedef union API_CTL2_REG
 
         /// reserved bit 31:28
         UINT32 reserved0            : 4;
-    }bitmap;
-}API_CTL2_REG;
+    } bitmap;
+} API_CTL2_REG;
 
 
 ///
@@ -1525,8 +1523,8 @@ typedef union API_CTL3_REG
 
         /// reserved bit 31:13
         UINT32 reserved0            : 19;
-    }bitmap;
-}API_CTL3_REG;
+    } bitmap;
+} API_CTL3_REG;
 
 
 ///
@@ -1570,8 +1568,8 @@ typedef union API_CTL4_REG
 
         /// bit 31:16
         UINT32 api_spare            : 16;
-    }bitmap;
-}API_CTL4_REG;
+    } bitmap;
+} API_CTL4_REG;
 
 
 ///
@@ -1618,21 +1616,20 @@ typedef union DMA_CTL0_REG
 
         /// reserved bit 31:12
         UINT32 reserved1            : 20;
-    }bitmap;
-}DMA_CTL0_REG;
+    } bitmap;
+} DMA_CTL0_REG;
 
 
 enum
 {
     // bit 2:1
-    DMA_CTL0_REG_DMA_MODE_16BIT         =   0 ,
-    DMA_CTL0_REG_DMA_MODE_8BIT          =   1 ,
-    DMA_CTL0_REG_DMA_MODE_24BIT         =   2 ,
+    DMA_CTL0_REG_DMA_MODE_16BIT =   0,
+    DMA_CTL0_REG_DMA_MODE_8BIT  =   1,
+    DMA_CTL0_REG_DMA_MODE_24BIT =   2,
 //    DMA_CTL0_REG_DMA_MODE_16BIT         =   3 ,
 
-    DMA_CTL0_REG_DMA_MODE_DEFAULT       = DMA_CTL0_REG_DMA_MODE_16BIT,
+    DMA_CTL0_REG_DMA_MODE_DEFAULT = DMA_CTL0_REG_DMA_MODE_16BIT,
 };
-
 
 
 ///
@@ -1649,8 +1646,8 @@ typedef union DMA_CTL1_REG
 
         /// bit 31:16   -
         UINT32 adcDmaMaxFrameCnt    : 16;
-    }bitmap;
-}DMA_CTL1_REG;
+    } bitmap;
+} DMA_CTL1_REG;
 
 
 ///
@@ -1667,16 +1664,16 @@ typedef union DMA_CTL2_REG
 
         /// reserved bit 31:16
         UINT32 reserved1            : 16;
-    }bitmap;
-}DMA_CTL2_REG;
+    } bitmap;
+} DMA_CTL2_REG;
 
 
 enum
 {
-    ADC_MODE_DC     = 0,
-    ADC_MODE_AUDIO  = 1,
+    ADC_MODE_DC    = 0,
+    ADC_MODE_AUDIO = 1,
 #ifdef PDM_SUPPORT
-    PDM_MODE        = 2
+    PDM_MODE = 2,
 #endif
 };
 
@@ -1684,25 +1681,25 @@ enum
 typedef struct
 {
     /// Ground offset. Obtained form user settings or auto calibration
-    INT32          gndReading;
+    INT32 gndReading;
 
     /// Reference voltage conversion value.
     /// Obtained from user configuation setting or auto calibration
-    INT32          referenceReading;
+    INT32 referenceReading;
 
     /// Reference micro voltage
-    UINT32          refMicroVolts;
+    UINT32 refMicroVolts;
 
 #ifdef ADC_AUDIO_SUPPORT
-    UINT8           adcMode;
+    UINT8 adcMode;
 
-    UINT8           adcDcModePowerState;
+    UINT8 adcDcModePowerState;
 #endif
 
-    UINT8           adcPowerState;
+    UINT8 adcPowerState;
 
     /// Whether the ADC driver has been initialized or not
-    UINT8           inited;
+    UINT8 inited;
 } AdcState;
 
 
@@ -1710,11 +1707,10 @@ typedef struct
 enum
 {
     /// ADC will auto calibrate when configured. Standard setting.
-    ADC_CONFIG_AUTO_CALIBRATION             = 0,
+    ADC_CONFIG_AUTO_CALIBRATION = 0,
 
     /// application provided calibration settings. Used with factory calibration
-    ADC_CONFIG_USER_INPUT                   = 1,
-
+    ADC_CONFIG_USER_INPUT = 1,
 };
 
 #pragma pack(1)
@@ -1761,48 +1757,48 @@ typedef PACKED struct
 
             /// bit 8       -   Chip global power down control:
             /// 0: power up (Default); 1: power down
-            UINT32  adcIddq                 : 1;
+            UINT32 adcIddq                 : 1;
 
             /// bit 11:9    -   BG PTAT current adjustment:
-            UINT32  adcBgPtatCtl            : 3;
+            UINT32 adcBgPtatCtl            : 3;
 
             /// bit 14:12    -   BG CTAT current adjustment:
-            UINT32  adcBgCtatCtl            : 3;
+            UINT32 adcBgCtatCtl            : 3;
 
             /// bit 18:15    -   ADC reference voltage programmability:
-            UINT32  adcRefCtl               : 4;
+            UINT32 adcRefCtl               : 4;
 
             /// bit 20:19    -   Switch cap filter clock frequency selection:
-            UINT32  adcScfClkDiv            : 2;
+            UINT32 adcScfClkDiv            : 2;
 
             /// bit 21          -   BG REF switch cap filter bypass
             /// 0: enable switch cap filter; 1: bypass switch cap filter
-            UINT32  ADC_SCF_bypass          : 1;
+            UINT32 ADC_SCF_bypass          : 1;
 
             /// bit 22          -   External power up sequence for BG SCF bypass
-            UINT32  adcScfBypassSeq         : 1;
+            UINT32 adcScfBypassSeq         : 1;
 
             /// bit 23          -   Internal/External BG SCF power up sequence selection:
             /// 0: use internal power up sequence; 1: use external power up sequence
-            UINT32  adcScfSeqSlt            : 1;
+            UINT32 adcScfSeqSlt            : 1;
 
             /// bit 25:24   -   Global bias current programmability
-            UINT32  adcBiasCtl              : 2;
+            UINT32 adcBiasCtl              : 2;
 
             /// reserved bits 28:26
             UINT32 reserved0                : 3;
 
             /// bit 29          -   ADC input range selection for DC measurement path:
             /// 0: 0-3.6V; 1: 0-1.8V
-            UINT32  adcDcInputRange         : 1;
+            UINT32 adcDcInputRange         : 1;
 
             /// bit 30          -   ADC internal clock division:
             /// 0: disable divide-by-2; ADC sampling clock at 12MHz; 1: enable divide-by-2; ADC sampling clock at 6MHz
-            UINT32  adcClkDiv2              : 1;
+            UINT32 adcClkDiv2              : 1;
 
             /// reserved bit 31
             UINT32 reserved1                : 1;
-        }bitmap_adc_ctl0;
+        } bitmap_adc_ctl0;
 
         UINT32 adc_ctl0;
     } adc_ctl0_reg;
@@ -1848,28 +1844,28 @@ typedef PACKED struct
             UINT32 micBiasLz                : 1;
 
             /// bit 15:12   -   reserved
-            UINT32  reserved                : 4;
+            UINT32 reserved                : 4;
 
             /// bit 17:16   -   PGA input common mode control
             /// 01 : 0.45 * avdd; 00 : 0.4 * avdd; 10 : 0.35 * avdd
-            UINT32  micPgaIncmCtl           : 2;
+            UINT32 micPgaIncmCtl           : 2;
 
             /// bit 19:18   -   PGA output common mode control
             /// 01 : 0.7V; 00 : 0.6V; 10 : 0.5V
-            UINT32  micPgaOutcmCtl          : 2;
+            UINT32 micPgaOutcmCtl          : 2;
 
             /// bit 21:20   -
-            UINT32  micPgaIncmresCtl        : 2;
+            UINT32 micPgaIncmresCtl        : 2;
 
             /// bit 22      -
-            UINT32  micNegInputSlt          : 1;
+            UINT32 micNegInputSlt          : 1;
 
             /// reserved bits 31:23
             UINT32 reserved1                : 9;
-        }bitmap_adc_ctl1;
+        } bitmap_adc_ctl1;
 
         UINT32 adc_ctl1;
-    }adc_ctl1_reg;
+    } adc_ctl1_reg;
 
 
     PACKED union
@@ -1915,7 +1911,7 @@ typedef PACKED struct
 
             /// bit 31:22       -   spare register
             UINT32 adcSpare                 : 10;
-        }bitmap_adc_ctl2;
+        } bitmap_adc_ctl2;
 
         UINT32 adc_ctl2;
     } adc_ctl2_reg;
@@ -1967,7 +1963,7 @@ typedef PACKED struct
 
             /// reserved bits 31:24
             UINT32 reserved2            : 8;
-        }bitmap_adc_intf_ctl2;
+        } bitmap_adc_intf_ctl2;
 
         UINT32 adc_intf_ctl2;
     } adc_intf_ctl2_reg;
@@ -1982,7 +1978,7 @@ typedef PACKED struct
 
             /// reserved bits 31:3
             UINT32 reserved1            : 29;
-        }bitmap_adc_filter_ctl0;
+        } bitmap_adc_filter_ctl0;
 
         UINT32 adc_filter_ctl0_data;
     } adc_filter_ctl0_reg;
@@ -1998,7 +1994,7 @@ typedef PACKED struct
             /// bit 31:16   -   High Pass Filter Denominator Co-efficient
             /// 0x7fcf
             UINT32 auxAdchpfDen         : 16;
-        }bitmap_adc_filter_ctl1;
+        } bitmap_adc_filter_ctl1;
 
         UINT32 adc_filter_ctl1_data;
     } adc_filter_ctl1_reg;
@@ -2014,7 +2010,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 2 numerator  - 1 (LPF)
             /// 0xb109
             UINT32 auxAdcBq2Num2         : 16;
-        }bitmap_adc_filter_ctl2;
+        } bitmap_adc_filter_ctl2;
 
         UINT32 adc_filter_ctl2_data;
     } adc_filter_ctl2_reg;
@@ -2030,7 +2026,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 4 numerator - 1 (LPF)
             /// 0x39bd
             UINT32 auxAdcBq4Num2         : 16;
-        }bitmap_adc_filter_ctl3;
+        } bitmap_adc_filter_ctl3;
 
         UINT32 adc_filter_ctl3_data;
     } adc_filter_ctl3_reg;
@@ -2046,7 +2042,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 2 numerator - 2 (LPF)
             /// 0x3fa8
             UINT32 auxAdcBq2Num3         : 16;
-        }bitmap_adc_filter_ctl4;
+        } bitmap_adc_filter_ctl4;
 
         UINT32 adc_filter_ctl4_data;
     } adc_filter_ctl4_reg;
@@ -2062,7 +2058,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 4 numerator -2 (LPF)
             /// 0x0c62
             UINT32 auxAdcBq4Num3         : 16;
-        }bitmap_adc_filter_ctl5;
+        } bitmap_adc_filter_ctl5;
 
         UINT32 adc_filter_ctl5_data;
     } adc_filter_ctl5_reg;
@@ -2078,7 +2074,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 2 denominator - 1 (LPF)
             /// 0xa607
             UINT32 auxAdcBq2Den2         : 16;
-        }bitmap_adc_filter_ctl6;
+        } bitmap_adc_filter_ctl6;
 
         UINT32 adc_filter_ctl6_data;
     } adc_filter_ctl6_reg;
@@ -2094,7 +2090,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 4 denominator - 1 (LPF)
             /// 0xa1cd
             UINT32 auxAdcBq4Den2         : 16;
-        }bitmap_adc_filter_ctl7;
+        } bitmap_adc_filter_ctl7;
 
         UINT32 adc_filter_ctl7_data;
     } adc_filter_ctl7_reg;
@@ -2110,7 +2106,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 2 denominator - 2 (LPF)
             /// 0x2ab5
             UINT32 auxAdcBq2Den3         : 16;
-        }bitmap_adc_filter_ctl8;
+        } bitmap_adc_filter_ctl8;
 
         UINT32 adc_filter_ctl8_data;
     } adc_filter_ctl8_reg;
@@ -2126,7 +2122,7 @@ typedef PACKED struct
             /// bit 31:16   -   Biquad 4 denominator - 2 (LPF)
             /// 0x3d43
             UINT32 auxAdcBq4Den3         : 16;
-        }bitmap_adc_filter_ctl9;
+        } bitmap_adc_filter_ctl9;
 
         UINT32 adc_filter_ctl9_data;
     } adc_filter_ctl9_reg;
@@ -2164,7 +2160,7 @@ typedef PACKED struct
 
             /// bit 31:30      -   Output precision: 0 - 24 bits, 1 - 16 bits, 2 - 8 bits (however, the output is always 24 bits MSB aligned)
             UINT32 auxAdcOutPrec        : 2;
-        }bitmap_adc_filter_ctla;
+        } bitmap_adc_filter_ctla;
 
         UINT32 adc_filter_ctla;
     } adc_filter_ctla_reg;
@@ -2201,11 +2197,11 @@ typedef PACKED struct
 
             /// reserved bits 15:10
             UINT32 reserved0            : 6;
-#endif
+#endif // ifdef BCM20703
 
             /// bit 31:16   -   spare register
             UINT32 auxAdcSpare2         : 16;
-        }bitmap_adc_filter_ctlb;
+        } bitmap_adc_filter_ctlb;
 
         UINT32 adc_filter_ctlb;
     } adc_filter_ctlb_reg;
@@ -2240,7 +2236,7 @@ typedef PACKED struct
 
             /// reserved bit 31:8
             UINT32 reserved1            : 24;
-        }bitmap_adc_api_ctl0;
+        } bitmap_adc_api_ctl0;
 
         UINT32 adc_api_ctl0_data;
     } adc_api_ctl0_reg;
@@ -2285,7 +2281,7 @@ typedef PACKED struct
 
             /// reserved bit 31:26
             UINT32 reserved2            : 6;
-        }bitmap_adc_api_ctl1;
+        } bitmap_adc_api_ctl1;
 
         UINT32 adc_api_ctl1_data;
     } adc_api_ctl1_reg;
@@ -2335,7 +2331,7 @@ typedef PACKED struct
 
             /// reserved bit 31:28
             UINT32 reserved0            : 4;
-        }bitmap_adc_api_ctl2;
+        } bitmap_adc_api_ctl2;
 
         UINT32 adc_api_ctl2_data;
     } adc_api_ctl2_reg;
@@ -2367,37 +2363,37 @@ typedef PACKED struct
 
             /// reserved bit 31:13
             UINT32 reserved0            : 19;
-        }bitmap_adc_api_ctl3;
+        } bitmap_adc_api_ctl3;
 
         UINT32 adc_api_ctl3_data;
     } adc_api_ctl3_reg;
 
     /// ADC power on delay, default 20us
-    UINT8       powerondelayInUs;           // us
+    UINT8 powerondelayInUs;                 // us
 
     /// bandgap reference channel, default 16
-    UINT8       bandgapReferenceChannel;
+    UINT8 bandgapReferenceChannel;
 
     ///  calibration average count
-    UINT8       calibrationConversionCount;
+    UINT8 calibrationConversionCount;
 
     /// input range
-    UINT8      inputRangeSelect;
+    UINT8 inputRangeSelect;
 
     /// reference voltage for bandgap, default 500mV
-    UINT32      internalBandgapInMicroVolts;
+    UINT32 internalBandgapInMicroVolts;
 
     /// For legacy devices, the bandgap has to be offset by a certain amount
     INT16 ADCBandgapDelta[3];
 
     /// ADC api enable bit
-    UINT8       adcApiEnable;
+    UINT8 adcApiEnable;
 
     /// ADC audio fifo number
-    UINT8       adcAudioFifoNum;
+    UINT8 adcAudioFifoNum;
 
     /// ADC audio fifo size
-    UINT32      adcAudioFifoSize;
+    UINT32 adcAudioFifoSize;
 
 #ifndef BCM20703
     PACKED union
@@ -2493,12 +2489,12 @@ typedef PACKED struct
 
             /// bit 31:16
             UINT32 api_spare            : 16;
-        }bitmap_adc_api_ctl4;
+        } bitmap_adc_api_ctl4;
 
         UINT32 adc_api_ctl4_data;
     } adc_api_ctl4_reg;
-#endif
-}ADCConfig;
+#endif // ifndef BCM20703
+} ADCConfig;
 
 #pragma pack(0)
 
@@ -2518,16 +2514,16 @@ void adc_changeMode(UINT32 adcMode);
 #ifdef ADC_AUDIO_2_CHANNEL_SUPPORT
 void adc_startAudio(UINT32 sampleRate, UINT32 bitsPerSample, UINT8 pgaGain, void (*func)(UINT8 *, UINT32, UINT32), void (*func2)(UINT8 *, UINT32, UINT32)
 #ifdef PDM_SUPPORT
-, BOOL32 isPdm
-#endif  //#ifdef PDM_SUPPORT
-);
+                    , BOOL32 isPdm
+#endif //#ifdef PDM_SUPPORT
+                    );
 #else
 void adc_startAudio(UINT32 sampleRate, UINT32 bitsPerSample, UINT8 pgaGain, void (*func)(UINT8 *, UINT32, UINT32)
 #ifdef PDM_SUPPORT
-, BOOL32 isPdm
-#endif  //#ifdef PDM_SUPPORT
-);
-#endif  //#ifdef ADC_AUDIO_2_CHANNEL_SUPPORT
+                    , BOOL32 isPdm
+#endif //#ifdef PDM_SUPPORT
+                    );
+#endif //#ifdef ADC_AUDIO_2_CHANNEL_SUPPORT
 
 
 /// Stop ADC Audio mode
@@ -2541,8 +2537,8 @@ void adc_setPgaGain(UINT16 pgaGain);
 }
 #endif
 
-#endif
+#endif // if defined(ADC_AUDIO_SUPPORT)
 
 /* @} */
 
-#endif
+#endif // ifndef ADC_CS__H__

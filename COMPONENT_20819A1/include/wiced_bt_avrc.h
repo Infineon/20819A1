@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -36,7 +36,8 @@
  * Bluetooth AVRCP Application Programming Interface
  *
  */
-#pragma once
+#ifndef WICED_BT_AVRC_H
+#define WICED_BT_AVRC_H
 
 #include "wiced_bt_sdp.h"
 #include "wiced_bt_avrc_defs.h"
@@ -145,7 +146,6 @@
 #define AVRC_METADATA_RESP              0x0001
 
 
-
 /*****************************************************************************
 **  data type definitions
 *****************************************************************************/
@@ -164,7 +164,7 @@
  * @return          Nothing
  */
 typedef void (wiced_bt_avrc_ctrl_cback_t) (uint8_t handle, uint8_t event, uint16_t result,
-             wiced_bt_device_address_t peer_addr);
+                                           wiced_bt_device_address_t peer_addr);
 
 
 /**
@@ -184,16 +184,16 @@ typedef void (wiced_bt_avrc_ctrl_cback_t) (uint8_t handle, uint8_t event, uint16
  * @return          Nothing
  */
 typedef void (wiced_bt_avrc_msg_cback_t) (uint8_t handle, uint8_t label, uint8_t opcode,
-             wiced_bt_avrc_msg_t *p_msg);
+                                          wiced_bt_avrc_msg_t *p_msg);
 
 /** AVRC connection control block; used when calling wiced_bt_avrc_open() to configure the AVRC connection and register for callbacks. */
 typedef struct
 {
-    wiced_bt_avrc_ctrl_cback_t      *p_ctrl_cback;  /**< AVRC connection control callback */
-    wiced_bt_avrc_msg_cback_t       *p_msg_cback;   /**< AVRC message callback */
-    uint32_t                        company_id;     /**< Company ID  (see @ref AVRC_COMPANY_ID "Company IDs") */
-    uint8_t                         conn;           /**< Connection role: AVRC_CONN_INT (initiator) or AVRC_CONN_ACP (acceptor) (see @ref AVRC_CONN_ROLE "AVRC connection roles") */
-    uint8_t                         control;        /**< Control role: AVRC_CT_TARGET (target) or AVRC_CT_CONTROL (controller) (see @ref AVRC_CT_ROLE "AVRC control roles")*/
+    wiced_bt_avrc_ctrl_cback_t *p_ctrl_cback;       /**< AVRC connection control callback */
+    wiced_bt_avrc_msg_cback_t  *p_msg_cback;        /**< AVRC message callback */
+    uint32_t                    company_id;         /**< Company ID  (see @ref AVRC_COMPANY_ID "Company IDs") */
+    uint8_t                     conn;               /**< Connection role: AVRC_CONN_INT (initiator) or AVRC_CONN_ACP (acceptor) (see @ref AVRC_CONN_ROLE "AVRC connection roles") */
+    uint8_t                     control;            /**< Control role: AVRC_CT_TARGET (target) or AVRC_CT_CONTROL (controller) (see @ref AVRC_CT_ROLE "AVRC control roles")*/
 } wiced_bt_avrc_conn_cb_t;
 
 
@@ -207,7 +207,7 @@ typedef struct
  * This section describes the API to use various audio/video profiles, such as A2DP, AVDTP, AVRCP, HFP.
  *
  * @{
-*/
+ */
 
 
 /**
@@ -219,7 +219,7 @@ typedef struct
  * of Bluetooth devices.
  *
  * @{
-*/
+ */
 
 /**
  * @addtogroup  wicedbt_avrc_common        AVRCP Common
@@ -228,7 +228,7 @@ typedef struct
  * This section contains the API's that are common for both target and controller functionality
  *
  * @{
-*/
+ */
 
 #ifdef __cplusplus
 extern "C"
@@ -339,7 +339,7 @@ uint16_t wiced_bt_avrc_set_buffer_pool(uint16_t buffer_size, uint16_t buffer_cou
  * @return          Result code (see @ref AVRC_RESULT "AVRC result codes")
  *
  */
-uint16_t wiced_bt_avrc_msg_req (uint8_t handle, uint8_t label, uint8_t ctype, BT_HDR *p_pkt);
+uint16_t wiced_bt_avrc_msg_req(uint8_t handle, uint8_t label, uint8_t ctype, BT_HDR *p_pkt);
 
 /**
  *
@@ -469,7 +469,7 @@ uint16_t wiced_bt_avrc_vendor_rsp(uint8_t  handle, uint8_t  label, wiced_bt_avrc
  *                  the input parameter is 0xff.
  *
  */
-uint8_t wiced_bt_avrc_set_trace_level (uint8_t new_level);
+uint8_t wiced_bt_avrc_set_trace_level(uint8_t new_level);
 
 /**
  *
@@ -487,7 +487,7 @@ uint8_t wiced_bt_avrc_set_trace_level (uint8_t new_level);
  *                  Otherwise, the error code defined by AVRCP 1.4
  *
  */
-wiced_bt_avrc_sts_t wiced_bt_avrc_parse_command (wiced_bt_avrc_msg_t *p_msg, wiced_bt_avrc_command_t *p_result, uint8_t *p_buf, uint16_t buf_len);
+wiced_bt_avrc_sts_t wiced_bt_avrc_parse_command(wiced_bt_avrc_msg_t *p_msg, wiced_bt_avrc_command_t *p_result, uint8_t *p_buf, uint16_t buf_len);
 
 /**
  *
@@ -505,7 +505,7 @@ wiced_bt_avrc_sts_t wiced_bt_avrc_parse_command (wiced_bt_avrc_msg_t *p_msg, wic
  *                  Otherwise, the error code defined by AVRCP 1.4
  *
  */
-wiced_bt_avrc_sts_t wiced_bt_avrc_parse_response (wiced_bt_avrc_msg_t *p_msg, wiced_bt_avrc_response_t *p_result, uint8_t *p_buf, uint16_t buf_len);
+wiced_bt_avrc_sts_t wiced_bt_avrc_parse_response(wiced_bt_avrc_msg_t *p_msg, wiced_bt_avrc_response_t *p_result, uint8_t *p_buf, uint16_t buf_len);
 
 /**
  *
@@ -521,7 +521,7 @@ wiced_bt_avrc_sts_t wiced_bt_avrc_parse_response (wiced_bt_avrc_msg_t *p_msg, wi
  *                  Otherwise, the error code defined by AVRCP 1.4
  *
  */
-wiced_bt_avrc_sts_t wiced_bt_avrc_bld_command( wiced_bt_avrc_command_t *p_cmd, BT_HDR **pp_pkt);
+wiced_bt_avrc_sts_t wiced_bt_avrc_bld_command(wiced_bt_avrc_command_t *p_cmd, BT_HDR **pp_pkt);
 
 /**
  * Function         wiced_bt_avrc_bld_response
@@ -538,7 +538,7 @@ wiced_bt_avrc_sts_t wiced_bt_avrc_bld_command( wiced_bt_avrc_command_t *p_cmd, B
  *                  Otherwise, the error code defined by AVRCP 1.4
  *
  */
-wiced_bt_avrc_sts_t wiced_bt_avrc_bld_response( uint8_t handle, wiced_bt_avrc_response_t *p_rsp, BT_HDR **pp_pkt);
+wiced_bt_avrc_sts_t wiced_bt_avrc_bld_response(uint8_t handle, wiced_bt_avrc_response_t *p_rsp, BT_HDR **pp_pkt);
 
 /*
  *
@@ -593,3 +593,5 @@ uint16_t wiced_bt_avrc_get_data_mtu(void);
 /** @} wicedbt_avrc_common */
 /** @} wicedbt_avrc */
 /** @} wicedbt_av */
+
+#endif // WICED_BT_AVRC_H

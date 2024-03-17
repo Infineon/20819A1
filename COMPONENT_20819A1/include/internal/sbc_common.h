@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -112,19 +112,18 @@
 #define SBC_WBS_HDR_SYNC    0xAD
 
 
-
 /* For SBC WB */
 enum
 {
     SBC_MODE_A2DP,        // Original SBC for A2DP
     SBC_MODE_WB,            // SBC for WideBand
-    SBC_DEC_MODE_MONO_A2DP    // Mono A2DP Decoder: PCM output is always Mono / Fs 16 kHz
+    SBC_DEC_MODE_MONO_A2DP,   // Mono A2DP Decoder: PCM output is always Mono / Fs 16 kHz
 };
 
 /* Header with synchronisation word and sequence number
-H2 contains both the synchronisation word and the sequence number.
-The two octet header shall contain a 12 bit synchronisation word and a 2 bit sequence number (SN0, SN1).
-The latter is protected by a simple repetition code (both bits are duplicated).  Hence, each pair of bits in the sequence number shall be always 00 or 11. */
+   H2 contains both the synchronisation word and the sequence number.
+   The two octet header shall contain a 12 bit synchronisation word and a 2 bit sequence number (SN0, SN1).
+   The latter is protected by a simple repetition code (both bits are duplicated).  Hence, each pair of bits in the sequence number shall be always 00 or 11. */
 
 #define SBC_H2_HDR_LEN            2        // H2 header is 2 bytes
 #define SBC_H2_BYTE_0            0x01    // First H2 byte is always equal to 1
@@ -148,7 +147,6 @@ The latter is protected by a simple repetition code (both bits are duplicated). 
 #define SBC_WB_MAX_PACKET_LEN_RND32  ((SBC_WB_MAX_PACKET_LEN & ~3)+4)
 
 
-
 /* Compute optimum buffer size */
 #define SB_BUFFER_SIZE_WB (1 * SBC_MAX_NUM_OF_SUBBANDS * SBC_MAX_NUM_OF_BLOCKS_WB)
 #define SB_BUFFER_SIZE_SIG (SBC_MAX_NUM_OF_CHANNELS * SBC_MAX_NUM_OF_SUBBANDS * SBC_BLOCK_3)
@@ -157,16 +155,13 @@ The latter is protected by a simple repetition code (both bits are duplicated). 
 #define SBC_MAX_BYTE_FOR_CRC        (4+(4*SBC_MAX_NUM_OF_SUBBANDS*SBC_MAX_NUM_OF_CHANNELS/8)+1)
 
 
-
-
 /* In SBC WideBand, the SBC parameters are defined according to UUI */
 typedef struct SBC_WB_UUI_TAG
 {
     SINT16 NumOfSubBands;
     SINT16 NumOfBlock;
     SINT16 Bitpool;
-}SBC_WB_UUI_PARAM;
-
+} SBC_WB_UUI_PARAM;
 
 
 typedef struct SBC_COM_PARAMS_TAG
@@ -180,16 +175,16 @@ typedef struct SBC_COM_PARAMS_TAG
     SINT16 bitPool;                              /* 16*numOfSb for mono & dual;
                                                        32*numOfSb for stereo & joint stereo */
     SINT16 scaleFactor[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
-    SINT16  ScratchMemForBitAlloc[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
+    SINT16 ScratchMemForBitAlloc[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
     SINT16 bits[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
-    UINT8  *packet;
+    UINT8 *packet;
 } SBC_COM_PARAMS;
 
 
 extern void sbc_com_bit_alloc_mono(SBC_COM_PARAMS *CodecParams);
-#if (SBC_DEC_STEREO_INCLUDED == TRUE || SBC_ENC_STEREO_INCLUDED ==TRUE)
+#if (SBC_DEC_STEREO_INCLUDED == TRUE || SBC_ENC_STEREO_INCLUDED == TRUE)
 extern void sbc_com_bit_alloc_ste(SBC_COM_PARAMS *CodecParams);
 #endif
 extern UINT8 SBC_com_crc(SBC_COM_PARAMS *pstrCodecParams, UINT32 sbc_header_mode);
 
-#endif
+#endif // ifndef SBC_COMMON_H

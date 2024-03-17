@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -29,15 +29,15 @@
  * including Cypress's product in a High Risk Product, the manufacturer
  * of such system or application assumes all risk of such use and in doing
  * so agrees to indemnify Cypress against all liability.
-*/
+ */
 
 /** @file
-*
-*Defines the interface for device low power managment
-*/
+ *
+ * Defines the interface for device low power managment
+ */
 
-#ifndef __WICED_HAL_LPM_H__
-#define __WICED_HAL_LPM_H__
+#ifndef WICED_HAL_LPM_H__
+#define WICED_HAL_LPM_H__
 
 /*****************************************************************************
 **                               Constants
@@ -46,19 +46,19 @@
 enum
 {
     /// Wake from GPIO
-    WICED_BT_LPM_WAKE_SOURCE_GPIO    = (1 << 8),
+    WICED_BT_LPM_WAKE_SOURCE_GPIO = (1 << 8),
 
     /// Wake from LHL is the same as waking from GPIO
-    WICED_BT_LPM_WAKE_SOURCE_LHL     = WICED_BT_LPM_WAKE_SOURCE_GPIO,
+    WICED_BT_LPM_WAKE_SOURCE_LHL = WICED_BT_LPM_WAKE_SOURCE_GPIO,
 
     /// Wake from keyscan
     WICED_BT_LPM_WAKE_SOURCE_KEYSCAN = (1 << 6),
 
     /// Wake from wuadrature sensor
-    WICED_BT_LPM_WAKE_SOURCE_QUAD    = (1 << 7),
+    WICED_BT_LPM_WAKE_SOURCE_QUAD = (1 << 7),
 
     /// All wake HID sources
-    WICED_BT_LPM_WAKE_SOURCE_MASK    = (WICED_BT_LPM_WAKE_SOURCE_GPIO | WICED_BT_LPM_WAKE_SOURCE_KEYSCAN | WICED_BT_LPM_WAKE_SOURCE_QUAD)
+    WICED_BT_LPM_WAKE_SOURCE_MASK = (WICED_BT_LPM_WAKE_SOURCE_GPIO | WICED_BT_LPM_WAKE_SOURCE_KEYSCAN | WICED_BT_LPM_WAKE_SOURCE_QUAD),
 };
 
 /// The poll type of low power mode
@@ -69,7 +69,7 @@ typedef enum wiced_bt_lpm_poll_type_e
 
     /// lpm is probing the registered method if the device can enter shutdown sleep (SDS)
     WICED_BT_LOW_POWER_MODE_POLL_TYPE_SDS = 2,
-}wiced_bt_lpm_poll_type_t;
+} wiced_bt_lpm_poll_type_t;
 
 /// The sleep type of the power managment modole (PMU)
 typedef enum wiced_bt_lpm_pmu_sleep_type_t
@@ -81,8 +81,7 @@ typedef enum wiced_bt_lpm_pmu_sleep_type_t
     WICED_BT_PMU_SLEEP_SDS_ALLOWED = 2,
 
 //! shutdown sleep (SDS) is NOT allowed. SDS will disable almost all the HW during sleep
-    WICED_BT_PMU_SLEEP_NO_SDS = 5
-
+    WICED_BT_PMU_SLEEP_NO_SDS = 5,
 } wiced_bt_lpm_pmu_sleep_type_t;
 
 /// This typedef is what is expected when registering a function as
@@ -99,8 +98,8 @@ typedef uint32_t (*wiced_bt_lpm_callback_fp)(wiced_bt_lpm_poll_type_t type, uint
 
 
 /******************************************************************************
-*** Function prototypes.
-******************************************************************************/
+ *** Function prototypes.
+ ******************************************************************************/
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Initialize device low power management module
@@ -148,7 +147,7 @@ void wiced_hal_lpm_enable_wake_from(uint32_t sources);
 ///
 /// \return none
 ////////////////////////////////////////////////////////////////////////////////
-void wiced_hal_lpm_register_for_wake_notification(uint8_t (*fn)(void*), void* data);
+void wiced_hal_lpm_register_for_wake_notification(uint8_t (*fn)(void *), void *data);
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Adds the given object to the list of objects that need to be queried for sleep and SDS
@@ -163,4 +162,4 @@ void wiced_hal_lpm_register_for_wake_notification(uint8_t (*fn)(void*), void* da
 wiced_bool_t wiced_hal_lpm_register_for_low_power_queries(wiced_bt_lpm_callback_fp callback, uint32_t context);
 
 
-#endif // __WICED_HAL_LPM_H__
+#endif // WICED_HAL_LPM_H__

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,51 +32,51 @@
  */
 
 /***************************************************************************//**
-* \file <wiced_hal_i2c.h>
-*
-* List of parameters and defined functions needed to access the
-* Inter-Integrated Circuit (I2C, IIC) driver.
-*
-*******************************************************************************/
+ * \file <wiced_hal_i2c.h>
+ *
+ * List of parameters and defined functions needed to access the
+ * Inter-Integrated Circuit (I2C, IIC) driver.
+ *
+ *******************************************************************************/
 
-#ifndef __WICED_I2C_DRIVER_H__
-#define __WICED_I2C_DRIVER_H__
+#ifndef WICED_I2C_DRIVER_H__
+#define WICED_I2C_DRIVER_H__
 
 #include "brcm_fw_types.h"
 
 /**
-* \addtogroup I2CDriver I2C
-* \ingroup HardwareDrivers
-* \{
-*
-* Defines an I2C driver to facilitate communication with other devices on an
-* I2C bus (such as a temperature sensor, etc). The driver is only capable of
-* assuming a master role. Applications use this driver to obtain the status
-* from and control the behavior of the I2C hardware. This driver only offers
-* services for speed control and data transfer operations.
-*
-* Please note that even though this driver can access off-chip memory
-* (if installed; EEPROM, etc), please use the drivers found in
-* wiced_hal_ieeprom.h to access those modules, as those drivers include
-* checks to ensure safe data handling operations. This driver is intended
-* only to interface with other devices on the I2C bus, such as a motion
-* sensor.
-*
-*/
+ * \addtogroup I2CDriver I2C
+ * \ingroup HardwareDrivers
+ * \{
+ *
+ * Defines an I2C driver to facilitate communication with other devices on an
+ * I2C bus (such as a temperature sensor, etc). The driver is only capable of
+ * assuming a master role. Applications use this driver to obtain the status
+ * from and control the behavior of the I2C hardware. This driver only offers
+ * services for speed control and data transfer operations.
+ *
+ * Please note that even though this driver can access off-chip memory
+ * (if installed; EEPROM, etc), please use the drivers found in
+ * wiced_hal_ieeprom.h to access those modules, as those drivers include
+ * checks to ensure safe data handling operations. This driver is intended
+ * only to interface with other devices on the I2C bus, such as a motion
+ * sensor.
+ *
+ */
 
 /******************************************************************************
-*** Parameters.
-***
-*** The following parameters are used to configure the driver or define
-*** return status. They are not modifiable.
-******************************************************************************/
+ *** Parameters.
+ ***
+ *** The following parameters are used to configure the driver or define
+ *** return status. They are not modifiable.
+ ******************************************************************************/
 
 /** Enumeration of speed options */
 enum
 {
-    I2CM_SPEED_100KHZ = 233, /**< I2C speed is 100kHz */
-    I2CM_SPEED_400KHZ = 53,  /**< I2C speed is 499kHz */
-    I2CM_SPEED_800KHZ = 23,  /**< I2C speed is 800kHz */
+    I2CM_SPEED_100KHZ  = 233, /**< I2C speed is 100kHz */
+    I2CM_SPEED_400KHZ  = 53, /**< I2C speed is 499kHz */
+    I2CM_SPEED_800KHZ  = 23, /**< I2C speed is 800kHz */
     I2CM_SPEED_1000KHZ = 17, /**< I2C speed is 1MHz */
 };
 
@@ -84,191 +84,191 @@ enum
 enum
 {
     I2CM_SUCCESS,   /**< I2C transaction was successful */
-    I2CM_OP_FAILED /**< I2C transaction failed, possibly due to no ACK from slave */
+    I2CM_OP_FAILED, /**< I2C transaction failed, possibly due to no ACK from slave */
 };
 
 /******************************************************************************
-*** Function prototypes.
-******************************************************************************/
+ *** Function prototypes.
+ ******************************************************************************/
 
 /*******************************************************************************
-* Function Name: wiced_hal_i2c_init
-****************************************************************************//**
-*
-* Initializes the I2C driver and its private values. This initialization
-* sets the bus speed to 100KHz by default (I2CM_SPEED_100KHZ). To make
-* the bus run at another speed, call wiced_hal_i2c_setSpeed(<speed>)
-* right after this call.
-*
-*
-* \param none
-*
-* \return none
-*
-* \funcusage
-* \snippet demo/hid/ble_remote
-*          hal/i2c_master
-*
-* \note
-* (!) Note that it is the user's responsibility to configure the desired
-* GPIOs, since different HW platforms will have different configuration
-* parameters. Please see the Kit Guide or HW User Manual for your device
-* for more information.
-* In case of change in I2C pins from default platform initialization,
-* the user needs to use external pull-ups or internal GPIO pull-ups.
-* It is recommended to use external pull-ups for a reliable design
-*
-*******************************************************************************/
+ * Function Name: wiced_hal_i2c_init
+ ****************************************************************************//**
+ *
+ * Initializes the I2C driver and its private values. This initialization
+ * sets the bus speed to 100KHz by default (I2CM_SPEED_100KHZ). To make
+ * the bus run at another speed, call wiced_hal_i2c_setSpeed(<speed>)
+ * right after this call.
+ *
+ *
+ * \param none
+ *
+ * \return none
+ *
+ * \funcusage
+ * \snippet demo/hid/ble_remote
+ *          hal/i2c_master
+ *
+ * \note
+ * (!) Note that it is the user's responsibility to configure the desired
+ * GPIOs, since different HW platforms will have different configuration
+ * parameters. Please see the Kit Guide or HW User Manual for your device
+ * for more information.
+ * In case of change in I2C pins from default platform initialization,
+ * the user needs to use external pull-ups or internal GPIO pull-ups.
+ * It is recommended to use external pull-ups for a reliable design
+ *
+ *******************************************************************************/
 void wiced_hal_i2c_init(void);
 
 
 /*******************************************************************************
-* Function Name: wiced_hal_i2c_set_speed
-****************************************************************************//**
-*
-* Sets the I2C bus speed.
-*
-* \param[in] speed  The new speed to be used.
-*                   Refer to the speeds in the parameter section
-*
-* \return none
-*
-* \funcusage
-* \snippet demo/hid/ble_remote
-*          hal/i2c_master
-*
-* \note
-* By default, the speed after initialization is set to 100KHz
-*
-* \note
-* The clock frequency is determined by the input parameter which is the transport
-* clock counter that counts the number of reference clock cycles
-*
-*******************************************************************************/
+ * Function Name: wiced_hal_i2c_set_speed
+ ****************************************************************************//**
+ *
+ * Sets the I2C bus speed.
+ *
+ * \param[in] speed  The new speed to be used.
+ *                   Refer to the speeds in the parameter section
+ *
+ * \return none
+ *
+ * \funcusage
+ * \snippet demo/hid/ble_remote
+ *          hal/i2c_master
+ *
+ * \note
+ * By default, the speed after initialization is set to 100KHz
+ *
+ * \note
+ * The clock frequency is determined by the input parameter which is the transport
+ * clock counter that counts the number of reference clock cycles
+ *
+ *******************************************************************************/
 void wiced_hal_i2c_set_speed(uint8_t speed);
 
 
 /*******************************************************************************
-* Function Name: wiced_hal_i2c_get_speed
-****************************************************************************//**
-*
-* Gets the current I2C bus speed. Smaller numbers indicate higher speeds.
-*
-* \param   none
-*
-* \return  The SCL clock cycle counter value which corresponds to the SCL speed
-* *        Refer to the speeds in the parameter section
-*
-* \funcusage
-* \snippet demo/hid/ble_remote
-*          hal/i2c_master
-*
-*******************************************************************************/
+ * Function Name: wiced_hal_i2c_get_speed
+ ****************************************************************************//**
+ *
+ * Gets the current I2C bus speed. Smaller numbers indicate higher speeds.
+ *
+ * \param   none
+ *
+ * \return  The SCL clock cycle counter value which corresponds to the SCL speed
+ * *        Refer to the speeds in the parameter section
+ *
+ * \funcusage
+ * \snippet demo/hid/ble_remote
+ *          hal/i2c_master
+ *
+ *******************************************************************************/
 uint8_t wiced_hal_i2c_get_speed(void);
 
 
 /*******************************************************************************
-* Function Name: wiced_hal_i2c_read
-****************************************************************************//**
-*
-* Reads data into given buffer from the I2C HW addressing a particular
-* slave address. The data bytes are transparent. Though any arbitrary
-* length of data may be read from the slave, atomic transactions greater
-* than HW's capability are not possible - they will be split into multiple
-* transactions. This is a blocking call. Interrupts will not affect timing
-* within a transaction.
-*
-* \param[in,out] data  Pointer to a buffer that will hold the incoming data
-* \param[in] length    The length in bytes of the data to read
-* \param[in] slave     The 7-bit slave address
-*
-* \return              The status of the transaction. Refer to the
-*                      transaction return values in the parameters section
-*
-* \funcusage
-* \snippet hal/i2c_master
-*
-* \note
-* Please see the Kit Guide or HW User Manual for your device for the
-* actual limitation of the part on your platform.
-*
-* \note
-* The <data> buffer should be large enough to <length> bytes
-*
-*******************************************************************************/
-uint8_t wiced_hal_i2c_read(uint8_t* data, uint16_t length, uint8_t slave);
+ * Function Name: wiced_hal_i2c_read
+ ****************************************************************************//**
+ *
+ * Reads data into given buffer from the I2C HW addressing a particular
+ * slave address. The data bytes are transparent. Though any arbitrary
+ * length of data may be read from the slave, atomic transactions greater
+ * than HW's capability are not possible - they will be split into multiple
+ * transactions. This is a blocking call. Interrupts will not affect timing
+ * within a transaction.
+ *
+ * \param[in,out] data  Pointer to a buffer that will hold the incoming data
+ * \param[in] length    The length in bytes of the data to read
+ * \param[in] slave     The 7-bit slave address
+ *
+ * \return              The status of the transaction. Refer to the
+ *                      transaction return values in the parameters section
+ *
+ * \funcusage
+ * \snippet hal/i2c_master
+ *
+ * \note
+ * Please see the Kit Guide or HW User Manual for your device for the
+ * actual limitation of the part on your platform.
+ *
+ * \note
+ * The <data> buffer should be large enough to <length> bytes
+ *
+ *******************************************************************************/
+uint8_t wiced_hal_i2c_read(uint8_t *data, uint16_t length, uint8_t slave);
 
 
 /*******************************************************************************
-* Function Name: wiced_hal_i2c_write
-****************************************************************************//**
-*
-* Writes the given data to the I2C HW addressing a particular slave address.
-* The data bytes are transparent. Though any arbitrary length of data may be
-* written to the slave, atomic transactions greater than HW's capability
-* are not possible - they will be split into multiple transactions. This is
-* a blocking call. Interrupts will not affect timing within a transaction.
-*
-* \param[in] data    Pointer to a buffer that will hold the outgoing data
-* \param[in] length  The length in bytes of the data to write
-* \param[in] slave   The 7-bit slave address
-*
-* \return            The status of the transaction. Refer to the
-*                    transaction return values in the parameters section
-*
-* \funcusage
-* \snippet demo/hid/ble_remote
-*          hal/i2c_master
-*
-* \note
-* Please see the Kit Guide or HW User Manual for your device for the
-* actual limitation of the part on your platform.
-*
-*******************************************************************************/
-uint8_t wiced_hal_i2c_write(uint8_t* data, uint16_t length, uint8_t slave);
+ * Function Name: wiced_hal_i2c_write
+ ****************************************************************************//**
+ *
+ * Writes the given data to the I2C HW addressing a particular slave address.
+ * The data bytes are transparent. Though any arbitrary length of data may be
+ * written to the slave, atomic transactions greater than HW's capability
+ * are not possible - they will be split into multiple transactions. This is
+ * a blocking call. Interrupts will not affect timing within a transaction.
+ *
+ * \param[in] data    Pointer to a buffer that will hold the outgoing data
+ * \param[in] length  The length in bytes of the data to write
+ * \param[in] slave   The 7-bit slave address
+ *
+ * \return            The status of the transaction. Refer to the
+ *                    transaction return values in the parameters section
+ *
+ * \funcusage
+ * \snippet demo/hid/ble_remote
+ *          hal/i2c_master
+ *
+ * \note
+ * Please see the Kit Guide or HW User Manual for your device for the
+ * actual limitation of the part on your platform.
+ *
+ *******************************************************************************/
+uint8_t wiced_hal_i2c_write(uint8_t *data, uint16_t length, uint8_t slave);
 
 
 /*******************************************************************************
-* Function Name: wiced_hal_i2c_select_pads
-****************************************************************************//**
-*
-* Configures GPIOs to use for I2C pins
-*
-* \param[in] scl_pin   LHL GPIO to be used for SCL
-* \param[in] sda_pin   LHL GPIO to be used for SDA
-*
-* \return none
-*
-*******************************************************************************/
+ * Function Name: wiced_hal_i2c_select_pads
+ ****************************************************************************//**
+ *
+ * Configures GPIOs to use for I2C pins
+ *
+ * \param[in] scl_pin   LHL GPIO to be used for SCL
+ * \param[in] sda_pin   LHL GPIO to be used for SDA
+ *
+ * \return none
+ *
+ *******************************************************************************/
 void wiced_hal_i2c_select_pads(uint8_t scl_pin, uint8_t sda_pin);
 
 
 /*******************************************************************************
-* Function Name: wiced_hal_i2c_combined_read
-****************************************************************************//**
-*
-* Executes two transactions back-to-back with a repeated start condition between
-* the first and the second. tx_data is written to the slave in the first transaction
-* while data is read back from the slave into rx_data after the repeated start.
-*
-* \param[in, out] rx_data  Pointer to a buffer that will hold the incoming data
-* \param[in] rx_data_len   The length in bytes of the data to read
-* \param[in] tx_data       Pointer to a buffer that will hold the outgoing data
-* \param[in] tx_data_len   The length in bytes of the data to write
-* \param[in] slave         The 7-bit slave address
-*
-* \return                  The status of the transaction. Refer to the
-*                          transaction return values in the parameters section
-*
-* \funcusage
-* \snippet demo/hid/ble_remote
-*          hal/i2c_master
-*
-* \note
-* The <rx_data> buffer should be large enough to hold <rx_data_len> bytes
-*
-*******************************************************************************/
-uint8_t wiced_hal_i2c_combined_read(uint8_t* rx_data, uint8_t rx_data_len, uint8_t* tx_data, uint16_t tx_data_len, uint8_t slave);
+ * Function Name: wiced_hal_i2c_combined_read
+ ****************************************************************************//**
+ *
+ * Executes two transactions back-to-back with a repeated start condition between
+ * the first and the second. tx_data is written to the slave in the first transaction
+ * while data is read back from the slave into rx_data after the repeated start.
+ *
+ * \param[in, out] rx_data  Pointer to a buffer that will hold the incoming data
+ * \param[in] rx_data_len   The length in bytes of the data to read
+ * \param[in] tx_data       Pointer to a buffer that will hold the outgoing data
+ * \param[in] tx_data_len   The length in bytes of the data to write
+ * \param[in] slave         The 7-bit slave address
+ *
+ * \return                  The status of the transaction. Refer to the
+ *                          transaction return values in the parameters section
+ *
+ * \funcusage
+ * \snippet demo/hid/ble_remote
+ *          hal/i2c_master
+ *
+ * \note
+ * The <rx_data> buffer should be large enough to hold <rx_data_len> bytes
+ *
+ *******************************************************************************/
+uint8_t wiced_hal_i2c_combined_read(uint8_t *rx_data, uint8_t rx_data_len, uint8_t *tx_data, uint16_t tx_data_len, uint8_t slave);
 
 /*******************************************************************************
  *
@@ -310,7 +310,7 @@ enum
  * Return:
  *      None
  */
-typedef void I2C_SLAVE_CALLBACK_HANDLER(uint32_t evtFlag, uint8_t* rx_PktPointer, uint16_t rx_PktLength);
+typedef void I2C_SLAVE_CALLBACK_HANDLER(uint32_t evtFlag, uint8_t *rx_PktPointer, uint16_t rx_PktLength);
 
 /*
  * wiced_hal_i2c_slave_set_device_address
@@ -369,7 +369,7 @@ void wiced_hal_i2c_slave_init(void);
  * Return:
  *      None
  */
-void wiced_hal_i2c_slave_register_cb(I2C_SLAVE_CALLBACK_HANDLER* cb);
+void wiced_hal_i2c_slave_register_cb(I2C_SLAVE_CALLBACK_HANDLER *cb);
 
 /*
  * wiced_hal_i2c_slave_synchronous_write
@@ -384,9 +384,9 @@ void wiced_hal_i2c_slave_register_cb(I2C_SLAVE_CALLBACK_HANDLER* cb);
  * Return:
  *      None
  */
-void wiced_hal_i2c_slave_synchronous_write( UINT8* buffer, UINT32 length );
+void wiced_hal_i2c_slave_synchronous_write(UINT8 *buffer, UINT32 length);
 
 
 /** \} I2C */
 
-#endif // __WICED_I2C_DRIVER_H__
+#endif // WICED_I2C_DRIVER_H__

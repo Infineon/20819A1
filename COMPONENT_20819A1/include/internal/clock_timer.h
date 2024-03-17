@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,14 +32,14 @@
  */
 
 /*
-********************************************************************
-*    File Name: clock_timer.h
-*
-*    Abstract: This file defines clock timer functions
-*
-*
-********************************************************************
-*/
+ ********************************************************************
+ *    File Name: clock_timer.h
+ *
+ *    Abstract: This file defines clock timer functions
+ *
+ *
+ ********************************************************************
+ */
 #ifndef CLOCK_TIMER_H
 #define CLOCK_TIMER_H
 
@@ -64,7 +64,7 @@ typedef UINT8 clock_id_t;
 
 //! Timer call back prototype definition.
 struct NOTIFY_TIME;
-typedef void (*NotifyTimeCallback)(struct NOTIFY_TIME* which_notify);
+typedef void (*NotifyTimeCallback)(struct NOTIFY_TIME *which_notify);
 
 /*******************************************Timer functions*********************************************/
 //! Structure used to register for (and receive) notification when a specific time arrives.  The
@@ -77,21 +77,21 @@ typedef void (*NotifyTimeCallback)(struct NOTIFY_TIME* which_notify);
 //! Timer structure
 typedef struct OSAPI_TIMER_STRUCT
 {
-    struct OSAPI_TIMER_STRUCT *  next;  /* Next timer in list */
+    struct OSAPI_TIMER_STRUCT *next;    /* Next timer in list */
     // overTimeInUs tells the user how long in micorsecond has passed beyond the targeted time
     void          (*callback)(INT32 registrantData, UINT32 overTimeInUs);   /* timer expiration callback function */
-    UINT32        flags;                /* Flags for timer*/
-    UINT32        interval;             /* Periodical time out inteval, in 1 us unit */
-    INT32         arg;                  /* parameter for expiration function */
-    UINT64        target_time;          /* Target time for timer expire, in us */
+    UINT32 flags;                       /* Flags for timer*/
+    UINT32 interval;                    /* Periodical time out inteval, in 1 us unit */
+    INT32  arg;                         /* parameter for expiration function */
+    UINT64 target_time;                 /* Target time for timer expire, in us */
 } OSAPI_TIMER;
 
 //! Create a periodic timer.
 //! Interval is in 1 us unit.
 extern void osapi_createPeriodicTimer(OSAPI_TIMER *timer,
-                  void (*timerCallback)(INT32 arg, UINT32 overTimeInUs),
-                  INT32  arg,
-                  UINT32  interval);
+                                      void (*timerCallback)(INT32 arg, UINT32 overTimeInUs),
+                                      INT32  arg,
+                                      UINT32  interval);
 
 //! Create a timer.
 void osapi_createTimer(OSAPI_TIMER *timer, void (*timerCallback)(INT32 arg, UINT32 overTimeInUs), INT32 arg);
@@ -100,7 +100,7 @@ void osapi_createTimer(OSAPI_TIMER *timer, void (*timerCallback)(INT32 arg, UINT
 //! If this timer can be a wakeup source, we should call
 //! osapi_setTimerWakeupSource after osapi_createTimer and before
 //! osapi_activateTimer. Interval here is in micro seconds.
-extern void osapi_activateTimer(OSAPI_TIMER* timer, UINT32 interval);
+extern void osapi_activateTimer(OSAPI_TIMER *timer, UINT32 interval);
 
 
 //! Reports if timer is running/pending or not.
@@ -109,17 +109,17 @@ extern void osapi_activateTimer(OSAPI_TIMER* timer, UINT32 interval);
 //! Marks the timer as being a wake up source.
 //! This may be called before the call to osapi_activateTimer() to mark
 //! the timer as a wake up source.
-extern void osapi_setTimerWakeupSource( OSAPI_TIMER* timer, UINT32 can_be_wakeup_source);
+extern void osapi_setTimerWakeupSource(OSAPI_TIMER *timer, UINT32 can_be_wakeup_source);
 
 //! Remove the timer from timer list.
 //! It will return 0 if successful
 //! It will return 1 if timeout callback already called.
 //! It will return 2 otherwise.
-extern UINT32 osapi_deactivateTimer(OSAPI_TIMER* timer);
+extern UINT32 osapi_deactivateTimer(OSAPI_TIMER *timer);
 
 //! Query timer for remain time until timeout.
 //! This function will query current timer, return microseconds from now until it timeout
-extern UINT32 osapi_getTimerRemain(OSAPI_TIMER* timer);
+extern UINT32 osapi_getTimerRemain(OSAPI_TIMER *timer);
 
 //! See if certain timer is still linked to notifyTimerlist.
 //! This will return TRUE, if timer is linked to the list.
@@ -156,7 +156,8 @@ extern void clock_enableTimersIfStopped(void);
 
 //---------------------------------------------------------------------------------------------------------
 
-typedef enum {          // this enumerated type is also used to index a table of required wait states
+typedef enum            // this enumerated type is also used to index a table of required wait states
+{
     CLOCK_DISABLE,      // for Thick Oxide Ram in slimboot.h.  If you modify this type, update the table
     CLOCK_1MHZ,         // in slimboot.h as well.  20150714 (sm)
     CLOCK_4MHZ,
@@ -171,7 +172,8 @@ typedef enum {          // this enumerated type is also used to index a table of
     CLOCK_UNKNOWN,
 } CLOCK_FREQ;
 
-typedef enum {
+typedef enum
+{
     CLOCK_REQ_TRANS,                // Set Transport clock to specific clock freqency.
     CLOCK_REQ_FM,                   // Set FM clock  freqency.
     CLOCK_REQ_CPU_SET,              // Set CPU to specific clock frequency
@@ -227,4 +229,4 @@ extern void clock_UpdateTimebaseAfterWarmboot(void);
 extern void clock_UpdateTimebaseAfterFB(void);
 extern UINT32 clock_GetLower32bitsOfSystemTimer(void);
 
-#endif
+#endif // ifndef CLOCK_TIMER_H

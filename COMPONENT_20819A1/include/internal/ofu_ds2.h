@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,6 +31,9 @@
  * so agrees to indemnify Cypress against all liability.
  */
 
+#ifndef OFU_DS2_H
+#define OFU_DS2_H
+
 void wiced_ofu_pet_watchdog(void);
 void wiced_ofu_reset_device(void);
 
@@ -51,9 +54,11 @@ BOOL32 wiced_ofu_new_external_storage_key(wiced_bool_t encrypt, uint32_t type, v
 BOOL32 wiced_ofu_store_external_storage_key(void *handle);
 BOOL32 wiced_ofu_restore_external_storage_key(void *handle);
 BOOL32 wiced_ofu_delete_external_storage_key(void *handle);
-BOOL32 wiced_ofu_crypt( wiced_bool_t encrypt, uint32_t offset, uint32_t length, const uint8_t *input,
-                        uint8_t *output, void *handle);
+BOOL32 wiced_ofu_crypt(wiced_bool_t encrypt, uint32_t offset, uint32_t length, const uint8_t *input,
+                       uint8_t *output, void *handle);
 void wiced_ofu_store_image_length(uint32_t length, void *handle);
 uint32_t wiced_ofu_get_image_length(void *handle);
 void wiced_ofu_enter_eflash_write_or_erase(void);
 void wiced_ofu_leave_eflash_write_or_erase(void);
+
+#endif // OFU_DS2_H

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,17 +32,17 @@
  */
 
 /*
-********************************************************************
-*    File Name: keyscan.h
-*
-*    Abstract: This file defines a keyscan driver
-*
-*
-********************************************************************
-*/
+ ********************************************************************
+ *    File Name: keyscan.h
+ *
+ *    Abstract: This file defines a keyscan driver
+ *
+ *
+ ********************************************************************
+ */
 
-#ifndef __KEYSCAN_DRIVER_H__
-#define __KEYSCAN_DRIVER_H__
+#ifndef KEYSCAN_DRIVER_H__
+#define KEYSCAN_DRIVER_H__
 
 #include "brcm_fw_types.h"
 
@@ -56,19 +56,19 @@ extern "C" {
 
 /*! @{ */
 /**
-* Defines a keyscan driver.
-*
-* The keyscan interface is practically defined as a queue from the consumer's
-* perspective. Key up/down events are seen as a stream coming from the driver.
-* In addition the interface provides the user with the ability to reset the
-* HW as well as turn keyscanning on/off.
-*/
+ * Defines a keyscan driver.
+ *
+ * The keyscan interface is practically defined as a queue from the consumer's
+ * perspective. Key up/down events are seen as a stream coming from the driver.
+ * In addition the interface provides the user with the ability to reset the
+ * HW as well as turn keyscanning on/off.
+ */
 
 /// Up/down flag
 enum
 {
     KEY_DOWN = 0x0,
-    KEY_UP   = 0x1
+    KEY_UP   = 0x1,
 };
 
 /// Special event codes used internally by the driver
@@ -78,17 +78,17 @@ enum
     ROLLOVER = 0xff,
 
     /// Event returned to indicate the end of a scan cycle.
-    END_OF_SCAN_CYCLE = 0xfe
+    END_OF_SCAN_CYCLE = 0xfe,
 };
 
 /// Keyscan  driver constants
 enum
 {
     ///Mia keyevent HW FIFO size.
-    MIA_KEY_EVENT_FIFO_SIZE              = 20,
+    MIA_KEY_EVENT_FIFO_SIZE = 20,
 
     ///keyscan FW FIFO size. This FIFO  is implemented with KeyscanQueue.
-    KEYSCAN_FW_FIFO_SIZE                 = (2*MIA_KEY_EVENT_FIFO_SIZE + 6),
+    KEYSCAN_FW_FIFO_SIZE = (2*MIA_KEY_EVENT_FIFO_SIZE + 6),
 };
 
 typedef struct
@@ -138,11 +138,12 @@ typedef PACKED struct
     /// an event is detected in the same scan cycle as the previous event or a different one.
     /// Note that this flag does not indicate any separation in time.
     BYTE scanCycleFlag : 1;
-}KeyEvent;
+} KeyEvent;
+
 #pragma pack()
 
 #ifdef WICED_KEYSCAN_FUNCTION_SUPPORT
-void ksq_init(void* buffer, BYTE elementSize, BYTE maxElements);
+void ksq_init(void *buffer, BYTE elementSize, BYTE maxElements);
 void ksq_flush(void);
 BYTE ksq_getCurNumElements(void);
 BOOL32 ksq_putExcludeOverflowSlot(void *elm, BYTE len);
@@ -152,119 +153,120 @@ void ksq_removeCurElement(void);
 
 BOOL32 ksq_put(void *elm, BYTE len);
 void ksq_flush(void);
-void ksq_markCurrentEventForRollBack (void);
+void ksq_markCurrentEventForRollBack(void);
 void ksq_rollbackUptoMarkedEvents(void);
 void ksq_putEvent(KeyEvent *event);
 void ksq_getEvent(KeyEvent *event);
 
 /// Check if the KeyscanQueue is empty.
-INLINE BOOL32 ksq_isEmpty (void)
+INLINE BOOL32 ksq_isEmpty(void)
 {
     return (ksq_getCurNumElements() == 0);
 }
+
 #endif // WICED_KEYSCAN_FUNCTION_SUPPORT
 
 /* @} */
 
 /**  \addtogroup keyscan
  *  \ingroup HardwareDrivers
-*/
+ */
 /*! @{ */
 /**
-* Defines the BCM standard keyscan driver. The   BCM standard keyscan driver
-* provides the status and control for the keyscan driver. It provides the
-* keyEvents to the interface, maintains the queue behind it. It also supports
-* keyscanning turning on or off.
-*
-*/
+ * Defines the BCM standard keyscan driver. The   BCM standard keyscan driver
+ * provides the status and control for the keyscan driver. It provides the
+ * keyEvents to the interface, maintains the queue behind it. It also supports
+ * keyscanning turning on or off.
+ *
+ */
 
 
 enum
 {
     /// Keycode value if no key is pressed.
-    EVENT_NONE                   = 0xfd
+    EVENT_NONE = 0xfd,
 };
 
 enum
 {
-    HW_CTRL_SCAN_CTRL_MASK               = 0x00001,
-    HW_CTRL_GHOST_DETECT_MASK            = 0x00004,
-    HW_CTRL_INTERRUPT_CTRL_MASK          = 0x00008,
-    HW_CTRL_RESET_MASK                   = 0x00010,
-    HW_CTRL_RC_EXT_MASK                  = 0x000C0,
-    HW_CTRL_ROW_MASK                     = 0x00700,
-    HW_CTRL_COL_MASK                     = 0x0F800,
-    HW_CTRL_COL_DRIVE_CTRL_MASK          = 0x10000,
-    HW_CTRL_ROW_DRIVE_CTRL_MASK          = 0x20000,
+    HW_CTRL_SCAN_CTRL_MASK      = 0x00001,
+    HW_CTRL_GHOST_DETECT_MASK   = 0x00004,
+    HW_CTRL_INTERRUPT_CTRL_MASK = 0x00008,
+    HW_CTRL_RESET_MASK          = 0x00010,
+    HW_CTRL_RC_EXT_MASK         = 0x000C0,
+    HW_CTRL_ROW_MASK            = 0x00700,
+    HW_CTRL_COL_MASK            = 0x0F800,
+    HW_CTRL_COL_DRIVE_CTRL_MASK = 0x10000,
+    HW_CTRL_ROW_DRIVE_CTRL_MASK = 0x20000,
 
-    HW_CTRL_SCAN_ENABLE                  = 0x00001,
-    HW_CTRL_GHOST_ENABLE                 = 0x00004,
-    HW_CTRL_KS_INTERRUPT_ENABLE          = 0x00008,
-    HW_CTRL_RESET_ENABLE                 = 0x00010,
-    HW_CTRL_CLK_ALWAYS_ON                = 0x40000,
-    HW_CTRL_RC_DEFAULT                   = 0x000C0,
-    HW_CTRL_ROW_SHIFT                    = 8,
-    HW_CTRL_COL_SHIFT                    = 11,
-    HW_CTRL_COL_ACTIVE_DRIVE             = 0x10000,
-    HW_CTRL_ROW_ACTIVE_DRIVE             = 0x20000,
+    HW_CTRL_SCAN_ENABLE         = 0x00001,
+    HW_CTRL_GHOST_ENABLE        = 0x00004,
+    HW_CTRL_KS_INTERRUPT_ENABLE = 0x00008,
+    HW_CTRL_RESET_ENABLE        = 0x00010,
+    HW_CTRL_CLK_ALWAYS_ON       = 0x40000,
+    HW_CTRL_RC_DEFAULT          = 0x000C0,
+    HW_CTRL_ROW_SHIFT           = 8,
+    HW_CTRL_COL_SHIFT           = 11,
+    HW_CTRL_COL_ACTIVE_DRIVE    = 0x10000,
+    HW_CTRL_ROW_ACTIVE_DRIVE    = 0x20000,
 
-    HW_CTRL_SCAN_DISABLE                 = 0x00000,
-    HW_CTRL_GHOST_DISABLE                = 0x00000,
-    HW_CTRL_INTERRUPT_DISABLE            = 0x00000,
-    HW_CTRL_RESET_DISABLE                = 0x00000,
-    HW_CTRL_CLK_AUTO_CTRL                = 0x00000,
-    HW_CTRL_COLUMN_PASSIVE_DRIVE         = 0x00000,
-    HW_CTRL_ROW_PASSIVE_DRIVE            = 0x00000
+    HW_CTRL_SCAN_DISABLE         = 0x00000,
+    HW_CTRL_GHOST_DISABLE        = 0x00000,
+    HW_CTRL_INTERRUPT_DISABLE    = 0x00000,
+    HW_CTRL_RESET_DISABLE        = 0x00000,
+    HW_CTRL_CLK_AUTO_CTRL        = 0x00000,
+    HW_CTRL_COLUMN_PASSIVE_DRIVE = 0x00000,
+    HW_CTRL_ROW_PASSIVE_DRIVE    = 0x00000,
 };
 
 enum
 {
-  HW_MIA_STATUS_KEYSCAN_INT_SET_MASK   = 0x00040,
- };
+    HW_MIA_STATUS_KEYSCAN_INT_SET_MASK = 0x00040,
+};
 
 enum
 {
-    HW_LHL_CTRL_CLR_KEYS                 = 0x0002,
+    HW_LHL_CTRL_CLR_KEYS = 0x0002,
 
-    HW_LHL_STATUS_GHOST                  = 0x0008,
-    HW_LHL_STATUS_KEY_FIFO_OVERFLOW      = 0x0004,
-    HW_LHL_STATUS_KEYCODE                = 0x0002,
+    HW_LHL_STATUS_GHOST             = 0x0008,
+    HW_LHL_STATUS_KEY_FIFO_OVERFLOW = 0x0004,
+    HW_LHL_STATUS_KEYCODE           = 0x0002,
 
 #ifdef KEYSTUCK_ALLOW_SLEEP_SUPPORTED
     /// Stuck-key
-    KEYSTUCK                             = 0x00fc,
+    KEYSTUCK = 0x00fc,
 #endif
 };
 
 enum
 {
-    HW_KEYCODE_MASK                      = 0x000000ff,
-    HW_SCAN_CYCLE_MASK                   = 0x40000000,
-    HW_KEY_UP_DOWN_MASK                  = (int)0x80000000,
+    HW_KEYCODE_MASK     = 0x000000ff,
+    HW_SCAN_CYCLE_MASK  = 0x40000000,
+    HW_KEY_UP_DOWN_MASK = (int)0x80000000,
 
-    HW_KEYCODE_SHIFT_COUNT               = 0,
-    HW_SCAN_CYCLE_SHIFT_COUNT            = 30,
-    HW_KEY_UP_DOWN_SHIFT_COUNT           = 31,
+    HW_KEYCODE_SHIFT_COUNT     = 0,
+    HW_SCAN_CYCLE_SHIFT_COUNT  = 30,
+    HW_KEY_UP_DOWN_SHIFT_COUNT = 31,
 
 
-    HW_KEYCODE_GHOST                     = 0xf5,
-    HW_KEYCODE_INIT                      = 0xff,
+    HW_KEYCODE_GHOST = 0xf5,
+    HW_KEYCODE_INIT  = 0xff,
 
-    HW_KEY_UP                            = (int)0x80000000,
-    HW_KEY_DOWN                          = 0x00000000
+    HW_KEY_UP   = (int)0x80000000,
+    HW_KEY_DOWN = 0x00000000,
 };
 
 enum
 {
-    CH_SEL_KEYSCAN_ROW_INPUT_50_57      = 0x0000,
-    CH_SEL_KEYSCAN_ROW_INPUT_16_23      = 0x0001
+    CH_SEL_KEYSCAN_ROW_INPUT_50_57 = 0x0000,
+    CH_SEL_KEYSCAN_ROW_INPUT_16_23 = 0x0001,
 };
 
 
 typedef struct KeyscanRegistration
 {
-    void (*userfn)(void*);
-    void *userdata;
+    void (*userfn)(void *);
+    void                       *userdata;
     struct KeyscanRegistration *next;
 } KeyscanRegistration;
 
@@ -272,7 +274,7 @@ typedef struct KeyscanRegistration
 typedef struct
 {
     /// Registration chain of the appplication level keyscan interrupt/event handlers
-    KeyscanRegistration* keyscanFirstReg;
+    KeyscanRegistration *keyscanFirstReg;
 
     /// Reserved space for keyscan data.
     KeyEvent keyscan_events[KEYSCAN_FW_FIFO_SIZE];
@@ -283,8 +285,6 @@ typedef struct
     // number of key down events that are not yet matched by key up events,
     // which gives the number of keys currently being pressed
     UINT8 keysPressedCount;
-
-
 } KeyscanState;
 
 
@@ -294,7 +294,6 @@ void keyscan_init_forSlimboot(void);
 
 /// Reset the keyscan HW. Any existing events should be thrown away.
 void keyscan_reset(void);
-
 
 
 /// Check if there are any pending key events.
@@ -323,7 +322,7 @@ void keyscan_turnOn(void);
 /// function will be called ONCE per interrupt.
 /// \param userdata will be passed back to userfn as-is; it can be used to
 /// carry the "this", for example
-void keyscan_registerForEventNotification(void (*userfn)(void*), void* userdata);
+void keyscan_registerForEventNotification(void (*userfn)(void *), void *userdata);
 
 void keyscan_enableEventDetection(void);
 
@@ -349,11 +348,13 @@ BOOL32 isKeyStuck(void);
 void changeKeystuckTimeout(UINT32 new_keyscan_stuck_key_in_second);
 extern void (*keyscan_stuckKey_callbackApp)(void);
 
-enum {
-  STUCKKEY_STATE_INIT,
-  STUCKKEY_STATE_NORMAL,
-  STUCKKEY_STATE_STUCK,
+enum
+{
+    STUCKKEY_STATE_INIT,
+    STUCKKEY_STATE_NORMAL,
+    STUCKKEY_STATE_STUCK,
 };
+
 #endif // KEYSTUCK_ALLOW_SLEEP_SUPPORTED
 #endif // WICED_KEYSCAN_FUNCTION_SUPPORT
 
@@ -363,4 +364,4 @@ enum {
 }
 #endif
 
-#endif
+#endif // ifndef KEYSCAN_DRIVER_H__

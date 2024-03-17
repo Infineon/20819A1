@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -41,11 +41,7 @@
 #ifndef SBC_DECODER_H
 #define SBC_DECODER_H
 
-
-
 #include "sbc_plc_bec_tgt.h"
-
-
 
 #ifndef FALSE
 #define FALSE 0
@@ -221,7 +217,7 @@
 #include "sbc_common.h"
 
 #if (SBC_WB)
-#if (SB_BUFFER_SIZE_WB >SB_BUFFER_SIZE_SIG)
+#if (SB_BUFFER_SIZE_WB > SB_BUFFER_SIZE_SIG)
 #define SB_BUFFER_SIZE SB_BUFFER_SIZE_WB
 #else
 #define SB_BUFFER_SIZE SB_BUFFER_SIZE_SIG
@@ -257,11 +253,11 @@
 /* Upsampling filters  */
 typedef struct SBC_FILTER_TAG
 {
-    const SINT16 * h;
-    SINT16 filter_len;
-    SINT16 up_ratio;
-    SINT16 dw_ratio;
-}SBC_FILTER_PARAM;
+    const SINT16 *h;
+    SINT16        filter_len;
+    SINT16        up_ratio;
+    SINT16        dw_ratio;
+} SBC_FILTER_PARAM;
 
 /* sbc_status bit field */
 #define SBC_STATUS_RESET_REQ                (1<<0)        // To indicated that SBC will be resetted on next good packet (Init procedure)
@@ -302,7 +298,7 @@ enum
     SBC_PLC_TBD4,
     SBC_PLC_TBD5,
     SBC_PLC_TBD6,
-    SBC_PLC_TBD7
+    SBC_PLC_TBD7,
 };
 
 /* For SBC PLC WB frame_status */
@@ -310,7 +306,7 @@ enum
 {
     SBC_GOOD_ESCO_CRC,
     SBC_BAD_ESCO_CRC,
-    SBC_LOST
+    SBC_LOST,
 };
 
 #define SBC_FRAME_TYPE_MASK 0x3
@@ -320,7 +316,6 @@ enum
 #define SBC_1_AND_2_FRAME_TYPE_MASK   ( (SBC_FRAME_TYPE_MASK<<8) | SBC_FRAME_TYPE_MASK )
 #define SBC_1_AND_3_FRAME_TYPE_MASK   ( (SBC_FRAME_TYPE_MASK<<16) | SBC_FRAME_TYPE_MASK)
 #define SBC_2_AND_3_FRAME_TYPE_MASK   ( (SBC_FRAME_TYPE_MASK<<16) | (SBC_FRAME_TYPE_MASK<<8) )
-
 
 
 /* For sbc_att */
@@ -334,9 +329,8 @@ enum
     SBC_ATT_30DB,
     SBC_ATT_36DB,
     SBC_ATT_INF,            // Mute
-    NB_SBC_ATT_STATE
+    NB_SBC_ATT_STATE,
 };
-
 
 
 #ifndef FALSE
@@ -366,8 +360,6 @@ enum
 #define DEC_VX_MINIMUM_BUFFER_SIZE (SBC_MAX_NUM_OF_SUBBANDS*SBC_MAX_NUM_OF_CHANNELS*20)
 
 
-
-
 /* Memory allocation  */
 #if (SBC_PLC)
 #include "typedef.h"
@@ -379,22 +371,21 @@ enum
 #endif
 
 
-#if (SBC_VECTOR_VX_ON_16BITS==TRUE)
+#if (SBC_VECTOR_VX_ON_16BITS == TRUE)
 #define SBC_STATIC_MEM_SIZE (sizeof(SINT32)*(DEC_VX_BUFFER_SIZE/2 + (SBC_BUF)))    // in Bytes
 #else
 #define SBC_STATIC_MEM_SIZE (sizeof(SINT32)*(DEC_VX_BUFFER_SIZE+ (SBC_BUF)))
 #endif
 
-#if (SBC_ARM_OPT==TRUE)
+#if (SBC_ARM_OPT == TRUE)
 #define SBC_SCRATCH_MEM_SIZE (4*(240+128+PCM_BUF))    // in Bytes
 #else
 #define SBC_SCRATCH_MEM_SIZE (4*(240+256+PCM_BUF))
 #endif
 
-#if ((SBC_PLC == TRUE) && (LC_PLC_SCRATCH_MEM_SIZE > SBC_SCRATCH_MEM_SIZE) )
+#if ((SBC_PLC == TRUE) && (LC_PLC_SCRATCH_MEM_SIZE > SBC_SCRATCH_MEM_SIZE))
 #error PLC Scratch Memory will exceed SBC Scratch Memory !!
 #endif
-
 
 
 typedef struct SBC_DEC_STATUS_FLAG_TAG
@@ -402,8 +393,6 @@ typedef struct SBC_DEC_STATUS_FLAG_TAG
     SINT16 status_flag;
     SINT16 len;
 } SBC_DEC_STATUS_FLAG_PARAMS;
-
-
 
 
 typedef struct SBC_DEC_PARAMS_TAG
@@ -418,20 +407,20 @@ typedef struct SBC_DEC_PARAMS_TAG
     SINT16 scaleFactor[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
     SINT16 ScratchMemForBitAlloc[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
     SINT16 bits[SBC_MAX_NUM_OF_CHANNELS*SBC_MAX_NUM_OF_SUBBANDS];
-    UINT8  *packet;
+    UINT8 *packet;
 
     SINT32 *s32ScratchMem;
     SINT32 *s32StaticMem;
     SINT16 *pcmBuffer;
-#if (SBC_ARM_OPT==TRUE)
+#if (SBC_ARM_OPT == TRUE)
     SINT16 *sbBuffer;
 #else
     SINT32 *sbBuffer;
 #endif
-#if (SBC_ARM_OPT==FALSE && SBC_IPAQ_OPT==FALSE && SBC_OPTIMIZATION==FALSE)
+#if (SBC_ARM_OPT == FALSE && SBC_IPAQ_OPT == FALSE && SBC_OPTIMIZATION == FALSE)
     SINT32 *scartchMemForFilter;
 #endif
-#if (SBC_VECTOR_VX_ON_16BITS==TRUE)
+#if (SBC_VECTOR_VX_ON_16BITS == TRUE)
     SINT16 *VX;
 #else
     SINT32 *VX;
@@ -439,7 +428,7 @@ typedef struct SBC_DEC_PARAMS_TAG
     SINT32 ShiftCounter[2];
     SINT32 DecMaxShiftCounter;
 
-    UINT8 join[SBC_MAX_NUM_OF_SUBBANDS];       /*0 if not joint stereo*/
+    UINT8  join[SBC_MAX_NUM_OF_SUBBANDS];      /*0 if not joint stereo*/
     UINT16 u16PrevPacLen;
     UINT16 frame_len;                /* frame length. When multiple frames are provided, it still refers to one frame length */
     UINT16 nb_frame;                /* Number of frames provided by Fw */
@@ -457,38 +446,37 @@ typedef struct SBC_DEC_PARAMS_TAG
 
 /* nb_buf */
 /*-------------------------------------- ---------------------------------------------------
-|      NB_UP_SAMPLING_FILTER_LEN             |                  NB_UP_SAMPLING_NB_SAMPLE_BUF        |
-  --------------------------------------- ---------------------------------------------------*/
+ |      NB_UP_SAMPLING_FILTER_LEN             |                  NB_UP_SAMPLING_NB_SAMPLE_BUF        |
+   --------------------------------------- ---------------------------------------------------*/
     SINT16 nb_buf[NB_UP_SAMPLING_BUF_LEN];    /* Narrow Band  buffer */
     UINT16 nb_len;                            /* number of Samples in Narrow Band  buffer */
 /* up_buf */
 /*----------------------------------------------------------
-|       NB_UP_SAMPLED_BUF_LEN                                |
-  ----------------------------------------------------------*/
+ |       NB_UP_SAMPLED_BUF_LEN                                |
+   ----------------------------------------------------------*/
     SINT16 up_buf[NB_UP_SAMPLED_BUF_LEN];    /* Up sampled buffer */
     UINT16 up_len;                            /* number of Samples in Up sampled buffer */
 #endif
 #if SBC_DEC_MONO_A2DP_INCLUDED /* filter memory */
-#if ( SBC_SAMPLE_RATE_CONVERTER_16K==TRUE)
+#if (SBC_SAMPLE_RATE_CONVERTER_16K == TRUE)
     SINT16 ds_filter[MONO_A2DP_FILTER_LEN];
 #endif
     UINT8 ds_idx;                /* Last downsampling index*/
 #endif
 #if (SBC_PLC)
-    struct LCPLC_State * plc_state;    /* PLC struct */
-    UINT8 frame_status[SBC_MAX_NUM_OF_ESCO_FRAME];            /* Frame status: GOOD_ESCO_CRC, BAD_ESCO_CRC, LOST for the different SBC frame*/
-    UINT16 good_pkt_len;                                        /* SBC Packet Len of good frame */
-    SINT16 plc_tuning[5];                                        /* PLC tuning parametsr that can be updated between SBC_Decoder_decode_Init and first SBC_Decoder_decode call */
+    struct LCPLC_State *plc_state;     /* PLC struct */
+    UINT8               frame_status[SBC_MAX_NUM_OF_ESCO_FRAME]; /* Frame status: GOOD_ESCO_CRC, BAD_ESCO_CRC, LOST for the different SBC frame*/
+    UINT16              good_pkt_len;                           /* SBC Packet Len of good frame */
+    SINT16              plc_tuning[5];                           /* PLC tuning parametsr that can be updated between SBC_Decoder_decode_Init and first SBC_Decoder_decode call */
 #if SBC_SET_RESERVED_ON_ESCO_FAIL
-    UINT8   reserved[2];
+    UINT8 reserved[2];
 #endif
 #endif
-    UINT8 sbc_buf[2][SBC_BUF_LEN];        /* Internal SBC buffer. Keep only 2 different frames for BEC1. BEC2 is run on the fly and lead to one single frame (GOOD or LOST) */
-    SINT32 rd_buf;                        /* Internal SBC buffer read pointer */
-    SINT32 wr_buf;                        /* Internal SBC buffer write pointer */
+    UINT8                      sbc_buf[2][SBC_BUF_LEN]; /* Internal SBC buffer. Keep only 2 different frames for BEC1. BEC2 is run on the fly and lead to one single frame (GOOD or LOST) */
+    SINT32                     rd_buf;    /* Internal SBC buffer read pointer */
+    SINT32                     wr_buf;    /* Internal SBC buffer write pointer */
     SBC_DEC_STATUS_FLAG_PARAMS status_flag[NB_STATUS_FLAG_BLOCK];
-
-}SBC_DEC_PARAMS;
+} SBC_DEC_PARAMS;
 
 /*FUNCTION DECLARATIONS*/
 extern const SINT16 DCTcoeff4[];
@@ -497,15 +485,15 @@ void SbcSynthesisFilter(SBC_DEC_PARAMS *);
 
 
 extern SINT16 SBC_Decoder_decode_Init(SBC_DEC_PARAMS *strDecParams);
-extern SINT16 SBC_Decoder_decoder(SBC_DEC_PARAMS *strDecParams, UINT8 * sbc_in, UINT32 len, SINT16 * pcm_out);
+extern SINT16 SBC_Decoder_decoder(SBC_DEC_PARAMS *strDecParams, UINT8 *sbc_in, UINT32 len, SINT16 *pcm_out);
 
-extern SINT16 SBC_Decoder(SBC_DEC_PARAMS *strDecParams, UINT8 * sbc_in, SINT16 * pcm_out, UINT32 len);
+extern SINT16 SBC_Decoder(SBC_DEC_PARAMS *strDecParams, UINT8 *sbc_in, SINT16 *pcm_out, UINT32 len);
 extern SINT16 SBC_Decoder_PLC_Init(SBC_DEC_PARAMS *strDecParams);
-extern SINT16 SBC_Decoder_ReInit(SBC_DEC_PARAMS *strDecParams, unsigned char * sbc_in, unsigned int len);
-extern void SBC_DecoderZIR(SBC_DEC_PARAMS *strDecParams, short * pcm_out);
+extern SINT16 SBC_Decoder_ReInit(SBC_DEC_PARAMS *strDecParams, unsigned char *sbc_in, unsigned int len);
+extern void SBC_DecoderZIR(SBC_DEC_PARAMS *strDecParams, short *pcm_out);
 extern SINT16 SBC_PLC_called(SBC_DEC_PARAMS *strDecParams);
-extern UINT8 * SBC_Decoder_get_pt(SBC_DEC_PARAMS *strDecParams, SINT32 nb_bytes);
-extern SINT16 SBC_Decoder_get_delay(SBC_DEC_PARAMS *strDecParams, UINT32 * delay_samples, UINT32 * delay_ms);
+extern UINT8 *SBC_Decoder_get_pt(SBC_DEC_PARAMS *strDecParams, SINT32 nb_bytes);
+extern SINT16 SBC_Decoder_get_delay(SBC_DEC_PARAMS *strDecParams, UINT32 *delay_samples, UINT32 *delay_ms);
 
 extern void SbcSynthesisFilter(SBC_DEC_PARAMS *strDecParams);
 extern SINT16 DecUnPacking(SBC_DEC_PARAMS *strDecParams);
@@ -513,7 +501,7 @@ extern void SbcSynthesisFilter4sb(SBC_DEC_PARAMS *strDecParams);
 extern void SbcSynthesisFilter8sb(SBC_DEC_PARAMS *strDecParams);
 extern void Mult64(SINT32 s32In1, SINT32 s32In2, SINT32 *s32OutLow, SINT32 *s32OutHi);
 
-#if ( SBC_DEC_MONO_A2DP_INCLUDED ==TRUE)
+#if (SBC_DEC_MONO_A2DP_INCLUDED == TRUE)
 extern SINT16 SBC_sample_rate_conv(SBC_DEC_PARAMS *strDecParams);
 #endif
 
@@ -524,17 +512,17 @@ UINT16 SBC_att_shift(SBC_DEC_PARAMS *strDecParams);
 #if SBC_MIXING_INCLUDED
 extern void SBC_mixing_update_nb_buff(SBC_DEC_PARAMS *strDecParams, UINT16 nb_samples);
 extern void SBC_handle_upsampling(SBC_DEC_PARAMS *strDecParams);
-extern SINT16 * SBC_mixing_get_pt(SBC_DEC_PARAMS *strDecParams, SINT32 nb_samples);
+extern SINT16 *SBC_mixing_get_pt(SBC_DEC_PARAMS *strDecParams, SINT32 nb_samples);
 extern void SBC_mixing_reset_nb_buffer(SBC_DEC_PARAMS *strDecParams);
-extern SINT32 SBC_upsampling(SBC_DEC_PARAMS *strDecParams, SINT16 * pcm_in, SINT16 * pcm_out, SINT32 frame_size);
+extern SINT32 SBC_upsampling(SBC_DEC_PARAMS *strDecParams, SINT16 *pcm_in, SINT16 *pcm_out, SINT32 frame_size);
 extern void SBC_mixing_reset_up_buffer(SBC_DEC_PARAMS *strDecParams);
-extern SINT16 SBC_mixing_fill_up_buffer(SBC_DEC_PARAMS *strDecParams, SINT16 * pcm_in, SINT32 nb_samples);
-extern SINT16 SBC_mixing_get_up_buffer_size (SBC_DEC_PARAMS *strDecParams);
-extern SINT16 * SBC_mixing_get_up_pt(SBC_DEC_PARAMS *strDecParams, SINT32 nb_samples);
+extern SINT16 SBC_mixing_fill_up_buffer(SBC_DEC_PARAMS *strDecParams, SINT16 *pcm_in, SINT32 nb_samples);
+extern SINT16 SBC_mixing_get_up_buffer_size(SBC_DEC_PARAMS *strDecParams);
+extern SINT16 *SBC_mixing_get_up_pt(SBC_DEC_PARAMS *strDecParams, SINT32 nb_samples);
 extern void SBC_mixing_update_up_buff(SBC_DEC_PARAMS *strDecParams, UINT16 nb_samples);
-#endif
+#endif // if SBC_MIXING_INCLUDED
 
 SINT16 DecUnPacking(SBC_DEC_PARAMS *strDecParams);
 
 
-#endif
+#endif // ifndef SBC_DECODER_H

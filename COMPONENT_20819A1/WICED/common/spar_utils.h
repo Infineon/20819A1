@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,17 +31,17 @@
  * so agrees to indemnify Cypress against all liability.
  */
 /*
-********************************************************************
-*    File Name: spar_utils.h
-*
-*    Abstract: A few utilities with a reasonable implementation for
-*              SPAR.
-*
-********************************************************************
-*/
+ ********************************************************************
+ *    File Name: spar_utils.h
+ *
+ *    Abstract: A few utilities with a reasonable implementation for
+ *              SPAR.
+ *
+ ********************************************************************
+ */
 
-#ifndef __SPAR_UTILS_H__
-#define __SPAR_UTILS_H__
+#ifndef SPAR_UTILS_H__
+#define SPAR_UTILS_H__
 
 #include "brcm_fw_types.h"
 
@@ -70,10 +70,10 @@ void _tx_v7m_set_int(unsigned int posture);
         while(!spar_debug_continue);                                \
         _tx_v7m_set_int(interrupt_save);                            \
         }while(0)
-#else
+#else // if ENABLE_DEBUG
 #define SETUP_APP_FOR_DEBUG_IF_DEBUG_ENABLED()
 #define BUSY_WAIT_TILL_MANUAL_CONTINUE_IF_DEBUG_ENABLED()
-#endif
+#endif // if ENABLE_DEBUG
 
 /// Allow the app to place code in retention RAM.
 /// Note that there is very limited retention RAM, so choose
@@ -91,4 +91,4 @@ void _tx_v7m_set_int(unsigned int posture);
     do { if (!(expr)) while (1) ; } while(0)
 
 
-#endif
+#endif // ifndef SPAR_UTILS_H__

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,29 +32,29 @@
  */
 
 /** @file
-*
-* List of parameters and defined functions needed to access the
-* Button driver which is based on keyscan driver using keyscan HW
-*
-*/
+ *
+ * List of parameters and defined functions needed to access the
+ * Button driver which is based on keyscan driver using keyscan HW
+ *
+ */
 
-#ifndef __WICED_KEYSCAN_BUTTON_H__
-#define __WICED_KEYSCAN_BUTTON_H__
+#ifndef WICED_KEYSCAN_BUTTON_H__
+#define WICED_KEYSCAN_BUTTON_H__
 
 #include "brcm_fw_types.h"
 
 /**  \addtogroup keyscanButton Keyscan Button
  *  \ingroup keyscan
-*/
+ */
 /*! @{ */
 /**
-* Defines the button driver that based on keyscan driver using keyscan hardware.
-* Buttons are implemented as keys. A scan matrix of 1 row, n cols
-* is created and scanned by the keyscan hardware. The hardware reports the
-* state of the buttons as keys. This information is translated by the button
-* interface into a byte representing various buttons.
-*
-*/
+ * Defines the button driver that based on keyscan driver using keyscan hardware.
+ * Buttons are implemented as keys. A scan matrix of 1 row, n cols
+ * is created and scanned by the keyscan hardware. The hardware reports the
+ * state of the buttons as keys. This information is translated by the button
+ * interface into a byte representing various buttons.
+ *
+ */
 
 ///////////////////////////////////////////////////////////////////////////////
 /// configure button driver
@@ -134,4 +134,4 @@ uint16_t wiced_hal_keyscan_button_flush(void);
 /* @} */
 
 
-#endif
+#endif // ifndef WICED_KEYSCAN_BUTTON_H__

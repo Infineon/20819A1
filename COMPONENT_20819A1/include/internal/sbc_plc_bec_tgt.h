@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -31,6 +31,9 @@
  * so agrees to indemnify Cypress against all liability.
  */
 
+#ifndef SBC_PLC_BEC_TGT_H
+#define SBC_PLC_BEC_TGT_H
+
 /******************************************************************************
 **
 **  File Name:   sbc_plc_bec_tgt.h
@@ -57,3 +60,5 @@
 
 /* Exclude Sample Rate Converter for 2074 A2 only. This is to have the SBC PCM output dowsampled to 16kHz.  This is only for for 2074 A2 where only DAC does support Frequency sampling up to 16 kHz only */
 #define SBC_SAMPLE_RATE_CONVERTER_16K FALSE
+
+#endif // SBC_PLC_BEC_TGT_H

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -36,7 +36,8 @@
  * Bluetooth SDP Application Programming Interface
  *
  */
-#pragma once
+#ifndef WICED_BT_SDP_H
+#define WICED_BT_SDP_H
 
 #include "wiced_bt_dev.h"
 #include "sdpdefs.h"
@@ -61,27 +62,27 @@
 enum wiced_bt_sdp_result_t
 {
     WICED_BT_SDP_SUCCESS              = WICED_BT_SUCCESS,   /**< SDP - Result: Success */
-    WICED_BT_SDP_INVALID_VERSION                = 0x0001,   /**< SDP - invalid version */
-    WICED_BT_SDP_INVALID_SERV_REC_HDL           = 0x0002,   /**< SDP - invalid service record */
-    WICED_BT_SDP_INVALID_REQ_SYNTAX             = 0x0003,   /**< SDP - invalid request syntax */
-    WICED_BT_SDP_INVALID_PDU_SIZE               = 0x0004,   /**< SDP - invalid PDU size */
-    WICED_BT_SDP_INVALID_CONT_STATE             = 0x0005,   /**< SDP - invalid controller state */
-    WICED_BT_SDP_NO_RESOURCES                   = 0x0006,   /**< SDP - no resources */
-    WICED_BT_SDP_DI_REG_FAILED                  = 0x0007,   /**< SDP - registration failed */
-    WICED_BT_SDP_DI_DISC_FAILED                 = 0x0008,   /**< SDP - discovery failed */
-    WICED_BT_SDP_NO_DI_RECORD_FOUND             = 0x0009,   /**< SDP - no record found */
-    WICED_BT_SDP_ERR_ATTR_NOT_PRESENT           = 0x000A,   /**< SDP - no attribute present */
-    WICED_BT_SDP_ILLEGAL_PARAMETER              = 0x000B,   /**< SDP - Illegal parameter */
+    WICED_BT_SDP_INVALID_VERSION      = 0x0001,             /**< SDP - invalid version */
+    WICED_BT_SDP_INVALID_SERV_REC_HDL = 0x0002,             /**< SDP - invalid service record */
+    WICED_BT_SDP_INVALID_REQ_SYNTAX   = 0x0003,             /**< SDP - invalid request syntax */
+    WICED_BT_SDP_INVALID_PDU_SIZE     = 0x0004,             /**< SDP - invalid PDU size */
+    WICED_BT_SDP_INVALID_CONT_STATE   = 0x0005,             /**< SDP - invalid controller state */
+    WICED_BT_SDP_NO_RESOURCES         = 0x0006,             /**< SDP - no resources */
+    WICED_BT_SDP_DI_REG_FAILED        = 0x0007,             /**< SDP - registration failed */
+    WICED_BT_SDP_DI_DISC_FAILED       = 0x0008,             /**< SDP - discovery failed */
+    WICED_BT_SDP_NO_DI_RECORD_FOUND   = 0x0009,             /**< SDP - no record found */
+    WICED_BT_SDP_ERR_ATTR_NOT_PRESENT = 0x000A,             /**< SDP - no attribute present */
+    WICED_BT_SDP_ILLEGAL_PARAMETER    = 0x000B,             /**< SDP - Illegal parameter */
 
-    WICED_BT_SDP_NO_RECS_MATCH                  = 0xFFF0,   /**< SDP - No records match */
-    WICED_BT_SDP_CONN_FAILED                    = 0xFFF1,   /**< SDP - Connection failed */
-    WICED_BT_SDP_CFG_FAILED                     = 0xFFF2,   /**< SDP - Configuration failed */
-    WICED_BT_SDP_GENERIC_ERROR                  = 0xFFF3,   /**< SDP - Generic error */
-    WICED_BT_SDP_DB_FULL                        = 0xFFF4,   /**< SDP - DB full */
-    WICED_BT_SDP_INVALID_PDU                    = 0xFFF5,   /**< SDP - Invalid PDU */
-    WICED_BT_SDP_SECURITY_ERR                   = 0xFFF6,   /**< SDP - Security Error */
-    WICED_BT_SDP_CONN_REJECTED                  = 0xFFF7,   /**< SDP - Connection rejected */
-    WICED_BT_SDP_CANCEL                         = 0xFFF8    /**< SDP - cancel */
+    WICED_BT_SDP_NO_RECS_MATCH = 0xFFF0,                    /**< SDP - No records match */
+    WICED_BT_SDP_CONN_FAILED   = 0xFFF1,                    /**< SDP - Connection failed */
+    WICED_BT_SDP_CFG_FAILED    = 0xFFF2,                    /**< SDP - Configuration failed */
+    WICED_BT_SDP_GENERIC_ERROR = 0xFFF3,                    /**< SDP - Generic error */
+    WICED_BT_SDP_DB_FULL       = 0xFFF4,                    /**< SDP - DB full */
+    WICED_BT_SDP_INVALID_PDU   = 0xFFF5,                    /**< SDP - Invalid PDU */
+    WICED_BT_SDP_SECURITY_ERR  = 0xFFF6,                    /**< SDP - Security Error */
+    WICED_BT_SDP_CONN_REJECTED = 0xFFF7,                    /**< SDP - Connection rejected */
+    WICED_BT_SDP_CANCEL        = 0xFFF8,                    /**< SDP - cancel */
 };
 
 /* Define the PSM that SDP uses */
@@ -122,51 +123,51 @@ typedef struct
 {
     union
     {
-        uint8_t                 u8;                 /**< 8-bit integer            */
-        uint16_t                u16;                /**< 16-bit integer           */
-        uint32_t                u32;                /**< 32-bit integer           */
-        uint8_t                 array[4];           /**< Variable length field    */
-        struct t_sdp_discovery_attr  *p_sub_attr;   /**< Addr of first sub-attr (list)*/
+        uint8_t                      u8;            /**< 8-bit integer            */
+        uint16_t                     u16;           /**< 16-bit integer           */
+        uint32_t                     u32;           /**< 32-bit integer           */
+        uint8_t                      array[4];      /**< Variable length field    */
+        struct t_sdp_discovery_attr *p_sub_attr;    /**< Addr of first sub-attr (list)*/
     } v;
 } wiced_bt_sdp_discovery_attribute_value_t;
 
 /** SDP Attribute */
 typedef struct t_sdp_discovery_attr
 {
-    struct t_sdp_disc_attr                      *p_next_attr;   /**< Addr of next linked attr     */
-    uint16_t                                    attr_id;        /**< Attribute ID                 */
-    uint16_t                                    attr_len_type;  /**< Length and type fields       */
-    wiced_bt_sdp_discovery_attribute_value_t    attr_value;     /**< Variable length entry data   */
+    struct t_sdp_disc_attr                  *p_next_attr;       /**< Addr of next linked attr     */
+    uint16_t                                 attr_id;           /**< Attribute ID                 */
+    uint16_t                                 attr_len_type;     /**< Length and type fields       */
+    wiced_bt_sdp_discovery_attribute_value_t attr_value;        /**< Variable length entry data   */
 } wiced_bt_sdp_discovery_attribute_t;
 
 /** Discovery record from SDP search result */
 typedef struct sdp_discovery_record_t
 {
-    wiced_bt_sdp_discovery_attribute_t      *p_first_attr;      /**< First attribute of record    */
-    struct sdp_discovery_record_t           *p_next_rec;        /**< Addr of next linked record   */
-    uint32_t                                time_read;          /**< The time the record was read */
-    wiced_bt_device_address_t               remote_bd_addr;     /**< Remote BD address            */
+    wiced_bt_sdp_discovery_attribute_t *p_first_attr;           /**< First attribute of record    */
+    struct sdp_discovery_record_t      *p_next_rec;             /**< Addr of next linked record   */
+    uint32_t                            time_read;              /**< The time the record was read */
+    wiced_bt_device_address_t           remote_bd_addr;         /**< Remote BD address            */
 } wiced_bt_sdp_discovery_record_t;
 
 /** Discovery database (used for performing service searches and holding search results) */
 typedef struct
 {
-    uint32_t                                mem_size;                           /**< Memory size of the DB        */
-    uint32_t                                mem_free;                           /**< Memory still available       */
-    wiced_bt_sdp_discovery_record_t         *p_first_rec;                       /**< Addr of first record in DB   */
-    uint16_t                                num_uuid_filters;                   /**< Number of UUIds to filter    */
-    wiced_bt_uuid_t                         uid_filters[SDP_MAX_UUID_FILTERS];  /**< UUIDs to filter              */
-    uint16_t                                num_attr_filters;                   /**< Number of attribute filters  */
-    uint16_t                                attr_filters[SDP_MAX_ATTR_FILTERS]; /**< Attributes to filter         */
-    uint8_t                                 *p_free_mem;                        /**< Pointer to free memory       */
-}wiced_bt_sdp_discovery_db_t;
+    uint32_t                         mem_size;                                  /**< Memory size of the DB        */
+    uint32_t                         mem_free;                                  /**< Memory still available       */
+    wiced_bt_sdp_discovery_record_t *p_first_rec;                               /**< Addr of first record in DB   */
+    uint16_t                         num_uuid_filters;                          /**< Number of UUIds to filter    */
+    wiced_bt_uuid_t                  uid_filters[SDP_MAX_UUID_FILTERS];         /**< UUIDs to filter              */
+    uint16_t                         num_attr_filters;                          /**< Number of attribute filters  */
+    uint16_t                         attr_filters[SDP_MAX_ATTR_FILTERS];        /**< Attributes to filter         */
+    uint8_t                         *p_free_mem;                                /**< Pointer to free memory       */
+} wiced_bt_sdp_discovery_db_t;
 
 /** This structure is used to add protocol lists and find protocol elements */
 typedef struct
 {
-    uint16_t      protocol_uuid;                        /**< The protocol uuid                  */
-    uint16_t      num_params;                           /**< Number of parameters               */
-    uint16_t      params[SDP_MAX_PROTOCOL_PARAMS];      /**< Contents of protocol parameters    */
+    uint16_t protocol_uuid;                             /**< The protocol uuid                  */
+    uint16_t num_params;                                /**< Number of parameters               */
+    uint16_t params[SDP_MAX_PROTOCOL_PARAMS];           /**< Contents of protocol parameters    */
 } wiced_bt_sdp_protocol_elem_t;
 
 /*****************************************************************************
@@ -322,11 +323,11 @@ typedef struct
         SDP_ATTR_UUID16(uuid)
 
 #if 1
- /* Version Number List 0x0200 */
+/* Version Number List 0x0200 */
  #define SDP_ATTR_VERSION_NUMBER_LIST(version)                           \
         SDP_ATTR_UINT2(ATTR_ID_SPECIFICATION_ID, version)
 #else
- /* Version Number List 0x0200 */
+/* Version Number List 0x0200 */
  #define SDP_ATTR_VERSION_NUMBER_LIST(version)                           \
         SDP_ATTR_ID(ATTR_ID_SPECIFICATION_ID), SDP_ATTR_SEQUENCE_1(3),  \
         SDP_ATTR_VALUE_UINT2(version)
@@ -369,7 +370,7 @@ extern "C"
  * @return          TRUE if successful, FALSE otherwise
  *
  **/
-wiced_bool_t wiced_bt_sdp_db_init (uint8_t *p_sdp_db, uint16_t size);
+wiced_bool_t wiced_bt_sdp_db_init(uint8_t *p_sdp_db, uint16_t size);
 
 /* SDP Client APIs */
 
@@ -393,7 +394,7 @@ wiced_bool_t wiced_bt_sdp_db_init (uint8_t *p_sdp_db, uint16_t size);
  * @return          TRUE if successful, FALSE if one or more parameters are bad
  *
  **/
-wiced_bool_t wiced_bt_sdp_init_discovery_db (wiced_bt_sdp_discovery_db_t *p_db, uint32_t len,
+wiced_bool_t wiced_bt_sdp_init_discovery_db(wiced_bt_sdp_discovery_db_t *p_db, uint32_t len,
                                             uint16_t num_uuid,
                                             wiced_bt_uuid_t *p_uuid_list,
                                             uint16_t num_attr,
@@ -410,7 +411,7 @@ wiced_bool_t wiced_bt_sdp_init_discovery_db (wiced_bt_sdp_discovery_db_t *p_db, 
  * @return          TRUE if discovery cancelled, FALSE if a matching activity is not found.
  *
  **/
-wiced_bool_t wiced_bt_sdp_cancel_service_search (wiced_bt_sdp_discovery_db_t *p_db);
+wiced_bool_t wiced_bt_sdp_cancel_service_search(wiced_bt_sdp_discovery_db_t *p_db);
 
 /**
  *
@@ -425,7 +426,7 @@ wiced_bool_t wiced_bt_sdp_cancel_service_search (wiced_bt_sdp_discovery_db_t *p_
  * @return          TRUE if discovery started, FALSE if failed.
  *
  **/
-wiced_bool_t wiced_bt_sdp_service_search_request (uint8_t *p_bd_addr,
+wiced_bool_t wiced_bt_sdp_service_search_request(uint8_t *p_bd_addr,
                                                  wiced_bt_sdp_discovery_db_t *p_db,
                                                  wiced_bt_sdp_discovery_complete_cback_t *p_cb);
 
@@ -443,10 +444,9 @@ wiced_bool_t wiced_bt_sdp_service_search_request (uint8_t *p_bd_addr,
  * @return          TRUE if discovery started, FALSE if failed.
  *
  **/
-wiced_bool_t wiced_bt_sdp_service_search_attribute_request (uint8_t *p_bd_addr,
-                                                          wiced_bt_sdp_discovery_db_t *p_db,
-                                                          wiced_bt_sdp_discovery_complete_cback_t *p_cb);
-
+wiced_bool_t wiced_bt_sdp_service_search_attribute_request(uint8_t *p_bd_addr,
+                                                           wiced_bt_sdp_discovery_db_t *p_db,
+                                                           wiced_bt_sdp_discovery_complete_cback_t *p_cb);
 
 
 /* API of utilities to find data in the local discovery database */
@@ -465,9 +465,9 @@ wiced_bool_t wiced_bt_sdp_service_search_attribute_request (uint8_t *p_bd_addr,
  * @return          Pointer to matching record, or NULL
  *
  **/
-wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_attribute_in_db (wiced_bt_sdp_discovery_db_t *p_db,
-                                                     uint16_t attr_id,
-                                                     wiced_bt_sdp_discovery_record_t *p_start_rec);
+wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_attribute_in_db(wiced_bt_sdp_discovery_db_t *p_db,
+                                                                   uint16_t attr_id,
+                                                                   wiced_bt_sdp_discovery_record_t *p_start_rec);
 
 
 /**
@@ -482,8 +482,8 @@ wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_attribute_in_db (wiced_bt_sdp
  * @return          Pointer to matching attribute entry, or NULL
  *
  **/
-wiced_bt_sdp_discovery_attribute_t *wiced_bt_sdp_find_attribute_in_rec (wiced_bt_sdp_discovery_record_t *p_rec,
-                                                       uint16_t attr_id);
+wiced_bt_sdp_discovery_attribute_t *wiced_bt_sdp_find_attribute_in_rec(wiced_bt_sdp_discovery_record_t *p_rec,
+                                                                       uint16_t attr_id);
 
 
 /**
@@ -500,9 +500,9 @@ wiced_bt_sdp_discovery_attribute_t *wiced_bt_sdp_find_attribute_in_rec (wiced_bt
  * @return          Pointer to matching record, or NULL
  *
  **/
-wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_service_in_db (wiced_bt_sdp_discovery_db_t *p_db,
-                                                   uint16_t service_uuid,
-                                                   wiced_bt_sdp_discovery_record_t *p_start_rec);
+wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_service_in_db(wiced_bt_sdp_discovery_db_t *p_db,
+                                                                 uint16_t service_uuid,
+                                                                 wiced_bt_sdp_discovery_record_t *p_start_rec);
 
 
 /**
@@ -519,9 +519,9 @@ wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_service_in_db (wiced_bt_sdp_d
  * @return          Pointer to matching record, or NULL
  *
  **/
-wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_service_uuid_in_db (wiced_bt_sdp_discovery_db_t *p_db,
-                                                       wiced_bt_uuid_t *p_uuid,
-                                                       wiced_bt_sdp_discovery_record_t *p_start_rec);
+wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_service_uuid_in_db(wiced_bt_sdp_discovery_db_t *p_db,
+                                                                      wiced_bt_uuid_t *p_uuid,
+                                                                      wiced_bt_sdp_discovery_record_t *p_start_rec);
 
 
 /**
@@ -537,9 +537,9 @@ wiced_bt_sdp_discovery_record_t *wiced_bt_sdp_find_service_uuid_in_db (wiced_bt_
  * @return          TRUE if found, else FALSE
  *
  **/
-wiced_bool_t wiced_bt_sdp_find_protocol_list_elem_in_rec (wiced_bt_sdp_discovery_record_t *p_rec,
-                                                      uint16_t layer_uuid,
-                                                      wiced_bt_sdp_protocol_elem_t *p_elem);
+wiced_bool_t wiced_bt_sdp_find_protocol_list_elem_in_rec(wiced_bt_sdp_discovery_record_t *p_rec,
+                                                         uint16_t layer_uuid,
+                                                         wiced_bt_sdp_protocol_elem_t *p_elem);
 
 /**
  *
@@ -554,9 +554,9 @@ wiced_bool_t wiced_bt_sdp_find_protocol_list_elem_in_rec (wiced_bt_sdp_discovery
  * @return          TRUE if found, else FALSE
  *
  **/
-wiced_bool_t wiced_bt_sdp_find_protocol_lists_elem_in_rec (wiced_bt_sdp_discovery_record_t *p_rec,
-                                                       uint16_t layer_uuid,
-                                                       wiced_bt_sdp_protocol_elem_t *p_elem);
+wiced_bool_t wiced_bt_sdp_find_protocol_lists_elem_in_rec(wiced_bt_sdp_discovery_record_t *p_rec,
+                                                          uint16_t layer_uuid,
+                                                          wiced_bt_sdp_protocol_elem_t *p_elem);
 
 /**
  *
@@ -571,9 +571,9 @@ wiced_bool_t wiced_bt_sdp_find_protocol_lists_elem_in_rec (wiced_bt_sdp_discover
  * @return          TRUE if found, FALSE if not
  *
  **/
-wiced_bool_t wiced_bt_sdp_find_profile_version_in_rec (wiced_bt_sdp_discovery_record_t *p_rec,
-                                                    uint16_t profile_uuid,
-                                                    uint16_t *p_version);
+wiced_bool_t wiced_bt_sdp_find_profile_version_in_rec(wiced_bt_sdp_discovery_record_t *p_rec,
+                                                      uint16_t profile_uuid,
+                                                      uint16_t *p_version);
 
 /**
  *
@@ -595,3 +595,5 @@ wiced_bool_t wiced_bt_sdp_find_service_uuid_in_rec(wiced_bt_sdp_discovery_record
 
 /**@} sdp_api_functions */
 /**@} sdp */
+
+#endif // WICED_BT_SDP_H

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -36,7 +36,9 @@
  * Runtime Bluetooth configuration parameters
  *
  */
-#pragma once
+#ifndef WICED_BT_CFG_H
+#define WICED_BT_CFG_H
+
 #include "data_types.h"
 #include "wiced_bt_types.h"
 #include "wiced_bt_dev.h"
@@ -97,134 +99,132 @@ extern "C" {
 /** BR/EDR scan settings */
 typedef struct
 {
-    uint16_t                            inquiry_scan_type;              /**< Inquiry scan type (BTM_SCAN_TYPE_STANDARD or BTM_SCAN_TYPE_INTERLACED) */
-    uint16_t                            inquiry_scan_interval;          /**< Inquiry scan interval (default: WICED_BT_CFG_DEFAULT_INQUIRY_SCAN_INTERVAL) */
-    uint16_t                            inquiry_scan_window;            /**< Inquiry scan window (default: WICED_BT_CFG_DEFAULT_INQUIRY_SCAN_WINDOW) */
+    uint16_t inquiry_scan_type;                                         /**< Inquiry scan type (BTM_SCAN_TYPE_STANDARD or BTM_SCAN_TYPE_INTERLACED) */
+    uint16_t inquiry_scan_interval;                                     /**< Inquiry scan interval (default: WICED_BT_CFG_DEFAULT_INQUIRY_SCAN_INTERVAL) */
+    uint16_t inquiry_scan_window;                                       /**< Inquiry scan window (default: WICED_BT_CFG_DEFAULT_INQUIRY_SCAN_WINDOW) */
 
-    uint16_t                            page_scan_type;                 /**< Page scan type (BTM_SCAN_TYPE_STANDARD or BTM_SCAN_TYPE_INTERLACED) */
-    uint16_t                            page_scan_interval;             /**< Page scan interval (default: WICED_BT_CFG_DEFAULT_PAGE_SCAN_INTERVAL) */
-    uint16_t                            page_scan_window;               /**< Page scan window (default: WICED_BT_CFG_DEFAULT_PAGE_SCAN_WINDOW) */
+    uint16_t page_scan_type;                                            /**< Page scan type (BTM_SCAN_TYPE_STANDARD or BTM_SCAN_TYPE_INTERLACED) */
+    uint16_t page_scan_interval;                                        /**< Page scan interval (default: WICED_BT_CFG_DEFAULT_PAGE_SCAN_INTERVAL) */
+    uint16_t page_scan_window;                                          /**< Page scan window (default: WICED_BT_CFG_DEFAULT_PAGE_SCAN_WINDOW) */
 } wiced_bt_cfg_br_edr_scan_settings_t;
 extern const wiced_bt_cfg_br_edr_scan_settings_t *wiced_bt_cfg_br_edr_scan_settings;  /**< BR/EDR Scan settings (NULL to use defaults) */
 
 /** LE Scan settings */
 typedef struct
 {
-    wiced_bt_ble_scan_mode_t            scan_mode;                          /**< LE scan mode (BTM_BLE_SCAN_MODE_PASSIVE, BTM_BLE_SCAN_MODE_ACTIVE) */
+    wiced_bt_ble_scan_mode_t scan_mode;                                     /**< LE scan mode (BTM_BLE_SCAN_MODE_PASSIVE, BTM_BLE_SCAN_MODE_ACTIVE) */
 
     /* Advertisement scan configuration */
-    uint16_t                            high_duty_scan_interval;            /**< High duty scan interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_SCAN_INTERVAL) */
-    uint16_t                            high_duty_scan_window;              /**< High duty scan window (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_SCAN_WINDOW) */
-    uint16_t                            high_duty_scan_duration;            /**< High duty scan duration in seconds (0 for infinite) */
+    uint16_t high_duty_scan_interval;                                       /**< High duty scan interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_SCAN_INTERVAL) */
+    uint16_t high_duty_scan_window;                                         /**< High duty scan window (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_SCAN_WINDOW) */
+    uint16_t high_duty_scan_duration;                                       /**< High duty scan duration in seconds (0 for infinite) */
 
-    uint16_t                            low_duty_scan_interval;             /**< Low duty scan interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_SCAN_INTERVAL) */
-    uint16_t                            low_duty_scan_window;               /**< Low duty scan window (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_SCAN_WINDOW) */
-    uint16_t                            low_duty_scan_duration;             /**< Low duty scan duration in seconds (0 for infinite) */
+    uint16_t low_duty_scan_interval;                                        /**< Low duty scan interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_SCAN_INTERVAL) */
+    uint16_t low_duty_scan_window;                                          /**< Low duty scan window (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_SCAN_WINDOW) */
+    uint16_t low_duty_scan_duration;                                        /**< Low duty scan duration in seconds (0 for infinite) */
 
     /* Connection scan configuration */
-    uint16_t                            high_duty_conn_scan_interval;       /**< High duty cycle connection scan interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_CONN_SCAN_INTERVAL) */
-    uint16_t                            high_duty_conn_scan_window;         /**< High duty cycle connection scan window (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_CONN_SCAN_WINDOW) */
-    uint16_t                            high_duty_conn_duration;            /**< High duty cycle connection duration in seconds (0 for infinite) */
+    uint16_t high_duty_conn_scan_interval;                                  /**< High duty cycle connection scan interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_CONN_SCAN_INTERVAL) */
+    uint16_t high_duty_conn_scan_window;                                    /**< High duty cycle connection scan window (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_CONN_SCAN_WINDOW) */
+    uint16_t high_duty_conn_duration;                                       /**< High duty cycle connection duration in seconds (0 for infinite) */
 
-    uint16_t                            low_duty_conn_scan_interval;        /**< Low duty cycle connection scan interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_CONN_SCAN_INTERVAL) */
-    uint16_t                            low_duty_conn_scan_window;          /**< Low duty cycle connection scan window (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_CONN_SCAN_WINDOW) */
-    uint16_t                            low_duty_conn_duration;             /**< Low duty cycle connection duration in seconds (0 for infinite) */
+    uint16_t low_duty_conn_scan_interval;                                   /**< Low duty cycle connection scan interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_CONN_SCAN_INTERVAL) */
+    uint16_t low_duty_conn_scan_window;                                     /**< Low duty cycle connection scan window (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_CONN_SCAN_WINDOW) */
+    uint16_t low_duty_conn_duration;                                        /**< Low duty cycle connection duration in seconds (0 for infinite) */
 
     /* Connection configuration */
-    uint16_t                            conn_min_interval;                  /**< Minimum connection interval (default: WICED_BT_CFG_DEFAULT_CONN_MIN_INTERVAL) */
-    uint16_t                            conn_max_interval;                  /**< Maximum connection interval (default: WICED_BT_CFG_DEFAULT_CONN_MAX_INTERVAL) */
-    uint16_t                            conn_latency;                       /**< Connection latency (default: WICED_BT_CFG_DEFAULT_CONN_LATENCY) */
-    uint16_t                            conn_supervision_timeout;           /**< Connection link supervision timeout (default: WICED_BT_CFG_DEFAULT_ CONN_SUPERVISION_TIMEOUT) */
+    uint16_t conn_min_interval;                                             /**< Minimum connection interval (default: WICED_BT_CFG_DEFAULT_CONN_MIN_INTERVAL) */
+    uint16_t conn_max_interval;                                             /**< Maximum connection interval (default: WICED_BT_CFG_DEFAULT_CONN_MAX_INTERVAL) */
+    uint16_t conn_latency;                                                  /**< Connection latency (default: WICED_BT_CFG_DEFAULT_CONN_LATENCY) */
+    uint16_t conn_supervision_timeout;                                      /**< Connection link supervision timeout (default: WICED_BT_CFG_DEFAULT_ CONN_SUPERVISION_TIMEOUT) */
 } wiced_bt_cfg_ble_scan_settings_t;
 
 /** Advertising settings */
 typedef struct
 {
-    wiced_bt_ble_advert_chnl_map_t      channel_map;                        /**< Advertising channel map (mask of BTM_BLE_ADVERT_CHNL_37, BTM_BLE_ADVERT_CHNL_38, BTM_BLE_ADVERT_CHNL_39) */
+    wiced_bt_ble_advert_chnl_map_t channel_map;                             /**< Advertising channel map (mask of BTM_BLE_ADVERT_CHNL_37, BTM_BLE_ADVERT_CHNL_38, BTM_BLE_ADVERT_CHNL_39) */
 
-    uint16_t                            high_duty_min_interval;             /**< High duty undirected connectable advert minimum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_ADV_MIN_INTERVAL) */
-    uint16_t                            high_duty_max_interval;             /**< High duty undirected connectable advert maximum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_ADV_MAX_INTERVAL) */
-    uint16_t                            high_duty_duration;                 /**< High duty advertising duration in seconds (0 for infinite) */
+    uint16_t high_duty_min_interval;                                        /**< High duty undirected connectable advert minimum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_ADV_MIN_INTERVAL) */
+    uint16_t high_duty_max_interval;                                        /**< High duty undirected connectable advert maximum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_ADV_MAX_INTERVAL) */
+    uint16_t high_duty_duration;                                            /**< High duty advertising duration in seconds (0 for infinite) */
 
-    uint16_t                            low_duty_min_interval;              /**< Low duty undirected connectable advert minimum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_ADV_MIN_INTERVAL) */
-    uint16_t                            low_duty_max_interval;              /**< Low duty undirected connectable advert maximum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_ADV_MAX_INTERVAL) */
-    uint16_t                            low_duty_duration;                  /**< Low duty advertising duration in seconds (0 for infinite) */
+    uint16_t low_duty_min_interval;                                         /**< Low duty undirected connectable advert minimum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_ADV_MIN_INTERVAL) */
+    uint16_t low_duty_max_interval;                                         /**< Low duty undirected connectable advert maximum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_ADV_MAX_INTERVAL) */
+    uint16_t low_duty_duration;                                             /**< Low duty advertising duration in seconds (0 for infinite) */
 
-    uint16_t                            high_duty_directed_min_interval;    /**< high duty directed adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_DIRECTED_ADV_MIN_INTERVAL) */
-    uint16_t                            high_duty_directed_max_interval;    /**< high duty directed adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_DIRECTED_ADV_MAX_INTERVAL) */
+    uint16_t high_duty_directed_min_interval;                               /**< high duty directed adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_DIRECTED_ADV_MIN_INTERVAL) */
+    uint16_t high_duty_directed_max_interval;                               /**< high duty directed adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_DIRECTED_ADV_MAX_INTERVAL) */
 
-    uint16_t                            low_duty_directed_min_interval;     /**< Low duty directed adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_DIRECTED_ADV_MIN_INTERVAL) */
-    uint16_t                            low_duty_directed_max_interval;     /**< Low duty directed adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_DIRECTED_ADV_MAX_INTERVAL) */
-    uint16_t                            low_duty_directed_duration;         /**< Low duty directed advertising duration in seconds (0 for infinite) */
+    uint16_t low_duty_directed_min_interval;                                /**< Low duty directed adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_DIRECTED_ADV_MIN_INTERVAL) */
+    uint16_t low_duty_directed_max_interval;                                /**< Low duty directed adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_DIRECTED_ADV_MAX_INTERVAL) */
+    uint16_t low_duty_directed_duration;                                    /**< Low duty directed advertising duration in seconds (0 for infinite) */
 
-    uint16_t                            high_duty_nonconn_min_interval;     /**< High duty non-connectable adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_NONCONN_ADV_MIN_INTERVAL) */
-    uint16_t                            high_duty_nonconn_max_interval;     /**< High duty non-connectable adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_NONCONN_ADV_MAX_INTERVAL) */
-    uint16_t                            high_duty_nonconn_duration;         /**< High duty non-connectable advertising duration in seconds (0 for infinite) */
+    uint16_t high_duty_nonconn_min_interval;                                /**< High duty non-connectable adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_NONCONN_ADV_MIN_INTERVAL) */
+    uint16_t high_duty_nonconn_max_interval;                                /**< High duty non-connectable adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_HIGH_DUTY_NONCONN_ADV_MAX_INTERVAL) */
+    uint16_t high_duty_nonconn_duration;                                    /**< High duty non-connectable advertising duration in seconds (0 for infinite) */
 
-    uint16_t                            low_duty_nonconn_min_interval;      /**< Low duty non-connectable adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_NONCONN_ADV_MIN_INTERVAL) */
-    uint16_t                            low_duty_nonconn_max_interval;      /**< Low duty non-connectable adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_NONCONN_ADV_MAX_INTERVAL) */
-    uint16_t                            low_duty_nonconn_duration;          /**< Low duty non-connectable advertising duration in seconds (0 for infinite) */
-
+    uint16_t low_duty_nonconn_min_interval;                                 /**< Low duty non-connectable adv minimum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_NONCONN_ADV_MIN_INTERVAL) */
+    uint16_t low_duty_nonconn_max_interval;                                 /**< Low duty non-connectable adv maximum advertising interval (default: WICED_BT_CFG_DEFAULT_LOW_DUTY_NONCONN_ADV_MAX_INTERVAL) */
+    uint16_t low_duty_nonconn_duration;                                     /**< Low duty non-connectable advertising duration in seconds (0 for infinite) */
 } wiced_bt_cfg_ble_advert_settings_t;
 
 /** GATT settings */
 typedef struct
 {
-    wiced_bt_gatt_appearance_t          appearance;                     /**< GATT appearance (see #gatt_appearance_e) */
-    uint8_t                             client_max_links;               /**< Client config: maximum number of servers that local client can connect to  */
-    uint8_t                             server_max_links;               /**< Server config: maximum number of remote clients connections allowed by the local */
-    uint16_t                            max_attr_len;                   /**< Maximum attribute length; gki_cfg must have a corresponding buffer pool that can hold this length */
-    uint16_t                            max_mtu_size;                   /**< Maximum MTU size for GATT connections, should be between 23 and (max_attr_len + 5) */
+    wiced_bt_gatt_appearance_t appearance;                              /**< GATT appearance (see #gatt_appearance_e) */
+    uint8_t                    client_max_links;                        /**< Client config: maximum number of servers that local client can connect to  */
+    uint8_t                    server_max_links;                        /**< Server config: maximum number of remote clients connections allowed by the local */
+    uint16_t                   max_attr_len;                            /**< Maximum attribute length; gki_cfg must have a corresponding buffer pool that can hold this length */
+    uint16_t                   max_mtu_size;                            /**< Maximum MTU size for GATT connections, should be between 23 and (max_attr_len + 5) */
 } wiced_bt_cfg_gatt_settings_t;
 
 /** Settings for application managed L2CAP protocols (optional) */
 typedef struct
 {
-    uint8_t                             max_links;                      /**< Maximum number of application-managed l2cap links (BR/EDR and LE) */
+    uint8_t max_links;                                                  /**< Maximum number of application-managed l2cap links (BR/EDR and LE) */
 
     /* BR EDR l2cap configuration */
-    uint8_t                             max_psm;                        /**< Maximum number of application-managed BR/EDR PSMs */
-    uint8_t                             max_channels;                   /**< Maximum number of application-managed BR/EDR channels  */
+    uint8_t max_psm;                                                    /**< Maximum number of application-managed BR/EDR PSMs */
+    uint8_t max_channels;                                               /**< Maximum number of application-managed BR/EDR channels  */
 
     /* LE L2cap connection-oriented channels configuration */
-    uint8_t                             max_le_psm;                     /**< Maximum number of application-managed LE PSMs */
-    uint8_t                             max_le_channels;                /**< Maximum number of application-managed LE channels */
+    uint8_t max_le_psm;                                                 /**< Maximum number of application-managed LE PSMs */
+    uint8_t max_le_channels;                                            /**< Maximum number of application-managed LE channels */
 
     /* LE L2cap fixed channel configuration */
-    uint8_t                             max_le_l2cap_fixed_channels;    /**< Maximum number of application managed fixed channels supported (in addition to mandatory channels 4, 5 and 6). > */
-
+    uint8_t max_le_l2cap_fixed_channels;                                /**< Maximum number of application managed fixed channels supported (in addition to mandatory channels 4, 5 and 6). > */
 } wiced_bt_cfg_l2cap_application_t;
 
 /** Audio/Video Distribution configuration */
 typedef struct
 {
-    uint8_t                             max_links;                      /**< Maximum simultaneous audio/video links */
-    uint8_t                             max_seps;                       /**< Maximum number of stream end points */
+    uint8_t max_links;                                                  /**< Maximum simultaneous audio/video links */
+    uint8_t max_seps;                                                   /**< Maximum number of stream end points */
 } wiced_bt_cfg_avdt_t;
 
 /** Audio/Video Remote Control configuration */
 typedef struct
 {
-    uint8_t                             roles;                         /**< 1 if AVRC_CONN_ACCEPTOR is supported */
-    uint8_t                             max_links;                     /**< Maximum simultaneous remote control links */
+    uint8_t roles;                                                     /**< 1 if AVRC_CONN_ACCEPTOR is supported */
+    uint8_t max_links;                                                 /**< Maximum simultaneous remote control links */
 } wiced_bt_cfg_avrc_t;
 
 
 /* RFCOMM configuration */
 typedef struct
 {
-    uint8_t                             max_links;                      /**< Maximum number of simultaneous connected remote devices*/
-    uint8_t                             max_ports;                      /**< Maximum number of simultaneous RFCOMM ports */
+    uint8_t max_links;                                                  /**< Maximum number of simultaneous connected remote devices*/
+    uint8_t max_ports;                                                  /**< Maximum number of simultaneous RFCOMM ports */
 } wiced_bt_cfg_rfcomm_t;
 
 
 /** Bluetooth stack configuration */
 typedef struct
 {
-    uint8_t                             *device_name;                   /**< Local device name (NULL terminated) */
-    wiced_bt_dev_class_t                device_class;                   /**< Local device class */
-    uint8_t                             security_requirement_mask;      /**< Security requirements mask (BTM_SEC_NONE, or combination of BTM_SEC_IN_AUTHENTICATE, BTM_SEC_OUT_AUTHENTICATE, BTM_SEC_ENCRYPT (see #wiced_bt_sec_level_e)) */
-    uint8_t                             max_simultaneous_links;         /**< Maximum number simultaneous links to different devices. This information is used for memory allocation, limiting number of active connections is left up to applications. */
+    uint8_t             *device_name;                                   /**< Local device name (NULL terminated) */
+    wiced_bt_dev_class_t device_class;                                  /**< Local device class */
+    uint8_t              security_requirement_mask;                     /**< Security requirements mask (BTM_SEC_NONE, or combination of BTM_SEC_IN_AUTHENTICATE, BTM_SEC_OUT_AUTHENTICATE, BTM_SEC_ENCRYPT (see #wiced_bt_sec_level_e)) */
+    uint8_t              max_simultaneous_links;                        /**< Maximum number simultaneous links to different devices. This information is used for memory allocation, limiting number of active connections is left up to applications. */
 
     /* Scan and advertisement configuration */
     wiced_bt_cfg_br_edr_scan_settings_t br_edr_scan_cfg;                /**< BR/EDR scan settings */
@@ -232,34 +232,34 @@ typedef struct
     wiced_bt_cfg_ble_advert_settings_t  ble_advert_cfg;                 /**< LE advertisement settings */
 
     /* GATT configuration */
-    wiced_bt_cfg_gatt_settings_t        gatt_cfg;                       /**< GATT settings */
+    wiced_bt_cfg_gatt_settings_t gatt_cfg;                              /**< GATT settings */
 
     /* RFCOMM configuration */
-    wiced_bt_cfg_rfcomm_t               rfcomm_cfg;                     /**< RFCOMM settings */
+    wiced_bt_cfg_rfcomm_t rfcomm_cfg;                                   /**< RFCOMM settings */
 
     /* Application managed l2cap protocol configuration */
-    wiced_bt_cfg_l2cap_application_t    l2cap_application;              /**< Application managed l2cap protocol configuration */
+    wiced_bt_cfg_l2cap_application_t l2cap_application;                 /**< Application managed l2cap protocol configuration */
 
     /* Audio/Video Distribution configuration */
-    wiced_bt_cfg_avdt_t                 avdt_cfg;                       /**< Audio/Video Distribution configuration */
+    wiced_bt_cfg_avdt_t avdt_cfg;                                       /**< Audio/Video Distribution configuration */
 
     /* Audio/Video Remote Control configuration */
-    wiced_bt_cfg_avrc_t                 avrc_cfg;                       /**< Audio/Video Remote Control configuration */
+    wiced_bt_cfg_avrc_t avrc_cfg;                                       /**< Audio/Video Remote Control configuration */
 
     /* LE Address Resolution DB size  */
-    uint8_t                             addr_resolution_db_size;        /**< LE Address Resolution DB settings - effective only for pre 4.2 controller*/
+    uint8_t addr_resolution_db_size;                                    /**< LE Address Resolution DB settings - effective only for pre 4.2 controller*/
 
     /* Maximum number of buffer pools */
-    uint8_t                             max_number_of_buffer_pools;     /**< Maximum number of buffer pools in p_btm_cfg_buf_pools and by wiced_create_pool */
+    uint8_t max_number_of_buffer_pools;                                 /**< Maximum number of buffer pools in p_btm_cfg_buf_pools and by wiced_create_pool */
 
     /* Interval of  random address refreshing */
-    uint16_t                            rpa_refresh_timeout;            /**< Interval of  random address refreshing - secs */
+    uint16_t rpa_refresh_timeout;                                       /**< Interval of  random address refreshing - secs */
 
     /* LE Filter Accept List size */
-    uint8_t                             ble_filter_accept_list_size;            /**< Maximum number of Filter Accept List devices allowed. Cannot be more than 128 */
+    uint8_t ble_filter_accept_list_size;                                /**< Maximum number of Filter Accept List devices allowed. Cannot be more than 128 */
 
     /* default LE power level */
-    int8_t                              default_ble_power_level;        /**< Default LE power level, Refer lm_TxPwrTable table for the power range*/
+    int8_t default_ble_power_level;                                     /**< Default LE power level, Refer lm_TxPwrTable table for the power range*/
 } wiced_bt_cfg_settings_t;
 
 /*****************************************************************************
@@ -276,15 +276,16 @@ typedef struct
  *
  ****************************************************************************/
 #define WICED_BT_CFG_NUM_BUF_POOLS          (4)                         /**< Wiced_bt stack uses 4 pools */
-typedef struct {
-    uint16_t                            buf_size;                       /**< size of buffers in the pool */
-    uint16_t                            buf_count;                      /**< number of buffers in the pool */
+typedef struct
+{
+    uint16_t buf_size;                                                  /**< size of buffers in the pool */
+    uint16_t buf_count;                                                 /**< number of buffers in the pool */
 } wiced_bt_cfg_buf_pool_t;
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-
-
 /**@} wiced_bt_cfg */
+
+#endif // WICED_BT_CFG_H

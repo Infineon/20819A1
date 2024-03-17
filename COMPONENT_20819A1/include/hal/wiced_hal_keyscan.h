@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,32 +32,31 @@
  */
 
 /** @file
-*
-* List of parameters and defined functions needed to access the
-* Key Scan driver.
-*
-*/
+ *
+ * List of parameters and defined functions needed to access the
+ * Key Scan driver.
+ *
+ */
 
-#ifndef __WICED_KEYSCAN_H__
-#define __WICED_KEYSCAN_H__
+#ifndef WICED_KEYSCAN_H__
+#define WICED_KEYSCAN_H__
 
 #include "brcm_fw_types.h"
 #include "keyscan.h"
 #include "wiced.h"
 
 
-
 /**  \addtogroup keyscan Keyscan Interface
  *  \ingroup HardwareDrivers
-*/
+ */
 /*! @{ */
 /**
-* Defines the keyscan driver. The keyscan driver
-* provides the status and control for the keyscan driver. It provides the
-* keyEvents to the interface, maintains the queue behind it. It also supports
-* keyscanning turning on or off.
-*
-*/
+ * Defines the keyscan driver. The keyscan driver
+ * provides the status and control for the keyscan driver. It provides the
+ * keyEvents to the interface, maintains the queue behind it. It also supports
+ * keyscanning turning on or off.
+ *
+ */
 
 ///////////////////////////////////////////////////////////////////////////////
 /// configure Keyscan matrix row and column
@@ -120,7 +119,7 @@ void wiced_hal_keyscan_turnOff(void);
 ///
 ///\return - none
 ////////////////////////////////////////////////////////////////
-void wiced_hal_keyscan_register_for_event_notification(void (*userfn)(void*), void* userdata);
+void wiced_hal_keyscan_register_for_event_notification(void (*userfn)(void *), void *userdata);
 
 /////////////////////////////////////////////////////////////////////
 /// Enable/disable keyscan ghost key detection.
@@ -171,13 +170,13 @@ uint8_t wiced_hal_keyscan_get_key_pressed_count(void);
 
 /*! @{ */
 /**
-* Defines a keyscan driver.
-*
-* The keyscan interface is practically defined as a queue from the consumer's
-* perspective. Key up/down events are seen as a stream coming from the driver.
-* In addition the interface provides the user with the ability to reset the
-* HW as well as turn key scanning on/off.
-*/
+ * Defines a keyscan driver.
+ *
+ * The keyscan interface is practically defined as a queue from the consumer's
+ * perspective. Key up/down events are seen as a stream coming from the driver.
+ * In addition the interface provides the user with the ability to reset the
+ * HW as well as turn key scanning on/off.
+ */
 /////////////////////////////////////////////////////////////////////
 /// Check if there are any pending events in the firmware FIFO
 ///
@@ -211,4 +210,4 @@ void wiced_hal_keyscan_flush_HW_events(void);
 
 /* @} */
 
-#endif
+#endif // ifndef WICED_KEYSCAN_H__

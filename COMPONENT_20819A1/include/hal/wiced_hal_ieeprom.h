@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,55 +32,55 @@
  */
 
 /** @file
-*
-* List of parameters and defined functions needed to access the
-* Inter-Integrated Circuit (I2C, IIC) Electrically Erasable
-* Programmable Read-Only Memory (EEPROM) interface driver.
-*
-*/
+ *
+ * List of parameters and defined functions needed to access the
+ * Inter-Integrated Circuit (I2C, IIC) Electrically Erasable
+ * Programmable Read-Only Memory (EEPROM) interface driver.
+ *
+ */
 
-#ifndef __WICED_I2CEEPROM_H__
-#define __WICED_I2CEEPROM_H__
+#ifndef WICED_I2CEEPROM_H__
+#define WICED_I2CEEPROM_H__
 
 #include "brcm_fw_types.h"
 
 /**  \addtogroup I2CEEPROMInterfaceDriver I2C EEPROM Interface
-* \ingroup I2CDriver
-* @{
-*
-* Defines a driver for the I2C EEPROM interface. The driver is responsible for
-* interfacing with an EEPROM module via the I2C bus, with its main purpose
-* being data handling operations. For instance, any unused space (from the
-* system partition) can be used for any purpose to store and access data. It
-* is a handy way for an app to save information to non-volatile storage.
-*
-* Similar to the Serial Flash Interface Driver, this driver includes checks to
-* ensure safe data handling operation--it will not allow any write operations
-* to take place within active sections (i.e., sections that the system
-* currently uses for boot, etc). Note that read operations are unrestricted.
-* Please reference the Kit Guide or HW User Manual for your device for more
-* information regarding these active sections, their importance, and what roles
-* they play in the system.
-*
-*/
+ * \ingroup I2CDriver
+ * @{
+ *
+ * Defines a driver for the I2C EEPROM interface. The driver is responsible for
+ * interfacing with an EEPROM module via the I2C bus, with its main purpose
+ * being data handling operations. For instance, any unused space (from the
+ * system partition) can be used for any purpose to store and access data. It
+ * is a handy way for an app to save information to non-volatile storage.
+ *
+ * Similar to the Serial Flash Interface Driver, this driver includes checks to
+ * ensure safe data handling operation--it will not allow any write operations
+ * to take place within active sections (i.e., sections that the system
+ * currently uses for boot, etc). Note that read operations are unrestricted.
+ * Please reference the Kit Guide or HW User Manual for your device for more
+ * information regarding these active sections, their importance, and what roles
+ * they play in the system.
+ *
+ */
 
 /******************************************************************************
-*** Parameters.
-***
-*** The following parameters are used to configure the driver or define
-*** return status. They are not modifiable.
-******************************************************************************/
+ *** Parameters.
+ ***
+ *** The following parameters are used to configure the driver or define
+ *** return status. They are not modifiable.
+ ******************************************************************************/
 
 /**
-// Status for EEPROM operations.
-#define DRV_STATUS_SUCCESS           0x00
-#define DRV_STATUS_NO_ACK            0x01
-#define DRV_STATUS_INVALID_ADDR      0xFF
-**/
+ * Status for EEPROM operations.
+ #define DRV_STATUS_SUCCESS           0x00
+ #define DRV_STATUS_NO_ACK            0x01
+ #define DRV_STATUS_INVALID_ADDR      0xFF
+ */
 
 /******************************************************************************
-*** Function prototypes.
-******************************************************************************/
+ *** Function prototypes.
+ ******************************************************************************/
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Initialize the I2C lines and low-level EEPROM Driver.
@@ -115,7 +115,7 @@ void wiced_hal_ieeprom_set_size(UINT32 size);
 ///////////////////////////////////////////////////////////////////////////////
 UINT8 wiced_hal_ieeprom_read(UINT16 eepromAddress,
                              UINT16 readCount,
-                             UINT8* buffer,
+                             UINT8 *buffer,
                              UINT8  deviceAddress);
 
 
@@ -139,9 +139,9 @@ UINT8 wiced_hal_ieeprom_read(UINT16 eepromAddress,
 ///////////////////////////////////////////////////////////////////////////////
 UINT8 wiced_hal_ieeprom_write(UINT16 eepromAddress,
                               UINT16 writeCount,
-                              UINT8* buffer,
+                              UINT8 *buffer,
                               UINT8  deviceAddress);
 
 /** @} */
 
-#endif // __WICED_I2CEEPROM_H__
+#endif // WICED_I2CEEPROM_H__

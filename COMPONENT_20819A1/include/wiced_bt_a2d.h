@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -36,7 +36,8 @@
  * Bluetooth A2DP Application Programming Interface
  *
  */
-#pragma once
+#ifndef WICED_BT_A2D_H
+#define WICED_BT_A2D_H
 
 #include "wiced_bt_sdp.h"
 /**
@@ -132,21 +133,21 @@ typedef uint8_t wiced_bt_a2d_status_t;
 /**< SDP record information from the server to initialize discovery database */
 typedef struct
 {
-    uint32_t                       db_len;             /**< Length, in bytes, of the discovery database */
-    uint16_t                       num_attr;           /**< The number of attributes in p_attrs */
-    wiced_bt_sdp_discovery_db_t    *p_db;              /**< Pointer to the discovery database */
-    uint16_t                       *p_attrs;           /**< Attributes filter, Set by A2DP API filter if NULL, else input is taken as filter*/
+    uint32_t                     db_len;               /**< Length, in bytes, of the discovery database */
+    uint16_t                     num_attr;             /**< The number of attributes in p_attrs */
+    wiced_bt_sdp_discovery_db_t *p_db;                 /**< Pointer to the discovery database */
+    uint16_t                    *p_attrs;              /**< Attributes filter, Set by A2DP API filter if NULL, else input is taken as filter*/
 } wiced_bt_a2d_sdp_db_params_t;
 
 /**< This data type is used in tA2D_FIND_CBACK to report the result of the SDP discovery process. */
 typedef struct
 {
-    uint16_t  service_len;         /**< Length, in bytes, of the service name */
-    uint16_t  provider_len;        /**< Length, in bytes, of the provider name */
-    char *    p_service_name;      /**< Pointer to the service name, service_len parameter to be used to copy the string*/
-    char *    p_provider_name;     /**< Pointer to the provider name,service_len parameter to be used to copy the string */
-    uint16_t  features;            /**< Profile supported features */
-    uint16_t  avdt_version;        /**< AVDTP protocol version */
+    uint16_t service_len;          /**< Length, in bytes, of the service name */
+    uint16_t provider_len;         /**< Length, in bytes, of the provider name */
+    char    *p_service_name;       /**< Pointer to the service name, service_len parameter to be used to copy the string*/
+    char    *p_provider_name;      /**< Pointer to the provider name,service_len parameter to be used to copy the string */
+    uint16_t features;             /**< Profile supported features */
+    uint16_t avdt_version;         /**< AVDTP protocol version */
 } wiced_bt_a2d_service_t;
 
 /**
@@ -161,10 +162,10 @@ typedef struct
  * @param p_service            : Contains result of SDP discovery process
  *
  * @return Status of event handling
-*/
+ */
 
 /**< This is the callback to notify the result of the SDP discovery process. */
-typedef void (wiced_bt_a2d_find_cback)(wiced_bool_t found, wiced_bt_a2d_service_t* p_service);
+typedef void (wiced_bt_a2d_find_cback)(wiced_bool_t found, wiced_bt_a2d_service_t *p_service);
 
 /** @} wicedbt_av_a2d_helper */
 
@@ -205,7 +206,7 @@ extern "C"
  *                  the input parameter is 0xff.
  *
  */
-uint8_t wiced_bt_a2d_set_trace_level (uint8_t new_level);
+uint8_t wiced_bt_a2d_set_trace_level(uint8_t new_level);
 
 /**
  * Function         wiced_bt_a2d_bits_set
@@ -238,10 +239,12 @@ uint8_t wiced_bt_a2d_bits_set(uint8_t mask);
  * @return @link wiced_bt_a2d_status_t @endlink
  *
  */
-wiced_bt_a2d_status_t wiced_bt_a2d_find_service( uint16_t service_uuid, BD_ADDR bd_addr, wiced_bt_a2d_sdp_db_params_t *p_db, wiced_bt_a2d_find_cback *p_cback );
+wiced_bt_a2d_status_t wiced_bt_a2d_find_service(uint16_t service_uuid, BD_ADDR bd_addr, wiced_bt_a2d_sdp_db_params_t *p_db, wiced_bt_a2d_find_cback *p_cback);
 
 #ifdef __cplusplus
 }
 #endif
 
 /** @} wicedbt_a2dp */
+
+#endif // WICED_BT_A2D_H

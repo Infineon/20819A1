@@ -1,45 +1,45 @@
 /**************************************************************************//**
-*
-* \file <gattdefs.h>
-*
-* \brief
-*   Contains internally used ATT definitions.
-*
-*//*****************************************************************************
-* Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
-* an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
-*
-* This software, including source code, documentation and related
-* materials ("Software") is owned by Cypress Semiconductor Corporation
-* or one of its affiliates ("Cypress") and is protected by and subject to
-* worldwide patent protection (United States and foreign),
-* United States copyright laws and international treaty provisions.
-* Therefore, you may use this Software only as provided in the license
-* agreement accompanying the software package from which you
-* obtained this Software ("EULA").
-* If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
-* non-transferable license to copy, modify, and compile the Software
-* source code solely for use in connection with Cypress's
-* integrated circuit products.  Any reproduction, modification, translation,
-* compilation, or representation of this Software except as specified
-* above is prohibited without the express written permission of Cypress.
-*
-* Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
-* reserves the right to make changes to the Software without notice. Cypress
-* does not assume any liability arising out of the application or use of the
-* Software or any product or circuit described in the Software. Cypress does
-* not authorize its products for use in any products where a malfunction or
-* failure of the Cypress product may reasonably be expected to result in
-* significant property damage, injury or death ("High Risk Product"). By
-* including Cypress's product in a High Risk Product, the manufacturer
-* of such system or application assumes all risk of such use and in doing
-* so agrees to indemnify Cypress against all liability.
-*******************************************************************************/
+ *
+ * \file <gattdefs.h>
+ *
+ * \brief
+ *   Contains internally used ATT definitions.
+ *
+ *//*****************************************************************************
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
+ * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
+ *
+ * This software, including source code, documentation and related
+ * materials ("Software") is owned by Cypress Semiconductor Corporation
+ * or one of its affiliates ("Cypress") and is protected by and subject to
+ * worldwide patent protection (United States and foreign),
+ * United States copyright laws and international treaty provisions.
+ * Therefore, you may use this Software only as provided in the license
+ * agreement accompanying the software package from which you
+ * obtained this Software ("EULA").
+ * If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
+ * non-transferable license to copy, modify, and compile the Software
+ * source code solely for use in connection with Cypress's
+ * integrated circuit products.  Any reproduction, modification, translation,
+ * compilation, or representation of this Software except as specified
+ * above is prohibited without the express written permission of Cypress.
+ *
+ * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
+ * reserves the right to make changes to the Software without notice. Cypress
+ * does not assume any liability arising out of the application or use of the
+ * Software or any product or circuit described in the Software. Cypress does
+ * not authorize its products for use in any products where a malfunction or
+ * failure of the Cypress product may reasonably be expected to result in
+ * significant property damage, injury or death ("High Risk Product"). By
+ * including Cypress's product in a High Risk Product, the manufacturer
+ * of such system or application assumes all risk of such use and in doing
+ * so agrees to indemnify Cypress against all liability.
+ *******************************************************************************/
 
-#ifndef  _GATTDEFS_H
-#define  _GATTDEFS_H
+#ifndef  GATTDEFS_H
+#define  GATTDEFS_H
 
 #define GATT_ILLEGAL_UUID            0
 
@@ -225,7 +225,7 @@ enum gatt_appearance_e
     APPEARANCE_SENSOR_WIND                      = 1360, /* Wind Sensor */
     APPEARANCE_SENSOR_PROXYMITY                 = 1361, /* Proximity Sensor */
     APPEARANCE_SENSOR_MULTI_SENSOR              = 1362, /* Multi - Sensor */
-    APPEARANCE_LIGHT_GENERIC_FIXTURE            = 1408, /* Generic Light Fixtures	Generic category */
+    APPEARANCE_LIGHT_GENERIC_FIXTURE            = 1408, /* Generic Light Fixtures   Generic category */
     APPEARANCE_LIGHT_WALL                       = 1409, /* Wall Light */
     APPEARANCE_LIGHT_CEILING                    = 1410, /* Ceiling Light */
     APPEARANCE_LIGHT_FLOOR                      = 1411, /* Floor Light */
@@ -250,4 +250,4 @@ enum gatt_appearance_e
 };
 
 
-#endif /* _GATTDEFS_H_ */
+#endif /* GATTDEFS_H_ */

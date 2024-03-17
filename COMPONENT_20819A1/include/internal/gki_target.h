@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -178,7 +178,6 @@
 #endif
 
 
-
 /* TICK per second from OS (OS dependent change this macro accordingly to various OS) */
 #ifndef OS_TICKS_PER_SEC
 #define OS_TICKS_PER_SEC               1000
@@ -291,11 +290,11 @@
 
 /* RESERVED buffer pool for OBX */
 /* Ideally there should be 1 buffer for each instance for RX data, and some number
-of TX buffers based on active instances. OBX will only use these if packet size
-requires it. In most cases the large packets are used in only one direction so
-the other direction will use smaller buffers.
-Devices with small amount of RAM should limit the number of active obex objects.
-*/
+   of TX buffers based on active instances. OBX will only use these if packet size
+   requires it. In most cases the large packets are used in only one direction so
+   the other direction will use smaller buffers.
+   Devices with small amount of RAM should limit the number of active obex objects.
+ */
 /* The size of the buffers in pool 4. */
 #ifndef GKI_BUF4_SIZE
 #define GKI_BUF4_SIZE               0x2000
@@ -312,11 +311,11 @@ Devices with small amount of RAM should limit the number of active obex objects.
 #endif
 
 /* The number of fixed GKI buffer pools.
-eL2CAP requires Pool ID 5
-If BTM_SCO_HCI_INCLUDED is FALSE, Pool ID 6 is unnecessary, otherwise set to 7
-If BTA_HL_INCLUDED is FALSE then Pool ID 7 is uncessary and set the following to 7, otherwise set to 8
-If BLE_INCLUDED is FALSE then Pool ID 8 is uncessary and set the following to 8, otherwise set to 9
-*/
+   eL2CAP requires Pool ID 5
+   If BTM_SCO_HCI_INCLUDED is FALSE, Pool ID 6 is unnecessary, otherwise set to 7
+   If BTA_HL_INCLUDED is FALSE then Pool ID 7 is uncessary and set the following to 7, otherwise set to 8
+   If BLE_INCLUDED is FALSE then Pool ID 8 is uncessary and set the following to 8, otherwise set to 9
+ */
 #ifndef GKI_NUM_FIXED_BUF_POOLS
 #define GKI_NUM_FIXED_BUF_POOLS     9
 #endif
@@ -332,8 +331,8 @@ If BLE_INCLUDED is FALSE then Pool ID 8 is uncessary and set the following to 8,
 #endif
 
 /* The following is intended to be a reserved pool for L2CAP
-Flow control and retransmissions and intentionally kept out
-of order */
+   Flow control and retransmissions and intentionally kept out
+   of order */
 
 /* The number of buffers in buffer pool 5. */
 #ifndef GKI_BUF5_MAX
@@ -386,7 +385,7 @@ of order */
 
 
 /* The following is intended to be a reserved pool for SCO
-over HCI data and intentionally kept out of order */
+   over HCI data and intentionally kept out of order */
 
 /* The ID of buffer pool 6. */
 #ifndef GKI_POOL_ID_6
@@ -394,7 +393,7 @@ over HCI data and intentionally kept out of order */
 #endif
 
 /* The size of the buffers in pool 6,
-  BUF_SIZE = max SCO data 255 + sizeof(BT_HDR) = 8 + SCO packet header 3 + padding 2 = 268 */
+   BUF_SIZE = max SCO data 255 + sizeof(BT_HDR) = 8 + SCO packet header 3 + padding 2 = 268 */
 #ifndef GKI_BUF6_SIZE
 #define GKI_BUF6_SIZE               268
 #endif
@@ -411,7 +410,7 @@ over HCI data and intentionally kept out of order */
    2. make sure that the shared pool size is larger than 9472
    3. adjust GKI_NUM_FIXED_BUF_POOLS accordingly since
       POOL ID 7 is not needed
-*/
+ */
 
 /* The ID of buffer pool 7. */
 #ifndef GKI_POOL_ID_7
@@ -434,7 +433,7 @@ over HCI data and intentionally kept out of order */
    2. make sure that the shared pool size fit a common GATT database needs
    3. adjust GKI_NUM_FIXED_BUF_POOLS accordingly since
       POOL ID 8 is not needed
-*/
+ */
 
 /* The ID of buffer pool 8. */
 #ifndef GKI_POOL_ID_8
@@ -454,47 +453,47 @@ over HCI data and intentionally kept out of order */
 /* GKI Trace Macros */
 #if (GKI_DEBUG_BUF == TRUE)
 #define GKI_TRACE_0(m)                          LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m)
-#define GKI_TRACE_1(m,p1)                       LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1)
-#define GKI_TRACE_2(m,p1,p2)                    LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2)
-#define GKI_TRACE_3(m,p1,p2,p3)                 LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3)
-#define GKI_TRACE_4(m,p1,p2,p3,p4)              LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3,p4)
-#define GKI_TRACE_5(m,p1,p2,p3,p4,p5)           LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3,p4,p5)
-#define GKI_TRACE_6(m,p1,p2,p3,p4,p5,p6)        LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3,p4,p5,p6)
+#define GKI_TRACE_1(m, p1)                       LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1)
+#define GKI_TRACE_2(m, p1, p2)                    LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2)
+#define GKI_TRACE_3(m, p1, p2, p3)                 LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3)
+#define GKI_TRACE_4(m, p1, p2, p3, p4)              LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3,p4)
+#define GKI_TRACE_5(m, p1, p2, p3, p4, p5)           LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3,p4,p5)
+#define GKI_TRACE_6(m, p1, p2, p3, p4, p5, p6)        LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_GENERIC,m,p1,p2,p3,p4,p5,p6)
 
 #define GKI_TRACE_ERROR_0(m)                    LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m)
-#define GKI_TRACE_ERROR_1(m,p1)                 LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1)
-#define GKI_TRACE_ERROR_2(m,p1,p2)              LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2)
-#define GKI_TRACE_ERROR_3(m,p1,p2,p3)           LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3)
-#define GKI_TRACE_ERROR_4(m,p1,p2,p3,p4)        LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3,p4)
-#define GKI_TRACE_ERROR_5(m,p1,p2,p3,p4,p5)     LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3,p4,p5)
-#define GKI_TRACE_ERROR_6(m,p1,p2,p3,p4,p5,p6)  LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3,p4,p5,p6)
-#else
+#define GKI_TRACE_ERROR_1(m, p1)                 LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1)
+#define GKI_TRACE_ERROR_2(m, p1, p2)              LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2)
+#define GKI_TRACE_ERROR_3(m, p1, p2, p3)           LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3)
+#define GKI_TRACE_ERROR_4(m, p1, p2, p3, p4)        LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3,p4)
+#define GKI_TRACE_ERROR_5(m, p1, p2, p3, p4, p5)     LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3,p4,p5)
+#define GKI_TRACE_ERROR_6(m, p1, p2, p3, p4, p5, p6)  LogMsg(TRACE_CTRL_GENERAL | TRACE_LAYER_GKI | TRACE_ORG_GKI | TRACE_TYPE_ERROR,m,p1,p2,p3,p4,p5,p6)
+#else // if (GKI_DEBUG_BUF == TRUE)
 #define GKI_TRACE_0(m)
-#define GKI_TRACE_1(m,p1)
-#define GKI_TRACE_2(m,p1,p2)
-#define GKI_TRACE_3(m,p1,p2,p3)
-#define GKI_TRACE_4(m,p1,p2,p3,p4)
-#define GKI_TRACE_5(m,p1,p2,p3,p4,p5)
-#define GKI_TRACE_6(m,p1,p2,p3,p4,p5,p6)
+#define GKI_TRACE_1(m, p1)
+#define GKI_TRACE_2(m, p1, p2)
+#define GKI_TRACE_3(m, p1, p2, p3)
+#define GKI_TRACE_4(m, p1, p2, p3, p4)
+#define GKI_TRACE_5(m, p1, p2, p3, p4, p5)
+#define GKI_TRACE_6(m, p1, p2, p3, p4, p5, p6)
 
 #define GKI_TRACE_ERROR_0(m)
-#define GKI_TRACE_ERROR_1(m,p1)
-#define GKI_TRACE_ERROR_2(m,p1,p2)
-#define GKI_TRACE_ERROR_3(m,p1,p2,p3)
-#define GKI_TRACE_ERROR_4(m,p1,p2,p3,p4)
-#define GKI_TRACE_ERROR_5(m,p1,p2,p3,p4,p5)
-#define GKI_TRACE_ERROR_6(m,p1,p2,p3,p4,p5,p6)
-#endif
+#define GKI_TRACE_ERROR_1(m, p1)
+#define GKI_TRACE_ERROR_2(m, p1, p2)
+#define GKI_TRACE_ERROR_3(m, p1, p2, p3)
+#define GKI_TRACE_ERROR_4(m, p1, p2, p3, p4)
+#define GKI_TRACE_ERROR_5(m, p1, p2, p3, p4, p5)
+#define GKI_TRACE_ERROR_6(m, p1, p2, p3, p4, p5, p6)
+#endif // if (GKI_DEBUG_BUF == TRUE)
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-EXPORT_API extern void LogMsg (UINT32 trace_set_mask, const char *fmt_str, ...);
+EXPORT_API extern void LogMsg(UINT32 trace_set_mask, const char *fmt_str, ...);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  /* GKI_TARGET_H */
+#endif /* GKI_TARGET_H */

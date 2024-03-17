@@ -1,100 +1,100 @@
 /***************************************************************************//**
-* \file <wiced_bt_uuid.h>
-*
-*   Bluetooth Low Energy (LE) GATT UUID Definitions
-*
-* \brief
-*   This file has the LE GATT UUIDs defined as per www.bluetooth.com/specifications/gatt
-*
-*//*****************************************************************************
-* Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
-* an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
-*
-* This software, including source code, documentation and related
-* materials ("Software") is owned by Cypress Semiconductor Corporation
-* or one of its affiliates ("Cypress") and is protected by and subject to
-* worldwide patent protection (United States and foreign),
-* United States copyright laws and international treaty provisions.
-* Therefore, you may use this Software only as provided in the license
-* agreement accompanying the software package from which you
-* obtained this Software ("EULA").
-* If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
-* non-transferable license to copy, modify, and compile the Software
-* source code solely for use in connection with Cypress's
-* integrated circuit products.  Any reproduction, modification, translation,
-* compilation, or representation of this Software except as specified
-* above is prohibited without the express written permission of Cypress.
-*
-* Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
-* reserves the right to make changes to the Software without notice. Cypress
-* does not assume any liability arising out of the application or use of the
-* Software or any product or circuit described in the Software. Cypress does
-* not authorize its products for use in any products where a malfunction or
-* failure of the Cypress product may reasonably be expected to result in
-* significant property damage, injury or death ("High Risk Product"). By
-* including Cypress's product in a High Risk Product, the manufacturer
-* of such system or application assumes all risk of such use and in doing
-* so agrees to indemnify Cypress against all liability.
-*******************************************************************************/
+ * \file <wiced_bt_uuid.h>
+ *
+ *   Bluetooth Low Energy (LE) GATT UUID Definitions
+ *
+ * \brief
+ *   This file has the LE GATT UUIDs defined as per www.bluetooth.com/specifications/gatt
+ *
+ *//*****************************************************************************
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
+ * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
+ *
+ * This software, including source code, documentation and related
+ * materials ("Software") is owned by Cypress Semiconductor Corporation
+ * or one of its affiliates ("Cypress") and is protected by and subject to
+ * worldwide patent protection (United States and foreign),
+ * United States copyright laws and international treaty provisions.
+ * Therefore, you may use this Software only as provided in the license
+ * agreement accompanying the software package from which you
+ * obtained this Software ("EULA").
+ * If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
+ * non-transferable license to copy, modify, and compile the Software
+ * source code solely for use in connection with Cypress's
+ * integrated circuit products.  Any reproduction, modification, translation,
+ * compilation, or representation of this Software except as specified
+ * above is prohibited without the express written permission of Cypress.
+ *
+ * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
+ * reserves the right to make changes to the Software without notice. Cypress
+ * does not assume any liability arising out of the application or use of the
+ * Software or any product or circuit described in the Software. Cypress does
+ * not authorize its products for use in any products where a malfunction or
+ * failure of the Cypress product may reasonably be expected to result in
+ * significant property damage, injury or death ("High Risk Product"). By
+ * including Cypress's product in a High Risk Product, the manufacturer
+ * of such system or application assumes all risk of such use and in doing
+ * so agrees to indemnify Cypress against all liability.
+ *******************************************************************************/
 #ifndef WICED_BT_UUID_H
 #define WICED_BT_UUID_H
 
 /******************************************************************************
-*  Constants
-******************************************************************************/
+ *  Constants
+ ******************************************************************************/
 
 /* GATT Services */
 enum ble_uuid_service
 {
-    UUID_SERVICE_GAP                                    = 0x1800,
-    UUID_SERVICE_GATT                                   = 0x1801,
-    UUID_SERVICE_IMMEDIATE_ALERT                        = 0x1802,
-    UUID_SERVICE_LINK_LOSS                              = 0x1803,
-    UUID_SERVICE_TX_POWER                               = 0x1804,
-    UUID_SERVICE_CURRENT_TIME                           = 0x1805,
-    UUID_SERVICE_REFERENCE_TIME_UPDATE                  = 0x1806,
-    UUID_SERVICE_DST_CHANGE                             = 0x1807,
-    UUID_SERVICE_GLUCOSE                                = 0x1808,
-    UUID_SERVICE_HEALTH_THERMOMETER                     = 0x1809,
-    UUID_SERVICE_DEVICE_INFORMATION                     = 0x180A,
-    UUID_SERVICE_NETWORK_AVAILABILITY                   = 0x180B,
-    UUID_SERVICE_WATCHDOG                               = 0x180C,
-    UUID_SERVICE_HEART_RATE                             = 0x180D,
-    UUID_SERVICE_PHONE_ALERT_STATUS                     = 0x180E,
-    UUID_SERVICE_BATTERY                                = 0x180F,
-    UUID_SERVICE_BLOOD_PRESSURE                         = 0x1810,
-    UUID_SERVICE_ALERT_NOTIFICATION                     = 0x1811,
-    UUID_SERVICE_HID                                    = 0x1812,
-    UUID_SERVICE_SCAN_PARAMETERS                        = 0x1813,
-    UUID_SERVICE_RSC                                    = 0x1814,
-    UUID_SERVICE_AUTOMATION_IO                          = 0x1815,
-    UUID_SERVICE_CSC                                    = 0x1816,
-    UUID_SERVICE_CYCLING_POWER                          = 0x1818,
-    UUID_SERVICE_LOCATION_NAVIGATION                    = 0x1819,
-    UUID_SERVICE_ENVIRONMENTAL_SENSING                  = 0x181A,
-    UUID_SERVICE_BODY_COMPOSITION                       = 0x181B,
-    UUID_SERVICE_USER_DATA                              = 0x181C,
-    UUID_SERVICE_WEIGHT_SCALE                           = 0x181D,
-    UUID_SERVICE_BOND_MANAGEMENT                        = 0x181E,
-    UUID_SERVICE_CONTINUOUS_GLUCOSE_MONITORING          = 0x181F,
-    UUID_SERVICE_INTERNET_PROTOCOL_SUPPORT              = 0x1820,
-    UUID_SERVICE_INDOOR_POSITIONING                     = 0x1821,
-    UUID_SERVICE_PULSE_OXIMETER                         = 0x1822,
-    UUID_SERVICE_HTTP_PROXY                             = 0x1823,
-    UUID_SERVICE_TRANSPORT_DISCOVERY                    = 0x1824,
-    UUID_SERVICE_OBJECT_TRANSFER                        = 0x1825,
-    UUID_SERVICE_WPT                                    = 0xFFFE,
+    UUID_SERVICE_GAP                           = 0x1800,
+    UUID_SERVICE_GATT                          = 0x1801,
+    UUID_SERVICE_IMMEDIATE_ALERT               = 0x1802,
+    UUID_SERVICE_LINK_LOSS                     = 0x1803,
+    UUID_SERVICE_TX_POWER                      = 0x1804,
+    UUID_SERVICE_CURRENT_TIME                  = 0x1805,
+    UUID_SERVICE_REFERENCE_TIME_UPDATE         = 0x1806,
+    UUID_SERVICE_DST_CHANGE                    = 0x1807,
+    UUID_SERVICE_GLUCOSE                       = 0x1808,
+    UUID_SERVICE_HEALTH_THERMOMETER            = 0x1809,
+    UUID_SERVICE_DEVICE_INFORMATION            = 0x180A,
+    UUID_SERVICE_NETWORK_AVAILABILITY          = 0x180B,
+    UUID_SERVICE_WATCHDOG                      = 0x180C,
+    UUID_SERVICE_HEART_RATE                    = 0x180D,
+    UUID_SERVICE_PHONE_ALERT_STATUS            = 0x180E,
+    UUID_SERVICE_BATTERY                       = 0x180F,
+    UUID_SERVICE_BLOOD_PRESSURE                = 0x1810,
+    UUID_SERVICE_ALERT_NOTIFICATION            = 0x1811,
+    UUID_SERVICE_HID                           = 0x1812,
+    UUID_SERVICE_SCAN_PARAMETERS               = 0x1813,
+    UUID_SERVICE_RSC                           = 0x1814,
+    UUID_SERVICE_AUTOMATION_IO                 = 0x1815,
+    UUID_SERVICE_CSC                           = 0x1816,
+    UUID_SERVICE_CYCLING_POWER                 = 0x1818,
+    UUID_SERVICE_LOCATION_NAVIGATION           = 0x1819,
+    UUID_SERVICE_ENVIRONMENTAL_SENSING         = 0x181A,
+    UUID_SERVICE_BODY_COMPOSITION              = 0x181B,
+    UUID_SERVICE_USER_DATA                     = 0x181C,
+    UUID_SERVICE_WEIGHT_SCALE                  = 0x181D,
+    UUID_SERVICE_BOND_MANAGEMENT               = 0x181E,
+    UUID_SERVICE_CONTINUOUS_GLUCOSE_MONITORING = 0x181F,
+    UUID_SERVICE_INTERNET_PROTOCOL_SUPPORT     = 0x1820,
+    UUID_SERVICE_INDOOR_POSITIONING            = 0x1821,
+    UUID_SERVICE_PULSE_OXIMETER                = 0x1822,
+    UUID_SERVICE_HTTP_PROXY                    = 0x1823,
+    UUID_SERVICE_TRANSPORT_DISCOVERY           = 0x1824,
+    UUID_SERVICE_OBJECT_TRANSFER               = 0x1825,
+    UUID_SERVICE_WPT                           = 0xFFFE,
 };
 
 /* GATT Declarations */
 enum ble_uuid_attribute
 {
-    UUID_ATTRIBUTE_PRIMARY_SERVICE                      = 0x2800,
-    UUID_ATTRIBUTE_SECONDARY_SERVICE                    = 0x2801,
-    UUID_ATTRIBUTE_INCLUDE                              = 0x2802,
-    UUID_ATTRIBUTE_CHARACTERISTIC                       = 0x2803,
+    UUID_ATTRIBUTE_PRIMARY_SERVICE   = 0x2800,
+    UUID_ATTRIBUTE_SECONDARY_SERVICE = 0x2801,
+    UUID_ATTRIBUTE_INCLUDE           = 0x2802,
+    UUID_ATTRIBUTE_CHARACTERISTIC    = 0x2803,
 };
 
 /* GATT Descriptors */
@@ -226,12 +226,12 @@ enum ble_uuid_characteristic
     UUID_CHARACTERISTIC_POSITION_QUALITY                                    = 0x2A69,
     UUID_CHARACTERISTIC_LN_FEATURE                                          = 0x2A6A,
     UUID_CHARACTERISTIC_LN_CONTROL_POINT                                    = 0x2A6B,
-    UUID_CHARACTERISTIC_ELEVATION	                                        = 0x2A6C,
+    UUID_CHARACTERISTIC_ELEVATION                                           = 0x2A6C,
     UUID_CHARACTERISTIC_PRESSURE                                            = 0x2A6D,
     UUID_CHARACTERISTIC_TEMPERATURE                                         = 0x2A6E,
     UUID_CHARACTERISTIC_HUMIDITY                                            = 0x2A6F,
     UUID_CHARACTERISTIC_TRUE_WIND_SPEED                                     = 0x2A70,
-    UUID_CHARACTERISTIC_TRUE_WIND_DIRECTION	                                = 0x2A71,
+    UUID_CHARACTERISTIC_TRUE_WIND_DIRECTION                                 = 0x2A71,
     UUID_CHARACTERISTIC_APPARENT_WIND_SPEED                                 = 0x2A72,
     UUID_CHARACTERISTIC_APPARENT_WIND_DIRECTION                             = 0x2A73,
     UUID_CHARACTERISTIC_GUST_FACTOR                                         = 0x2A74,
@@ -319,4 +319,5 @@ enum ble_uuid_characteristic
     UUID_CHARACTERISTIC_OBJECT_LIST_FILTER                                  = 0x2AC7,
     UUID_CHARACTERISTIC_OBJECT_CHANGED                                      = 0x2AC8,
 };
+
 #endif /* _WICED_BT_UUID_H_ */

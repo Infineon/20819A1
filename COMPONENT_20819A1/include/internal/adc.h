@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,17 +32,17 @@
  */
 
 /*
-********************************************************************
-*    File Name: adc.h
-*
-*    Abstract: This file defines the ADC driver
-*
-*
-********************************************************************
-*/
+ ********************************************************************
+ *    File Name: adc.h
+ *
+ *    Abstract: This file defines the ADC driver
+ *
+ *
+ ********************************************************************
+ */
 
-#ifndef __ADC__H__
-#define __ADC__H__
+#ifndef ADC__H__
+#define ADC__H__
 
 #include "brcm_fw_types.h"
 #include "adc_cs.h"
@@ -52,16 +52,16 @@ extern "C" {
 
 /**  \addtogroup ADC
  *  \ingroup HardwareDrivers
-*/
+ */
 
 /***************************************************************
-* the bits of Register cr_pulse_reset_peri_adr (0x00320100) to reset adc circuit
-****************************************************************/
+ * the bits of Register cr_pulse_reset_peri_adr (0x00320100) to reset adc circuit
+ ****************************************************************/
 typedef enum
 {
-    RST_ADC_DMA_HCLK    = (1 << 15),
-    RST_ADC_CLK_ADC     = (1 << 17),
-    RST_ADC_CLK_API     = (1 << 18),
+    RST_ADC_DMA_HCLK = (1 << 15),
+    RST_ADC_CLK_ADC  = (1 << 17),
+    RST_ADC_CLK_API  = (1 << 18),
 } PULSE_RESET_PERI_BITS;
 
 #define EQ_FILTER_COEFFICIENT_SIZE_N  116
@@ -73,27 +73,30 @@ typedef enum
 #pragma pack(1)
 typedef PACKED struct
 {
-    UINT8       enable;                   // 1 Enable DRC, 0 Disable DRC
-    UINT16      waitTime;                 // Wait time in mSec, 0x2EE = 750 mSec.
-    UINT8       knee1;                    // Knee 1, 68.5dB,       2660, in 1/2 dB steps.  10^((RSSI_target/2 + 30)/20).
-    UINT8       knee2;                    // Knee 2, 75dB,         5623, in 1/2 dB steps.  10^((RSSI_target/2 + 30)/20).
-    UINT8       knee3;                    // Knee 3, 81dB,        11220, in 1/2 dB steps.  10^((RSSI_target/2 + 30)/20).
-    UINT16      attackTime;               // Attack time in mSec.  0x03E8 = 1000 mSec
-    UINT16      decayTime;                // Decay time in mSec.  0x001F = 31 mSec.
-    UINT16      saturationLevel;          // Saturation Level, 0x6800 = 26624.  This will be the max output level.
+    UINT8  enable;                        // 1 Enable DRC, 0 Disable DRC
+    UINT16 waitTime;                      // Wait time in mSec, 0x2EE = 750 mSec.
+    UINT8  knee1;                         // Knee 1, 68.5dB,       2660, in 1/2 dB steps.  10^((RSSI_target/2 + 30)/20).
+    UINT8  knee2;                         // Knee 2, 75dB,         5623, in 1/2 dB steps.  10^((RSSI_target/2 + 30)/20).
+    UINT8  knee3;                         // Knee 3, 81dB,        11220, in 1/2 dB steps.  10^((RSSI_target/2 + 30)/20).
+    UINT16 attackTime;                    // Attack time in mSec.  0x03E8 = 1000 mSec
+    UINT16 decayTime;                     // Decay time in mSec.  0x001F = 31 mSec.
+    UINT16 saturationLevel;               // Saturation Level, 0x6800 = 26624.  This will be the max output level.
                                           // The DRC will behave like an AGC when the DRC curve exceeds this amount.
                                           // This value will be used when the pga gain is set lower than 18dB by the DRC loop.
-}AdcAudioDrcSettings;
+} AdcAudioDrcSettings;
 
-typedef PACKED struct {
-    INT16               coeff[EQ_FILTER_COEFFICIENT_SIZE_N];
+typedef PACKED struct
+{
+    INT16 coeff[EQ_FILTER_COEFFICIENT_SIZE_N];
 } filter_coeff_data_t;
 
-typedef PACKED struct {
+typedef PACKED struct
+{
     UINT16              audio_aux_filter_coef[NUMBER_OF_AUDIO_AUX_FILTER_COEF];
     UINT16              biQuadEqFilterCoeffs[BIQUAD_EQ_FILTER_COEFF_COUNT*BIQUAD_EQ_FILTER_COUNT];
     filter_coeff_data_t eqFilter;
 } AdcAudioFilterCfg_t;
+
 #pragma pack()
 
 #define READY_DELAY     10
@@ -138,4 +141,4 @@ extern AdcState adcState;
 }
 #endif
 
-#endif
+#endif // ifndef ADC__H__

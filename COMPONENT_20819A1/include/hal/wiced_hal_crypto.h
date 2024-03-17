@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023, Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
  * This software, including source code, documentation and related
@@ -32,17 +32,17 @@
  */
 
 /** @file
-*
-* Definitions of the crypto functions: sha2_hmac.
-*
-*/
+ *
+ * Definitions of the crypto functions: sha2_hmac.
+ *
+ */
 
-#ifndef __WICED_HAL_CRYPTO_H__
-#define __WICED_HAL_CRYPTO_H__
+#ifndef WICED_HAL_CRYPTO_H__
+#define WICED_HAL_CRYPTO_H__
 
 /******************************************************************************
-*** Function prototypes and defines.
-******************************************************************************/
+ *** Function prototypes and defines.
+ ******************************************************************************/
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Calculated HMAC-SHA. Output = HMAC-SHA-256(224)( hmac key, input buffer )
@@ -54,8 +54,8 @@
 /// \param output  - HMAC-SHA-224/256 result
 /// \param is224   - 0 = use SHA256, 1 = use SHA224
 ////////////////////////////////////////////////////////////////////////////////
-void wiced_sha2_hmac( const unsigned char *key, uint32_t keylen,
-                      const unsigned char *input, uint32_t ilen,
-                      unsigned char output[32], int32_t is224 );
+void wiced_sha2_hmac(const unsigned char *key, uint32_t keylen,
+                     const unsigned char *input, uint32_t ilen,
+                     unsigned char output[32], int32_t is224);
 
-#endif // __WICED_HAL_CRYPTO_H__
+#endif // WICED_HAL_CRYPTO_H__
