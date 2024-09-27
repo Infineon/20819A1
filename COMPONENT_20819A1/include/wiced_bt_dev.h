@@ -1,9 +1,9 @@
-/***************************************************************************//**
+/*******************************************************************************
  * \file <wiced_bt_dev.h>
  *
  * Provides the API declarations for device management.
  *
- *//*****************************************************************************
+ *******************************************************************************
  * Copyright 2016-2024, Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
  *
@@ -1015,7 +1015,7 @@ typedef union
 /******************************************************************************
  * Bluetooth Management callback
  *
- ***************************************************************************//**
+ ******************************************************************************
  * Callback for Bluetooth Management event notifications.
  * Registered using wiced_bt_stack_init()
  *
@@ -1029,7 +1029,7 @@ typedef wiced_result_t (wiced_bt_management_cback_t) (wiced_bt_management_evt_t 
 
 /******************************************************************************
  * Callback Name: wiced_bt_connection_status_change_cback_t
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Callback for Bluetooth Management event notifications.
  * Registered using \ref wiced_bt_register_connection_status_change
@@ -1056,7 +1056,7 @@ typedef void (wiced_bt_connection_status_change_cback_t) (wiced_bt_device_addres
 
 /******************************************************************************
  * Callback Name: wiced_bt_dev_cmpl_cback_t
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Asynchronous operation complete callback.
  *
@@ -1069,7 +1069,7 @@ typedef void (wiced_bt_dev_cmpl_cback_t) (void *p_data);
 
 /******************************************************************************
  * Callback Name: wiced_bt_dev_vendor_specific_command_complete_cback_t
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Vendor specific command complete
  *
@@ -1082,7 +1082,7 @@ typedef void (wiced_bt_dev_vendor_specific_command_complete_cback_t) (wiced_bt_d
 
 /******************************************************************************
  * Callback Name: wiced_bt_hci_trace_cback_t
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Callback for HCI traces registered using \ref wiced_bt_dev_register_hci_trace
  *
@@ -1097,7 +1097,7 @@ typedef void ( wiced_bt_hci_trace_cback_t )(wiced_bt_hci_trace_type_t type, uint
 
 /******************************************************************************
  * Callback Name: wiced_bt_inquiry_result_cback_t
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Inquiry result callback.
  *
@@ -1111,7 +1111,7 @@ typedef void (wiced_bt_inquiry_result_cback_t) (wiced_bt_dev_inquiry_scan_result
 
 /******************************************************************************
  * Callback Name: wiced_bt_remote_name_cback_t
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Remote name result callback.
  *
@@ -1141,7 +1141,7 @@ typedef void (wiced_bt_remote_name_cback_t) (wiced_bt_dev_remote_name_result_t *
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_read_local_addr
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Reads the local device address.
  *
@@ -1154,7 +1154,7 @@ void wiced_bt_dev_read_local_addr(wiced_bt_device_address_t bd_addr);
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_vendor_specific_command
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Sends a vendor specific HCI command to the controller.
  *
@@ -1176,7 +1176,7 @@ wiced_result_t wiced_bt_dev_vendor_specific_command(uint16_t opcode,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_register_connection_status_change
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Registers a callback for connection status change.
  *
@@ -1191,9 +1191,20 @@ wiced_result_t wiced_bt_dev_register_connection_status_change(wiced_bt_connectio
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_read_rssi
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Gets the Receive Signal Strength Index (RSSI) for the requested link.
+ *
+ * Note:  see Bluetooth Core Spec definition of the Read RSSI command,
+ *        for BR/EDR transports, the RSSI value returned through the
+ *        callback will be the difference between the measured RSSI and
+ *        the limits of a range selected by the controller, where
+ *        positive or negative values indicate a measurement above or
+ *        below the range, and a zero value indicates the RSSI is within
+ *        the range. But for LE transports, the value returned will be
+ *        the absolute RSSI. If absolute RSSI is required for a BR/EDR
+ *        connection, use the wiced_bt_read_raw_rssi() API from the
+ *        btsdk-common middleware library.
  *
  * \param[in] remote_bda          BD_ADDR of connection to read RSSI
  * \param[in] transport           BT_TRANSPORT_BR_EDR or BT_TRANSPORT_LE
@@ -1212,7 +1223,7 @@ wiced_result_t wiced_bt_dev_read_rssi(wiced_bt_device_address_t remote_bda,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_read_tx_power
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Reads the transmit power for the requested link.
  *
@@ -1233,7 +1244,7 @@ wiced_result_t wiced_bt_dev_read_tx_power(wiced_bt_device_address_t remote_bda,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_register_hci_trace
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Registers to get the HCI traces.
  *
@@ -1246,7 +1257,7 @@ void wiced_bt_dev_register_hci_trace(wiced_bt_hci_trace_cback_t *p_cback);
 
 /******************************************************************************
  * Function Name: wiced_bt_set_local_bdaddr
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Set Local Bluetooth Device Address. If the application passes BLE_ADDR_RANDOM
  * as an address type, the stack will setup a static random address.  For the
@@ -1265,7 +1276,7 @@ void wiced_bt_set_local_bdaddr(wiced_bt_device_address_t bda, wiced_bt_ble_addre
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_get_role
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Gets the role of the local device for the ACL connection with the specified
  * remote device.
@@ -1319,7 +1330,7 @@ wiced_result_t BTM_SetLinkSuperTout(wiced_bt_device_address_t remote_bd_addr, ui
 
 /******************************************************************************
  * Function Name: wiced_bt_set_tx_power
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Commands to set the TX power on link
  *
@@ -1333,7 +1344,7 @@ wiced_result_t wiced_bt_set_tx_power(wiced_bt_device_address_t bd_addr, INT8 pow
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_set_tx_power_range
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Command to set the TX power range on a link
  *
@@ -1348,7 +1359,7 @@ wiced_result_t wiced_bt_dev_set_tx_power_range(wiced_bt_device_address_t bd_addr
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_link_quality_stats
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Gets the statistics for an ACL link.
  *
@@ -1381,7 +1392,7 @@ wiced_result_t wiced_bt_dev_link_quality_stats(BD_ADDR bda,
 
 /******************************************************************************
  * Function Name: wiced_bt_coex_enable
- ***************************************************************************//**
+ ******************************************************************************
  *
  * The application can invoke this function to enable the coex functionality.
  *
@@ -1397,7 +1408,7 @@ wiced_result_t wiced_bt_coex_enable(uint32_t seci_baud_rate);
 
 /******************************************************************************
  * Function Name: wiced_bt_coex_disable
- ***************************************************************************//**
+ ******************************************************************************
  *
  * The application can invoke this function to disable the coex functionality.
  *
@@ -1416,7 +1427,7 @@ void wiced_bt_coex_disable(void);
 
 /******************************************************************************
  * Function Name: wiced_bt_start_inquiry
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Starts BR/EDR inquiry.
  *
@@ -1435,7 +1446,7 @@ wiced_result_t wiced_bt_start_inquiry(wiced_bt_dev_inq_parms_t *p_inqparms, wice
 
 /******************************************************************************
  * Function Name: wiced_bt_cancel_inquiry
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Cancels an active inquiry.
  *
@@ -1451,7 +1462,7 @@ wiced_result_t wiced_bt_cancel_inquiry(void);
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_set_advanced_connection_params
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Sets advanced connection parameters for subsequent BR/EDR connections (remote
  * clock offset, page scan mode,  and other information obtained during inquiry).
@@ -1469,7 +1480,7 @@ wiced_result_t wiced_bt_dev_set_advanced_connection_params(wiced_bt_dev_inquiry_
 
 /******************************************************************************
  * Function Name:  wiced_bt_dev_set_discoverability
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Sets inquiry scan.
  *
@@ -1494,7 +1505,7 @@ wiced_result_t wiced_bt_dev_set_discoverability(uint8_t inq_mode, uint16_t durat
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_set_connectability
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Sets page scan mode settings for BR/EDR.
  *
@@ -1518,7 +1529,7 @@ wiced_result_t wiced_bt_dev_set_connectability(uint8_t page_mode, uint16_t windo
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_set_sniff_mode
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Sets a connection into Sniff mode.
  *
@@ -1539,7 +1550,7 @@ wiced_result_t wiced_bt_dev_set_sniff_mode(wiced_bt_device_address_t remote_bda,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_cancel_sniff_mode
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Takes a connection out of Sniff mode. Checks if the connection is already in
  * Sniff mode, and if not, the cancel Sniff mode is ignored.
@@ -1553,7 +1564,7 @@ wiced_result_t wiced_bt_dev_cancel_sniff_mode(wiced_bt_device_address_t remote_b
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_set_sniff_subrating
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Sets sniff-subrating parameters for an active connection.
  *
@@ -1575,7 +1586,7 @@ wiced_result_t wiced_bt_dev_set_sniff_subrating(wiced_bt_device_address_t remote
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_write_eir
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Writes EIR data to the controller.
  *
@@ -1592,7 +1603,7 @@ wiced_result_t wiced_bt_dev_write_eir(uint8_t *p_buff, uint16_t len);
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_set_afh_channel_classification
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Sends the HCI_SET_AFH_CHANNELS command to the BR/EDR controller.
  *
@@ -1614,7 +1625,7 @@ wiced_result_t wiced_bt_dev_set_afh_channel_classification(const wiced_bt_br_chn
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_get_remote_name
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Gets the Bluetooth Friendly name from the remote device.
  *
@@ -1642,7 +1653,7 @@ wiced_result_t wiced_bt_dev_get_remote_name(wiced_bt_device_address_t bd_addr,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_pin_code_reply
- ***************************************************************************//**
+ ******************************************************************************
  *
  * PIN code reply used in response to \ref BTM_PIN_REQUEST_EVT in \ref
  * wiced_bt_management_cback_t.
@@ -1659,7 +1670,7 @@ void wiced_bt_dev_pin_code_reply(wiced_bt_device_address_t bd_addr, wiced_result
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_sec_bond
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Bond with peer device. If the connection is already up, but not secure,
  * pairing is attempted.
@@ -1688,7 +1699,7 @@ wiced_result_t wiced_bt_dev_sec_bond(wiced_bt_device_address_t bd_addr,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_sec_bond_cancel
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Cancels an ongoing bonding process with the peer device.
  *
@@ -1703,7 +1714,7 @@ wiced_result_t wiced_bt_dev_sec_bond_cancel(wiced_bt_device_address_t bd_addr);
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_set_encryption
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Encrypts the specified connection. Status is notified using
  * <b>BTM_ENCRYPTION_STATUS_EVT </b> of \ref wiced_bt_management_cback_t.
@@ -1725,7 +1736,7 @@ wiced_result_t wiced_bt_dev_set_encryption(wiced_bt_device_address_t bd_addr,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_confirm_req_reply
- ***************************************************************************//**
+ ******************************************************************************
  * Confirms the numeric value for pairing to <b>BTM_USER_CONFIRMATION_REQUEST_EVT </b>
  * of #wiced_bt_management_cback_t)
  *
@@ -1739,7 +1750,7 @@ void wiced_bt_dev_confirm_req_reply(wiced_result_t res, wiced_bt_device_address_
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_pass_key_req_reply
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Provides the pairing passkey. Used in response to <b>BTM_PASSKEY_REQUEST_EVT </b>
  * of \ref wiced_bt_management_cback_t.
@@ -1755,7 +1766,7 @@ void wiced_bt_dev_pass_key_req_reply(wiced_result_t res, wiced_bt_device_address
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_send_key_press_notif
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Informs a remote device of keypress during pairing. Used during the passkey
  * entry by a device with KeyboardOnly IO capabilities (typically a HID keyboard
@@ -1771,7 +1782,7 @@ void wiced_bt_dev_send_key_press_notif(wiced_bt_device_address_t bd_addr, wiced_
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_read_local_oob_data
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Reads the local OOB data from the controller (for sending to the peer device
  * over oob message). When operation is completed, local OOB data is provided
@@ -1786,7 +1797,7 @@ wiced_result_t wiced_bt_dev_read_local_oob_data(void);
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_remote_oob_data_reply
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Provides the remote OOB extended data for Simple Pairing in response to
  * \ref BTM_REMOTE_OOB_DATA_REQUEST_EVT.
@@ -1815,7 +1826,7 @@ void wiced_bt_dev_remote_oob_data_reply(wiced_result_t res,
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_build_oob_data
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Builds the OOB data block to be used to send OOB extended data over OOB
  * (non-Bluetooth) link.
@@ -1844,7 +1855,7 @@ uint16_t wiced_bt_dev_build_oob_data(uint8_t *p_data,
 
 /******************************************************************************
  * Function Name: wiced_bt_smp_oob_data_reply
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Provides the OOB data for SMP in response to BTM_SMP_REMOTE_OOB_DATA_REQUEST_EVT
  *
@@ -1860,7 +1871,7 @@ void wiced_bt_smp_oob_data_reply(wiced_bt_device_address_t bd_addr, wiced_result
 
 /******************************************************************************
  * Function Name: wiced_bt_smp_create_local_sc_oob_data
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Creates local LE SC (secure connection) OOB data. When the operation is
  * completed, local OOB data is provided via \ref
@@ -1877,7 +1888,7 @@ wiced_bool_t wiced_bt_smp_create_local_sc_oob_data(wiced_bt_device_address_t bd_
 
 /******************************************************************************
  * Function Name: wiced_bt_smp_sc_oob_reply
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Provide the SC OOB data for SMP in response to
  * BTM_SMP_SC_REMOTE_OOB_DATA_REQUEST_EVT
@@ -1891,7 +1902,7 @@ void wiced_bt_smp_sc_oob_reply(uint8_t *p_oob_data);
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_get_bonded_devices
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Gets the bonded device list.
  *
@@ -1906,7 +1917,7 @@ wiced_result_t wiced_bt_dev_get_bonded_devices(wiced_bt_dev_bonded_device_info_t
 
 /******************************************************************************
  * Function Name: wiced_bt_dev_delete_bonded_device
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Removes bonding with the remote device with assigned bd_addr.
  *
@@ -1920,7 +1931,7 @@ wiced_result_t wiced_bt_dev_delete_bonded_device(wiced_bt_device_address_t bd_ad
 #if GATT_OVER_BREDR_INCLUDED == TRUE
 /******************************************************************************
  * Function Name: wiced_bt_dev_get_security_state
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Gets security flags for the device.
  *
@@ -1935,7 +1946,7 @@ wiced_bool_t wiced_bt_dev_get_security_state(wiced_bt_device_address_t bd_addr, 
 
 /******************************************************************************
  * Function Name: wiced_bt_set_pairable_mode
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Enables or disables pairing.
  *
@@ -1949,7 +1960,7 @@ void wiced_bt_set_pairable_mode(uint8_t allow_pairing, uint8_t connect_only_pair
 
 /******************************************************************************
  * Function Name: wiced_bt_get_identity_address
- ***************************************************************************//**
+ ******************************************************************************
  *
  * Returns the identity address of the given device.
  *
